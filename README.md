@@ -64,7 +64,9 @@ Jogo-da-Adivinhacao/
 </pre>
 
 
-<h2 align="center">🖼️ Diagramas de Atividades do Sistema</h2>
+<h2 align="center"> Backlog/Quadro do Projeto: <br>
+<img src="./img/quadro:backlog.jpeg" width="410"> <br>
+<h2 align="center"> Diagramas de Atividades do Sistema</h2>
 
 <p align="center">
   <strong>Representações visuais dos fluxos de cada funcionalidade, organizadas por histórias de usuário e integradas à documentação do projeto.</strong>
