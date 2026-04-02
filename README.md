@@ -66,7 +66,7 @@ Jogo-da-Adivinhacao/
 
 
 <h2 align="center"> Backlog/Quadro do Projeto: <br>
-<img src="./img/quadro:backlog.jpeg" width="410"> <br>
+<img src="./img/Backlog:Quadro.jpeg" width="410"> <br>
 <h2 align="center"> Diagramas de Atividades do Sistema</h2>
 
 <p align="center">
