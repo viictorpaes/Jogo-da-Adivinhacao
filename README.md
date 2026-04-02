@@ -6,14 +6,15 @@ Jogo de Adivinhação Otimizado em C <br>
 </h1>
 
 <h2 align="center">👥👨🏻‍🏫 Docentes Responsáveis: </h2>
-
 <ul>
   <li><strong>Aêda Monalliza Cunha de Sousa</strong> <a href="https://www.linkedin.com/in/aedasousa/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
-  <li><strong>Lucas Rodolfo Celestino de Farias</strong><a href="https://www.linkedin.com/in/fariaslrc" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a>
-  <li><strong>Renan Costa Alencar</strong><a href="https://www.linkedin.com/in/renancostaalencar" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a>
+  <li><strong>Lucas Rodolfo Celestino de Farias</strong><a href="https://www.linkedin.com/in/fariaslrc" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+  <li><strong>Renan Costa Alencar</strong><a href="https://www.linkedin.com/in/renancostaalencar" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+  <li><strong>Ricardo Baudel</strong><a href="https://www.linkedin.com/in/ricardo-baudel-700a98127/" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+</ul>
 
-</ul> 
- 
+
+
 <h2 align="center">👤👨‍🎓 Integrantes do Projeto: </h2>
 <ul>
 <li>Eduardo de Souza Cavalcanti Junior <a href="https://www.linkedin.com/in/eduardoscavalcantij/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/eduardo-scavalcanti" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
@@ -79,58 +80,52 @@ Jogo-da-Adivinhacao/
   </a>
 </p>
 
-<h3 align="center"><strong>HU1 - Geração de Número Aleatório</strong></h3>
+<h3 align="center"><strong>HU1</strong></h3>
 <p align="center">
-  Responsável por criar o número secreto que será utilizado durante a partida, garantindo aleatoriedade a cada execução.
-</p>
-<p align="center">
-  <img src="img/HU1_Geracao_de_Numero_Aleatorio_Horizontal.png" width="390"/>
+  <a href="_blank">HU1</a>
 </p>
 
-<h3 align="center"><strong>HU2 - Loop de Adivinhação e Feedback</strong></h3>
+<h3 align="center"><strong>HU2</strong></h3>
 <p align="center">
-  Controla o fluxo principal do jogo, permitindo múltiplas tentativas e fornecendo respostas ao usuário indicando se o palpite está alto, baixo ou correto.
-</p>
-<p align="center">
-  <img src="img/HU2 _Loop_de_Adivinhacao_e_Feedback.png" width="390"/>
+  <a href="_blank">HU2</a>
 </p>
 
-<h3 align="center"><strong>HU3 - Validação de Entradas no Terminal</strong></h3>
+<h3 align="center"><strong>HU3</strong></h3>
 <p align="center">
-  Garante que os dados inseridos pelo usuário sejam válidos, evitando erros e assegurando que apenas valores permitidos sejam processados.
-</p>
-<p align="center">
-  <img src="img/HU3_Validacao_de_Entradas_no_Terminal.png" width="390"/>
+  <a href="_blank">HU3</a>
 </p>
 
-<h3 align="center"><strong>HU4 - Registro de Sessões</strong></h3>
+<h3 align="center"><strong>HU4</strong></h3>
 <p align="center">
-  Armazena informações de cada partida realizada, possibilitando o acompanhamento do desempenho ao longo do tempo.
-</p>
-<p align="center">
-  <img src="img/HU4_Registro_de_Sessoes.png" width="390"/>
+  <a href="_blank">HU4</a>
 </p>
 
-<h3 align="center"><strong>HU5 - Leitura do Histórico de Partidas</strong></h3>
+<h3 align="center"><strong>HU5</strong></h3>
 <p align="center">
-  Permite acessar e visualizar dados previamente registrados, oferecendo uma visão geral das partidas anteriores.
-</p>
-<p align="center">
-  <img src="img/HU5_Leitura_do_Historico_de_Partidas.png" width="390"/>
+  <a href="_blank">HU5</a>
 </p>
 
-<h3 align="center"><strong>HU6 - Cálculo da Média de Tentativas</strong></h3>
+<h3 align="center"><strong>HU6</strong></h3>
 <p align="center">
-  Realiza o processamento dos dados coletados para calcular a média de tentativas realizadas nas partidas.
-</p>
-<p align="center">
-  <img src="img/HU6_Calculo_da_Media_de_Tentativas.png" width="390"/>
+  <a href="_blank">HU6</a>
 </p>
 
-<h3 align="center"><strong>HU7 - Identificação de Melhor e Pior Sessão</strong></h3>
+<h3 align="center"><strong>HU7</strong></h3>
 <p align="center">
-  Analisa os resultados registrados para destacar o melhor e o pior desempenho entre as sessões jogadas.
+  <a href="_blank">HU7</a>
 </p>
+
+<h3 align="center"><strong>HU8</strong></h3>
 <p align="center">
-  <img src="img/HU7_Identificacao_de_Melhor_e_Pior_Sessao.png" width="390"/>
+  <a href="_blank">HU8</a>
+</p>
+
+<h3 align="center"><strong>HU9</strong></h3>
+<p align="center">
+  <a href="_blank">HU9</a>
+</p>
+
+<h3 align="center"><strong>HU10</strong></h3>
+<p align="center">
+  <a href="_blank">HU10</a>
 </p>
