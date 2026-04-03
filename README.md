@@ -26,6 +26,21 @@ Jogo de Adivinhação Otimizado em C <br>
 <li>Victor José Paes <a href="https://www.linkedin.com/in/viictorpaes/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/viictorpaes" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
 </ul>
 
+
+
+<h2 align="center"> 🔨💻 Tecnologias Utilizadas: </h2>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" height="25"/>
+  <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/>
+  <img src="https://img.shields.io/badge/Padrão-C11-00599C?style=for-the-badge" height="25"/>
+  <img src="https://img.shields.io/badge/Interface-Terminal-4E4E4E?style=for-the-badge&logo=gnumeterminal&logoColor=white" height="25"/>
+  <img src="https://img.shields.io/badge/Persistência-TXT%20/%20CSV-A85D00?style=for-the-badge&logo=files&logoColor=white" height="25"/> <br>
+  <img src="https://img.shields.io/badge/Versionamento-Git-F05032?style=for-the-badge&logo=git&logoColor=orange&labelColor=black" height="25">
+  <img src="https://img.shields.io/badge/Plataforma-GitHub-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=black" height="25"/>
+  <img src="https://img.shields.io/badge/GitHub%20Desktop-6F42C1?style=for-the-badge&logo=github&logoColor=white" height="25"/>
+</p>
+
 🛠️ Especificações Técnicas:
 ...
 
