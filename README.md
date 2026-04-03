@@ -26,16 +26,6 @@ Jogo de Adivinhação Otimizado em C <br>
 <li>Victor José Paes <a href="https://www.linkedin.com/in/viictorpaes/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/viictorpaes" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
 </ul>
 
-<h2 align="center"> 🔨💻 Tecnologias Utilizadas: </h2>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" height="25"/>
-  <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/>
-  <img src="https://img.shields.io/badge/Padrão-C11-00599C?style=for-the-badge" height="25"/>
-  <img src="https://img.shields.io/badge/Interface-Terminal-4E4E4E?style=for-the-badge&logo=gnumeterminal&logoColor=white" height="25"/>
-  <img src="https://img.shields.io/badge/Persistência-TXT%20/%20CSV-A85D00?style=for-the-badge&logo=files&logoColor=white" height="25"/>
-</p>
-
 🛠️ Especificações Técnicas:
 ...
 
@@ -65,67 +55,91 @@ Jogo-da-Adivinhacao/
 </pre>
 
 
-<h2 align="center"> Backlog/Quadro do Projeto: <br>
-<img src="./img/Backlog:Quadro.jpeg" width="410"> <br>
-<h2 align="center"> Diagramas de Atividades do Sistema</h2>
-
+<h3 align="center"> 🚀 Backlog e Boarding (Trello) </h3>
 <p align="center">
-  <strong>Representações visuais dos fluxos de cada funcionalidade, organizadas por histórias de usuário e integradas à documentação do projeto.</strong>
+  <strong>Status:</strong> Mínimo de 10 histórias de usuário definidas seguindo o padrão 3Cs e priorizadas no backlog.
 </p>
 
 <p align="center">
-  Acessíveis também nos cards do <mark>Trello</mark>: <br>
+  <img src="./img/Backlog:Quadro.jpeg" width="420"> <br>
+</p>
+
+<p align="center">
+  <strong>Acesse o Board do projeto</strong>: <br>
   <a href="https://trello.com/b/yp8S6Ek9/jogo-de-adivinhacao-projetos-2-pif-fds" target="_blank">
-    <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" width="80"/>
+    <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" height="25"/>
   </a>
 </p>
 
-<h3 align="center"><strong>HU1</strong></h3>
+<h3 align="center"> 🎨 UX Design e Engenharia de Requisitos </h3>
 <p align="center">
-  <a href="_blank">HU1</a>
+  <strong>Demonstração do Protótipo (Screencast):</strong> <br>
+  <a href="LINK_AQUI" target="_blank">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="25"/>
+  </a>
 </p>
 
-<h3 align="center"><strong>HU2</strong></h3>
+<h2 align="center"> 📐 Mapeamento de Fluxos e Atividades</h2>
+
 <p align="center">
-  <a href="_blank">HU2</a>
+  <strong>Detalhamento visual das 10 Histórias de Usuário (HUs) através de diagramas de atividades e wireframes. <br>
+  Também disponíveis nos cards do Trello</strong>
 </p>
 
-<h3 align="center"><strong>HU3</strong></h3>
-<p align="center">
-  <a href="_blank">HU3</a>
-</p>
-
-<h3 align="center"><strong>HU4</strong></h3>
-<p align="center">
-  <a href="_blank">HU4</a>
-</p>
-
-<h3 align="center"><strong>HU5</strong></h3>
-<p align="center">
-  <a href="_blank">HU5</a>
-</p>
-
-<h3 align="center"><strong>HU6</strong></h3>
-<p align="center">
-  <a href="_blank">HU6</a>
-</p>
-
-<h3 align="center"><strong>HU7</strong></h3>
-<p align="center">
-  <a href="_blank">HU7</a>
-</p>
-
-<h3 align="center"><strong>HU8</strong></h3>
-<p align="center">
-  <a href="_blank">HU8</a>
-</p>
-
-<h3 align="center"><strong>HU9</strong></h3>
-<p align="center">
-  <a href="_blank">HU9</a>
-</p>
-
-<h3 align="center"><strong>HU10</strong></h3>
-<p align="center">
-  <a href="_blank">HU10</a>
-</p>
+<table align="center">
+  <tr>
+    <th align="center">História</th>
+    <th align="center">Descrição Detalhada (3Cs)</th>
+    <th align="center">Artefatos de Design</th>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU1</strong></td>
+    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</td>
+    <td align="center"><a href="./img/fluxo_hu1.png" target="_blank"><img src="./img/fluxo_hu1.png" width="100" alt="HU1"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU2</strong></td>
+    <td>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</td>
+    <td align="center"><a href="./img/fluxo_hu2.png" target="_blank"><img src="./img/fluxo_hu2.png" width="100" alt="HU2"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU3</strong></td>
+    <td>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</td>
+    <td align="center"><a href="./img/fluxo_hu3.png" target="_blank"><img src="./img/fluxo_hu3.png" width="100" alt="HU3"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU4</strong></td>
+    <td>Sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</td>
+    <td align="center"><a href="./img/fluxo_hu4.png" target="_blank"><img src="./img/fluxo_hu4.png" width="100" alt="HU4"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU5</strong></td>
+    <td>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.</td>
+    <td align="center"><a href="./img/fluxo_hu5.png" target="_blank"><img src="./img/fluxo_hu5.png" width="100" alt="HU5"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU6</strong></td>
+    <td>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo.</td>
+    <td align="center"><a href="./img/fluxo_hu6.png" target="_blank"><img src="./img/fluxo_hu6.png" width="100" alt="HU6"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU7</strong></td>
+    <td>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae.</td>
+    <td align="center"><a href="./img/fluxo_hu7.png" target="_blank"><img src="./img/fluxo_hu7.png" width="100" alt="HU7"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU8</strong></td>
+    <td>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores.</td>
+    <td align="center"><a href="./img/fluxo_hu8.png" target="_blank"><img src="./img/fluxo_hu8.png" width="100" alt="HU8"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU9</strong></td>
+    <td>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.</td>
+    <td align="center"><a href="./img/fluxo_hu9.png" target="_blank"><img src="./img/fluxo_hu9.png" width="100" alt="HU9"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>HU10</strong></td>
+    <td>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</td>
+    <td align="center"><a href="./img/fluxo_hu10.png" target="_blank"><img src="./img/fluxo_hu10.png" width="100" alt="HU10"></a></td>
+  </tr>
+</table>
