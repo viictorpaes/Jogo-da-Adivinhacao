@@ -49,24 +49,24 @@ Jogo de Adivinhação Otimizado em C <br>
 Jogo-da-Adivinhacao/
 ├── README.md <img src="https://img.shields.io/badge/Markdown-FFFFFF?style=for-the-badge&logo=markdown&logoColor=000000" height="18"/>
 ├── img/ <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="18">
-├── dados/ <img src="https://img.shields.io/badge/Data-Files-orange?style=flat-square&logo=databricks" height="18">
-│   └── historico.txt <img src="https://img.shields.io/badge/Arquivo-TXT-grey?style=flat-square&logo=files&logoColor=white" height="18"/>
-├── src/ <img src="https://img.shields.io/badge/%3C%2F%3E%20src-green?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="18"/>
-│   ├── jogo/ <img src="https://img.shields.io/badge/Módulo-Jogo-blue?style=flat-square&logo=c&logoColor=white" height="18">
-│   │   ├── jogo.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   │   └── jogo.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   ├── util/ <img src="https://img.shields.io/badge/Módulo-Util-blue?style=flat-square&logo=c&logoColor=white" height="18">
-│   │   ├── util.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   │   └── util.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   ├── historico/ <img src="https://img.shields.io/badge/Módulo-Histórico-blue?style=flat-square&logo=c&logoColor=white" height="18">
-│   │   ├── historico.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   │   └── historico.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   ├── analise/ <img src="https://img.shields.io/badge/Módulo-Análise-blue?style=flat-square&logo=c&logoColor=white" height="18">
-│   │   ├── analise.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   │   └── analise.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   ├── tipos/ <img src="https://img.shields.io/badge/Módulo-Tipos-blue?style=flat-square&logo=c&logoColor=white" height="18">
-│   │   └── tipos.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-│   └── main.c <img src="https://img.shields.io/badge/C-Main-red?style=flat-square&logo=c&logoColor=white" height="18"/>
+├── data/ <img src="https://img.shields.io/badge/Data-Files-orange?style=flat-square&logo=databricks" height="18">
+│   └── histórico.txt <img src="https://img.shields.io/badge/Arquivo-TXT-grey?style=flat-square&logo=files&logoColor=white" height="18"/>
+└── src/ <img src="https://img.shields.io/badge/%3C%2F%3E%20src-green?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="18"/>
+    ├── game/ <img src="https://img.shields.io/badge/Módulo-Jogo-blue?style=flat-square&logo=c&logoColor=white" height="18">
+    │   ├── jogo.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   └── jogo.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
+    ├── utils/  <img src="https://img.shields.io/badge/Módulo-Util-blue?style=flat-square&logo=c&logoColor=white" height="18">
+    │   ├── util.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   └── util.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
+    ├── history/ <img src="https://img.shields.io/badge/Módulo-Histórico-blue?style=flat-square&logo=c&logoColor=white" height="18">
+    │   ├── histórico.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   └── histórico.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
+    ├── static/ <img src="https://img.shields.io/badge/Módulo-Análise-blue?style=flat-square&logo=c&logoColor=white" height="18">
+    │   ├── estátisticas.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   └── estátisticas.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
+    ├── include/ <img src="https://img.shields.io/badge/Módulo-Tipos-blue?style=flat-square&logo=c&logoColor=white" height="18">
+    │   └── tipos.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
+    └── main.c <img src="https://img.shields.io/badge/C-Main-red?style=flat-square&logo=c&logoColor=white" height="18"/>
 </pre>
 
 
@@ -102,58 +102,58 @@ Jogo-da-Adivinhacao/
 </p>
 
 <p align="center">
-  <strong>HU1</strong><br>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.<br>
-  <a href="./img/fluxo_hu1.png" target="_blank">
-    <img src="./img/fluxo_hu1.png" width="100" alt="HU1">
+  <strong>HU1 - Geração de Número Aleatório</strong><br>
+  Define a semente com base no tempo do sistema para inicializar o gerador e criar um número secreto entre 1 e 100.<br>
+  <a href="./img/HU1_Geracao_de_Numero_Aleatorio_Horizontal.jpeg" target="_blank">
+    <img src="./img/HU1_Geracao_de_Numero_Aleatorio_Horizontal.jpeg" width="420" alt="HU1">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU2</strong><br>
-  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.<br>
-  <a href="./img/fluxo_hu2.png" target="_blank">
-    <img src="./img/fluxo_hu2.png" width="100" alt="HU2">
+  <strong>HU2 - Loop de Adivinhação e Feedback</strong><br>
+  Processa o palpite do jogador, comparando-o com o número secreto para fornecer dicas de "Muito alto", "Muito baixo" ou vitória.<br>
+  <a href="./img/HU2_Loop_de_Adivinhacao_e_Feedback.jpeg" target="_blank">
+    <img src="./img/HU2 _Loop_de_Adivinhacao_e_Feedback.jpeg" width="420" alt="HU2">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU3</strong><br>
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.<br>
-  <a href="./img/fluxo_hu3.png" target="_blank">
-    <img src="./img/fluxo_hu3.png" width="100" alt="HU3">
+  <strong>HU3 - Validação de Entradas no Terminal</strong><br>
+  Garante que o valor inserido seja um número inteiro válido e esteja dentro do intervalo permitido (1 a 100).<br>
+  <a href="./img/HU3_Validacao_de_Entradas_no_Terminal.jpeg" target="_blank">
+    <img src="./img/HU3_Validacao_de_Entradas_no_Terminal.jpeg" width="420" alt="HU3">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU4</strong><br>
-  Sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.<br>
-  <a href="./img/fluxo_hu4.png" target="_blank">
-    <img src="./img/fluxo_hu4.png" width="100" alt="HU4">
+  <strong>HU4 - Registro de Sessões</strong><br>
+  Salva o total de tentativas da partida finalizada em um arquivo de texto, tratando possíveis erros de gravação.<br>
+  <a href="./img/HU4_Registro_de_Sessoes.jpeg" target="_blank">
+    <img src="./img/HU4_Registro_de_Sessoes.jpeg" width="420" alt="HU4">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU5</strong><br>
-  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.<br>
-  <a href="./img/fluxo_hu5.png" target="_blank">
-    <img src="./img/fluxo_hu5.png" width="100" alt="HU5">
+  <strong>HU5 - Leitura do Histórico de Partidas</strong><br>
+  Acessa o arquivo de registros para carregar os dados de sessões anteriores em uma estrutura de dados para análise.<br>
+  <a href="./img/HU5_Leitura_do_Historico_de_Partidas.jpeg" target="_blank">
+    <img src="./img/HU5_Leitura_do_Historico_de_Partidas.jpeg" width="420" alt="HU5">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU6</strong><br>
-  Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo.<br>
-  <a href="./img/fluxo_hu6.png" target="_blank">
-    <img src="./img/fluxo_hu6.png" width="100" alt="HU6">
+  <strong>HU6 - Cálculo da Média de Tentativas</strong><br>
+  Percorre o histórico de partidas para somar as tentativas e exibir a média aritmética do desempenho do jogador.<br>
+  <a href="./img/HU6_Calculo_da_Media_de_Tentativas.jpeg" target="_blank">
+    <img src="./img/HU6_Calculo_da_Media_de_Tentativas.jpeg" width="420" alt="HU6">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU7</strong><br>
-  Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae.<br>
-  <a href="./img/fluxo_hu7.png" target="_blank">
-    <img src="./img/fluxo_hu7.png" width="100" alt="HU7">
+  <strong>HU7 - Identificação de Melhor e Pior Sessão</strong><br>
+  Utiliza uma função recursiva para comparar os elementos do histórico e identificar os valores mínimos e máximos de tentativas.<br>
+  <a href="./img/HU7_Identificacao_de_Melhor_e_Pior_Sessao.jpeg" target="_blank">
+    <img src="./img/HU7_Identificacao_de_Melhor_e_Pior_Sessao.jpeg" width="420" alt="HU7">
   </a>
 </p>
 
