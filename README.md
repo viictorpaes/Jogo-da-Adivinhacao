@@ -101,60 +101,82 @@ Jogo-da-Adivinhacao/
   Também disponíveis nos cards do Trello</strong>
 </p>
 
-<table align="center">
-  <tr>
-    <th align="center">História</th>
-    <th align="center">Descrição Detalhada (3Cs)</th>
-    <th align="center">Artefatos de Design</th>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU1</strong></td>
-    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</td>
-    <td align="center"><a href="./img/fluxo_hu1.png" target="_blank"><img src="./img/fluxo_hu1.png" width="100" alt="HU1"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU2</strong></td>
-    <td>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</td>
-    <td align="center"><a href="./img/fluxo_hu2.png" target="_blank"><img src="./img/fluxo_hu2.png" width="100" alt="HU2"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU3</strong></td>
-    <td>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</td>
-    <td align="center"><a href="./img/fluxo_hu3.png" target="_blank"><img src="./img/fluxo_hu3.png" width="100" alt="HU3"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU4</strong></td>
-    <td>Sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</td>
-    <td align="center"><a href="./img/fluxo_hu4.png" target="_blank"><img src="./img/fluxo_hu4.png" width="100" alt="HU4"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU5</strong></td>
-    <td>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.</td>
-    <td align="center"><a href="./img/fluxo_hu5.png" target="_blank"><img src="./img/fluxo_hu5.png" width="100" alt="HU5"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU6</strong></td>
-    <td>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo.</td>
-    <td align="center"><a href="./img/fluxo_hu6.png" target="_blank"><img src="./img/fluxo_hu6.png" width="100" alt="HU6"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU7</strong></td>
-    <td>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae.</td>
-    <td align="center"><a href="./img/fluxo_hu7.png" target="_blank"><img src="./img/fluxo_hu7.png" width="100" alt="HU7"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU8</strong></td>
-    <td>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores.</td>
-    <td align="center"><a href="./img/fluxo_hu8.png" target="_blank"><img src="./img/fluxo_hu8.png" width="100" alt="HU8"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU9</strong></td>
-    <td>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.</td>
-    <td align="center"><a href="./img/fluxo_hu9.png" target="_blank"><img src="./img/fluxo_hu9.png" width="100" alt="HU9"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>HU10</strong></td>
-    <td>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</td>
-    <td align="center"><a href="./img/fluxo_hu10.png" target="_blank"><img src="./img/fluxo_hu10.png" width="100" alt="HU10"></a></td>
-  </tr>
-</table>
+<p align="center">
+  <strong>HU1</strong><br>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.<br>
+  <a href="./img/fluxo_hu1.png" target="_blank">
+    <img src="./img/fluxo_hu1.png" width="100" alt="HU1">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU2</strong><br>
+  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.<br>
+  <a href="./img/fluxo_hu2.png" target="_blank">
+    <img src="./img/fluxo_hu2.png" width="100" alt="HU2">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU3</strong><br>
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.<br>
+  <a href="./img/fluxo_hu3.png" target="_blank">
+    <img src="./img/fluxo_hu3.png" width="100" alt="HU3">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU4</strong><br>
+  Sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.<br>
+  <a href="./img/fluxo_hu4.png" target="_blank">
+    <img src="./img/fluxo_hu4.png" width="100" alt="HU4">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU5</strong><br>
+  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.<br>
+  <a href="./img/fluxo_hu5.png" target="_blank">
+    <img src="./img/fluxo_hu5.png" width="100" alt="HU5">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU6</strong><br>
+  Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo.<br>
+  <a href="./img/fluxo_hu6.png" target="_blank">
+    <img src="./img/fluxo_hu6.png" width="100" alt="HU6">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU7</strong><br>
+  Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae.<br>
+  <a href="./img/fluxo_hu7.png" target="_blank">
+    <img src="./img/fluxo_hu7.png" width="100" alt="HU7">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU8</strong><br>
+  Permite ao usuário selecionar o nível de dificuldade antes de iniciar a partida, influenciando o comportamento do jogo.<br>
+  <a href="./img/HU8_Selecao_de_Dificuldade.jpeg" target="_blank">
+    <img src="./img/HU8_Selecao_de_Dificuldade.png" width="420" alt="HU8">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU9</strong><br>
+  Exibe o ranking de jogadores, permitindo visualizar as melhores pontuações e comparar resultados.<br>
+  <a href="./img/HU9_Visualizacao_de_Ranking.jpeg" target="_blank">
+    <img src="./img/HU9_Visualizacao_de_Ranking.png" width="420" alt="HU9">
+  </a>
+</p>
+
+<p align="center">
+  <strong>HU10</strong><br>
+  Permite ao jogador inserir seu nome ao final da partida para registro no ranking e identificação da pontuação.<br>
+  <a href="./img/HU10_Inserir_Nome_do_Jogador.jpeg" target="_blank">
+    <img src="./img/HU10_Inserir_Nome_do_Jogador.png" width="420" alt="HU10">
+  </a>
+</p>
