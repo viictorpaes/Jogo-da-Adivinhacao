@@ -161,7 +161,7 @@ Jogo-da-Adivinhacao/
   <strong>HU8</strong><br>
   Permite ao usuário selecionar o nível de dificuldade antes de iniciar a partida, influenciando o comportamento do jogo.<br>
   <a href="./img/HU8_Selecao_de_Dificuldade.jpeg" target="_blank">
-    <img src="./img/HU8_Selecao_de_Dificuldade.png" width="420" alt="HU8">
+    <img src="./img/HU8_Selecao_de_Dificuldade.jpeg" width="420" alt="HU8">
   </a>
 </p>
 
@@ -169,7 +169,7 @@ Jogo-da-Adivinhacao/
   <strong>HU9</strong><br>
   Exibe o ranking de jogadores, permitindo visualizar as melhores pontuações e comparar resultados.<br>
   <a href="./img/HU9_Visualizacao_de_Ranking.jpeg" target="_blank">
-    <img src="./img/HU9_Visualizacao_de_Ranking.png" width="420" alt="HU9">
+    <img src="./img/HU9_Visualizacao_de_Ranking.jpeg" width="420" alt="HU9">
   </a>
 </p>
 
@@ -177,6 +177,6 @@ Jogo-da-Adivinhacao/
   <strong>HU10</strong><br>
   Permite ao jogador inserir seu nome ao final da partida para registro no ranking e identificação da pontuação.<br>
   <a href="./img/HU10_Inserir_Nome_do_Jogador.jpeg" target="_blank">
-    <img src="./img/HU10_Inserir_Nome_do_Jogador.png" width="420" alt="HU10">
+    <img src="./img/HU10_Inserir_Nome_do_Jogador.jpeg" width="420" alt="HU10">
   </a>
 </p>
