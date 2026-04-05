@@ -86,24 +86,27 @@ Jogo-da-Adivinhacao/
   </a>
 </p>
 
-<h3 align="center"> 🎨 UX Design e Engenharia de Requisitos </h3>
+<h3 align="center">🎨 Diagramas, Protótipos e Validação de UX</h3>
 <p align="center">
   <strong>Demonstração do Protótipo (Screencast):</strong> <br>
   <a href="LINK_AQUI" target="_blank">
-    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="25"/>
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=black" height="25"/>
+  </a>
+  <a href="LINK_FIGMA_AQUI" target="_blank">
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black" height="25"/>
   </a>
 </p>
 
-<h2 align="center"> 📐 Mapeamento de Fluxos e Atividades</h2>
+<h2 align="center">⚙️ Mapeamento de Fluxos e Atividades</h2>
 
 <p align="center">
-  <strong>Detalhamento visual das 10 Histórias de Usuário (HUs) através de diagramas de atividades e wireframes. <br>
+  <strong>Representação visual das 10 Histórias de Usuário (HUs) por meio de diagramas de atividades e wireframes.<br>
   Também disponíveis nos cards do Trello</strong>
 </p>
 
 <p align="center">
   <strong>HU1 - Geração de Número Aleatório</strong><br>
-  Define a semente com base no tempo do sistema para inicializar o gerador e criar um número secreto entre 1 e 100.<br>
+  Inicializa o gerador com base no tempo do sistema e cria um número secreto entre 1 e 100.<br>
   <a href="./img/HU1_Geracao_de_Numero_Aleatorio_Horizontal.jpeg" target="_blank">
     <img src="./img/HU1_Geracao_de_Numero_Aleatorio_Horizontal.jpeg" width="420" alt="HU1">
   </a>
@@ -111,15 +114,15 @@ Jogo-da-Adivinhacao/
 
 <p align="center">
   <strong>HU2 - Loop de Adivinhação e Feedback</strong><br>
-  Processa o palpite do jogador, comparando-o com o número secreto para fornecer dicas de "Muito alto", "Muito baixo" ou vitória.<br>
+  Compara o palpite do jogador com o número secreto e retorna dicas como “muito alto”, “muito baixo” ou vitória.<br>
   <a href="./img/HU2_Loop_de_Adivinhacao_e_Feedback.jpeg" target="_blank">
-    <img src="./img/HU2 _Loop_de_Adivinhacao_e_Feedback.jpeg" width="420" alt="HU2">
+    <img src="./img/HU2_Loop_de_Adivinhacao_e_Feedback.jpeg" width="420" alt="HU2">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU3 - Validação de Entradas no Terminal</strong><br>
-  Garante que o valor inserido seja um número inteiro válido e esteja dentro do intervalo permitido (1 a 100).<br>
+  <strong>HU3 - Validação de Entradas</strong><br>
+  Valida se a entrada é um número inteiro dentro do intervalo permitido (1 a 100).<br>
   <a href="./img/HU3_Validacao_de_Entradas_no_Terminal.jpeg" target="_blank">
     <img src="./img/HU3_Validacao_de_Entradas_no_Terminal.jpeg" width="420" alt="HU3">
   </a>
@@ -127,15 +130,15 @@ Jogo-da-Adivinhacao/
 
 <p align="center">
   <strong>HU4 - Registro de Sessões</strong><br>
-  Salva o total de tentativas da partida finalizada em um arquivo de texto, tratando possíveis erros de gravação.<br>
+  Armazena o número de tentativas ao final de cada partida em um arquivo, com tratamento de erros.<br>
   <a href="./img/HU4_Registro_de_Sessoes.jpeg" target="_blank">
     <img src="./img/HU4_Registro_de_Sessoes.jpeg" width="420" alt="HU4">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU5 - Leitura do Histórico de Partidas</strong><br>
-  Acessa o arquivo de registros para carregar os dados de sessões anteriores em uma estrutura de dados para análise.<br>
+  <strong>HU5 - Consulta ao Histórico de Partidas</strong><br>
+  Lê os dados armazenados e carrega o histórico de partidas para análise.<br>
   <a href="./img/HU5_Leitura_do_Historico_de_Partidas.jpeg" target="_blank">
     <img src="./img/HU5_Leitura_do_Historico_de_Partidas.jpeg" width="420" alt="HU5">
   </a>
@@ -143,39 +146,39 @@ Jogo-da-Adivinhacao/
 
 <p align="center">
   <strong>HU6 - Cálculo da Média de Tentativas</strong><br>
-  Percorre o histórico de partidas para somar as tentativas e exibir a média aritmética do desempenho do jogador.<br>
+  Calcula a média de tentativas a partir do histórico de partidas do jogador.<br>
   <a href="./img/HU6_Calculo_da_Media_de_Tentativas.jpeg" target="_blank">
     <img src="./img/HU6_Calculo_da_Media_de_Tentativas.jpeg" width="420" alt="HU6">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU7 - Identificação de Melhor e Pior Sessão</strong><br>
-  Utiliza uma função recursiva para comparar os elementos do histórico e identificar os valores mínimos e máximos de tentativas.<br>
+  <strong>HU7 - Análise de Melhor e Pior Desempenho</strong><br>
+  Identifica a melhor e a pior sessão com base no número de tentativas do jogador.<br>
   <a href="./img/HU7_Identificacao_de_Melhor_e_Pior_Sessao.jpeg" target="_blank">
     <img src="./img/HU7_Identificacao_de_Melhor_e_Pior_Sessao.jpeg" width="420" alt="HU7">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU8</strong><br>
-  Permite ao usuário selecionar o nível de dificuldade antes de iniciar a partida, influenciando o comportamento do jogo.<br>
+  <strong>HU8 - Seleção de Nível de Dificuldade</strong><br>
+  Permite escolher o nível de dificuldade, alterando o comportamento e desafio do jogo.<br>
   <a href="./img/HU8_Selecao_de_Dificuldade.jpeg" target="_blank">
     <img src="./img/HU8_Selecao_de_Dificuldade.jpeg" width="420" alt="HU8">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU9</strong><br>
-  Exibe o ranking de jogadores, permitindo visualizar as melhores pontuações e comparar resultados.<br>
+  <strong>HU9 - Visualização do Ranking</strong><br>
+  Exibe os melhores desempenhos dos jogadores em forma de ranking.<br>
   <a href="./img/HU9_Visualizacao_de_Ranking.jpeg" target="_blank">
-    <img src="./img/HU9_Visualizacao_de_Ranking.jpeg" width="420" alt="HU9">
+    <img src="./img/HU9_Visualizacao_de_Ranking.jpeg" width="440" alt="HU9">
   </a>
 </p>
 
 <p align="center">
-  <strong>HU10</strong><br>
-  Permite ao jogador inserir seu nome ao final da partida para registro no ranking e identificação da pontuação.<br>
+  <strong>HU10 - Cadastro do Jogador</strong><br>
+  Permite inserir o nome do jogador para registro no ranking e identificação da pontuação.<br>
   <a href="./img/HU10_Inserir_Nome_do_Jogador.jpeg" target="_blank">
     <img src="./img/HU10_Inserir_Nome_do_Jogador.jpeg" width="420" alt="HU10">
   </a>
