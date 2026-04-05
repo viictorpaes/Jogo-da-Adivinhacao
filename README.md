@@ -33,6 +33,7 @@ Jogo de Adivinhação Otimizado em C <br>
 <p align="center">
   <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" height="25"/>
   <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/>
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black" height="25"/>
   <img src="https://img.shields.io/badge/Padrão-C11-00599C?style=for-the-badge" height="25"/>
   <img src="https://img.shields.io/badge/Interface-Terminal-4E4E4E?style=for-the-badge&logo=gnumeterminal&logoColor=white" height="25"/>
   <img src="https://img.shields.io/badge/Persistência-TXT%20/%20CSV-A85D00?style=for-the-badge&logo=files&logoColor=white" height="25"/> <br>
@@ -101,7 +102,8 @@ Jogo-da-Adivinhacao/
 
 <p align="center">
   <strong>Representação visual das 10 Histórias de Usuário (HUs) por meio de diagramas de atividades e wireframes.<br>
-  Também disponíveis nos cards do Trello</strong>
+  Disponíveis nos cards do <mark>Trello</mark> e na Pasta: <mark>"img"</mark> deste repositório✅</strong> <br>
+  <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" height="23"/> <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="23">
 </p>
 
 <p align="center">
