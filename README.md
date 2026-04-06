@@ -48,6 +48,7 @@ Jogo de Adivinhação Otimizado em C <br>
 <h2 align="center">🏰 Arquitetura do Projeto: </h2>
 <pre>
 Jogo-da-Adivinhacao/
+├── protótipo.fig <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/Markdown-FFFFFF?style=for-the-badge&logo=markdown&logoColor=000000" height="18"/>
 ├── img/ <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="18">
 ├── data/ <img src="https://img.shields.io/badge/Data-Files-orange?style=flat-square&logo=databricks" height="18">
@@ -90,10 +91,10 @@ Jogo-da-Adivinhacao/
 <h3 align="center">🎨 Diagramas, Protótipos e Validação de UX</h3>
 <p align="center">
   <strong>Demonstração do Protótipo (Screencast):</strong> <br>
-  <a href="LINK_AQUI" target="_blank">
+  <a href="https://www.youtube.com/watch?v=OtLZ7gIEQFQ" target="_blank">
     <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=black" height="25"/>
   </a>
-  <a href="LINK_FIGMA_AQUI" target="_blank">
+  <a href="https://www.figma.com/pt-br/comunidade/file/1623063562663924122/cesarnumber-v1" target="_blank">
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black" height="25"/>
   </a>
 </p>
