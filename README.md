@@ -52,7 +52,7 @@ Jogo-da-Adivinhacao/
 ├── README.md <img src="https://img.shields.io/badge/Markdown-FFFFFF?style=for-the-badge&logo=markdown&logoColor=000000" height="18"/>
 ├── img/ <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="18">
 ├── data/ <img src="https://img.shields.io/badge/Data-Files-orange?style=flat-square&logo=databricks" height="18">
-│   └── histórico.txt <img src="https://img.shields.io/badge/Arquivo-TXT-grey?style=flat-square&logo=files&logoColor=white" height="18"/>
+│   └── historico.txt <img src="https://img.shields.io/badge/Arquivo-TXT-grey?style=flat-square&logo=files&logoColor=white" height="18"/>
 └── src/ <img src="https://img.shields.io/badge/%3C%2F%3E%20src-green?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="18"/>
     ├── game/ <img src="https://img.shields.io/badge/Módulo-Jogo-blue?style=flat-square&logo=c&logoColor=white" height="18">
     │   ├── jogo.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
@@ -61,11 +61,11 @@ Jogo-da-Adivinhacao/
     │   ├── util.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
     │   └── util.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
     ├── history/ <img src="https://img.shields.io/badge/Módulo-Histórico-blue?style=flat-square&logo=c&logoColor=white" height="18">
-    │   ├── histórico.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-    │   └── histórico.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   ├── historico.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   └── historico.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
     ├── static/ <img src="https://img.shields.io/badge/Módulo-Análise-blue?style=flat-square&logo=c&logoColor=white" height="18">
-    │   ├── estátisticas.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-    │   └── estátisticas.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   ├── estatisticas.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
+    │   └── estatisticas.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
     ├── include/ <img src="https://img.shields.io/badge/Módulo-Tipos-blue?style=flat-square&logo=c&logoColor=white" height="18">
     │   └── tipos.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
     └── main.c <img src="https://img.shields.io/badge/C-Main-red?style=flat-square&logo=c&logoColor=white" height="18"/>
