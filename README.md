@@ -186,7 +186,7 @@ Jogo-da-Adivinhacao/
 </p>
 
 <p align="center">
-  <strong>HU10 - Cadastro do Jogador</strong><br>
+  <strong>HU10 - Instância do Jogador</strong><br>
   Permite inserir o nome do jogador para registro no ranking e identificação da pontuação.<br>
   <a href="./img/HU10_Inserir_Nome_do_Jogador.jpeg" target="_blank">
     <img src="./img/HU10_Inserir_Nome_do_Jogador.jpeg" width="420" alt="HU10">
