@@ -104,7 +104,12 @@ Jogo-da-Adivinhacao/
 <p align="center">
   <strong>Representação visual das 10 Histórias de Usuário (HUs) por meio de diagramas de atividades e wireframes.<br>
   Disponíveis nos cards do <mark>Trello</mark> e na Pasta: <mark>"img"</mark> deste repositório✅</strong> <br>
-  <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" height="23"/> <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="23">
+  <a href="https://trello.com/b/yp8S6Ek9/jogo-de-adivinhacao-projetos-2-pif-fds-ihc" target="_blank">
+  <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" height="23"/>
+</a>
+<a href="/img/" target="_blank">
+<img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="23">
+</a>
 </p>
 
 <p align="center">
