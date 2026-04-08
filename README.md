@@ -48,6 +48,7 @@ Jogo de Adivinhação Otimizado em C <br>
 <h2 align="center">🏰 Arquitetura do Projeto: </h2>
 <pre>
 Jogo-da-Adivinhacao/
+├── .gitignore <img src="https://img.shields.io/badge/gitignore-F05032?style=for-the-badge&logo=git&logoColor=orange&labelColor=black" height="18">
 ├── protótipo.fig <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=black" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/Markdown-FFFFFF?style=for-the-badge&logo=markdown&logoColor=000000" height="18"/>
 ├── img/ <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="18">
