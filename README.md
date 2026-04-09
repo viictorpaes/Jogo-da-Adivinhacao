@@ -27,9 +27,7 @@ Jogo de Adivinhação Otimizado em C <br>
 </ul>
 
 
-
 <h2 align="center"> 🔨💻 Tecnologias Utilizadas: </h2>
-
 <p align="center">
   <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" height="25"/>
   <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/>
@@ -55,18 +53,23 @@ O projeto está sendo desenvolvido focando em modularização e boas práticas d
 ## 🚀 Como Executar o Projeto:
 
 ### Pré-requisitos
-* Compilador GCC instalado. <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/> <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square" height="25"/>
-* Git para clonar o repositório. <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=black" height="25"/> <img src="https://img.shields.io/badge/Versão-2.0+-orange?style=flat-square" height="25"/>
+* Compilador GCC instalado. 
+  <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" alt="GCC" height="28" style="margin: 0;" />
+  <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square&logo=gnu&logoColor=white" height="28" style="margin: 0;" />
 
-### Passo a passo
-1. Após baixar o Github desktop: <br>
-<img src="https://img.shields.io/badge/GitHub%20Desktop-6F42C1?style=for-the-badge&logo=github&logoColor=white" height="22"/>
+* Git para clonar o repositório. 
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=black" alt="Git" height="28" style="margin: 0;" />
+  <img src="https://img.shields.io/badge/Versão-2.0+-orange?style=flat-square&logo=git&logoColor=white" height="28" style="margin: 0;" />
+
+* Padrão da Linguagem C. 
+  <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black" alt="C11" height="28" style="margin: 0;" />
+  <img src="https://img.shields.io/badge/Versão-11-orange?style=flat-square&logo=c&logoColor=white" height="28" style="margin: 0;" />
 
 2. **Clone o repositório:**
    ```bash
    git clone [https://github.com/viictorpaes/Jogo-da-Adivinhacao)](https://github.com/viictorpaes/Jogo-da-Adivinhacao)
 
-3. **Abra sua IDE**
+3. **Abra sua IDE de escolha:** <br> <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code" /> <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/IntelliJ_IDEA_Icon.svg" width="32" height="32" alt="IntelliJ" /> <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Android_Studio_icon_%282023%29.svg" width="32" height="32" alt="Android Studio" />
   
 4. **Siga os seguintes comandos 🕹️** <br>
    <ul>
@@ -112,7 +115,7 @@ Para tornar a jogabilidade mais imersiva, o jogo utiliza um sistema de proximida
 
 Diferente de versões legadas (como C89/C90), o C11 introduz recursos que garantem que o jogo seja robusto e pronto para sistemas modernos:
 
-| Recurso | Benefício para o Projeto |
+| Recurso ⛏️| Benefício para o Projeto ✅ |
 | :--- | :--- |
 | **Segurança de Memória** | Substituição de funções perigosas (como `gets`) por alternativas que evitam *Buffer Overflow*. |
 | **Macros Genéricas (`_Generic`)** | Permite que funções utilitárias lidem com diferentes tipos de dados de forma mais inteligente. |
