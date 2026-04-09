@@ -84,6 +84,30 @@ O projeto está sendo desenvolvido focando em modularização e boas práticas d
   </li>
 </ul> 
 
+### 🎮🟢🟡🔴 Níveis de Dificuldade
+
+A dificuldade selecionada altera o intervalo de números possíveis e restringe o número de tentativas, recompensando a precisão com pontuações maiores.
+
+| Nível | Intervalo | Tentativas | Pontuação Base | Desafio |
+| :--- | :---: | :---: | :---: | :--- |
+| **Fácil** | `1 a 50` | 20 | 1000 | 🟢 Baixo |
+| **Médio** | `1 a 100` | 10 | 2000 | 🟡 Moderado |
+| **Difícil** | `1 a 500` | 5 | 5000 | 🔴 Alto |
+
+### 🔥🧦❄️🌥️ Sistema de Feedback Termodinâmico
+
+Para tornar a jogabilidade mais imersiva, o jogo utiliza um sistema de proximidade baseado em "temperaturas". O feedback é calculado pela diferença absoluta ($|palpite - secreto|$):
+
+| Feedback | Condição (Distância) | Descrição |
+| :--- | :--- | :--- |
+| **Pegando Fogo!** 🔥🔥 | $\pm 1$ | Você está a apenas uma unidade do número! |
+| **Quente!** 🔥 | $\leq 5$ | Você está muito perto, o acerto é iminente. |
+| **Morno** 🌤️ | $\leq 15$ | Você está na vizinhança correta do número. |
+| **Frio** ❄️ | $> 15$ | Você ainda está longe do objetivo. |
+
+> [!IMPORTANT]
+> Além da temperatura, o jogo continuará informando se o número secreto é **maior** ou **menor** que o palpite, auxiliando na estratégia de busca do jogador.
+
 ### 💎 Por que o C11 é fundamental neste projeto?
 
 Diferente de versões legadas (como C89/C90), o C11 introduz recursos que garantem que o jogo seja robusto e pronto para sistemas modernos:
