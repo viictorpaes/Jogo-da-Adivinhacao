@@ -42,8 +42,71 @@ Jogo de Adivinhação Otimizado em C <br>
   <img src="https://img.shields.io/badge/GitHub%20Desktop-6F42C1?style=for-the-badge&logo=github&logoColor=white" height="25"/>
 </p>
 
-🛠️ Especificações Técnicas:
+## 🛠️ Especificações Técnicas (em andamento):
+
+O projeto está sendo desenvolvido focando em modularização e boas práticas de programação em C:
+
+* **Modularização:** Divisão do código em arquivos `.h` (cabeçalhos) e `.c` (implementação) para facilitar a manutenção e organização lógica (Game, Utils, History, Stats).
+* **Gerenciamento de Memória:** Uso de estruturas de dados eficientes para manipulação de ranking e histórico sem vazamento de memória.
+* **Manipulação de Arquivos:** Persistência de dados em formato CSV/TXT, garantindo que o progresso do jogador não seja perdido ao fechar o terminal.
+* **Algoritmo de Aleatoriedade:** Utilização da biblioteca `time.h` para garantir sementes de números aleatórios únicas a cada execução.
+
+
+## 🚀 Como Executar o Projeto:
+
+### Pré-requisitos
+* Compilador GCC instalado. <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/> <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square" height="25"/>
+* Git para clonar o repositório. <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=black" height="25"/> <img src="https://img.shields.io/badge/Versão-2.0+-orange?style=flat-square" height="25"/>
+
+### Passo a passo
+1. Após baixar o Github desktop: <br>
+<img src="https://img.shields.io/badge/GitHub%20Desktop-6F42C1?style=for-the-badge&logo=github&logoColor=white" height="22"/>
+
+2. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/viictorpaes/Jogo-da-Adivinhacao)](https://github.com/viictorpaes/Jogo-da-Adivinhacao)
+
+3. **Abra sua IDE**
+  
+4. **Siga os seguintes comandos 🕹️** <br>
+   <ul>
+  <li>
+  Windows <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" width="16"/> <br>
+    <code>Ctrl</code> + <code>j</code> (tecla de crase)
+  </li> <br>
+  <li>
+    <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black" alt="Linux"/> <br>
+    <code>Ctrl</code> + <code>j</code> (tecla de crase)
+  </li> <br>
+  <li>
+    <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/> <br>
+    <code>Command</code> + <code>j</code> (tecla de crase)
+  </li>
+</ul> 
+
+### 💎 Por que o C11 é fundamental neste projeto?
+
+Diferente de versões legadas (como C89/C90), o C11 introduz recursos que garantem que o jogo seja robusto e pronto para sistemas modernos:
+
+| Recurso | Benefício para o Projeto |
+| :--- | :--- |
+| **Segurança de Memória** | Substituição de funções perigosas (como `gets`) por alternativas que evitam *Buffer Overflow*. |
+| **Macros Genéricas (`_Generic`)** | Permite que funções utilitárias lidem com diferentes tipos de dados de forma mais inteligente. |
+| **Alinhamento de Dados** | Otimização do uso de memória e cache, tornando o processamento de estatísticas mais rápido. |
+| **Tipagem Estrita** | Garante que o histórico de partidas gravado no disco seja lido sem corrupção de tipos. |
+
+### 🏗️ Modularizção e Boas Práticas
+
+* **Modularização (Encapsulamento):** O código é dividido em camadas lógicas. O módulo `game/` não precisa saber como o módulo `history/` grava os arquivos; ele apenas consome a interface (API) definida no `.h`.
+* **Gerenciamento de Fluxo:** Uso de estruturas de controle otimizadas para o loop de adivinhação, garantindo baixa latência de resposta no terminal.
+* **Persistência de Dados:** Implementação de manipulação de arquivos (I/O) com tratamento de erros rigoroso, prevenindo perda de dados caso o programa seja interrompido abruptamente.
+* **Portabilidade:** O código é compatível com compiladores GCC, Clang e MSVC, podendo ser compilado em ambientes Linux, Windows ou macOS sem alterações no núcleo da lógica.
+
+### ⚙️ Parâmetros de Compilação Recomendados
+
+Para garantir que o compilador utilize todo o potencial do padrão C11, recomenda-se o uso das seguintes flags no GCC: <br>
 ...
+
 
 <h2 align="center">🏰 Arquitetura do Projeto: </h2>
 <pre>
