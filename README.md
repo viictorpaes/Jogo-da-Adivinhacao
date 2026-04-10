@@ -88,6 +88,30 @@ O projeto está sendo desenvolvido focando em modularização e boas práticas d
   </li>
 </ul> 
 
+<br>
+
+5. *No terminal Integrado:* <br>
+<img src="https://img.shields.io/badge/Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="25"></h2>
+
+```bash
+# listar arquivos
+ls
+
+# entrar na src
+cd src
+ls
+
+# compilar todos os .c
+gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o jogo
+
+# executar
+./jogo
+
+# E, ao final do jogo, haverá mensagem informando que o progresso/status do jogador foi salvo
+echo "✔ Partida finalizada! O progresso do jogador foi salvo em data/historico.txt."
+
+```
+
 ### 🎮🟢🟡🔴 Níveis de Dificuldade
 
 A dificuldade selecionada altera o intervalo de números possíveis e restringe o número de tentativas, recompensando a precisão com pontuações maiores.
