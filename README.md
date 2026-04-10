@@ -32,6 +32,7 @@ Jogo de Adivinhação Otimizado em C <br>
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code" /> <br>
   <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" height="25"/>
   <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/>
+  <img src="https://img.shields.io/badge/Makefile-000000?style=for-the-badge&logo=probot&logoColor=red" height="25">
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black" height="25"/>
   <img src="https://img.shields.io/badge/Padrão-C11-00599C?style=for-the-badge" height="25"/>
   <img src="https://img.shields.io/badge/Interface-Terminal-4E4E4E?style=for-the-badge&logo=gnumeterminal&logoColor=white" height="25"/>
