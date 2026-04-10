@@ -159,10 +159,32 @@ Diferente de versões legadas (como C89/C90), o C11 introduz recursos que garant
 * **Persistência de Dados:** Implementação de manipulação de arquivos (I/O) com tratamento de erros rigoroso, prevenindo perda de dados caso o programa seja interrompido abruptamente.
 * **Portabilidade:** O código é compatível com compiladores GCC, Clang e MSVC, podendo ser compilado em ambientes Linux, Windows ou macOS sem alterações no núcleo da lógica.
 
-### ⚙️ Parâmetros de Compilação Recomendados
+
+### ⚙️ Parâmetros de Compilação (GCC/Clang)
 
 Para garantir que o compilador utilize todo o potencial do padrão C11, recomenda-se o uso das seguintes flags no GCC: <br>
-...
+
+```bash
+gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o jogo -std=c11 -Wall -Wextra -O2
+```
+
+| Flag de Compilação ⚙️ | Impacto no Desenvolvimento 🚀 |
+| :--- | :--- |
+| **Standard C11 (`-std=c11`)** | Habilita recursos modernos da revisão de 2011 e garante portabilidade do código. |
+| **All Warnings (`-Wall`)** | Ativa alertas sobre os erros mais comuns, como variáveis declaradas e não utilizadas. |
+| **Extra Warnings (`-Wextra`)** | Habilita verificações rigorosas de lógica que o padrão `-Wall` pode acabar ignorando. |
+| **Optimization (`-O2`)** | Otimiza o código para uma execução mais veloz sem comprometer o tamanho do binário. |
+| **Strict Mode (`-Werror`)** | Trata avisos como erros fatais, impedindo a compilação de códigos considerados "sujos". |
+| **Debug Mode (`-g`)** | Inclui símbolos de depuração essenciais para o uso de ferramentas como GDB ou Valgrind. |
+
+
+| Pilar de Qualidade 🏗️ | Objetivo Técnico ✅ |
+| :--- | :--- |
+| **Modularização** | Divisão em arquivos `.h` e `.c`, facilitando a manutenção e a organização das funções. |
+| **Segurança de I/O** | Uso de `fgets()` e `strncmp()` para proteger contra *Buffer Overflow* e falhas de leitura. |
+| **Gestão de Memória** | Gerenciamento dinâmico consciente para evitar vazamentos (*Memory Leaks*) no ranking. |
+| **Tratamento de Erros** | Verificação de `fopen()` para evitar que o programa feche se o arquivo de dados sumir. |
+| **Legibilidade** | Uso de nomes de variáveis claros para que a lógica seja entendida sem esforço extra. |
 
 
 <h2 align="center">🏰 Arquitetura do Projeto: </h2>
