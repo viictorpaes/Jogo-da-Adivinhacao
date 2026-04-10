@@ -1,0 +1,37 @@
+# --- Executáveis Finais ---
+# Geralmente o binário fica na raiz ou em uma pasta bin/
+main
+*.exe
+*.out
+*.app
+bin/
+
+# --- Objetos e Binários Intermediários ---
+# O prefixo **/ garante que o Git procure em src/, game/, utils/, etc.
+**/*.o
+**/*.obj
+**/*.a
+**/*.la
+**/*.lo
+
+# --- Dependências Geradas ---
+# Se o seu Makefile usa gcc -MMD para mapear os .h
+**/*.d
+
+# --- Pasta de Build (Recomendado) ---
+# Se você configurar seu Makefile para jogar tudo que é temporário aqui
+build/
+obj/
+
+# --- Assets e Static ---
+# Arquivos estáticos (imagens, sons) GERALMENTE são versionados.
+# Mas, se você tiver arquivos de salvamento ou temporários em static/, 
+# adicione-os aqui. Exemplo:
+# static/saves/
+# !static/assets/  <-- O '!' força o Git a NÃO ignorar (manter no repo)
+
+# --- IDEs e Sistema ---
+.vscode/
+.DS_Store
+*.swp
+*~
