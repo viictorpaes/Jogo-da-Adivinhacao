@@ -191,6 +191,7 @@ gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o
 <pre>
 Jogo-da-Adivinhacao/
 ├── .gitignore <img src="https://img.shields.io/badge/gitignore-F05032?style=for-the-badge&logo=git&logoColor=orange&labelColor=black" height="18">
+├── Makefile <img src="https://img.shields.io/badge/Makefile-000000?style=for-the-badge&logo=probot&logoColor=red" height="18">
 ├── protótipo.fig <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=black" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/Markdown-FFFFFF?style=for-the-badge&logo=markdown&logoColor=000000" height="18"/>
 ├── img/ <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="18">
