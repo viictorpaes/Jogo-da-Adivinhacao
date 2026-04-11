@@ -35,8 +35,10 @@ Jogo de Adivinhação Otimizado em C <br>
   <img src="https://img.shields.io/badge/Makefile-000000?style=for-the-badge&logo=probot&logoColor=red" height="25">
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black" height="25"/>
   <img src="https://img.shields.io/badge/Padrão-C11-00599C?style=for-the-badge" height="25"/>
-  <img src="https://img.shields.io/badge/Interface-Terminal-4E4E4E?style=for-the-badge&logo=gnumeterminal&logoColor=white" height="25"/>
+  <img src="https://img.shields.io/badge/Interface-Visual%2FTerminal%20Integrado-purple?style=for-the-badge&logo=gnumeterminal&logoColor=white" height="25"/>
   <img src="https://img.shields.io/badge/Persistência-TXT%20/%20CSV-A85D00?style=for-the-badge&logo=files&logoColor=white" height="25"/> <br>
+  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=prettier&logoColor=black" alt="Prettier" height="25"/>
+  <img src="https://img.shields.io/badge/.clang--format-004488?style=flat&logo=llvm&logoColor=white" alt=".clang-format" height="25"/> <br>
   <img src="https://img.shields.io/badge/Versionamento-Git-F05032?style=for-the-badge&logo=git&logoColor=orange&labelColor=black" height="25">
   <img src="https://img.shields.io/badge/Plataforma-GitHub-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=black" height="25"/>
   <img src="https://img.shields.io/badge/GitHub%20Desktop-6F42C1?style=for-the-badge&logo=github&logoColor=white" height="25"/>
@@ -113,8 +115,8 @@ gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o
 # executar
 ./jogo
 
-# E, ao final do jogo, haverá mensagem informando que o progresso/status do jogador foi salvo
-echo "✔ Partida finalizada! O progresso do jogador foi salvo em data/historico.txt."
+# E, ao final do jogo, haverá uma mensagem informando que o progresso/status do jogador foi salvo
+echo "✅ Partida finalizada! O progresso do jogador foi salvo em: data/historico.txt"
 
 ```
 
