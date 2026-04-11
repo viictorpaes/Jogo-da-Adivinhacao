@@ -188,12 +188,12 @@ gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o
 | **Legibilidade** | Uso de nomes de variáveis claros para que a lógica seja entendida sem esforço extra. |
 
 
-> [!IMPORTANT]
+> [!NOTE]
 > **Potencialize seu Workflow:** Instale a extensão oficial [**Makefile Tools**](https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools) da Microsoft no seu VS Code. 
 > 
 > Ela adiciona botões de **"Play"** e **"Debug"** na sua barra de status que leem automaticamente as regras de compilação do projeto, facilitando o gerenciamento da nossa arquitetura modular sem a necessidade de comandos manuais no terminal (se preferir).
 >
-> <img src="https://img.shields.io/badge/VS_Code-Makefile_Tools-red?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="25">
+> <img src="https://img.shields.io/badge/VS_Code-Makefile_Tools-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="25">
 
 <h2 align="center">🏰 Arquitetura do Projeto: </h2>
 <pre>
