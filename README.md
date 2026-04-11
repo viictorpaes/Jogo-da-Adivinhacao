@@ -198,6 +198,31 @@ gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o
 > <img src="https://img.shields.io/badge/VS_Code-Makefile_Tools-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="25">
 
 
+> [!IMPORTANT]
+> **Padronização e Qualidade de Código:** Automatize a estética técnica do projeto.
+> 
+> A presença dos arquivos **`.clang-format`** e **`.prettierrc`** na raiz do repositório garante que a formatação do código seja tratada como infraestrutura, não como preferência pessoal. Isso elimina ruídos em *Code Reviews* e assegura que 100% da base de código mantenha uma identidade visual única e profissional.
+>
+> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" height="25"> <img src="https://img.shields.io/badge/.clang--format-004488?style=for-the-badge&logo=llvm&logoColor=white" height="25">
+
+---
+
+### 🛠️ O papel de cada ferramenta
+
+* **`.clang-format` (C/C++):** Gerencia a complexidade sintática de linguagens de baixo nível. Define o alinhamento de ponteiros, quebras de macros e indentação de *namespaces*, seguindo padrões rigorosos (LLVM/Google).
+* **`.prettierrc` (Web & Config):** Atua em arquivos de configuração (JSON, YAML) e documentação (Markdown). Sua filosofia "opinativa" garante que o layout do código seja previsível e extremamente legível.
+
+### 🚀 Por que isso é indispensável?
+
+| Benefício | Descrição |
+| :--- | :--- |
+| **Diffs Semânticos** | Alterações no Git mostram apenas mudanças de lógica, sem "lixo" visual de espaços ou tabs. |
+| **Zero Atrito** | Novos desenvolvedores performam imediatamente sem precisar estudar guias de estilo manuais. |
+| **Manutenibilidade** | Código padronizado é mais rápido de ler, diagnosticar e debugar. |
+
+> Instale as extensões oficiais [**Prettier - Code formatter**](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) e [**C/C++**](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) da Microsoft no seu VS Code para habilitar o suporte total aos arquivos de configuração.
+>
+
 <h2 align="center">🏰 Arquitetura do Projeto: </h2>
 <pre>
 Jogo-da-Adivinhacao/
