@@ -195,10 +195,13 @@ gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o
 >
 > <img src="https://img.shields.io/badge/VS_Code-Makefile_Tools-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="25">
 
+
 <h2 align="center">🏰 Arquitetura do Projeto: </h2>
 <pre>
 Jogo-da-Adivinhacao/
 ├── .gitignore <img src="https://img.shields.io/badge/gitignore-F05032?style=for-the-badge&logo=git&logoColor=orange&labelColor=black" height="18">
+├── .clang-format <img src="https://img.shields.io/badge/Format-C%20Code-blueviolet?style=for-the-badge&logo=codefactor&logoColor=white" height="18">
+├── .prettierrc <img src="https://img.shields.io/badge/Format-Docs-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" height="18">
 ├── Makefile <img src="https://img.shields.io/badge/Makefile-000000?style=for-the-badge&logo=probot&logoColor=red" height="18">
 ├── protótipo.fig <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=black" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/Markdown-FFFFFF?style=for-the-badge&logo=markdown&logoColor=000000" height="18"/>
