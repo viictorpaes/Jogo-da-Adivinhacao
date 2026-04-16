@@ -29,19 +29,19 @@ Jogo de Adivinhação Otimizado em C <br>
 
 <h2 align="center"> ⛏️💻 Tecnologias Utilizadas: </h2>
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code" /> <br>
-  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" height="25"/>
-  <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" height="25"/>
-  <img src="https://img.shields.io/badge/Makefile-000000?style=for-the-badge&logo=probot&logoColor=red" height="25">
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black" height="25"/>
-  <img src="https://img.shields.io/badge/Padrão-C11-00599C?style=for-the-badge" height="25"/>
-  <img src="https://img.shields.io/badge/Interface-Visual%2FTerminal%20Integrado-purple?style=for-the-badge&logo=gnumeterminal&logoColor=white" height="25"/>
-  <img src="https://img.shields.io/badge/Persistência-TXT%20/%20CSV-A85D00?style=for-the-badge&logo=files&logoColor=white" height="25"/> <br>
-  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=prettier&logoColor=black" alt="Prettier" height="25"/>
-  <img src="https://img.shields.io/badge/.clang--format-004488?style=flat&logo=llvm&logoColor=white" alt=".clang-format" height="25"/> <br>
-  <img src="https://img.shields.io/badge/Versionamento-Git-F05032?style=for-the-badge&logo=git&logoColor=orange&labelColor=black" height="25">
-  <img src="https://img.shields.io/badge/Plataforma-GitHub-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=black" height="25"/>
-  <img src="https://img.shields.io/badge/GitHub%20Desktop-6F42C1?style=for-the-badge&logo=github&logoColor=white" height="25"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code"/> <br>
+  <img src="https://img.shields.io/badge/-C-111827?style=flat-square&logo=c&logoColor=A8B9CC"/>
+  <img src="https://img.shields.io/badge/-Padrão_do_C_|_11-111827?style=flat-square&logo=c&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-GCC-111827?style=flat-square&logo=gnu&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Makefile-111827?style=flat-square&logo=probot&logoColor=red"/>
+  <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E"/>
+  <img src="https://img.shields.io/badge/-🕹️%20Terminal-111827?style=flat-square" alt="Terminal">
+  <img src="https://img.shields.io/badge/-TXT%20/%20CSV-111827?style=flat-square&logo=files&logoColor=A85D00"/> <br>
+  <img src="https://img.shields.io/badge/-Prettier-111827?style=flat-square&logo=prettier&logoColor=F7B93E"/>
+  <img src="https://img.shields.io/badge/-Clang--Format-111827?style=flat-square&logo=llvm&logoColor=004488"/> <br>
+  <img src="https://img.shields.io/badge/-Git-111827?style=flat-square&logo=git&logoColor=F05032"/>
+  <img src="https://img.shields.io/badge/-GitHub-111827?style=flat-square&logo=github&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-GitHub%20Desktop-111827?style=flat-square&logo=github&logoColor=6F42C1"/>
 </p>
 
 ## 🛠️ Especificações Técnicas (em andamento):
@@ -57,22 +57,15 @@ O projeto está sendo desenvolvido focando em modularização e boas práticas d
 ## 🚀 Como Executar o Projeto:
 
 ### Pré-requisitos
-* Compilador GCC instalado. 
-  <img src="https://img.shields.io/badge/GCC-000000?style=for-the-badge&logo=gnu&logoColor=red" alt="GCC" height="28" style="margin: 0;" />
-  <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square&logo=gnu&logoColor=white" height="28" style="margin: 0;" />
 
-* Git para clonar o repositório. 
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=black" alt="Git" height="28" style="margin: 0;" />
-  <img src="https://img.shields.io/badge/Versão-2.0+-orange?style=flat-square&logo=git&logoColor=white" height="28" style="margin: 0;" />
-
-* Padrão da Linguagem C. 
-  <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black" alt="C11" height="28" style="margin: 0;" />
-  <img src="https://img.shields.io/badge/Versão-11-orange?style=flat-square&logo=c&logoColor=white" height="28" style="margin: 0;" />
+* **Compilador GCC** <img src="https://img.shields.io/badge/GCC-111827?style=flat-square&logo=gnu&logoColor=white"/> <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square"/>
+* **Git (Versionamento)** <img src="https://img.shields.io/badge/Git-111827?style=flat-square&logo=git&logoColor=F05032"/> <img src="https://img.shields.io/badge/Versão-2.0+-orange?style=flat-square"/>
+* **Padrão da Linguagem C** <img src="https://img.shields.io/badge/-111827?style=flat-square&logo=c&logoColor=white"/> <img src="https://img.shields.io/badge/Versão-11-orange?style=flat-square"/>
 
 ---
 
 Após baixar o Github desktop: <br>
-<img src="https://img.shields.io/badge/GitHub%20Desktop-6F42C1?style=for-the-badge&logo=github&logoColor=white" height="22"/>
+<img src="https://img.shields.io/badge/-GitHub%20Desktop-111827?style=flat-square&logo=github&logoColor=6F42C1" height="22"/>
 
 2. **Clone o repositório:**
    ```bash
@@ -109,15 +102,14 @@ ls
 cd src
 ls
 
-# compilar todos os .c
-gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o jogo
+# compilar todos os .c (executando a partir de `src`)
+gcc main.c game/jogo.c utils/utils.c history/historico.c static/estatisticas.c -o jogo -std=c11 -Wall -Wextra -O2
 
 # executar
 ./jogo
 
 # E, ao final do jogo, haverá uma mensagem informando que o progresso/status do jogador foi salvo
 echo "✅ Partida finalizada! O progresso do jogador foi salvo em: data/historico.txt"
-
 ```
 
 ### 🎮🟢🟡🔴 Níveis de Dificuldade
@@ -168,7 +160,8 @@ Diferente de versões legadas (como C89/C90), o C11 introduz recursos que garant
 Para garantir que o compilador utilize todo o potencial do padrão C11, recomenda-se o uso das seguintes flags no GCC: <br>
 
 ```bash
-gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o jogo -std=c11 -Wall -Wextra -O2
+# compilando a partir da raiz do repositório (caminhos explícitos)
+gcc src/main.c src/game/jogo.c src/utils/utils.c src/history/historico.c src/static/estatisticas.c -o jogo -std=c11 -Wall -Wextra -O2
 ```
 
 | Flag de Compilação ⚙️ | Impacto no Desenvolvimento 🚀 |
@@ -203,7 +196,7 @@ gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o
 > 
 > A presença dos arquivos **`.clang-format`** e **`.prettierrc`** na raiz do repositório garante que a formatação do código seja tratada como infraestrutura, não como preferência pessoal. Isso elimina ruídos em *Code Reviews* e assegura que 100% da base de código mantenha uma identidade visual única e profissional.
 >
-> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" height="25"> <img src="https://img.shields.io/badge/.clang--format-004488?style=for-the-badge&logo=llvm&logoColor=white" height="25">
+> <img src="https://img.shields.io/badge/-Prettier-111827?style=flat-square&logo=prettier&logoColor=F7B93E" height="25"/> <img src="https://img.shields.io/badge/-Clang--Format-111827?style=flat-square&logo=llvm&logoColor=004488" height="25"/>
 
 ---
 
@@ -227,44 +220,44 @@ gcc main.c game/jogo.c utils/util.c history/historico.c static/estatisticas.c -o
 
 <pre>
 Jogo-da-Adivinhacao/
-├── .gitignore <img src="https://img.shields.io/badge/.gitignore-F05032?style=for-the-badge&logo=git&logoColor=orange&labelColor=black" height="18">
-├── .clang-format <img src="https://img.shields.io/badge/.clang--format-004488?style=flat&logo=llvm&logoColor=white" alt=".clang-format" height="18"/>
-├── .prettierrc <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=prettier&logoColor=black" alt="Prettier" height="18"/>
-├── Makefile <img src="https://img.shields.io/badge/Makefile-000000?style=for-the-badge&logo=probot&logoColor=red" height="18">
-├── protótipo.fig <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=black" height="18"/>
-├── README.md <img src="https://img.shields.io/badge/Markdown-FFFFFF?style=for-the-badge&logo=markdown&logoColor=000000" height="18"/>
-├── docs/ <img src="https://img.shields.io/badge/Documentação-Docs-blue?style=flat-square&logo=read-the-docs&logoColor=white" height="18">
-│   ├── API.md <img src="https://img.shields.io/badge/API-Spec-orange?style=flat-square&logo=markdown" height="18"/>
-│   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/Arch-System-111827?style=flat-square&logo=instructure&logoColor=green" height="18"/>
-│   └── schema.md <img src="https://img.shields.io/badge/Schema-JSON-green?style=flat-square&logo=json" height="18">
-├── img/ <img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="18">
-├── data/ <img src="https://img.shields.io/badge/Data-Files-orange?style=flat-square&logo=databricks" height="18">
-│   └── historico.csv <img src="https://img.shields.io/badge/Data-CSV-green?style=flat-square&logo=microsoft-excel&logoColor=white" height="18"/>
-│   └── historico.txt <img src="https://img.shields.io/badge/Arquivo-TXT-grey?style=flat-square&logo=files&logoColor=white" height="18"/>
-└── src/ <img src="https://img.shields.io/badge/%3C%2F%3E%20src-green?style=for-the-badge&logo=visualstudiocode&logoColor=white" height="18"/>
-    ├── game/ <img src="https://img.shields.io/badge/Módulo-Jogo-blue?style=flat-square&logo=c&logoColor=white" height="18">
-    │   ├── jogo.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-    │   └── jogo.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-    ├── ui/ <img src="https://img.shields.io/badge/Módulo-UI-purple?style=flat-square&logo=materialdesign&logoColor=white" height="18">
-    │   ├── menu.c <img src="https://img.shields.io/badge/C-Source-purple?style=flat-square&logo=c&logoColor=white" height="18"/>
-    │   └── menu.h <img src="https://img.shields.io/badge/C-Header-purple?style=flat-square&logo=c&logoColor=white" height="18"/>
-    ├── ux/ <img src="https://img.shields.io/badge/Design-UX-rebeccapurple?style=flat-square&logo=adobe-experience-manager&logoColor=white" height="18">
-    │   ├── acessibilidade.md <img src="https://img.shields.io/badge/Acessibilidade-rebeccapurple?style=flat-square&logo=appleaccess&logoColor=white" height="18">
-    │   ├── jogar.md <img src="https://img.shields.io/badge/🎮 Jogar-rebeccapurple?style=flat-square&logo=gamepad&logoColor=white" height="18">
-    │   ├── jornadas.md <img src="https://img.shields.io/badge/Jornadas-rebeccapurple?style=flat-square&logo=googlemaps&logoColor=white" height="18">
-    │   └── personas.md <img src="https://img.shields.io/badge/👥 Personas-rebeccapurple?style=flat-square&logo=groups&logoColor=white" height="18">
-    ├── history/ <img src="https://img.shields.io/badge/Módulo-Histórico-blue?style=flat-square&logo=c&logoColor=white" height="18">
-    │   ├── historico.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-    │   └── historico.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-    ├── utils/ <img src="https://img.shields.io/badge/Módulo-Util-blue?style=flat-square&logo=c&logoColor=white" height="18">
-    │   ├── utils.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-    │   └── utils.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-    ├── static/ <img src="https://img.shields.io/badge/Módulo-Análise-blue?style=flat-square&logo=c&logoColor=white" height="18">
-    │   ├── estatisticas.c <img src="https://img.shields.io/badge/C-Source-green?style=flat-square&logo=c&logoColor=white" height="18"/>
-    │   └── estatisticas.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-    ├── include/ <img src="https://img.shields.io/badge/Módulo-Tipos-blue?style=flat-square&logo=c&logoColor=white" height="18">
-    │   └── tipos.h <img src="https://img.shields.io/badge/C-Header-blue?style=flat-square&logo=c&logoColor=white" height="18"/>
-    └── main.c <img src="https://img.shields.io/badge/C-Main-red?style=flat-square&logo=c&logoColor=white" height="18"/>
+├── .gitignore <img src="https://img.shields.io/badge/-.gitignore-111827?style=flat-square&logo=git&logoColor=F05032" height="18">
+├── .clang-format <img src="https://img.shields.io/badge/-.clang--format-111827?style=flat-square&logo=llvm&logoColor=004488" height="18"/>
+├── .prettierrc <img src="https://img.shields.io/badge/-Prettier-111827?style=flat-square&logo=prettier&logoColor=F7B93E" height="18"/>
+├── Makefile <img src="https://img.shields.io/badge/-Makefile-111827?style=flat-square&logo=probot&logoColor=A20000" height="18">
+├── protótipo.fig <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18"/>
+├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
+├── docs/ <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">
+│   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
+│   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
+│   └── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
+├── img/ <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">
+├── data/ <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">
+│   └── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   └── historico.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+└── src/ <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>
+    ├── game/ <img src="https://img.shields.io/badge/-Módulo-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    │   ├── jogo.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── jogo.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    ├── ui/ <img src="https://img.shields.io/badge/-UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">
+    │   ├── menu.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
+    │   └── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
+    ├── ux/ <img src="https://img.shields.io/badge/-UX-111827?style=flat-square&logo=adobe-experience-manager&logoColor=FF0000" height="18">
+    │   ├── acessibilidade.md <img src="https://img.shields.io/badge/-%E2%99%BF%20Acessibilidade-111827?style=flat-square" height="18">
+    │   ├── jogar.md <img src="https://img.shields.io/badge/-%F0%9F%8E%AE%20Jogar-111827?style=flat-square" height="18">
+    │   ├── jornadas.md <img src="https://img.shields.io/badge/-Jornadas-111827?style=flat-square&logo=googlemaps&logoColor=4285F4" height="18">
+    │   └── personas.md <img src="https://img.shields.io/badge/-%F0%9F%91%A5%20Personas-111827?style=flat-square" height="18">
+    ├── history/ <img src="https://img.shields.io/badge/-Módulo-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    │   ├── historico.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── historico.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    ├── utils/ <img src="https://img.shields.io/badge/-Util-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    │   ├── utils.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── utils.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    ├── static/ <img src="https://img.shields.io/badge/-Análise-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    │   ├── estatisticas.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── estatisticas.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    ├── include/ <img src="https://img.shields.io/badge/-Tipos-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    │   └── tipos.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    └── main.c <img src="https://img.shields.io/badge/-Main-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
 </pre>
 
 
@@ -280,7 +273,7 @@ Jogo-da-Adivinhacao/
 <p align="center">
   <strong>Acesse o Board do projeto</strong>: <br>
   <a href="https://trello.com/b/yp8S6Ek9/jogo-de-adivinhacao-projetos-2-pif-fds" target="_blank">
-    <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" height="25"/>
+    <img src="https://img.shields.io/badge/-Trello-111827?style=flat-square&logo=trello&logoColor=0052CC"/>
   </a>
 </p>
 
@@ -288,10 +281,10 @@ Jogo-da-Adivinhacao/
 <p align="center">
   <strong>Demonstração do Protótipo (Screencast):</strong> <br>
   <a href="https://www.youtube.com/watch?v=OtLZ7gIEQFQ" target="_blank">
-    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=black" height="25"/>
+    <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
   <a href="https://www.figma.com/pt-br/comunidade/file/1623063562663924122/cesarnumber-v1" target="_blank">
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black" height="25"/>
+    <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="25"/>
   </a>
 </p>
 
@@ -301,10 +294,10 @@ Jogo-da-Adivinhacao/
   <strong>Representação visual das 10 Histórias de Usuário (HUs) por meio de diagramas de atividades e wireframes.<br>
   Disponíveis nos cards do <mark>Trello</mark> e na Pasta: <mark>"img"</mark> deste repositório✅</strong> <br>
   <a href="https://trello.com/b/yp8S6Ek9/jogo-de-adivinhacao-projetos-2-pif-fds-ihc" target="_blank">
-  <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" height="23"/>
+  <img src="https://img.shields.io/badge/-Trello-111827?style=flat-square&logo=trello&logoColor=0052CC" height="23"/>
 </a>
 <a href="/img/" target="_blank">
-<img src="https://img.shields.io/badge/Assets-Img-green?style=flat-square&logo=git-lfs&logoColor=white" height="23">
+<img src="https://img.shields.io/badge/Assets-img-green?style=flat-square&logo=git-lfs&logoColor=white&labelColor=111827" height="24">
 </a>
 </p>
 
