@@ -13,9 +13,10 @@ Jogo-da-Adivinhacao/
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 ├── docs/ <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
-│   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
+│   ├── <mark>ARCHITECTURE.md</mark> <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
 │   ├── AUTHORS.md <img src="https://img.shields.io/badge/-AUTHORS-8B0000?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
 │   └── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
+│   └── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
 ├── img/ <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">
 ├── data/ <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">
 │   └── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
@@ -46,10 +47,9 @@ Jogo-da-Adivinhacao/
     └── main.c <img src="https://img.shields.io/badge/-Main-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
 </pre>
 
-# 🏗️ Detalhamento da Arquitetura do Projeto
+## 🏗️ Detalhamento da Arquitetura do Projeto
 
-Esta seção descreve a finalidade de cada componente na estrutura de diretórios do **Jogo da Adivinhação**, detalhando responsabilidades e padrões de qualidade adotados.
-
+Esta seção descreve a finalidade de cada componente na estrutura de diretórios do **Jogo da Adivinhação**, detalhando responsabilidades e padrões de qualidade adotados. 
 ## ⚙️ Configurações e Tooling
 
 ### Gitignore
@@ -87,6 +87,7 @@ Centraliza o conhecimento do projeto:
 * **API.md**: Especificação das funções e contratos entre os módulos.<img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 * **ARCHITECTURE.md**: Visão macro do sistema e padrões de projeto.<img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
 * **schema.md**: Definição da estrutura de dados para salvar o histórico.<img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
+* **SECURITY.md**: Lógica de como o número secreto é gerado e boas práticas para evitar vazamentos ou engenharia reversa <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
 
 
 ## 📊 Persistência de Dados (`data/`)
