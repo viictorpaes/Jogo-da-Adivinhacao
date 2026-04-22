@@ -5,6 +5,7 @@
 #include <time.h>
 #include <errno.h>
 #include <limits.h>
+#include <stdbool.h>
 
 void utils_inicializar_semente(void) 
 {
@@ -21,6 +22,7 @@ int utils_aleatorio_intervalo(int min, int max)
     { 
         return min;
     }
+
     int intervalo = max - min + 1;
     return min + (rand() % intervalo);
 }
@@ -90,7 +92,7 @@ int utils_ler_int_prompt(const char *mensagem, int min, int max)
 {
     char buffer[128];
     int valor;
-    while (1) 
+    while (true) 
     {
         if (mensagem) 
         {
