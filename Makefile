@@ -1,58 +1,57 @@
-# ==============================================================================
-# 🛠️ MAKEFILE - PROJETO: JOGO DA ADIVINHAÇÃO
-# Status: ⚠️ EM ANDAMENTO (Estrutura de build sendo preparada)
-# ==============================================================================
-
-# 1. Configurações do Compilador:
 CC = gcc
-# Flags de segurança e performance baseadas no padrão C11
-CFLAGS = -std=c11 -Wall -Wextra -O2
 
-# 2. Caminhos de Inclusão
-# Indica ao compilador onde encontrar os arquivos de cabeçalho (.h)
-# Isso permite usar #include "jogo.h" sem caminhos relativos complexos
+DEBUG ?= 0
+ifeq ($(DEBUG),1)
+	CFLAGS = -std=c11 -Wall -Wextra -g -O0
+else
+	CFLAGS = -std=c11 -Wall -Wextra -O2
+endif
+
 INCLUDES = -I./src/game \
-           -I./src/utils \
-           -I./src/history \
-           -I./src/static \
-           -I./src/include
+		 -I./src/utils \
+		 -I./src/history \
+		 -I./src/static \
+		 -I./src/include \
+		 -I./src/ui
 
-# 3. Lista de Arquivos Fontes (Em andamento)
-# Conforme você criar os arquivos físicos nas pastas, o Make os encontrará aqui.
-# DICA: Se um arquivo listado aqui não existir na pasta, o 'make' dará erro.
 SRCS = src/main.c \
-       src/game/jogo.c \
-       src/utils/util.c \
-       src/history/historico.c \
-       src/static/estatisticas.c
+	 src/game/jogo.c \
+	 src/utils/utils.c \
+	 src/history/historico.c \
+	 src/static/estatisticas.c \
+	 src/ui/menu.c
 
-# 4. Configurações de Saída
 TARGET = jogo
 
-# ------------------------------------------------------------------------------
-# REGRAS DE AUTOMAÇÃO
-# ------------------------------------------------------------------------------
+.PHONY: all clean run test format help
 
-# Regra padrão: Compila o executável principal
 all: $(TARGET)
 
-$(TARGET):
-	@echo "🔨 Compilando o projeto com padrão C11..."
-	# O comando abaixo une o compilador, as flags e os fontes para gerar o jogo
+$(TARGET): $(SRCS)
+	@mkdir -p bin
 	$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -o $(TARGET)
-	@echo "✅ Compilação concluída com sucesso!"
 
-# Regra de Limpeza: Remove o executável para uma compilação do zero
 clean:
-	@echo "🧹 Limpando arquivos binários..."
-	rm -f $(TARGET)
+	rm -f $(TARGET) bin/* *.o
 
-# Regra de Execução: Compila e já inicia o jogo no terminal
 run: all
-	@echo "🕹️ Iniciando o jogo..."
+	@mkdir -p data
 	./$(TARGET)
 
-# -----------------------------------------------------------------------------
-# OBSERVAÇÃO: Este Makefile está sendo estruturado para a arquitetura modular do projeto.
-# Para funcionar, os arquivos .c e .h listados em 'SRC' existem nas pastas.
-# -----------------------------------------------------------------------------
+test:
+	@if [ -n "$(wildcard tests/*.c)" ]; then \
+		gcc $(CFLAGS) $(INCLUDES) tests/*.c -o tests/run_tests && ./tests/run_tests; \
+	else \
+		echo "Nenhum teste encontrado"; \
+	fi
+
+format:
+	@command -v clang-format >/dev/null 2>&1 || exit 0
+	clang-format -i $(SRCS) src/include/*.h src/utils/*.h src/ui/*.c
+
+help:
+	@echo "make -> compilar"
+	@echo "make DEBUG=1 -> compilar com debug"
+	@echo "make run -> compilar e executar"
+	@echo "make test -> rodar testes"
+	@echo "make clean -> limpar"
