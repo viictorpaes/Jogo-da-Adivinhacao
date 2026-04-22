@@ -1,0 +1,29 @@
+# Define a base do estilo como o padrão da Google
+BasedOnStyle: Google
+
+# Define o recuo (identação) como 4 espaços (padrão para C)
+IndentWidth: 4
+
+# Limita o tamanho da linha a 100 caracteres (evita scroll lateral)
+ColumnLimit: 100
+
+# NÃO permite funções curtas em uma única linha (mantém a estrutura vertical)
+AllowShortFunctionsOnASingleLine: None
+
+# Mantém a abertura de chaves { na mesma linha de loops e funções
+BreakBeforeBraces: Attach
+
+# Coloca um espaço após o cast de tipos: (int) x -> (int) x
+SpaceAfterCStyleCast: true
+
+# Coloca espaço antes de parênteses em comandos: if (x), while (x)
+SpaceBeforeParens: ControlStatements
+
+# Organiza seus #include em ordem alfabética automaticamente
+SortIncludes: true
+
+# Adiciona um espaço antes de comentários de linha ( // comentário)
+SpacesBeforeTrailingComments: 2
+
+# Garante que o ponteiro encoste no tipo: int* p em vez de int *p
+PointerAlignment: Left
