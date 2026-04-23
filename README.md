@@ -103,7 +103,7 @@ cd src
 ls
 
 # compilar todos os .c (executando a partir de `src`)
-gcc main.c game/jogo.c utils/utils.c history/historico.c static/estatisticas.c -o jogo -std=c11 -Wall -Wextra -O2
+gcc main.c game/jogo.c utils/utils.c history/historico.c static/estatisticas.c ui/menu.c -o jogo -std=c11 -Wall -Wextra -O2
 
 # executar
 ./jogo
