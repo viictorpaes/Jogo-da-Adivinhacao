@@ -1,25 +1,34 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <stddef.h>
-#include "../include/tipos.h"
+#include <stdbool.h>
 
-void utils_inicializar_semente(void);
+/* ENTRADA DE DADOS */
 
-int utils_aleatorio_intervalo(int min, int max);
+int ler_inteiro(int min, int max, const char *prompt);
 
-char *utils_ler_linha(char *buffer, size_t tamanho);
+void ler_string(char *buf, int n, const char *prompt);
 
-int utils_converter_int_seguro(const char *string, int *resultado);
+/* TERMINAL E FLUXO VISUAL */
 
-int utils_ler_int_prompt(const char *mensagem, int min, int max);
+void limpar_tela(void);
 
-void utils_limpar_stdin(void);
+void pausar(void);
 
-void utils_pausar(const char *mensagem);
+/* ALEATORIEDADE */
 
-void partida_inicializar(Partida *p, const char *nome);
+void inicializar_rand(void);
 
-void partida_imprimir(const Partida *p);
+int rand_intervalo(int min, int max);
+
+/* DATA E TEMPO */
+
+void formatar_data_atual(char *buf);
+
+/* TRATAMENTO DE ERROS E AVISOS */
+
+void erro_fatal(const char *msg);
+
+void aviso(const char *msg);
 
 #endif

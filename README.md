@@ -102,8 +102,8 @@ ls
 cd src
 ls
 
-# compilar todos os .c (executando a partir de `src`)
-gcc main.c game/jogo.c utils/utils.c history/historico.c static/estatisticas.c ui/menu.c -o jogo -std=c11 -Wall -Wextra -O2
+# compilar todos os .c (executando a partir de `Jogo-da-Adivinhacao`)
+gcc src/main.c src/game/jogo.c src/utils/utils.c src/history/historico.c src/ui/menu.c -o jogo -std=c11 -Wall -Wextra -O2
 
 # executar
 ./jogo

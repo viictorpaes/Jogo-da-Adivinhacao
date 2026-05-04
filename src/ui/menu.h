@@ -1,9 +1,18 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <stddef.h>
+#include "../include/tipos.h"
 
-int menu_exibir_principal(void);
-int menu_selecionar_dificuldade(void);
+OpcaoMenu exibir_menu_principal(void);
+
+Dificuldade exibir_menu_dificuldade(void);
+
+void exibir_dica(Resultado r, int tentativas_restantes);
+
+void exibir_erro_input(void);
+
+void exibir_boas_vindas(void);
+
+void exibir_despedida(void);
 
 #endif
