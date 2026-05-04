@@ -3,23 +3,15 @@
 #include <stdbool.h>
 #include <locale.h>
 
-/* Inclusão condicional para resolver o UTF-8 no Windows */
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
-/* ==========================================================================
- * INCLUSÃO DOS MÓDULOS
- * ========================================================================== */
 #include "include/tipos.h"
 #include "utils/utils.h"
 #include "ui/menu.h"
 #include "game/jogo.h"
 #include "history/historico.h"
-
-/* 
- * NOTA: Descomente os headers abaixo quando for implementar a última etapa do MVP 
- */
 /* #include "static/estatisticas.h" */
 
 int main(void) {
@@ -103,9 +95,9 @@ int main(void) {
         else if (opcao == MENU_SAIR) {
             exibir_despedida();
             /* liberar_recursos(); -> Se houver alocação dinâmica no futuro */
-            break; /* Interrompe o laço infinito e encerra o programa de forma limpa */
+            break;
         }
     }
 
-    return 0; /* Retorno padrão para execução com sucesso (sem erros fatais) */
+    return 0;
 }

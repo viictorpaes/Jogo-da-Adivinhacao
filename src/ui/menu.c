@@ -2,15 +2,9 @@
 #include "../utils/utils.h"
 #include <stdio.h>
 
-/* ==========================================================================
- * CONSTANTES VISUAIS (Restritas a este módulo)
- * ========================================================================== */
 #define BORDA_DUPLA   "##################################################"
 #define LINHA_SIMPLES "--------------------------------------------------"
 
-/* ==========================================================================
- * IMPLEMENTAÇÃO DAS TELAS
- * ========================================================================== */
 
 void exibir_boas_vindas(void) {
     limpar_tela();
@@ -37,10 +31,8 @@ OpcaoMenu exibir_menu_principal(void) {
     
     printf("%s\n", LINHA_SIMPLES);
 
-    /* O utilitário ler_inteiro garante que só sairemos daqui com 1, 2, 3 ou 4 */
     escolha = ler_inteiro(1, 4, "  Digite sua escolha: ");
 
-    /* Convertendo o inteiro lido para o tipo OpcaoMenu com cast seguro */
     return (OpcaoMenu)escolha;
 }
 
@@ -60,7 +52,6 @@ Dificuldade exibir_menu_dificuldade(void) {
 
     escolha = ler_inteiro(1, 3, "  Escolha o nivel: ");
 
-    /* Mapeando a escolha do usuário (1-3) para o Enum Dificuldade (0-2) */
     if (escolha == 1) return FACIL;
     if (escolha == 2) return MEDIO;
     return DIFICIL;
@@ -87,10 +78,6 @@ void exibir_dica(Resultado r, int tentativas_restantes) {
 }
 
 void exibir_erro_input(void) {
-    /* 
-     * Nota: O loop de erro já é tratado no utils.c, mas esta função 
-     * serve caso outros módulos precisem disparar um erro visual padrão da UI.
-     */
     printf("\n  [!] Entrada invalida. Por favor, tente novamente.\n");
 }
 
