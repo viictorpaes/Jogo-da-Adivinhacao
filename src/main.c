@@ -11,6 +11,7 @@
 #include "utils/utils.h"
 #include "ui/menu.h"
 #include "game/jogo.h"
+#include "game/jogar_memoria.h"
 #include "history/historico.h"
 /* #include "static/estatisticas.h" */
 
@@ -84,6 +85,9 @@ int main(void) {
             
             pausar();
         } 
+        else if (opcao == MENU_MEMORIA) {
+            jogar_memoria();
+        }
         else if (opcao == MENU_HISTORICO) {
             exibir_historico();
         } 

@@ -24,14 +24,15 @@ OpcaoMenu exibir_menu_principal(void) {
     printf("|                MENU PRINCIPAL                 |\n");
     printf("%s\n\n", BORDA_DUPLA);
     
-    printf("  [1] Jogar Nova Partida\n");
-    printf("  [2] Ver Historico de Partidas\n");
-    printf("  [3] Ver Estatisticas Globais\n");
-    printf("  [4] Sair do Jogo\n\n");
+    printf("  [1] Jogar Adivinhacao\n");
+    printf("  [2] Jogar Memoria\n");
+    printf("  [3] Ver Historico de Partidas\n");
+    printf("  [4] Ver Estatisticas Globais\n");
+    printf("  [5] Sair do Jogo\n\n");
     
     printf("%s\n", LINHA_SIMPLES);
 
-    escolha = ler_inteiro(1, 4, "  Digite sua escolha: ");
+    escolha = ler_inteiro(1, 5, "  Digite sua escolha: ");
 
     return (OpcaoMenu)escolha;
 }

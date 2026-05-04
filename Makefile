@@ -16,6 +16,8 @@ INCLUDES = -I./src/game \
 
 SRCS = src/main.c \
 	 src/game/jogo.c \
+	 src/game/memorygame.c \
+	 src/game/jogar_memoria.c \
 	 src/utils/utils.c \
 	 src/history/historico.c \
 	 src/static/estatisticas.c \
