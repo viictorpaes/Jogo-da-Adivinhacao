@@ -102,14 +102,18 @@ ls
 cd src
 ls
 
-# compilar todos os .c (executando a partir de `Jogo-da-Adivinhacao`)
+# voltar ao diretório principal:
+
+cd ..
+
+# compilar todos os .c (executando a partir de `Jogo-da-Adivinhacao` = Raiz)
 gcc src/main.c src/game/jogo.c src/utils/utils.c src/history/historico.c src/ui/menu.c -o jogo -std=c11 -Wall -Wextra -O2
 
 # executar
 ./jogo
 
 # E, ao final do jogo, haverá uma mensagem informando que o progresso/status do jogador foi salvo
-echo "✅ Partida finalizada! O progresso do jogador foi salvo em: data/historico.txt"
+echo "✅ Partida finalizada! O progresso do jogador foi salvo em: data/historico.txt e data/historico.csv"
 ```
 
 ### 🎮🟢🟡🔴 Níveis de Dificuldade
