@@ -1,3 +1,4 @@
+/* #include "raylib.h" - biblioteca que será utilizada para a interface gráfica */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
