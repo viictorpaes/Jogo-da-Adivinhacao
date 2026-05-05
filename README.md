@@ -38,7 +38,8 @@ Jogo de Adivinhação Otimizado em C <br>
   <img src="https://img.shields.io/badge/-🕹️%20Terminal-111827?style=flat-square" alt="Terminal">
   <img src="https://img.shields.io/badge/-TXT%20/%20CSV-111827?style=flat-square&logo=files&logoColor=A85D00"/> <br>
   <img src="https://img.shields.io/badge/-Prettier-111827?style=flat-square&logo=prettier&logoColor=F7B93E"/>
-  <img src="https://img.shields.io/badge/-Clang--Format-111827?style=flat-square&logo=llvm&logoColor=004488"/> <br>
+  <img src="https://img.shields.io/badge/-Clang--Format-111827?style=flat-square&logo=llvm&logoColor=004488"/>
+  <img src="https://img.shields.io/badge/Architecture-111827?style=flat-square&logo=instructure&logoColor=white"/> <br>
   <img src="https://img.shields.io/badge/-Git-111827?style=flat-square&logo=git&logoColor=F05032"/>
   <img src="https://img.shields.io/badge/-GitHub-111827?style=flat-square&logo=github&logoColor=white"/>
   <img src="https://img.shields.io/badge/-GitHub%20Desktop-111827?style=flat-square&logo=github&logoColor=6F42C1"/>
@@ -220,7 +221,8 @@ gcc src/main.c src/game/jogo.c src/utils/utils.c src/history/historico.c src/sta
 > Instale as extensões oficiais [**Prettier - Code formatter**](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) e [**C/C++**](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) da Microsoft no seu VS Code para habilitar o suporte total aos arquivos de configuração.
 >
 
-<h2 align="center">🏰 Arquitetura do Projeto</h2>
+<h2 align="center">🏰 Arquitetura do Projeto <br>
+<img src="https://img.shields.io/badge/Architecture-111827?style=flat-square&logo=instructure&logoColor=white"/></h2>
 <pre>
 Jogo-da-Adivinhacao/
 ├── .gitignore <img src="https://img.shields.io/badge/-.gitignore-111827?style=flat-square&logo=git&logoColor=F05032" height="18">
