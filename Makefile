@@ -23,9 +23,25 @@ SRCS = src/main.c \
 	 src/static/estatisticas.c \
 	 src/ui/menu.c
 
-TARGET = jogo
+SRCS_RAYLIB = src/main_raylib.c \
+	 src/game/jogo.c \
+	 src/game/memorygame.c \
+	 src/game/jogar_memoria.c \
+	 src/utils/utils.c \
+	 src/history/historico.c \
+	 src/static/estatisticas.c \
+	 src/ui/frontend.c
 
-.PHONY: all clean run test format help
+TARGET = jogo
+TARGET_RAYLIB = jogo_raylib
+
+# Flags para raylib
+RAYLIB_FLAGS = -lraylib -lm -lpthread
+ifeq ($(OS),Windows_NT)
+	RAYLIB_FLAGS = -lraylib -lm -lwinmm -lgdi32 -lpthread
+endif
+
+.PHONY: all clean run test format help raylib run-raylib
 
 all: $(TARGET)
 
@@ -33,12 +49,22 @@ $(TARGET): $(SRCS)
 	@mkdir -p bin
 	$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -o $(TARGET)
 
+raylib: $(TARGET_RAYLIB)
+
+$(TARGET_RAYLIB): $(SRCS_RAYLIB)
+	@mkdir -p bin
+	$(CC) $(CFLAGS) $(SRCS_RAYLIB) $(INCLUDES) $(RAYLIB_FLAGS) -o $(TARGET_RAYLIB)
+
 clean:
-	rm -f $(TARGET) bin/* *.o
+	rm -f $(TARGET) $(TARGET_RAYLIB) bin/* *.o
 
 run: all
 	@mkdir -p data
 	./$(TARGET)
+
+run-raylib: raylib
+	@mkdir -p data
+	./$(TARGET_RAYLIB)
 
 test:
 	@if [ -n "$(wildcard tests/*.c)" ]; then \
@@ -49,11 +75,19 @@ test:
 
 format:
 	@command -v clang-format >/dev/null 2>&1 || exit 0
-	clang-format -i $(SRCS) src/include/*.h src/utils/*.h src/ui/*.c
+	clang-format -i $(SRCS) $(SRCS_RAYLIB) src/include/*.h src/utils/*.h src/ui/*.c
 
 help:
-	@echo "make -> compilar"
-	@echo "make DEBUG=1 -> compilar com debug"
-	@echo "make run -> compilar e executar"
-	@echo "make test -> rodar testes"
-	@echo "make clean -> limpar"
+	@echo "=== COMPILAÇÃO ==="
+	@echo "make or make all     -> compilar versão console"
+	@echo "make raylib          -> compilar versão com RayLib"
+	@echo "make DEBUG=1         -> compilar console com debug"
+	@echo ""
+	@echo "=== EXECUÇÃO ==="
+	@echo "make run             -> compilar e executar versão console"
+	@echo "make run-raylib      -> compilar e executar versão RayLib"
+	@echo ""
+	@echo "=== UTILITÁRIOS ==="
+	@echo "make test            -> rodar testes"
+	@echo "make format          -> formatar código"
+	@echo "make clean           -> limpar arquivos compilados"
