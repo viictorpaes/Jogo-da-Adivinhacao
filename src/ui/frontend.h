@@ -4,8 +4,8 @@
 #include "../include/tipos.h"
 #include "../game/memorygame.h"
 
-// Estados da aplicação
-typedef enum {
+typedef enum 
+{
     ESTADO_MENU_PRINCIPAL,
     ESTADO_MENU_JOGO,
     ESTADO_DIFICULDADE,
@@ -16,8 +16,9 @@ typedef enum {
     ESTADO_SAIR
 } EstadoAplicacao;
 
-// Estrutura para gerenciar estado da UI
-typedef struct {
+
+typedef struct 
+{
     EstadoAplicacao estado_atual;
     Partida partida_atual;
     JogoMemoria jogo_memoria;
@@ -25,20 +26,17 @@ typedef struct {
     int entrada_numero;
     char entrada_texto[10];
     int indice_entrada;
-    int clique_casa1;  // Casa selecionada 1 no jogo da memória
-    int clique_casa2;  // Casa selecionada 2 no jogo da memória
+    int clique_casa1;
+    int clique_casa2;  
 } EstadoUI;
 
-// Dimensões da janela
 #define LARGURA_JANELA   1200
 #define ALTURA_JANELA    800
 
-// Funções principais
 void executar_frontend(void);
 void atualizar_ui(EstadoUI *ui);
 void desenhar_ui(const EstadoUI *ui);
 
-// Funções específicas de desenho
 void desenhar_menu_principal(void);
 void desenhar_menu_jogo(void);
 void desenhar_menu_dificuldade(void);
@@ -47,7 +45,6 @@ void desenhar_jogo_memoria(const EstadoUI *ui);
 void desenhar_resultado_adivinhacao(const EstadoUI *ui);
 void desenhar_resultado_memoria(const EstadoUI *ui);
 
-// Funções de entrada
 void processar_entrada(EstadoUI *ui);
 void processar_clique_mouse_memoria(EstadoUI *ui);
 

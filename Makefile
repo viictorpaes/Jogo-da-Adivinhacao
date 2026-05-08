@@ -36,7 +36,12 @@ TARGET = jogo
 TARGET_RAYLIB = jogo_raylib
 
 # Flags para raylib
-RAYLIB_FLAGS = -lraylib -lm -lpthread
+RAYLIB_PREFIX := $(shell brew --prefix raylib 2>/dev/null)
+ifneq ($(RAYLIB_PREFIX),)
+	RAYLIB_FLAGS = -I$(RAYLIB_PREFIX)/include -L$(RAYLIB_PREFIX)/lib -lraylib -lm -lpthread
+else
+	RAYLIB_FLAGS = -lraylib -lm -lpthread
+endif
 ifeq ($(OS),Windows_NT)
 	RAYLIB_FLAGS = -lraylib -lm -lwinmm -lgdi32 -lpthread
 endif
