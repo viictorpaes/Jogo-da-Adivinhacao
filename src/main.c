@@ -48,7 +48,7 @@ int main(void) {
             Partida partida_atual = iniciar_partida(dif);
 
             limpar_tela();
-            printf("\n  Jogo iniciado! Tente adivinhar o numero entre %d e %d.\n", 
+            printf("\n  Jogo iniciado!​​👌​ Tente adivinhar o número entre %d e %d.\n", 
                    partida_atual.min_range, partida_atual.max_range);
 
             /* Loop interno da partida: continua até esgotar tentativas ou vencer */
@@ -81,7 +81,7 @@ int main(void) {
             /* --- FIM DA INTEGRAÇÃO --- */
             
             /* Mensagem de sucesso solicitada na issue */
-            printf("  Partida finalizada! O progresso do jogador foi salvo em: data/historico.txt\n\n");
+            printf("  Partida finalizada!​​🙏​ O progresso do jogador foi salvo em: data/historico.txt\n\n");
             
             pausar();
         } 
@@ -90,7 +90,7 @@ int main(void) {
         } 
         else if (opcao == MENU_ESTATISTICAS) {
             /* exibir_estatisticas(); -> Descomentar no futuro */
-            printf("\n  [Modulo de Estatisticas em construcao...]\n");
+            printf("\n  [Módulo de Estatísticas em construção...]\n");
             pausar();
         } 
         else if (opcao == MENU_SAIR) {

@@ -64,16 +64,17 @@ void exibir_resultado_final(const Partida *p) {
     printf("\n");
 
     if (p->venceu) {
-        printf("VITORIA!\n");
-        printf("Voce acertou o numero secreto: %d\n", p->numero_secreto);
+        printf("VITÓRIA! ✅​​😁​\n");
+        printf("Você acertou o número secreto: %d\n", p->numero_secreto);
         printf("Tentativas utilizadas: %d de %d\n", p->tentativas_usadas, p->max_tentativas);
     } 
     else {
-        printf("DERROTA!\n");
-        printf("Voce esgotou todas as %d tentativas.\n", p->max_tentativas);
-        printf("O numero secreto era: %d\n", p->numero_secreto);
+        printf("DERROTA! ❌​😭​\n");
+        printf("Você esgotou todas as %d tentativas.\n", p->max_tentativas);
+        printf("O número secreto era: %d\n", p->numero_secreto);
     }
 
     for (int i = 0; i < LARGURA_TERMINAL; i++) printf("=");
     printf("\n\n");
+
 }

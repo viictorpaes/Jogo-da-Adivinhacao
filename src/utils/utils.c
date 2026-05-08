@@ -24,7 +24,7 @@ int ler_inteiro(int min, int max, const char *prompt) {
             return valor;
         }
 
-        printf("Entrada invalida. Por favor, digite um numero entre %d e %d.\n", min, max);
+        printf("Entrada inválida.​​❌​ Por favor, digite um número entre %d e %d.\n", min, max);
     }
 }
 
@@ -78,7 +78,7 @@ void formatar_data_atual(char *buf) {
 
 void erro_fatal(const char *msg) {
     fprintf(stderr, "\n[ERRO FATAL] %s\n", msg);
-    fprintf(stderr, "O programa sera encerrado.\n");
+    fprintf(stderr, "O programa será encerrado.​​🚨​\n");
     exit(EXIT_FAILURE);
 }
 
