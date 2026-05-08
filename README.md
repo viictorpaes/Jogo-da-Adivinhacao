@@ -100,14 +100,14 @@ ls
 
 # entrar na src
 cd src
-ls
+lsj
 
 # voltar ao diretório principal:
 
 cd ..
 
 # compilar todos os .c (executando a partir de `Jogo-da-Adivinhacao` = Raiz)
-gcc src/main.c src/game/jogo.c src/utils/utils.c src/history/historico.c src/ui/menu.c -o jogo -std=c11 -Wall -Wextra -O2
+gcc src/main.c src/game/jogar_memoria.c src/game/memorygame.c src/game/jogo.c src/utils/utils.c src/history/historico.c src/ui/menu.c -o jogo -std=c11 -Wall -Wextra -O2
 
 # executar
 ./jogo
