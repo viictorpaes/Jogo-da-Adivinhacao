@@ -23,15 +23,11 @@ OpcaoMenu exibir_menu_principal(void) {
     printf("\n%s\n", BORDA_DUPLA);
     printf("|                MENU PRINCIPAL                 |\n");
     printf("%s\n\n", BORDA_DUPLA);
-    
-    printf("  1️⃣​ Jogar Nova Partida\n");
-    printf("  2️⃣​ Ver Histórico de Partidas\n");
-    printf("  3️⃣​ Ver Estatísticas Globais\n");
-    printf("  ​4️⃣​ Sair do Jogo\n\n");
+
     
     printf("%s\n", LINHA_SIMPLES);
 
-    escolha = ler_inteiro(1, 4, "  Digite sua escolha: ");
+    escolha = ler_inteiro(1, 5, "  Digite sua escolha: ");
 
     return (OpcaoMenu)escolha;
 }

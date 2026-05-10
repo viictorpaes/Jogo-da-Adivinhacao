@@ -35,10 +35,11 @@ typedef enum {
 } Resultado;
 
 typedef enum {
-    MENU_JOGAR        = 1,
-    MENU_HISTORICO    = 2,
-    MENU_ESTATISTICAS = 3,
-    MENU_SAIR         = 4
+    MENU_JOGAR         = 1,
+    MENU_MEMORIA       = 2,
+    MENU_HISTORICO     = 3,
+    MENU_ESTATISTICAS  = 4,
+    MENU_SAIR          = 5
 } OpcaoMenu;
 
 typedef struct {
