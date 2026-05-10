@@ -14,7 +14,7 @@ bool inicializar_historico(void) {
             fprintf(f_csv, "data,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado\n");
             fclose(f_csv);
         } else {
-            aviso("Falha ao criar o arquivo CSV do historico.");
+            aviso("​⚠️​​​Falha ao criar o arquivo CSV do histórico.​⚠️​");
             return false;
         }
     } else {
@@ -25,10 +25,10 @@ bool inicializar_historico(void) {
     if (f_txt == NULL) {
         f_txt = fopen(HISTORICO_TXT, "w");
         if (f_txt != NULL) {
-            fprintf(f_txt, "=================== HISTORICO DE PARTIDAS ===================\n\n");
+            fprintf(f_txt, "​➖​➖​➖​➖​➖​​➖​➖​ HISTÓRICO DE PARTIDAS ​➖​➖​➖​➖​➖​​➖​➖​\n\n");
             fclose(f_txt);
         } else {
-            aviso("Falha ao criar o arquivo TXT do historico.");
+            aviso("​⚠️​Falha ao criar o arquivo TXT do histórico.​⚠️​");
             return false;
         }
     } else {
@@ -43,17 +43,17 @@ bool salvar_partida(const RegistroPartida *r) {
     FILE *f_txt = fopen(HISTORICO_TXT, "a");
 
     if (f_csv == NULL || f_txt == NULL) {
-        aviso("Erro ao abrir os arquivos de historico para gravacao.");
+        aviso("​⚠️​Erro ao abrir os arquivos de histórico para gravação.​⚠️​");
         if (f_csv != NULL) fclose(f_csv);
         if (f_txt != NULL) fclose(f_txt);
         return false;
     }
 
-    const char *str_dif = "DIFICIL";
-    if (r->dificuldade == FACIL) str_dif = "FACIL";
-    else if (r->dificuldade == MEDIO) str_dif = "MEDIO";
+    const char *str_dif = "DIFÍCIL";
+    if (r->dificuldade == FACIL) str_dif = "FÁCIL";
+    else if (r->dificuldade == MEDIO) str_dif = "MÉDIO";
 
-    const char *str_res = r->venceu ? "VITORIA" : "DERROTA";
+    const char *str_res = r->venceu ? "VITÓRIA" : "DERROTA";
 
     fprintf(f_csv, "%s,%s,%d,%d,%d,%s\n", 
             r->data, str_dif, r->tentativas_usadas, 
@@ -88,15 +88,15 @@ int carregar_historico(RegistroPartida *buf, int max) {
                                &buf[count].max_tentativas, &buf[count].numero_secreto, str_res);
 
         if (extraidos == 6) {
-            if (strcmp(str_dif, "FACIL") == 0) {
+            if (strcmp(str_dif, "FÁCIL") == 0) {
                 buf[count].dificuldade = FACIL;
-            } else if (strcmp(str_dif, "MEDIO") == 0) {
+            } else if (strcmp(str_dif, "MÉDIO") == 0) {
                 buf[count].dificuldade = MEDIO;
             } else {
                 buf[count].dificuldade = DIFICIL;
             }
 
-            buf[count].venceu = (strcmp(str_res, "VITORIA") == 0);
+            buf[count].venceu = (strcmp(str_res, "VITÓRIA") == 0);
 
             count++;
         }
@@ -109,7 +109,7 @@ int carregar_historico(RegistroPartida *buf, int max) {
 void exibir_historico(void) {
     FILE *f_txt = fopen(HISTORICO_TXT, "r");
     if (f_txt == NULL) {
-        printf("\n  [!] Nenhum historico de partidas encontrado.\n");
+        printf("\n Nenhum histórico de partidas encontrado.​🤔​\n");
         pausar();
         return;
     }
