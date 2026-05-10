@@ -46,7 +46,7 @@ ifeq ($(OS),Windows_NT)
 	RAYLIB_FLAGS = -lraylib -lm -lwinmm -lgdi32 -lpthread
 endif
 
-.PHONY: all clean run test format help raylib run-raylib
+.PHONY: all clean run build-raylib raylib run-raylib test format help
 
 all: $(TARGET)
 
@@ -54,7 +54,7 @@ $(TARGET): $(SRCS)
 	@mkdir -p bin
 	$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -o $(TARGET)
 
-raylib: $(TARGET_RAYLIB)
+build-raylib: $(TARGET_RAYLIB)
 
 $(TARGET_RAYLIB): $(SRCS_RAYLIB)
 	@mkdir -p bin
@@ -67,9 +67,11 @@ run: all
 	@mkdir -p data
 	./$(TARGET)
 
-run-raylib: raylib
+raylib: build-raylib
 	@mkdir -p data
 	./$(TARGET_RAYLIB)
+
+run-raylib: raylib
 
 test:
 	@if [ -n "$(wildcard tests/*.c)" ]; then \
@@ -83,14 +85,14 @@ format:
 	clang-format -i $(SRCS) $(SRCS_RAYLIB) src/include/*.h src/utils/*.h src/ui/*.c
 
 help:
-	@echo "=== COMPILAÇÃO ==="
-	@echo "make or make all     -> compilar versão console"
-	@echo "make raylib          -> compilar versão com RayLib"
-	@echo "make DEBUG=1         -> compilar console com debug"
-	@echo ""
 	@echo "=== EXECUÇÃO ==="
-	@echo "make run             -> compilar e executar versão console"
-	@echo "make run-raylib      -> compilar e executar versão RayLib"
+	@echo "make run             -> compilar e executar versão terminal (console)"
+	@echo "make raylib          -> compilar e executar versão visual (RayLib)"
+	@echo ""
+	@echo "=== COMPILAÇÃO ==="
+	@echo "make or make all     -> compilar versão terminal"
+	@echo "make build-raylib    -> compilar versão visual sem executar"
+	@echo "make DEBUG=1         -> compilar com debug"
 	@echo ""
 	@echo "=== UTILITÁRIOS ==="
 	@echo "make test            -> rodar testes"

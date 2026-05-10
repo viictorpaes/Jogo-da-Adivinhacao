@@ -3,6 +3,7 @@ Jogo de Adivinhação Otimizado em C <br>
 <img src="./img/adivinhação.jpg" width="400"><br>
 <img src="https://img.shields.io/badge/-C-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="19"/>
 <img src="https://img.shields.io/badge/-GCC-111827?style=flat-square&logo=gnu&logoColor=white"/>
+<img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/>
 </h1>
 
 <h2 align="center">👥👨🏻‍🏫 Docentes Responsáveis: </h2>
@@ -63,6 +64,21 @@ O projeto está sendo desenvolvido focando em modularização e boas práticas d
 * **Compilador GCC** <img src="https://img.shields.io/badge/GCC-111827?style=flat-square&logo=gnu&logoColor=white"/> <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square"/>
 * **Git (Versionamento)** <img src="https://img.shields.io/badge/Git-111827?style=flat-square&logo=git&logoColor=F05032"/> <img src="https://img.shields.io/badge/Versão-2.0+-orange?style=flat-square"/>
 * **Padrão da Linguagem C** <img src="https://img.shields.io/badge/-111827?style=flat-square&logo=c&logoColor=white"/> <img src="https://img.shields.io/badge/Versão-11-orange?style=flat-square"/>
+* **Raylib** <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/> — necessário apenas para a versão gráfica (`make raylib`)
+
+```bash
+# macOS (Homebrew)
+brew install raylib
+
+# Ubuntu / Debian
+sudo apt install libraylib-dev
+
+# Arch Linux
+sudo pacman -S raylib
+```
+
+> [!NOTE]
+> No Windows, baixe os binários pré-compilados em [raylib.com/download](https://www.raylib.com/index.html) e adicione ao PATH, ou use o MSYS2: `pacman -S mingw-w64-x86_64-raylib`.
 
 ---
 
@@ -96,39 +112,30 @@ Após baixar o Github desktop: <br>
 5. *No terminal Integrado:* <br>
 <img src="https://img.shields.io/badge/Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="25">
 
-```bash
-# 1. Clone o repositório
-git clone https://github.com/viictorpaes/Jogo-da-Adivinhacao
-cd Jogo-da-Adivinhacao
+<h3 align="left">🖥️ Terminal (Console) <br>
+<img src="https://img.shields.io/badge/Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="20"></h3>
 
-# 2. Compile e execute a versão console (recomendado via Makefile)
-make        # compilar
-make run    # compilar + executar
+| Comando | Descrição |
+| :--- | :--- |
+| `make` | Compila a versão terminal |
+| `make run` | Compila e executa a versão terminal |
+| `make DEBUG=1` | Compila com símbolos de debug (`-g -O0`) |
 
-# 3. Compile e execute a versão gráfica com Raylib
-make raylib        # compilar versão gráfica
-make run-raylib    # compilar + executar versão gráfica
+<h3 align="left">🎨 Visual (RayLib) <br>
+<img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/></h2>
 
-# --- Compilação manual sem Makefile (versão console) ---
-gcc src/main.c \
-    src/game/jogo.c \
-    src/game/memorygame.c \
-    src/game/jogar_memoria.c \
-    src/utils/utils.c \
-    src/history/historico.c \
-    src/static/estatisticas.c \
-    src/ui/menu.c \
-    -I./src/game -I./src/utils -I./src/history \
-    -I./src/static -I./src/include -I./src/ui \
-    -o jogo -std=c11 -Wall -Wextra -O2
-./jogo
+| Comando | Descrição |
+| :--- | :--- |
+| `make build-raylib` | Compila a versão visual sem executar |
+| `make raylib` | Compila e executa a versão visual |
 
-# --- Utilitários ---
-make clean      # remover binários compilados
-make format     # formatar código com clang-format
-make DEBUG=1    # compilar com símbolos de debug (-g -O0)
-make help       # listar todos os alvos disponíveis
-```
+#### 🛠️ Utilitários
+
+| Comando | Descrição |
+| :--- | :--- |
+| `make clean` | Remove binários compilados |
+| `make format` | Formata o código com clang-format |
+| `make help` | Lista todos os alvos disponíveis |
 
 ### 🎮🟢🟡🔴 Níveis de Dificuldade
 
