@@ -1,50 +1,93 @@
-# 🎮 Jogo da Memória 4x4
+<h1 align="center">Jogo da Memória 4×4<br>
+<img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="25"/></h1>
 
-## Descrição
-Um jogo de memória interativo em C que desafia o jogador a encontrar pares de números em um tabuleiro 4x4 embaralhado.
+<p align="center">Documentação do módulo <code>game/memorygame</code> — mecânica, estrutura de dados e funções.</p>
 
-## Características
+<p align="center">
+  <img src="https://img.shields.io/badge/-C-111827?style=flat-square&logo=c&logoColor=A8B9CC"/>
+  <img src="https://img.shields.io/badge/-C11-111827?style=flat-square&logo=c&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-GCC-111827?style=flat-square&logo=gnu&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Tabuleiro%204×4-111827?style=flat-square"/>
+</p>
 
-### Tabuleiro
-- **Dimensões**: 4x4 = 16 casas
-- **Pares**: 8 pares de números (1 a 8)
-- **Estado**: Cada casa pode estar oculta, revelada ou acertada
+---
 
-### Mecânica de Jogo
-1. **Embaralhamento**: Os números são embaralhados aleatoriamente usando o algoritmo Fisher-Yates
-2. **Escolha**: O jogador escolhe duas casas por rodada
-3. **Revelação**: As casas são temporariamente reveladas para o jogador ver os números
-4. **Verificação**: Se os números forem iguais, é um acerto! Caso contrário, as casas voltam a ser ocultas
-5. **Pontuação**: Cada par encontrado = 10 pontos
+## 📋 Descrição
+
+Um jogo de memória interativo em C onde o jogador precisa encontrar todos os **8 pares de números** em um tabuleiro 4×4 embaralhado. Disponível tanto na versão de console quanto na versão gráfica com Raylib.
+
+---
+
+## ⚙️ Mecânica de Jogo
+
+| Etapa | Descrição |
+| :--- | :--- |
+| **Embaralhamento** | Os 16 números são embaralhados com o algoritmo **Fisher-Yates** a cada nova partida |
+| **Escolha** | O jogador escolhe duas casas por rodada |
+| **Revelação** | As casas são temporariamente reveladas |
+| **Verificação** | Par correto → casas permanecem; par errado → voltam a ficar ocultas |
+| **Fim** | Partida encerrada ao encontrar todos os 8 pares |
 
 ### Sistema de Pontuação
-- ✅ **Acerto de Par**: +10 pontos
-- 🎉 **Bônus**: Estatísticas de desempenho ao final
 
-## Como Jogar
+| Evento | Pontos |
+| :--- | :---: |
+| Acerto de par | `+10` |
+| Par errado | `0` |
 
-### Compilação
-```bash
-gcc -std=c11 -Wall -Wextra -I./src/game -I./src/utils -I./src/history -I./src/static -I./src/include -I./src/ui \
-    src/main.c src/game/jogo.c src/game/memorygame.c src/game/jogar_memoria.c \
-    src/utils/utils.c src/history/historico.c src/static/estatisticas.c src/ui/menu.c \
-    -o jogo.exe
+Ao final, são exibidas: pontuação total, pares encontrados, tentativas realizadas e eficiência (acertos/tentativa).
+
+---
+
+## 🏗️ Estrutura de Dados
+
+```c
+typedef struct 
+{
+    int  numeros[16];       // Números do tabuleiro (1-8, duplicados)
+    bool reveladas[16];     // Estado de cada casa (visível ou oculta)
+    bool acertadas[16];     // Pares já confirmados
+    int  pontuacao;         // Pontuação acumulada
+    int  tentativas;        // Total de tentativas realizadas
+    int  pares_encontrados; // Pares acertados até o momento
+} JogoMemoria;
 ```
 
-### Execução
-```bash
-./jogo.exe
-```
+---
 
-### No Jogo
+## 🔧 Funções Principais
+
+| Função | Descrição |
+| :--- | :--- |
+| `inicializar_jogo_memoria(JogoMemoria *)` | Cria novo jogo com tabuleiro embaralhado |
+| `exibir_tabuleiro(const JogoMemoria *)` | Mostra estado atual do tabuleiro no terminal |
+| `fazer_jogada(JogoMemoria *, int casa1, int casa2)` | Processa escolha de duas casas; retorna `1` se acertou o par |
+| `jogo_memoria_finalizado(const JogoMemoria *)` | Retorna `1` quando todos os 8 pares foram encontrados |
+| `exibir_resultado_memoria(const JogoMemoria *)` | Exibe estatísticas finais da partida |
+| `jogar_memoria(void)` | Executa o loop completo do jogo (console) |
+
+---
+
+## 🗂️ Arquivos do Módulo
+
+| Arquivo | Responsabilidade |
+| :--- | :--- |
+| `src/game/memorygame.h` | Definições da struct `JogoMemoria` e assinaturas |
+| `src/game/memorygame.c` | Implementação do tabuleiro e lógica de pares |
+| `src/game/jogar_memoria.h` | Interface do loop de jogo |
+| `src/game/jogar_memoria.c` | Loop principal e fluxo de turnos (console) |
+
+---
+
+## 🕹️ Como Jogar (Console)
+
 1. Selecione a opção **[2] Jogar Memória** no menu principal
-2. O tabuleiro será exibido com as casas numeradas de 1 a 16
-3. Digite os números das duas casas que deseja revelar
-4. O sistema mostrará os números
-5. Se forem iguais, você ganha 10 pontos!
-6. Continue até encontrar todos os 8 pares
+2. O tabuleiro é exibido com as 16 casas numeradas de `1` a `16`
+3. Digite os números de duas casas que deseja revelar
+4. Se os números forem iguais, você ganha **+10 pontos**
+5. Continue até encontrar todos os **8 pares**
 
-## Exemplo de Tabuleiro
+### Exemplo de Tabuleiro
 
 ```
     [1]   [2]   [3]   [4]
@@ -56,43 +99,7 @@ gcc -std=c11 -Wall -Wextra -I./src/game -I./src/utils -I./src/history -I./src/st
 Pontuação: 20 | Pares: 2/8
 ```
 
-## Estrutura do Projeto
-
-### Arquivos Principais
-- `src/game/memorygame.h` - Header com definições
-- `src/game/memorygame.c` - Implementação do jogo
-- `src/game/jogar_memoria.h` - Interface de jogo
-- `src/game/jogar_memoria.c` - Loop principal do jogo
-
-### Estruturas de Dados
-```c
-typedef struct {
-    int numeros[16];      // Números do tabuleiro (1-8, duplicados)
-    bool reveladas[16];   // Estado de cada casa
-    bool acertadas[16];   // Pares já encontrados
-    int pontuacao;        // Pontuação do jogador
-    int tentativas;       // Número de tentativas
-    int pares_encontrados;// Total de pares encontrados
-} JogoMemoria;
-```
-
-## Funções Principais
-
-| Função | Descrição |
-|--------|-----------|
-| `inicializar_jogo_memoria()` | Cria novo jogo com tabuleiro embaralhado |
-| `exibir_tabuleiro()` | Mostra estado atual do tabuleiro |
-| `fazer_jogada()` | Processa escolha de duas casas |
-| `jogo_memoria_finalizado()` | Verifica se todos os pares foram encontrados |
-| `exibir_resultado_memoria()` | Mostra estatísticas finais |
-
-## Validações
-- ✅ Posições devem estar entre 1 e 16
-- ✅ Não é permitido escolher a mesma casa duas vezes
-- ✅ Não é permitido escolher casas já acertadas
-- ✅ Embaralhamento pseudoaleatório a cada novo jogo
-
-## Exemplo de Jogada
+### Exemplo de Jogada
 
 ```
 Escolha as duas casas (1-16):
@@ -102,26 +109,31 @@ Segunda casa: 5
 Casa 1 revelou: 3
 Casa 5 revelou: 3
 
-✅ Acertou! Os números são iguais: 3 = 3
-🎉 +10 pontos! Total: 10
+✅ Acertou! 3 = 3  →  +10 pontos! Total: 10
 ```
-
-## Tecnologias Utilizadas
-- **Linguagem**: C (C11)
-- **Compilador**: GCC
-- **Bibliotecas Padrão**: stdio, stdlib, stdbool, string, time
-- **Sistema de Operacional**: Windows/Linux/macOS
-
-## Melhorias Futuras
-- [ ] Sistema de dificuldades (tabuleiro maior)
-- [ ] Modo multiplayer
-- [ ] Ranking de pontuações
-- [ ] Temas visuais diferentes
-- [ ] Sons e efeitos
-
-## Autor
-Criado como parte do projeto "Jogo da Adivinhação"
 
 ---
 
-**Divirta-se! 🎉**
+## ✅ Validações
+
+- Posições devem estar entre `1` e `16`
+- Não é permitido escolher a mesma casa duas vezes na mesma rodada
+- Não é permitido escolher casas já acertadas
+- Embaralhamento pseudoaleatório (Fisher-Yates) a cada novo jogo
+
+---
+
+## 🔗 Compilação Manual
+
+```bash
+gcc -std=c11 -Wall -Wextra \
+    -I./src/game -I./src/utils -I./src/history \
+    -I./src/static -I./src/include -I./src/ui \
+    src/main.c src/game/jogo.c src/game/memorygame.c \
+    src/game/jogar_memoria.c src/utils/utils.c \
+    src/history/historico.c src/static/estatisticas.c \
+    src/ui/menu.c -o jogo
+```
+
+> [!NOTE]
+> Prefira usar `make` ou `make run` — o Makefile já gerencia todas as dependências e flags de compilação corretamente.

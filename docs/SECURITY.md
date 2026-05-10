@@ -1,97 +1,119 @@
-<h1 align="center">SECURITY.md <br>
-<img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" alt="Segurança"></h1>
+<h1 align="center">Segurança do RNG<br>
+<img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="25"/></h1>
 
-<b>Este documento descreve a <mark>lógica de geração do número secreto do jogo</mark> conforme o nível de dificuldade e aponta considerações de segurança relacionadas ao gerador de números aleatórios (RNG), sementes e práticas para evitar previsibilidade e vazamento da solução.</b>
+<p align="center"><b>Lógica de geração do número secreto, considerações sobre previsibilidade e boas práticas para evitar vazamentos ou engenharia reversa.</b></p>
 
-## Resumo da lógica por nível de dificuldade🎮
+---
 
-O jogo gera um número secreto inteiro dentro de um intervalo que depende do nível de dificuldade escolhido:
+## 🎮 Geração do Número Secreto por Nível
 
-- Fácil: intervalo [1, 50]🟢
-- Médio: intervalo [1, 100]🟡
-- Difícil: intervalo [1, 500]🔴
+O número secreto é um inteiro dentro de um intervalo que depende do nível de dificuldade escolhido:
 
-A lógica básica é:
-1. Inicializar o gerador de números aleatórios (seed);
-2. Calcular/obter um valor aleatório uniforme dentro do intervalo apropriado; e
-3. Guardar esse número apenas em memória (não registrar em logs) até o fim da partida.
+| Nível | Intervalo | Desafio |
+| :--- | :---: | :--- |
+| **Fácil** | `[1, 50]` | 🟢 Baixo |
+| **Médio** | `[1, 100]` | 🟡 Moderado |
+| **Difícil** | `[1, 500]` | 🔴 Alto |
 
-Exemplo (pseudocódigo):
+**Fluxo de geração:**
+1. Inicializar o RNG (seed);
+2. Calcular um valor aleatório uniforme dentro do intervalo; e
+3. Guardar o número **apenas em memória** — nunca registrar em logs antes do fim da partida.
 
 ```c
-// pseudocódigo ilustrativo
-utils_inicializar_semente(); // ex.: seed com time + pid ou /dev/urandom
+utils_inicializar_semente(); // seed com time + pid ou /dev/urandom
 if (nivel == FACIL) intervalo = 50;
 else if (nivel == MEDIO) intervalo = 100;
 else intervalo = 500;
 
-numero_secreto = gerar_uniforme(1, intervalo);
+numero_secreto = utils_aleatorio_intervalo(1, intervalo);
 ```
 
-## Evitando viés de módulo (mapping bias)✋
+---
 
-Ao mapear um inteiro aleatório para um intervalo `[1..N]`, evitar usar `rand() % N` porque isso pode introduzir viés quando o espaço da RNG não for múltiplo exato de N.
+## ✋ Evitando Viés de Módulo (*Mapping Bias*)
 
-Recomendações práticas:
-- Em macOS/BSD, prefira `arc4random_uniform(N)` — ela evita viés internamente. <br> 
-<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
-- Em Linux, use `getrandom()` ou leia `/dev/urandom` e aplique *rejection sampling* para evitar viés, ou use uma implementação de função que faça isso por você. <br>
-<img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black" alt="Linux"/>
-- Se usar `rand()`/`srand()` por simplicidade, implemente rejection sampling ou escolha uma função utilitária que já trate o viés.
+Usar `rand() % N` pode introduzir viés quando o espaço da RNG não for múltiplo exato de `N`.
 
-Exemplo de *rejection sampling* (esquemático):
+| Plataforma | Recomendação |
+| :--- | :--- |
+| <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/> | `arc4random_uniform(N)` — evita viés internamente, não precisa de `srand()` |
+| <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black" alt="Linux"/> | `getrandom()` ou `/dev/urandom` com *rejection sampling* |
+| Portabilidade | `rand()` com *rejection sampling* manual (documentar limitação) |
 
-1. Calcule `max_aceitavel = floor(RANGE_MAX / N) * N - 1` (onde RANGE_MAX é o máximo possível da RNG).
-2. Leia um valor da RNG enquanto for maior que `max_aceitavel`.
-3. Use `valor % N` após aceitar.
+**Esquema de *rejection sampling*:**
+1. Calcule `max_aceitavel = floor(RANGE_MAX / N) * N - 1`
+2. Leia um valor da RNG enquanto for maior que `max_aceitavel`
+3. Use `valor % N` após aceitar
 
-Mas, sempre que possível, prefira APIs modernas que já retornem valores sem viés.
+---
 
-## Sementeamento (seeding) e previsibilidade🔮
+## 🔮 Sementeamento e Previsibilidade
 
-Problema: semente fraca (por exemplo `srand(time(NULL))` em um servidor ou numente local) pode tornar o número previsível por um atacante que conhece o horário de execução.
+> [!IMPORTANT]
+> `srand(time(NULL))` é previsível — um atacante que conhece o horário de execução pode reproduzir a sequência.
 
-Mitigação:
-- Em ambientes onde segurança/anti-cheat é importante, usar fontes de entropia do sistema: `getrandom()` (Linux) ou `arc4random()` / `arc4random_uniform()` (BSD/macOS). Estas funções são não determinísticas e devem ser preferidas.
-- Para plataformas onde apenas `rand()` está disponível e compatibilidade é necessária, combine múltiplas fontes ao seed: tempo de alta resolução (microsegundos), PID do processo, leitura de `/dev/urandom` (se disponível). Ex.:
+**Mitigações recomendadas:**
 
-  seed = time_ns ^ getpid() ^ hash(free_entropy_bytes);
+| Situação | Solução |
+| :--- | :--- |
+| macOS / BSD | `arc4random_uniform()` — não determinístico, sem `srand()` |
+| Linux moderno | `getrandom()` ou `/dev/urandom` + libsodium |
+| Fins didáticos | `srand(time(NULL) ^ getpid())` — documentado como inseguro para produção |
 
-- Evite usar apenas `time(NULL)` em produção — é previsível.
+---
 
-## Recomendação prática por plataforma
+## 🔻 Logs, Persistência e Vazamento Acidental
 
-- macOS / BSD: usar `arc4random_uniform(intervalo)` para gerar o número sem viés. Não precisa fazer `srand()`. <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
+> [!CAUTION]
+> Nunca registre `numero_secreto` em arquivos de log, `stdout` ou `stderr` durante uma partida ativa.
 
-- Linux moderno: usar `getrandom()` ou ler `/dev/urandom` e transformar a saída em um inteiro no intervalo desejado (preferir `getrandom` quando disponível). Alternativamente, usar libs como libsodium para random seguro. <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black" alt="Linux"/>
+- O histórico salva apenas **metadados**: nome, tentativas, pontuação, nível — nunca o número secreto.
+- Cuidado com dumps de memória e arquivos temporários de debug.
 
-- Portabilidade mínima: se o objetivo é educação e compatibilidade simples, documentar claramente que `utils_inicializar_semente()` usa `srand(time(NULL) ^ getpid())` e que isto é aceitável apenas para fins didáticos e testes.
+---
 
-## Logs, persistência e vazamento acidental 🔻
+## 🔃 Modo de Teste / Reproducibilidade
 
-- Nunca logue o `numero_secreto` em arquivos de log nem em stdout/stderr durante uma partida ativa.
-- Se o histórico salva detalhes técnicos da partida, registre apenas metadados (nome do jogador, número de tentativas, sucesso/falha, nível), não o número secreto.
-- Tenha cuidado com dumps de memória e arquivos temporários de debug — não conter a senha/numero secreto.
+Para testes automatizados, mantenha uma via controlada de determinismo:
 
-## Modo de teste / reproducibilidade 🔃
+```bash
+# Força seed determinístico (apenas para CI/testing)
+JOGO_SEED=42 ./jogo
+```
 
-Para permitir testes automatizados, mantenha uma via controlada de determinismo:
-- Permitir uma variável de ambiente `JOGO_SEED` ou uma flag `--seed` que, quando presente, força seed determinístico (útil para testes unitários). Ex.:
+```c
+const char *seed_env = getenv("JOGO_SEED");
+if (seed_env) 
+{
+    srand((unsigned int)atoi(seed_env)); 
+} 
+else 
+{
+    utils_inicializar_semente(); 
+}
+```
 
-  - Se `JOGO_SEED` definido, inicializar RNG com esse valor.
-  - Caso contrário, usar RNG seguro/aleatório.
+> [!NOTE]
+> Documentar claramente que `JOGO_SEED` desabilita a aleatoriedade segura e deve ser usado **apenas em CI/testing**.
 
-Documentar claramente que o modo com `JOGO_SEED` desabilita a aleatoriedade segura e deve ser usado apenas em CI/testing.
+---
 
-## Threat model (rápido)⛳️
+## ⛳ Threat Model (Resumo)
 
-- Ameaças principais: jogador mal-intencionado que quer descobrir o número por engenharia reversa, cronometragem do seed, acesso a logs ou dados históricos.
-- Medidas mitigatórias: RNG não previsível, não persistir o número, evitar saltos de seed previsíveis, permitir seed controlado apenas em testes.
+| Ameaça | Mitigação |
+| :--- | :--- |
+| Cronometragem do seed | RNG não previsível (`arc4random` / `getrandom`) |
+| Engenharia reversa via logs | Não persistir o número secreto durante a partida |
+| Seed fixo em produção | Seed controlado restrito a flag de ambiente |
+| Análise de histórico | Histórico salva apenas metadados, não a resposta |
 
-## Checklist de implementação segura (resumo)✅
+---
 
-- [ ] Usar `arc4random_uniform()` em macOS/BSD para gerar o valor no intervalo.
-- [ ] Em Linux, usar `getrandom()` ou `/dev/urandom` com rejeição para mapear para o intervalo sem viés.
-- [ ] Não escrever `numero_secreto` em logs ou arquivos.
-- [ ] Fornecer `--seed`/`JOGO_SEED` para testes de integração (documentado e isolado do modo de produção).
-- [ ] Documentar qualquer fallback (ex.: `srand(time() ^ getpid())`) e marcar como inseguro para produção.
+## ✅ Checklist de Implementação Segura
+
+- [ ] Usar `arc4random_uniform()` em macOS/BSD para gerar o valor no intervalo
+- [ ] Em Linux, usar `getrandom()` ou `/dev/urandom` com rejeição para evitar viés
+- [ ] Não escrever `numero_secreto` em logs ou arquivos durante a partida
+- [ ] Fornecer `JOGO_SEED` para testes de integração — documentado e isolado do modo de produção
+- [ ] Documentar qualquer fallback (`srand(time() ^ getpid())`) como inseguro para produção

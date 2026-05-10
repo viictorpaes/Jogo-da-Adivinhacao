@@ -1,4 +1,19 @@
-<h1 align="left">👥 Contribuidores</h1>
+<h1 align="center">👥 Contribuidores<br>
+<img src="https://img.shields.io/badge/-AUTHORS-8B0000?style=flat-square&logo=surveymonkey&logoColor=white" height="25"/></h1>
+
+<h2 align="center">👨🏻‍🏫 Docentes Responsáveis</h2>
+
+<ul>
+  <li><strong>Aêda Monalliza Cunha de Sousa</strong> <a href="https://www.linkedin.com/in/aedasousa/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+  <li><strong>Guilherme Fernando Cacalvanti Pereira</strong> <a href="https://www.linkedin.com/in/guilherme-pereira-11a32511a" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+  <li><strong>Lucas Rodolfo Celestino de Farias</strong> <a href="https://www.linkedin.com/in/fariaslrc" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+  <li><strong>Renan Costa Alencar</strong> <a href="https://www.linkedin.com/in/renancostaalencar" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+  <li><strong>Ricardo Macedo Baudel</strong> <a href="https://www.linkedin.com/in/ricardo-baudel-700a98127/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
+</ul>
+
+---
+
+<h2 align="center">👨‍🎓 Integrantes do Projeto</h2>
 
 | Integrante | LinkedIn | GitHub |
 | :--- | :---: | :---: |
