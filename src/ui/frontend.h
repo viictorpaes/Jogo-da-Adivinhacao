@@ -27,7 +27,10 @@ typedef struct
     char entrada_texto[10];
     int indice_entrada;
     int clique_casa1;
-    int clique_casa2;  
+    int clique_casa2;
+    bool aguardando_ocultar;
+    int timer_ocultar;
+    char mensagem_erro[128];
 } EstadoUI;
 
 #define LARGURA_JANELA   1200

@@ -1,5 +1,5 @@
-#include "frontend.h"
 #include <raylib.h>
+#include "frontend.h"
 #include "../game/jogo.h"
 #include "../game/memorygame.h"
 #include <stdio.h>
@@ -7,13 +7,13 @@
 #include <string.h>
 #include <time.h>
 
-#define COR_FUNDO       (Color){20, 20, 30, 255}
-#define COR_PRIMARIA    (Color){100, 200, 255, 255}
-#define COR_SECUNDARIA  (Color){255, 150, 50, 255}
-#define COR_SUCESSO     (Color){100, 255, 100, 255}
-#define COR_ERRO        (Color){255, 100, 100, 255}
-#define COR_TEXTO       (Color){255, 255, 255, 255}
-#define COR_BOTAO       (Color){70, 130, 180, 255}
+#define COR_FUNDO (Color){20, 20, 30, 255}
+#define COR_PRIMARIA (Color){100, 200, 255, 255}
+#define COR_SECUNDARIA (Color){255, 150, 50, 255}
+#define COR_SUCESSO (Color){100, 255, 100, 255}
+#define COR_ERRO (Color){255, 100, 100, 255}
+#define COR_TEXTO (Color){255, 255, 255, 255}
+#define COR_BOTAO (Color){70, 130, 180, 255}
 #define COR_BOTAO_HOVER (Color){100, 150, 200, 255}
 
 
@@ -42,23 +42,21 @@ Botao desenhar_botao(float x, float y, float width, float height, const char *te
     
     Color cor = botao.hover ? COR_BOTAO_HOVER : COR_BOTAO;
     DrawRectangleRec(botao.rect, cor);
-    DrawRectangleLines((int)botao.rect.x, (int)botao.rect.y, 
-                       (int)botao.rect.width, (int)botao.rect.height, COR_PRIMARIA);
+    DrawRectangleLines ((int)botao.rect.x, (int)botao.rect.y, 
+    (int)botao.rect.width, (int)botao.rect.height, COR_PRIMARIA);
     
     int text_width = MeasureText(texto, 20);
-    DrawText(texto, 
-             (int)(x + width/2 - text_width/2), 
-             (int)(y + height/2 - 10),
-             20, COR_TEXTO);
+    DrawText (texto, (int)(x + width/2 - text_width/2), 
+             (int)(y + height/2 - 10), 20, COR_TEXTO);
     
     return botao;
 }
 
 void desenhar_menu_principal(void) 
 {
-    DrawText("JOGO DA ADIVINHACAO & MEMORIA", 200, 100, 40, COR_PRIMARIA);
+    DrawText("JOGO DA ADIVINHAÇÃO & MEMÓRIA", 200, 100, 40, COR_PRIMARIA);
 
-    DrawText("Escolha uma opção:", 400, 250, 30, COR_TEXTO);
+    DrawText("\n Escolha uma opção: ", 400, 250, 30, COR_TEXTO);
 
     desenhar_botao(400, 350, 400, 80, "1. Jogo da Adivinhação");
     desenhar_botao(400, 480, 400, 80, "2. Jogo da Memória");
@@ -93,9 +91,12 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
     {
         DrawText("Seu último palpite foi:", 200, 180, 25, COR_SECUNDARIA);
         
-        if (ui->entrada_numero < ui->partida_atual.numero_secreto) {
+        if (ui->entrada_numero < ui->partida_atual.numero_secreto) 
+        {
             DrawText("O número secreto é MAIOR! ↑", 200, 220, 25, COR_ERRO);
-        } else if (ui->entrada_numero > ui->partida_atual.numero_secreto) {
+        } 
+        else if (ui->entrada_numero > ui->partida_atual.numero_secreto) 
+        {
             DrawText("O número secreto é MENOR! ↓", 200, 220, 25, COR_ERRO);
         }
     }
@@ -112,8 +113,13 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
              40, COR_PRIMARIA);
     
     desenhar_botao(200, 480, 400, 60, "CONFIRMAR PALPITE (Enter)");
-    
-    DrawText("Pressione ESC para voltar a selecao de dificuldade", 200, 600, 20, COR_TEXTO);
+
+    if (ui->mensagem_erro[0] != '\0')
+    {
+        DrawText(ui->mensagem_erro, 200, 560, 22, COR_ERRO);
+    }
+
+    DrawText("Pressione: ESC para voltar a seleção de dificuldade", 200, 600, 20, COR_TEXTO);
 }
 
 void desenhar_jogo_memoria(const EstadoUI *ui) 
@@ -146,7 +152,8 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
             if (ui->jogo_memoria.acertadas[posicao]) 
             {
                 cor_casa = COR_SUCESSO;
-            } else if (ui->jogo_memoria.reveladas[posicao]) 
+            } 
+            else if (ui->jogo_memoria.reveladas[posicao]) 
             {
                 cor_casa = COR_PRIMARIA;
             } 
@@ -158,15 +165,17 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
             DrawRectangleRec(casa, cor_casa);
             DrawRectangleLines(x, y, tamanho_casa, tamanho_casa, COR_TEXTO);
             
-            // Desenhar número ou ?
-            if (ui->jogo_memoria.acertadas[posicao]) {
-                DrawText("✓", x + 25, y + 20, 40, COR_TEXTO);
-            } else if (ui->jogo_memoria.reveladas[posicao]) {
+            if (ui->jogo_memoria.acertadas[posicao]) 
+            {
+                DrawText("✅", x + 25, y + 20, 40, COR_TEXTO);
+            } else if (ui->jogo_memoria.reveladas[posicao]) 
+            {
                 char num_str[5];
                 snprintf(num_str, sizeof(num_str), "%d", ui->jogo_memoria.numeros[posicao]);
                 int text_width = MeasureText(num_str, 40);
                 DrawText(num_str, x + tamanho_casa/2 - text_width/2, y + 20, 40, COR_TEXTO);
-            } else {
+            } else 
+            {
                 DrawText("?", x + 30, y + 20, 40, COR_TEXTO);
             }
         }
@@ -282,12 +291,19 @@ void processar_entrada(EstadoUI *ui)
                 ui->entrada_numero <= ui->partida_atual.max_range) 
             {
                 
+                ui->mensagem_erro[0] = '\0';
                 processar_palpite(&ui->partida_atual, ui->entrada_numero);
-                
-                if (partida_encerrada(&ui->partida_atual)) 
+
+                if (partida_encerrada(&ui->partida_atual))
                 {
                     ui->estado_atual = ESTADO_RESULTADO_ADIVINHACAO;
                 }
+            }
+            else
+            {
+                snprintf(ui->mensagem_erro, sizeof(ui->mensagem_erro),
+                         "O número %d está fora do escopo do jogo. Por favor, tente novamente!",
+                         ui->entrada_numero);
             }
             
             memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
@@ -296,51 +312,73 @@ void processar_entrada(EstadoUI *ui)
     }
 }
 
-void processar_clique_mouse_memoria(EstadoUI *ui) 
+void processar_clique_mouse_memoria(EstadoUI *ui)
 {
-    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) 
+    if (ui->aguardando_ocultar)
+    {
+        ui->timer_ocultar--;
+        if (ui->timer_ocultar <= 0)
+        {
+            ui->jogo_memoria.reveladas[ui->clique_casa1 - 1] = false;
+            ui->jogo_memoria.reveladas[ui->clique_casa2 - 1] = false;
+            ui->clique_casa1 = -1;
+            ui->clique_casa2 = -1;
+            ui->aguardando_ocultar = false;
+        }
+        return;
+    }
+
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         return;
     }
-    
+
     Vector2 mouse_pos = GetMousePosition();
-    
+
     int tamanho_casa = 80;
     int espaco = 10;
     int inicio_x = 200;
     int inicio_y = 200;
-    
-    for (int i = 0; i < 4; i++) 
+
+    for (int i = 0; i < 4; i++)
     {
-        for (int j = 0; j < 4; j++) 
+        for (int j = 0; j < 4; j++)
         {
             int posicao = i * 4 + j;
             int x = inicio_x + (tamanho_casa + espaco) * j;
             int y = inicio_y + (tamanho_casa + espaco) * i;
-            
+
             Rectangle casa = {(float)x, (float)y, (float)tamanho_casa, (float)tamanho_casa};
-            
-            if (CheckCollisionPointRec(mouse_pos, casa)) 
+
+            if (CheckCollisionPointRec(mouse_pos, casa))
             {
-                if (!ui->jogo_memoria.acertadas[posicao]) 
+                if (!ui->jogo_memoria.acertadas[posicao] && !ui->jogo_memoria.reveladas[posicao])
                 {
-                    if (ui->clique_casa1 == -1) 
+                    if (ui->clique_casa1 == -1)
                     {
                         ui->clique_casa1 = posicao + 1;
-                    } 
-                    else if (ui->clique_casa2 == -1 && posicao + 1 != ui->clique_casa1) {
+                        ui->jogo_memoria.reveladas[posicao] = true;
+                    }
+                    else if (ui->clique_casa2 == -1 && posicao + 1 != ui->clique_casa1)
+                    {
                         ui->clique_casa2 = posicao + 1;
-                        
-            
-                        fazer_jogada(&ui->jogo_memoria, ui->clique_casa1, ui->clique_casa2);
-                        
-                        if (jogo_memoria_finalizado(&ui->jogo_memoria)) 
+
+                        bool acertou = fazer_jogada(&ui->jogo_memoria, ui->clique_casa1, ui->clique_casa2);
+
+                        if (jogo_memoria_finalizado(&ui->jogo_memoria))
                         {
                             ui->estado_atual = ESTADO_RESULTADO_MEMORIA;
                         }
-                        
-                        ui->clique_casa1 = -1;
-                        ui->clique_casa2 = -1;
+                        else if (acertou)
+                        {
+                            ui->clique_casa1 = -1;
+                            ui->clique_casa2 = -1;
+                        }
+                        else
+                        {
+                            ui->aguardando_ocultar = true;
+                            ui->timer_ocultar = 90;
+                        }
                     }
                 }
             }
@@ -356,7 +394,7 @@ void atualizar_ui(EstadoUI *ui)
         
         switch (ui->estado_atual) 
         {
-        case ESTADO_MENU_PRINCIPAL: 
+        case (ESTADO_MENU_PRINCIPAL): 
         {
             Botao btn_adiv = (Botao){{400, 350, 400, 80}, "", 
                                       CheckCollisionPointRec(mouse_pos, (Rectangle){400, 350, 400, 80})};
@@ -397,13 +435,13 @@ void atualizar_ui(EstadoUI *ui)
                 ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
 
             } 
-            
             else if (btn_medio.hover) 
             {
                 ui->partida_atual = iniciar_partida(MEDIO);
                 ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
 
-            } else if (btn_dif.hover) 
+            } 
+            else if (btn_dif.hover) 
             {
                 ui->partida_atual = iniciar_partida(DIFICIL);
                 ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;

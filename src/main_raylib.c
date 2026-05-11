@@ -1,3 +1,4 @@
+#include "ui/frontend.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -6,17 +7,14 @@
 #include <windows.h>
 #endif
 
-#include "ui/frontend.h"
-
-int main(void) {
-    // Configuração de encoding
+int main(void) 
+{
     setlocale(LC_ALL, "");
     
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    // Executar o frontend com raylib
     executar_frontend();
     
     return 0;

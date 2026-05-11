@@ -1,12 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "memorygame.h"
 #include "../utils/utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void jogar_memoria(void) {
+void jogar_memoria(void) 
+{
     limpar_tela();
     printf("═══════════════════════════════════════\n");
-    printf("   🎮 BEM-VINDO AO JOGO DA MEMÓRIA 🎮  \n");
+    printf("   🎮 BEM-VINDO AO JOGO DA MEMÓRIA OTIMIZADO EM C 🎮  \n");
     printf("═══════════════════════════════════════\n\n");
     
     printf("📋 REGRAS DO JOGO:\n");
@@ -20,22 +21,28 @@ void jogar_memoria(void) {
     printf("Pressione ENTER para começar...\n");
     pausar();
     
-    // Inicializar jogo
     JogoMemoria jogo = inicializar_jogo_memoria();
     
-    // Loop principal do jogo
-    while (!jogo_memoria_finalizado(&jogo)) {
+    while (!jogo_memoria_finalizado(&jogo)) 
+    {
         limpar_tela();
         exibir_tabuleiro(&jogo);
         
-        printf("Escolha as duas casas (1-16):\n");
+        printf("Escolha duas casas (1-16): \n");
         int pos1 = ler_inteiro(1, TOTAL_CASAS, "Primeira casa: ");
         int pos2 = ler_inteiro(1, TOTAL_CASAS, "Segunda casa: ");
         
-        fazer_jogada(&jogo, pos1, pos2);
+        bool acertou = fazer_jogada(&jogo, pos1, pos2);
+        if (!acertou) 
+        {
+            exibir_tabuleiro(&jogo);
+            printf("❌ Errou! Voltando ao modo oculto...\n\n");
+            pausar();
+            jogo.reveladas[pos1 - 1] = false;
+            jogo.reveladas[pos2 - 1] = false;
+        }
     }
     
-    // Mostrar resultado final
     limpar_tela();
     exibir_tabuleiro(&jogo);
     exibir_resultado_memoria(&jogo);
