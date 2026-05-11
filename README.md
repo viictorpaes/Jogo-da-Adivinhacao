@@ -48,9 +48,9 @@ Jogo de Adivinhação Otimizado em C <br>
   <img src="https://img.shields.io/badge/-GitHub%20Desktop-111827?style=flat-square&logo=github&logoColor=6F42C1"/>
 </p>
 
-## 🛠️ Especificações Técnicas (em andamento):
+<h2 align="center">🛠️ Especificações Técnicas (em andamento):</h2>
 
-O projeto está sendo desenvolvido focando em modularização e boas práticas de programação em C:
+<b>O projeto está sendo desenvolvido focando em modularização e boas práticas de programação em C:</b>
 
 * **Modularização:** Divisão do código em arquivos `.h` (cabeçalhos) e `.c` (implementação) para facilitar a manutenção e organização lógica (Game, Utils, History, Stats).
 * **Gerenciamento de Memória:** Uso de estruturas de dados eficientes para manipulação de ranking e histórico sem vazamento de memória.
@@ -67,18 +67,36 @@ O projeto está sendo desenvolvido focando em modularização e boas práticas d
 * **Padrão da Linguagem C** <img src="https://img.shields.io/badge/-111827?style=flat-square&logo=c&logoColor=white"/> <img src="https://img.shields.io/badge/Versão-11-orange?style=flat-square"/>
 * **Raylib** <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/> — necessário apenas para a versão gráfica (`make raylib`)
 
+
+<h2 align="center">💻Instalação do Raylib<br>
+<img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/></h2>
+
+<h3>
+<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
+</h3>
+
 ```bash
-# macOS (Homebrew)
 brew install raylib
-
-# Ubuntu / Debian
-sudo apt install libraylib-dev
-
-# Arch Linux
-sudo pacman -S raylib
 ```
 
-> [!NOTE]
+<h3>
+<img src="https://img.shields.io/badge/Ubuntu%20%2F%20Debian-E95420?style=flat&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
+</h3>
+
+```bash
+sudo apt-get install libraylib-dev
+```
+
+<h3>
+<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> MSYS2 / MinGW
+</h3>
+
+```bash
+pacman -S mingw-w64-x86_64-raylib
+```
+
+
+> [!TIP]
 > No Windows, baixe os binários pré-compilados em [raylib.com/download](https://www.raylib.com/index.html) e adicione ao PATH, ou use o MSYS2: `pacman -S mingw-w64-x86_64-raylib`.
 
 ---
