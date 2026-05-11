@@ -35,33 +35,30 @@ SRCS_RAYLIB = src/main_raylib.c \
 TARGET = jogo
 TARGET_RAYLIB = jogo_raylib
 
-# Flags para raylib
+# Flags para raylib rodar
 RAYLIB_PREFIX := $(shell brew --prefix raylib 2>/dev/null)
 ifneq ($(RAYLIB_PREFIX),)
 	RAYLIB_FLAGS = -I$(RAYLIB_PREFIX)/include -L$(RAYLIB_PREFIX)/lib -lraylib -lm -lpthread
 else
 	RAYLIB_FLAGS = -lraylib -lm -lpthread
+	
 endif
+
 ifeq ($(OS),Windows_NT)
 	RAYLIB_FLAGS = -lraylib -lm -lwinmm -lgdi32 -lpthread
+
 endif
 
 .PHONY: all clean run build-raylib raylib run-raylib test format help
 
-all: $(TARGET)
-
-$(TARGET): $(SRCS)
-	@mkdir -p bin
+all:
 	$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -o $(TARGET)
 
-build-raylib: $(TARGET_RAYLIB)
-
-$(TARGET_RAYLIB): $(SRCS_RAYLIB)
-	@mkdir -p bin
+build-raylib:
 	$(CC) $(CFLAGS) $(SRCS_RAYLIB) $(INCLUDES) $(RAYLIB_FLAGS) -o $(TARGET_RAYLIB)
 
 clean:
-	rm -f $(TARGET) $(TARGET_RAYLIB) bin/* *.o
+	rm -f $(TARGET) $(TARGET_RAYLIB) *.o
 
 run: all
 	@mkdir -p data
