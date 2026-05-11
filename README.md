@@ -106,7 +106,8 @@ Após baixar o Github desktop: <br>
 
 2. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/viictorpaes/Jogo-da-Adivinhacao)](https://github.com/viictorpaes/Jogo-da-Adivinhacao)
+   git clone https://github.com/viictorpaes/Jogo-da-Adivinhacao
+   ```
 
 4. **Abra sua IDE de escolha:** <br> <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code" /> <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/IntelliJ_IDEA_Icon.svg" width="32" height="32" alt="IntelliJ" /> <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Android_Studio_icon_%282023%29.svg" width="32" height="32" alt="Android Studio" />
   
@@ -129,10 +130,10 @@ Após baixar o Github desktop: <br>
 <br>
 
 5. *No terminal Integrado:* <br>
-<img src="https://img.shields.io/badge/Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="25">
+<img src="https://img.shields.io/badge/🕹️Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="25">
 
 <h3 align="left">🖥️ Terminal (Console) <br>
-<img src="https://img.shields.io/badge/Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="20"></h3>
+<img src="https://img.shields.io/badge/🕹️Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="20"></h3>
 
 | Comando | Descrição |
 | :--- | :--- |
@@ -164,7 +165,7 @@ A dificuldade selecionada altera o intervalo de números possíveis e restringe 
 | :--- | :---: | :---: | :---: | :--- |
 | **Fácil** | `1 a 50` | 10 | 1000 | 🟢 Baixo |
 | **Médio** | `1 a 100` | 7 | 2000 | 🟡 Moderado |
-| **Difícil** | `1 a 500` | 5 | 5000 | 🔴 Alto |
+| **Difícil** | `1 a 200` | 5 | 5000 | 🔴 Alto |
 
 ### 🔥🧦❄️🌥️ Sistema de Feedback Termodinâmico
 
