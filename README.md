@@ -162,8 +162,8 @@ A dificuldade selecionada altera o intervalo de números possíveis e restringe 
 
 | Nível | Intervalo | Tentativas | Pontuação Base | Desafio |
 | :--- | :---: | :---: | :---: | :--- |
-| **Fácil** | `1 a 50` | 20 | 1000 | 🟢 Baixo |
-| **Médio** | `1 a 100` | 10 | 2000 | 🟡 Moderado |
+| **Fácil** | `1 a 50` | 10 | 1000 | 🟢 Baixo |
+| **Médio** | `1 a 100` | 7 | 2000 | 🟡 Moderado |
 | **Difícil** | `1 a 500` | 5 | 5000 | 🔴 Alto |
 
 ### 🔥🧦❄️🌥️ Sistema de Feedback Termodinâmico
@@ -274,7 +274,7 @@ Jogo-da-Adivinhacao/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
 │   ├── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
 │   └── historico.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
-└── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>
+└── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
     ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
     ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
     ├── game <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
@@ -284,7 +284,7 @@ Jogo-da-Adivinhacao/
     │   ├── memorygame.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     │   ├── jogar_memoria.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/> 
     │   └── jogar_memoria.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    ├── ui/ <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">
+    ├── ui <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">/
     │   ├── menu.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/> 
     │   ├── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
     │   ├── frontend.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/> 
