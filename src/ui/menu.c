@@ -6,7 +6,8 @@
 #define LINHA_SIMPLES "​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​"
 
 
-void exibir_boas_vindas(void) {
+void exibir_boas_vindas(void) 
+{
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
     printf("|              JOGO DA ADIVINHAÇÃO               |\n");
@@ -16,7 +17,8 @@ void exibir_boas_vindas(void) {
     pausar();
 }
 
-OpcaoMenu exibir_menu_principal(void) {
+OpcaoMenu exibir_menu_principal(void)
+{
     int escolha;
 
     limpar_tela();
@@ -25,6 +27,11 @@ OpcaoMenu exibir_menu_principal(void) {
     printf("%s\n\n", BORDA_DUPLA);
 
     
+    printf("  1️⃣  Jogar - Jogo da Adivinhação\n");
+    printf("  2️⃣  Jogar - Jogo da Memória\n");
+    printf("  3️⃣  Ver Histórico\n");
+    printf("  4️⃣  Estatísticas\n");
+    printf("  5️⃣  Sair\n\n");
     printf("%s\n", LINHA_SIMPLES);
 
     escolha = ler_inteiro(1, 5, "  Digite sua escolha: ");
@@ -32,7 +39,8 @@ OpcaoMenu exibir_menu_principal(void) {
     return (OpcaoMenu)escolha;
 }
 
-Dificuldade exibir_menu_dificuldade(void) {
+Dificuldade exibir_menu_dificuldade(void) 
+{
     int escolha;
 
     limpar_tela();
@@ -53,31 +61,40 @@ Dificuldade exibir_menu_dificuldade(void) {
     return DIFICIL;
 }
 
-void exibir_dica(Resultado r, int tentativas_restantes) {
+void exibir_dica(Resultado r, int tentativas_restantes) 
+{
     printf("\n%s\n", LINHA_SIMPLES);
     
-    if (r == MAIOR) {
+    if (r == MAIOR) 
+    {
         printf(" ​🚨​DICA: O número secreto e MAIOR que seu palpite.\n");
     } 
-    else if (r == MENOR) {
+
+    else if (r == MENOR) 
+    {
         printf(" ​🚨​DICA: O número secreto e MENOR que seu palpite.\n");
     } 
-    else if (r == ACERTOU) {
+
+    else if (r == ACERTOU) 
+    {
         printf("  PARABÉNS!👏 Você encontrou o número secreto.\n");
     }
 
-    if (r != ACERTOU) {
+    if (r != ACERTOU) 
+    {
         printf("  Tentativas restantes: %d\n", tentativas_restantes);
     }
     
     printf("%s\n\n", LINHA_SIMPLES);
 }
 
-void exibir_erro_input(void) {
+void exibir_erro_input(void) 
+{
     printf("\n   Entrada inválida.​❌​ Por favor, tente novamente.​​🫡​\n");
 }
 
-void exibir_despedida(void) {
+void exibir_despedida(void) 
+{
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
     printf("|              ​​🤝​ OBRIGADO POR JOGAR!​​🤝​              |\n");

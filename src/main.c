@@ -15,7 +15,8 @@
 #include "history/historico.h"
 /* #include "static/estatisticas.h" */
 
-int main(void) {
+int main(void) 
+{
     /* 
      * 0. CONFIGURAÇÃO DE ENCODING (Resolve os bugs visuais)
      */
@@ -39,7 +40,8 @@ int main(void) {
      * 2. LOOP PRINCIPAL DO PROGRAMA
      * Mantém o programa rodando até o usuário escolher a opção SAIR.
      */
-    while (true) {
+    while (true) 
+    {
         OpcaoMenu opcao = exibir_menu_principal();
 
         if (opcao == MENU_JOGAR) {
@@ -52,7 +54,8 @@ int main(void) {
                    partida_atual.min_range, partida_atual.max_range);
 
             /* Loop interno da partida: continua até esgotar tentativas ou vencer */
-            while (!partida_encerrada(&partida_atual)) {
+            while (!partida_encerrada(&partida_atual)) 
+            {
                 int palpite = ler_inteiro(partida_atual.min_range, partida_atual.max_range, "\n  Digite seu palpite: ");
                 Resultado res = processar_palpite(&partida_atual, palpite);
                 
@@ -81,22 +84,30 @@ int main(void) {
             /* --- FIM DA INTEGRAÇÃO --- */
             
             /* Mensagem de sucesso solicitada na issue */
-            printf("  Partida finalizada!​​🙏​ O progresso do jogador foi salvo em: data/historico.txt\n\n");
+            printf("\nPartida finalizada!​​✅ O progresso do jogador foi salvo em: data/historico.txt e data/historico.csv\n\n");
             
             pausar();
-        } 
-        else if (opcao == MENU_MEMORIA) {
+        }
+
+        else if (opcao == MENU_MEMORIA) 
+        {
             jogar_memoria();
         }
-        else if (opcao == MENU_HISTORICO) {
+
+        else if (opcao == MENU_HISTORICO) 
+        {
             exibir_historico();
         } 
-        else if (opcao == MENU_ESTATISTICAS) {
+
+        else if (opcao == MENU_ESTATISTICAS) 
+        {
             /* exibir_estatisticas(); -> Descomentar no futuro */
             printf("\n  [Módulo de Estatísticas em construção...]\n");
             pausar();
-        } 
-        else if (opcao == MENU_SAIR) {
+        }
+         
+        else if (opcao == MENU_SAIR) 
+        {
             exibir_despedida();
             /* liberar_recursos(); -> Se houver alocação dinâmica no futuro */
             break;

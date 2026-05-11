@@ -67,9 +67,9 @@ void desenhar_menu_dificuldade(void)
 {
     DrawText("SELECIONE A DIFICULDADE", 250, 100, 40, COR_PRIMARIA);
 
-    desenhar_botao(250, 250, 700, 100, "[1] FACIL  (1-50, 10 tentativas)");
-    desenhar_botao(250, 400, 700, 100, "[2] MEDIO  (1-100, 7 tentativas)");
-    desenhar_botao(250, 550, 700, 100, "[3] DIFICIL (1-200, 5 tentativas)");
+    desenhar_botao(250, 250, 700, 100, "[1] FÁCIL  (1-50, 10 tentativas)");
+    desenhar_botao(250, 400, 700, 100, "[2] MÉDIO  (1-100, 7 tentativas)");
+    desenhar_botao(250, 550, 700, 100, "[3] DIFÍCIL (1-200, 5 tentativas)");
     DrawText("Clique ou pressione 1 / 2 / 3 para selecionar", 280, 690, 20, COR_TEXTO);
     DrawText("Pressione ESC para voltar ao menu", 310, 720, 20, COR_TEXTO);
 }
@@ -151,7 +151,7 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
             Color cor_casa;
             if (ui->jogo_memoria.acertadas[posicao]) 
             {
-                cor_casa = COR_SUCESSO;
+                cor_casa = GREEN;
             } 
             else if (ui->jogo_memoria.reveladas[posicao]) 
             {
@@ -165,21 +165,26 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
             DrawRectangleRec(casa, cor_casa);
             DrawRectangleLines(x, y, tamanho_casa, tamanho_casa, COR_TEXTO);
             
-            if (ui->jogo_memoria.acertadas[posicao]) 
+            if (ui->jogo_memoria.acertadas[posicao])
             {
-                DrawText("✅", x + 25, y + 20, 40, COR_TEXTO);
-            } else if (ui->jogo_memoria.reveladas[posicao]) 
-            {
-                char num_str[5];
+                char num_str[8];
                 snprintf(num_str, sizeof(num_str), "%d", ui->jogo_memoria.numeros[posicao]);
                 int text_width = MeasureText(num_str, 40);
                 DrawText(num_str, x + tamanho_casa/2 - text_width/2, y + 20, 40, COR_TEXTO);
-            } else 
+            }
+            else if (ui->jogo_memoria.reveladas[posicao])
+            {
+                char num_str[8];
+                snprintf(num_str, sizeof(num_str), "%d", ui->jogo_memoria.numeros[posicao]);
+                int text_width = MeasureText(num_str, 40);
+                DrawText(num_str, x + tamanho_casa/2 - text_width/2, y + 20, 40, COR_TEXTO);
+            }
+            else
             {
                 DrawText("?", x + 30, y + 20, 40, COR_TEXTO);
             }
-        }
     }
+}
     
     DrawText("Clique em duas casas diferentes para revelá-las", 200, 700, 20, COR_TEXTO);
     DrawText("Pressione ESC para voltar ao menu", 200, 740, 20, COR_TEXTO);

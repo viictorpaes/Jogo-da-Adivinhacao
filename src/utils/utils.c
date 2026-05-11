@@ -5,13 +5,16 @@
 #include <string.h>
 #include <ctype.h>
 
-int ler_inteiro(int min, int max, const char *prompt) {
+int ler_inteiro(int min, int max, const char *prompt) 
+{
     int valor;
     int quantidade_lida;
     int caractere_temp;
 
-    while (true) {
-        if (prompt != NULL) {
+    while (true) 
+    {
+        if (prompt != NULL) 
+        {
             printf("%s", prompt);
         }
 
@@ -28,18 +31,22 @@ int ler_inteiro(int min, int max, const char *prompt) {
     }
 }
 
-void ler_string(char *buf, int n, const char *prompt) {
-    if (prompt != NULL) {
+void ler_string(char *buf, int n, const char *prompt) 
+{
+    if (prompt != NULL) 
+    {
         printf("%s", prompt);
     }
 
-    if (fgets(buf, n, stdin) != NULL) {
+    if (fgets(buf, n, stdin) != NULL) 
+    {
         size_t posicao_nova_linha = strcspn(buf, "\n");
         buf[posicao_nova_linha] = '\0';
     }
 }
 
-void limpar_tela(void) {
+void limpar_tela(void) 
+{
     #ifdef _WIN32
         system("cls");
     #else
@@ -47,16 +54,19 @@ void limpar_tela(void) {
     #endif
 }
 
-void pausar(void) {
+void pausar(void) 
+{
     printf("\nPressione ENTER para continuar...");
     getchar(); 
 }
 
-void inicializar_rand(void) {
+void inicializar_rand(void) 
+{
     srand((unsigned int)time(NULL));
 }
 
-int rand_intervalo(int min, int max) {
+int rand_intervalo(int min, int max) 
+{
     if (min > max) {
         int temp = min;
         min = max;
@@ -65,23 +75,29 @@ int rand_intervalo(int min, int max) {
     return (rand() % (max - min + 1)) + min;
 }
 
-void formatar_data_atual(char *buf) {
+void formatar_data_atual(char *buf) 
+{
     time_t tempo_atual = time(NULL);
     struct tm *tempo_local = localtime(&tempo_atual);
 
-    if (tempo_local != NULL) {
+    if (tempo_local != NULL) 
+    {
         strftime(buf, 11, "%Y-%m-%d", tempo_local);
-    } else {
+    }
+    else 
+    {
         strcpy(buf, "0000-00-00");
     }
 }
 
-void erro_fatal(const char *msg) {
+void erro_fatal(const char *msg) 
+{
     fprintf(stderr, "\n[ERRO FATAL] %s\n", msg);
     fprintf(stderr, "O programa será encerrado.​​🚨​\n");
     exit(EXIT_FAILURE);
 }
 
-void aviso(const char *msg) {
+void aviso(const char *msg) 
+{
     fprintf(stderr, "\n[AVISO] %s\n", msg);
 }
