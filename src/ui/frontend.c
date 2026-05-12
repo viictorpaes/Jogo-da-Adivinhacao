@@ -28,9 +28,11 @@ typedef struct
 void inicializar_raylib(void) 
 {
     InitWindow(LARGURA_JANELA, ALTURA_JANELA, "Jogo da Adivinhação & Memória - RayLib");
+    SetExitKey(KEY_NULL);
     SetTargetFPS(60);
     srand((unsigned int)time(NULL));
 }
+
 
 
 Botao desenhar_botao(float x, float y, float width, float height, const char *texto) 
@@ -153,10 +155,14 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
             {
                 cor_casa = GREEN;
             } 
+            else if (ui->aguardando_ocultar && (posicao + 1 == ui->clique_casa1 || posicao + 1 == ui->clique_casa2)) 
+            {
+                cor_casa = COR_ERRO;
+            } 
             else if (ui->jogo_memoria.reveladas[posicao]) 
             {
                 cor_casa = COR_PRIMARIA;
-            } 
+            }
             else 
             {
                 cor_casa = COR_BOTAO;
@@ -183,8 +189,8 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
             {
                 DrawText("?", x + 30, y + 20, 40, COR_TEXTO);
             }
+        }
     }
-}
     
     DrawText("Clique em duas casas diferentes para revelá-las", 200, 700, 20, COR_TEXTO);
     DrawText("Pressione ESC para voltar ao menu", 200, 740, 20, COR_TEXTO);
