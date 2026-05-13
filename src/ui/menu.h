@@ -15,4 +15,6 @@ void exibir_boas_vindas(void);
 
 void exibir_despedida(void);
 
+void pedir_nome_jogador(char *nome, int max);
+
 #endif
