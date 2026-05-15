@@ -1,4 +1,5 @@
 #include "ui/frontend.h"
+#include "history/historico.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -15,6 +16,7 @@ int main(void)
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
+    inicializar_historico();
     executar_frontend();
     
     return 0;

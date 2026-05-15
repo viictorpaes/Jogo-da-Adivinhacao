@@ -2,6 +2,9 @@
 #include "frontend.h"
 #include "../game/jogo.h"
 #include "../game/memorygame.h"
+#include "../history/historico.h"
+#include "../static/estatisticas.h"
+#include "../utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -74,7 +77,33 @@ void desenhar_menu_dificuldade(void)
     DrawText("Pressione ESC para voltar ao menu", 310, 720, 20, COR_TEXTO);
 }
 
-void desenhar_jogo_adivinhacao(const EstadoUI *ui) 
+void desenhar_inserir_nome(const EstadoUI *ui)
+{
+    DrawText("IDENTIFICACAO DO JOGADOR", 280, 100, 40, COR_PRIMARIA);
+    DrawText("Qual e o seu nome?", 380, 220, 25, COR_TEXTO);
+
+    Rectangle input_box = {250, 280, 700, 70};
+    DrawRectangleRec(input_box, (Color){40, 40, 50, 255});
+    DrawRectangleLines(250, 280, 700, 70, COR_PRIMARIA);
+
+    DrawText(ui->nome_jogador,
+             (int)(input_box.x + 20),
+             (int)(input_box.y + 15),
+             40, COR_PRIMARIA);
+
+    /* cursor piscante */
+    if ((GetTime() * 2) - (int)(GetTime() * 2) < 1.0)
+    {
+        int cursor_x = (int)(input_box.x + 20) + MeasureText(ui->nome_jogador, 40);
+        DrawText("|", cursor_x, (int)(input_box.y + 15), 40, COR_PRIMARIA);
+    }
+
+    desenhar_botao(400, 420, 400, 70, "CONFIRMAR (Enter)");
+    DrawText("Deixe em branco para usar 'Jogador'", 320, 520, 20, COR_TEXTO);
+    DrawText("Pressione ESC para voltar ao menu", 330, 550, 20, COR_TEXTO);
+}
+
+void desenhar_jogo_adivinhacao(const EstadoUI *ui)
 {
     DrawText("JOGO DA ADIVINHAÇÃO", 400, 30, 40, COR_PRIMARIA);
     
@@ -190,29 +219,38 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
     DrawText("Pressione ESC para voltar ao menu", 200, 740, 20, COR_TEXTO);
 }
 
-void desenhar_resultado_adivinhacao(const EstadoUI *ui) 
+void desenhar_resultado_adivinhacao(const EstadoUI *ui)
 {
     DrawText("FIM DO JOGO", 400, 100, 50, COR_PRIMARIA);
-    
-    if (ui->partida_atual.venceu) 
+
+    if (ui->partida_atual.venceu)
     {
-        DrawText("VITÓRIA!", 450, 200, 40, COR_SUCESSO);
-        DrawText("Você acertou o número secreto!", 250, 280, 30, COR_TEXTO);
+        DrawText("VITORIA!", 450, 200, 40, COR_SUCESSO);
+        DrawText("Voce acertou o numero secreto!", 250, 280, 30, COR_TEXTO);
     }
-    else 
+    else
     {
         DrawText("DERROTA!", 450, 200, 40, COR_ERRO);
-        DrawText("Você esgotou todas as tentativas.", 250, 280, 30, COR_TEXTO);
+        DrawText("Voce esgotou todas as tentativas.", 250, 280, 30, COR_TEXTO);
     }
-    
-    char linha1[128], linha2[128];
-    snprintf(linha1, sizeof(linha1), "Número Secreto: %d", ui->partida_atual.numero_secreto);
-    snprintf(linha2, sizeof(linha2), "Tentativas Usadas: %d de %d",
-             ui->partida_atual.tentativas_usadas, ui->partida_atual.max_tentativas);
-    DrawText(linha1, 300, 380, 25, COR_TEXTO);
-    DrawText(linha2, 300, 415, 25, COR_TEXTO);
 
-    desenhar_botao(400, 550, 400, 80, "Voltar ao Menu (ESC)");
+    char linha1[128], linha2[128], linha3[128], linha4[128];
+    snprintf(linha1, sizeof(linha1), "Jogador: %s", ui->nome_jogador);
+    snprintf(linha2, sizeof(linha2), "Numero Secreto: %d", ui->partida_atual.numero_secreto);
+    snprintf(linha3, sizeof(linha3), "Tentativas: %d de %d",
+             ui->partida_atual.tentativas_usadas, ui->partida_atual.max_tentativas);
+
+    int pts = calcular_pontos(ui->dificuldade_selecionada,
+                              ui->partida_atual.tentativas_usadas,
+                              ui->partida_atual.venceu);
+    snprintf(linha4, sizeof(linha4), "Pontos ganhos: %d", pts);
+
+    DrawText(linha1, 300, 350, 25, COR_TEXTO);
+    DrawText(linha2, 300, 385, 25, COR_TEXTO);
+    DrawText(linha3, 300, 420, 25, COR_TEXTO);
+    DrawText(linha4, 300, 455, 25, pts > 0 ? COR_SUCESSO : COR_ERRO);
+
+    desenhar_botao(400, 560, 400, 80, "Voltar ao Menu (ESC)");
 }
 
 void desenhar_resultado_memoria(const EstadoUI *ui) 
@@ -239,6 +277,8 @@ void processar_entrada(EstadoUI *ui)
     {
         if (ui->estado_atual == ESTADO_JOGANDO_ADIVINHACAO)
             ui->estado_atual = ESTADO_DIFICULDADE;
+        else if (ui->estado_atual == ESTADO_INSERIR_NOME)
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
         else
             ui->estado_atual = ESTADO_MENU_PRINCIPAL;
 
@@ -248,21 +288,63 @@ void processar_entrada(EstadoUI *ui)
         return;
     }
 
+    /* --- Input do nome do jogador --- */
+    if (ui->estado_atual == ESTADO_INSERIR_NOME)
+    {
+        int key = GetCharPressed();
+        while (key > 0)
+        {
+            if (key >= 32 && key < 127 && ui->nome_indice < 63)
+            {
+                ui->nome_jogador[ui->nome_indice] = (char)key;
+                ui->nome_indice++;
+                ui->nome_jogador[ui->nome_indice] = '\0';
+            }
+            key = GetCharPressed();
+        }
+
+        if (IsKeyPressed(KEY_BACKSPACE) && ui->nome_indice > 0)
+        {
+            ui->nome_indice--;
+            ui->nome_jogador[ui->nome_indice] = '\0';
+        }
+
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            if (ui->nome_indice == 0)
+            {
+                const char *padrao = "Jogador";
+                int i = 0;
+                while (i < 63 && padrao[i]) { ui->nome_jogador[i] = padrao[i]; i++; }
+                ui->nome_jogador[i] = '\0';
+                ui->nome_indice = i;
+            }
+            ui->estado_atual = ESTADO_DIFICULDADE;
+        }
+        return;
+    }
+
     if (ui->estado_atual == ESTADO_DIFICULDADE)
     {
         if (IsKeyPressed(KEY_ONE) || IsKeyPressed(KEY_KP_1))
         {
+            ui->dificuldade_selecionada = FACIL;
             ui->partida_atual = iniciar_partida(FACIL);
+            ui->partida_salva = false;
             ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
         }
         else if (IsKeyPressed(KEY_TWO) || IsKeyPressed(KEY_KP_2))
         {
+            ui->dificuldade_selecionada = MEDIO;
             ui->partida_atual = iniciar_partida(MEDIO);
+            ui->partida_salva = false;
             ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
         }
         else if (IsKeyPressed(KEY_THREE) || IsKeyPressed(KEY_KP_3))
         {
+            ui->dificuldade_selecionada = DIFICIL;
             ui->partida_atual = iniciar_partida(DIFICIL);
+            ui->partida_salva = false;
             ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
         }
         return;
@@ -301,6 +383,22 @@ void processar_entrada(EstadoUI *ui)
 
                 if (partida_encerrada(&ui->partida_atual))
                 {
+                    if (!ui->partida_salva)
+                    {
+                        RegistroPartida reg;
+                        formatar_data_atual(reg.data);
+                        snprintf(reg.nome, sizeof(reg.nome), "%s", ui->nome_jogador);
+                        reg.dificuldade       = ui->dificuldade_selecionada;
+                        reg.tentativas_usadas = ui->partida_atual.tentativas_usadas;
+                        reg.max_tentativas    = ui->partida_atual.max_tentativas;
+                        reg.numero_secreto    = ui->partida_atual.numero_secreto;
+                        reg.venceu            = ui->partida_atual.venceu;
+                        reg.pontos            = calcular_pontos(ui->dificuldade_selecionada,
+                                                                ui->partida_atual.tentativas_usadas,
+                                                                ui->partida_atual.venceu);
+                        salvar_partida(&reg);
+                        ui->partida_salva = true;
+                    }
                     ui->estado_atual = ESTADO_RESULTADO_ADIVINHACAO;
                 }
             }
@@ -408,9 +506,12 @@ void atualizar_ui(EstadoUI *ui)
             Botao btn_sair_menu = (Botao){{400, 610, 400, 80}, "", 
                                           CheckCollisionPointRec(mouse_pos, (Rectangle){400, 610, 400, 80})};
             
-            if (btn_adiv.hover) 
+            if (btn_adiv.hover)
             {
-                ui->estado_atual = ESTADO_DIFICULDADE;
+                /* Limpa nome anterior e vai para a tela de identificação */
+                memset(ui->nome_jogador, 0, sizeof(ui->nome_jogador));
+                ui->nome_indice = 0;
+                ui->estado_atual = ESTADO_INSERIR_NOME;
             } 
             else if (btn_mem.hover) 
             {
@@ -434,21 +535,25 @@ void atualizar_ui(EstadoUI *ui)
             Botao btn_dif = (Botao){{250, 550, 700, 100}, "", 
                                      CheckCollisionPointRec(mouse_pos, (Rectangle){250, 550, 700, 100})};
             
-            if (btn_facil.hover) 
+            if (btn_facil.hover)
             {
+                ui->dificuldade_selecionada = FACIL;
                 ui->partida_atual = iniciar_partida(FACIL);
+                ui->partida_salva = false;
                 ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
-
-            } 
-            else if (btn_medio.hover) 
+            }
+            else if (btn_medio.hover)
             {
+                ui->dificuldade_selecionada = MEDIO;
                 ui->partida_atual = iniciar_partida(MEDIO);
+                ui->partida_salva = false;
                 ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
-
-            } 
-            else if (btn_dif.hover) 
+            }
+            else if (btn_dif.hover)
             {
+                ui->dificuldade_selecionada = DIFICIL;
                 ui->partida_atual = iniciar_partida(DIFICIL);
+                ui->partida_salva = false;
                 ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
             }
             break;
@@ -493,6 +598,9 @@ void desenhar_ui(const EstadoUI *ui)
     {
     case ESTADO_MENU_PRINCIPAL:
         desenhar_menu_principal();
+        break;
+    case ESTADO_INSERIR_NOME:
+        desenhar_inserir_nome(ui);
         break;
     case ESTADO_DIFICULDADE:
         desenhar_menu_dificuldade();
