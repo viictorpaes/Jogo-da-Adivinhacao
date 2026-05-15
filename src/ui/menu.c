@@ -93,11 +93,31 @@ void exibir_erro_input(void)
     printf("\n   Entrada inválida.​❌​ Por favor, tente novamente.​​🫡​\n");
 }
 
-void exibir_despedida(void) 
+void exibir_despedida(void)
 {
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
     printf("|              ​​🤝​ OBRIGADO POR JOGAR!​​🤝​              |\n");
     printf("%s\n\n", BORDA_DUPLA);
     printf("  ​​👋​Encerrando o sistema...\n\n");
+}
+
+void pedir_nome_jogador(char *nome, int max)
+{
+    limpar_tela();
+    printf("\n%s\n", BORDA_DUPLA);
+    printf("|             IDENTIFIQUE-SE, JOGADOR               |\n");
+    printf("%s\n\n", BORDA_DUPLA);
+
+    ler_string(nome, max, "  Seu nome: ");
+
+    if (nome[0] == '\0') {
+        int i = 0;
+        const char *padrao = "Jogador";
+        while (i < max - 1 && padrao[i]) { nome[i] = padrao[i]; i++; }
+        nome[i] = '\0';
+    }
+
+    printf("\n  Olá, %s! Vamos começar.​🎮​\n\n", nome);
+    pausar();
 }

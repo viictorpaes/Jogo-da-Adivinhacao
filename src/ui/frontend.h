@@ -4,10 +4,11 @@
 #include "../include/tipos.h"
 #include "../game/memorygame.h"
 
-typedef enum 
+typedef enum
 {
     ESTADO_MENU_PRINCIPAL,
     ESTADO_MENU_JOGO,
+    ESTADO_INSERIR_NOME,
     ESTADO_DIFICULDADE,
     ESTADO_JOGANDO_ADIVINHACAO,
     ESTADO_JOGANDO_MEMORIA,
@@ -17,20 +18,31 @@ typedef enum
 } EstadoAplicacao;
 
 
-typedef struct 
+typedef struct
 {
     EstadoAplicacao estado_atual;
-    Partida partida_atual;
-    JogoMemoria jogo_memoria;
-    Dificuldade dificuldade_selecionada;
-    int entrada_numero;
+    Partida         partida_atual;
+    JogoMemoria     jogo_memoria;
+    Dificuldade     dificuldade_selecionada;
+
+    /* Entrada de palpite */
+    int  entrada_numero;
     char entrada_texto[10];
-    int indice_entrada;
-    int clique_casa1;
-    int clique_casa2;
+    int  indice_entrada;
+
+    /* Jogo da memória */
+    int  clique_casa1;
+    int  clique_casa2;
     bool aguardando_ocultar;
-    int timer_ocultar;
+    int  timer_ocultar;
+
+    /* Mensagem de erro */
     char mensagem_erro[128];
+
+    /* Nome do jogador e controle de gravação */
+    char nome_jogador[64];
+    int  nome_indice;
+    bool partida_salva;
 } EstadoUI;
 
 #define LARGURA_JANELA   1200
@@ -42,6 +54,7 @@ void desenhar_ui(const EstadoUI *ui);
 
 void desenhar_menu_principal(void);
 void desenhar_menu_jogo(void);
+void desenhar_inserir_nome(const EstadoUI *ui);
 void desenhar_menu_dificuldade(void);
 void desenhar_jogo_adivinhacao(const EstadoUI *ui);
 void desenhar_jogo_memoria(const EstadoUI *ui);

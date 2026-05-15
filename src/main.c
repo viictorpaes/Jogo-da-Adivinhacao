@@ -13,7 +13,7 @@
 #include "game/jogo.h"
 #include "game/jogar_memoria.h"
 #include "history/historico.h"
-/* #include "static/estatisticas.h" */
+#include "static/estatisticas.h"
 
 int main(void) 
 {
@@ -46,6 +46,9 @@ int main(void)
 
         if (opcao == MENU_JOGAR) {
             /* Fluxo de uma nova partida */
+            char nome_jogador[64];
+            pedir_nome_jogador(nome_jogador, sizeof(nome_jogador));
+
             Dificuldade dif = exibir_menu_dificuldade();
             Partida partida_atual = iniciar_partida(dif);
 
@@ -68,16 +71,16 @@ int main(void)
             
             /* --- INÍCIO DA INTEGRAÇÃO COM HISTÓRICO --- */
             RegistroPartida registro;
-            
-            /* Pega a data atual usando a função que criamos no utils.c */
-            formatar_data_atual(registro.data); 
-            
-            /* Copia os dados da partida e a dificuldade escolhida para o registro */
-            registro.dificuldade = dif;
+
+            formatar_data_atual(registro.data);
+            snprintf(registro.nome, sizeof(registro.nome), "%s", nome_jogador);
+            registro.dificuldade      = dif;
             registro.tentativas_usadas = partida_atual.tentativas_usadas;
-            registro.max_tentativas = partida_atual.max_tentativas;
-            registro.numero_secreto = partida_atual.numero_secreto;
-            registro.venceu = partida_atual.venceu;
+            registro.max_tentativas   = partida_atual.max_tentativas;
+            registro.numero_secreto   = partida_atual.numero_secreto;
+            registro.venceu           = partida_atual.venceu;
+            registro.pontos           = calcular_pontos(dif, partida_atual.tentativas_usadas,
+                                                        partida_atual.venceu);
 
             /* Manda gravar nos arquivos .csv e .txt */
             salvar_partida(&registro);
@@ -99,11 +102,9 @@ int main(void)
             exibir_historico();
         } 
 
-        else if (opcao == MENU_ESTATISTICAS) 
+        else if (opcao == MENU_ESTATISTICAS)
         {
-            /* exibir_estatisticas(); -> Descomentar no futuro */
-            printf("\n  [Módulo de Estatísticas em construção...]\n");
-            pausar();
+            exibir_estatisticas();
         }
          
         else if (opcao == MENU_SAIR) 

@@ -53,11 +53,13 @@ typedef struct {
 
 typedef struct {
     char        data[11];
+    char        nome[64];
     Dificuldade dificuldade;
     int         tentativas_usadas;
     int         max_tentativas;
     int         numero_secreto;
     bool        venceu;
+    int         pontos;
 } RegistroPartida;
 
 #endif

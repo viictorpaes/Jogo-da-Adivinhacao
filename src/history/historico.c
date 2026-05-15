@@ -11,7 +11,7 @@ bool inicializar_historico(void) {
     if (f_csv == NULL) {
         f_csv = fopen(HISTORICO_CSV, "w");
         if (f_csv != NULL) {
-            fprintf(f_csv, "data,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado\n");
+            fprintf(f_csv, "data,nome,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado,pontos\n");
             fclose(f_csv);
         } else {
             aviso("​⚠️​​​Falha ao criar o arquivo CSV do histórico.​⚠️​");
@@ -55,13 +55,13 @@ bool salvar_partida(const RegistroPartida *r) {
 
     const char *str_res = r->venceu ? "VITÓRIA" : "DERROTA";
 
-    fprintf(f_csv, "%s,%s,%d,%d,%d,%s\n", 
-            r->data, str_dif, r->tentativas_usadas, 
-            r->max_tentativas, r->numero_secreto, str_res);
+    fprintf(f_csv, "%s,%s,%s,%d,%d,%d,%s,%d\n",
+            r->data, r->nome, str_dif, r->tentativas_usadas,
+            r->max_tentativas, r->numero_secreto, str_res, r->pontos);
 
-    fprintf(f_txt, "  [%s] Dificuldade: %-7s | Tentativas: %02d/%02d | Secreto: %03d | Resultado: %s\n",
-            r->data, str_dif, r->tentativas_usadas, 
-            r->max_tentativas, r->numero_secreto, str_res);
+    fprintf(f_txt, "  [%s] %-15s | %-7s | %02d/%02d | Secreto: %03d | %-7s | %d pts\n",
+            r->data, r->nome, str_dif, r->tentativas_usadas,
+            r->max_tentativas, r->numero_secreto, str_res, r->pontos);
 
     fclose(f_csv);
     fclose(f_txt);
@@ -83,9 +83,27 @@ int carregar_historico(RegistroPartida *buf, int max) {
         char str_dif[20];
         char str_res[20];
 
-        int extraidos = sscanf(linha, "%10[^,],%19[^,],%d,%d,%d,%19[^\n]",
+        int n_virgulas = 0;
+        for (int k = 0; linha[k]; k++) {
+            if (linha[k] == ',') n_virgulas++;
+        }
+
+        int extraidos;
+        if (n_virgulas >= 7) {
+            extraidos = sscanf(linha, "%10[^,],%63[^,],%19[^,],%d,%d,%d,%19[^,],%d",
+                               buf[count].data, buf[count].nome, str_dif,
+                               &buf[count].tentativas_usadas, &buf[count].max_tentativas,
+                               &buf[count].numero_secreto, str_res, &buf[count].pontos);
+            extraidos = (extraidos == 8) ? 6 : 0;
+        } else {
+            extraidos = sscanf(linha, "%10[^,],%19[^,],%d,%d,%d,%19[^\n]",
                                buf[count].data, str_dif, &buf[count].tentativas_usadas,
                                &buf[count].max_tentativas, &buf[count].numero_secreto, str_res);
+            if (extraidos == 6) {
+                buf[count].nome[0] = '\0';
+                buf[count].pontos = 0;
+            }
+        }
 
         if (extraidos == 6) {
             if (strcmp(str_dif, "FÁCIL") == 0) {

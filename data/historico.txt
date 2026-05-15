@@ -1,3 +1,6 @@
-  [2026-05-02] Dificuldade: FACIL   | Tentativas: 01/10 | Secreto: 025 | Resultado: VITORIA
-  [2026-05-02] Dificuldade: DIFICIL | Tentativas: 05/05 | Secreto: 141 | Resultado: DERROTA
-  [2026-05-08] Dificuldade: FACIL   | Tentativas: 06/10 | Secreto: 041 | Resultado: VITORIA
+➖➖➖➖➖➖➖ HISTÓRICO DE PARTIDAS ➖➖➖➖➖➖➖
+
+  [2026-05-02] Desconhecido    | FÁCIL   | 01/10 | Secreto: 025 | VITÓRIA | 50 pts
+  [2026-05-02] Desconhecido    | DIFÍCIL | 05/05 | Secreto: 141 | DERROTA | 0 pts
+  [2026-05-08] Desconhecido    | FÁCIL   | 06/10 | Secreto: 041 | VITÓRIA | 25 pts
+  [2026-05-13] Lucas           | FÁCIL   | 08/10 | Secreto: 022 | VITÓRIA | 15 pts
