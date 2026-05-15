@@ -153,3 +153,109 @@ void exibir_historico(void) {
 
 void liberar_historico(void) {
 }
+
+/* ════════════════════════════════════════════════
+ *  JOGO DA MEMÓRIA
+ * CSV: data,nome,pontuacao,tentativas,pontos
+ * ════════════════════════════════════════════════ */
+
+bool inicializar_historico_memoria(void) {
+    FILE *f_csv = fopen(HISTORICO_MEM_CSV, "r");
+    if (f_csv == NULL) {
+        f_csv = fopen(HISTORICO_MEM_CSV, "w");
+        if (f_csv != NULL) {
+            fprintf(f_csv, "data,nome,pontuacao,tentativas,pontos\n");
+            fclose(f_csv);
+        } else {
+            aviso("⚠️ Falha ao criar o arquivo CSV do histórico de memória.⚠️");
+            return false;
+        }
+    } else {
+        fclose(f_csv);
+    }
+
+    FILE *f_txt = fopen(HISTORICO_MEM_TXT, "r");
+    if (f_txt == NULL) {
+        f_txt = fopen(HISTORICO_MEM_TXT, "w");
+        if (f_txt != NULL) {
+            fprintf(f_txt, "➖➖➖➖➖➖➖ HISTÓRICO - JOGO DA MEMÓRIA ➖➖➖➖➖➖➖\n\n");
+            fclose(f_txt);
+        } else {
+            aviso("⚠️ Falha ao criar o arquivo TXT do histórico de memória.⚠️");
+            return false;
+        }
+    } else {
+        fclose(f_txt);
+    }
+
+    return true;
+}
+
+bool salvar_partida_memoria(const RegistroMemoria *r) {
+    FILE *f_csv = fopen(HISTORICO_MEM_CSV, "a");
+    FILE *f_txt = fopen(HISTORICO_MEM_TXT, "a");
+
+    if (f_csv == NULL || f_txt == NULL) {
+        aviso("⚠️ Erro ao abrir arquivos de memória para gravação.⚠️");
+        if (f_csv != NULL) fclose(f_csv);
+        if (f_txt != NULL) fclose(f_txt);
+        return false;
+    }
+
+    fprintf(f_csv, "%s,%s,%d,%d,%d\n",
+            r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
+
+    fprintf(f_txt, "  [%s] %-15s | Pontuacao: %2d | Tentativas: %2d | Pontos: %d\n",
+            r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
+
+    fclose(f_csv);
+    fclose(f_txt);
+    return true;
+}
+
+int carregar_historico_memoria(RegistroMemoria *buf, int max) {
+    FILE *f_csv = fopen(HISTORICO_MEM_CSV, "r");
+    if (f_csv == NULL) return -1;
+
+    char linha[256];
+    int count = 0;
+
+    fgets(linha, sizeof(linha), f_csv); /* pula cabeçalho */
+
+    while (count < max && fgets(linha, sizeof(linha), f_csv) != NULL) {
+        int n = sscanf(linha, "%10[^,],%63[^,],%d,%d,%d",
+                       buf[count].data, buf[count].nome,
+                       &buf[count].pontuacao, &buf[count].tentativas,
+                       &buf[count].pontos);
+        if (n == 5) count++;
+    }
+
+    fclose(f_csv);
+    return count;
+}
+
+void exibir_historico_memoria(void) {
+    FILE *f_txt = fopen(HISTORICO_MEM_TXT, "r");
+    if (f_txt == NULL) {
+        printf("\n  Nenhum histórico de memória encontrado.🤔\n");
+        pausar();
+        return;
+    }
+
+    char linha[256];
+    int linhas_impressas = 0;
+
+    limpar_tela();
+
+    while (fgets(linha, sizeof(linha), f_txt) != NULL) {
+        printf("%s", linha);
+        linhas_impressas++;
+        if (linhas_impressas % PAGE_SIZE == 0) {
+            pausar();
+            limpar_tela();
+        }
+    }
+
+    fclose(f_txt);
+    pausar();
+}
