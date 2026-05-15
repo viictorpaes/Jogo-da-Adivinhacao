@@ -8,13 +8,12 @@
 #define TOP_RANKING    10
 #define SEP "  ────────────────────────────────────────────────\n"
 
-/* ------------------------------------------------------------------ */
 /* Sistema de pontos por dificuldade                                   */
 /*   FÁCIL  : base 50,  -5 pts por tentativa após a 1ª (10 tent. max) */
 /*   MÉDIO  : base 70, -10 pts por tentativa após a 1ª ( 7 tent. max) */
 /*   DIFÍCIL: base 100,-20 pts por tentativa após a 1ª ( 5 tent. max) */
 /*   DERROTA: sempre 0 pontos                                          */
-/* ------------------------------------------------------------------ */
+
 int calcular_pontos(Dificuldade dif, int tentativas, bool venceu) {
     if (!venceu) return 0;
     int base, step;
