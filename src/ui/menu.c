@@ -2,8 +2,8 @@
 #include "../utils/utils.h"
 #include <stdio.h>
 
-#define BORDA_DUPLA   "​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​​​"
-#define LINHA_SIMPLES "​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​"
+#define BORDA_DUPLA   "​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​➿​➿​➿​➿​➿​➿​​​"
+#define LINHA_SIMPLES "​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​➰​➰​➰​➰​➰​➰​"
 
 
 void exibir_boas_vindas(void) 
@@ -48,9 +48,12 @@ Dificuldade exibir_menu_dificuldade(void)
     printf("|             SELECIONE A DIFICULDADE            |\n");
     printf("%s\n\n", BORDA_DUPLA);
     
-    printf("  1️⃣​ FÁCIL   (1 a %d, %d tentativas)\n", FACIL_MAX, FACIL_TENTATIVAS);
-    printf("  2️⃣​ MÉDIO   (1 a %d, %d tentativas)\n", MEDIO_MAX, MEDIO_TENTATIVAS);
-    printf("  3️⃣​ DIFÍCIL (1 a %d, %d tentativas)\n\n", DIFICIL_MAX, DIFICIL_TENTATIVAS);
+    printf("  1️⃣​ FÁCIL: A Despensa Trancada   (1 a %d, %d tentativas)\n", FACIL_MAX, FACIL_TENTATIVAS);
+    printf("A inteligência artificial da cozinha da estação espacial entrou em curto e trancou o estoque de comida. Como é um sistema civil simples e sem alarmes, você tem até 10 tentativas para hackear a porta e salvar o seu almoço, sem correr nenhum perigo real.\n");
+    printf("  2️⃣​ MÉDIO: Falha no Oxigênio   (1 a %d, %d tentativas)\n", MEDIO_MAX, MEDIO_TENTATIVAS);
+    printf("Sua nave cargueira foi atingida por uma chuva de meteoritos e o suporte de vida principal desligou. O oxigênio reserva está acabando rápido. Você precisa reconfigurar os disjuntores de energia e o painel aceita no máximo 7 tentativas antes de um apagão total.\n");
+    printf("  3️⃣​ DIFÍCIL: À Beira do Buraco Negro (1 a %d, %d tentativas)\n\n", DIFICIL_MAX, DIFICIL_TENTATIVAS);
+    print("Sua nave foi puxada pela gravidade de um buraco negro e os motores falharam. Para escapar, você precisa recalibrar o núcleo quântico sob extrema distorção temporal. Devido ao superaquecimento do sistema, você tem exatamente 5 tentativas antes que o motor derreta e a nave seja esmagada.\n");
     
     printf("%s\n", LINHA_SIMPLES);
 
