@@ -31,7 +31,7 @@ Jogo de Adivinhação Otimizado em C <br>
 
 <h2 align="center"> ⛏️💻 Tecnologias Utilizadas: </h2>
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code"/> <br>
   <img src="https://img.shields.io/badge/-C-111827?style=flat-square&logo=c&logoColor=A8B9CC"/>
   <img src="https://img.shields.io/badge/-Padrão_do_C_|_11-111827?style=flat-square&logo=c&logoColor=white"/>
   <img src="https://img.shields.io/badge/-GCC-111827?style=flat-square&logo=gnu&logoColor=white"/>
