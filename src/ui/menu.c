@@ -53,7 +53,7 @@ Dificuldade exibir_menu_dificuldade(void)
     printf("  2️⃣​ MÉDIO: Falha no Oxigênio   (1 a %d, %d tentativas)\n", MEDIO_MAX, MEDIO_TENTATIVAS);
     printf("Sua nave cargueira foi atingida por uma chuva de meteoritos e o suporte de vida principal desligou. O oxigênio reserva está acabando rápido. Você precisa reconfigurar os disjuntores de energia e o painel aceita no máximo 7 tentativas antes de um apagão total.\n");
     printf("  3️⃣​ DIFÍCIL: À Beira do Buraco Negro (1 a %d, %d tentativas)\n\n", DIFICIL_MAX, DIFICIL_TENTATIVAS);
-    print("Sua nave foi puxada pela gravidade de um buraco negro e os motores falharam. Para escapar, você precisa recalibrar o núcleo quântico sob extrema distorção temporal. Devido ao superaquecimento do sistema, você tem exatamente 5 tentativas antes que o motor derreta e a nave seja esmagada.\n");
+    printf("Sua nave foi puxada pela gravidade de um buraco negro e os motores falharam. Para escapar, você precisa recalibrar o núcleo quântico sob extrema distorção temporal. Devido ao superaquecimento do sistema, você tem exatamente 5 tentativas antes que o motor derreta e a nave seja esmagada.\n");
     
     printf("%s\n", LINHA_SIMPLES);
 

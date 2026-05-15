@@ -264,7 +264,7 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
     desenhar_botao(400, 540, 400, 80, "Voltar ao Menu (ESC)");
 }
 
-void desenhar_resultado_memoria(const EstadoUI *ui) 
+void desenhar_resultado_memoria(const EstadoUI *ui)
 {
     DrawText("MISSAO CONCLUIDA! PARABENS!", 210, 80, 45, COR_SUCESSO);
     DrawText("Voce encontrou todos os pares, astronauta!", 220, 150, 26, COR_TEXTO);
@@ -282,4 +282,304 @@ void desenhar_resultado_memoria(const EstadoUI *ui)
     DrawText(linha4, 300, 390, 30, COR_TEXTO);
 
     desenhar_botao(400, 580, 400, 80, "Voltar ao Menu (ESC)");
+}
+
+void desenhar_menu_jogo(void)
+{
+    desenhar_menu_principal();
+}
+
+static bool clique_em_rect(Rectangle r)
+{
+    return IsMouseButtonReleased(MOUSE_LEFT_BUTTON) &&
+           CheckCollisionPointRec(GetMousePosition(), r);
+}
+
+static void salvar_partida_adivinhacao(const EstadoUI *ui)
+{
+    RegistroPartida reg;
+    time_t agora = time(NULL);
+    struct tm *t  = localtime(&agora);
+    strftime(reg.data, sizeof(reg.data), "%Y-%m-%d", t);
+    strncpy(reg.nome, ui->nome_jogador, sizeof(reg.nome) - 1);
+    reg.nome[sizeof(reg.nome) - 1] = '\0';
+    reg.dificuldade      = ui->dificuldade_selecionada;
+    reg.tentativas_usadas = ui->partida_atual.tentativas_usadas;
+    reg.max_tentativas   = ui->partida_atual.max_tentativas;
+    reg.numero_secreto   = ui->partida_atual.numero_secreto;
+    reg.venceu           = ui->partida_atual.venceu;
+    reg.pontos           = calcular_pontos(ui->dificuldade_selecionada,
+                                           ui->partida_atual.tentativas_usadas,
+                                           ui->partida_atual.venceu);
+    salvar_partida(&reg);
+}
+
+void processar_clique_mouse_memoria(EstadoUI *ui)
+{
+    if (ui->aguardando_ocultar) return;
+    if (!IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) return;
+
+    Vector2 mouse       = GetMousePosition();
+    int tamanho_casa    = 80;
+    int espaco          = 10;
+    int inicio_x        = 200;
+    int inicio_y        = 200;
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            int posicao = i * 4 + j;
+            float x = (float)(inicio_x + (tamanho_casa + espaco) * j);
+            float y = (float)(inicio_y + (tamanho_casa + espaco) * i);
+            Rectangle casa = {x, y, (float)tamanho_casa, (float)tamanho_casa};
+
+            if (!CheckCollisionPointRec(mouse, casa)) continue;
+            if (ui->jogo_memoria.acertadas[posicao])  return;
+
+            int pos = posicao + 1;
+
+            if (ui->clique_casa1 == 0)
+            {
+                if (!ui->jogo_memoria.reveladas[posicao])
+                {
+                    ui->jogo_memoria.reveladas[posicao] = true;
+                    ui->clique_casa1 = pos;
+                }
+            }
+            else if (pos != ui->clique_casa1 && !ui->jogo_memoria.reveladas[posicao])
+            {
+                ui->clique_casa2 = pos;
+                bool acertou = fazer_jogada(&ui->jogo_memoria, ui->clique_casa1, ui->clique_casa2);
+                if (acertou)
+                {
+                    ui->clique_casa1 = 0;
+                    ui->clique_casa2 = 0;
+                    if (jogo_memoria_finalizado(&ui->jogo_memoria))
+                        ui->estado_atual = ESTADO_RESULTADO_MEMORIA;
+                }
+                else
+                {
+                    ui->aguardando_ocultar = true;
+                    ui->timer_ocultar      = 90;
+                }
+            }
+            return;
+        }
+    }
+}
+
+void processar_entrada(EstadoUI *ui)
+{
+    switch (ui->estado_atual)
+    {
+    case ESTADO_MENU_PRINCIPAL:
+    case ESTADO_MENU_JOGO:
+        if (IsKeyReleased(KEY_ONE) || clique_em_rect((Rectangle){400, 320, 400, 80}))
+        {
+            memset(ui->nome_jogador, 0, sizeof(ui->nome_jogador));
+            ui->nome_indice  = 0;
+            ui->estado_atual = ESTADO_INSERIR_NOME;
+        }
+        else if (IsKeyReleased(KEY_TWO) || clique_em_rect((Rectangle){400, 450, 400, 80}))
+        {
+            ui->jogo_memoria       = inicializar_jogo_memoria();
+            ui->clique_casa1       = 0;
+            ui->clique_casa2       = 0;
+            ui->aguardando_ocultar = false;
+            ui->timer_ocultar      = 0;
+            ui->estado_atual       = ESTADO_JOGANDO_MEMORIA;
+        }
+        else if (IsKeyReleased(KEY_THREE) || clique_em_rect((Rectangle){400, 580, 400, 80}))
+        {
+            ui->estado_atual = ESTADO_SAIR;
+        }
+        break;
+
+    case ESTADO_INSERIR_NOME:
+    {
+        int key = GetCharPressed();
+        while (key > 0)
+        {
+            if (key >= 32 && key < 127 && ui->nome_indice < (int)sizeof(ui->nome_jogador) - 1)
+            {
+                ui->nome_jogador[ui->nome_indice++] = (char)key;
+                ui->nome_jogador[ui->nome_indice]   = '\0';
+            }
+            key = GetCharPressed();
+        }
+        if (IsKeyReleased(KEY_BACKSPACE) && ui->nome_indice > 0)
+            ui->nome_jogador[--ui->nome_indice] = '\0';
+
+        if (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){400, 420, 400, 70}))
+        {
+            if (ui->nome_indice == 0)
+            {
+                strcpy(ui->nome_jogador, "Astronauta");
+                ui->nome_indice = (int)strlen("Astronauta");
+            }
+            ui->estado_atual = ESTADO_DIFICULDADE;
+        }
+        if (IsKeyReleased(KEY_ESCAPE))
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        break;
+    }
+
+    case ESTADO_DIFICULDADE:
+    {
+        Dificuldade dif = FACIL;
+        bool escolheu   = false;
+
+        if (IsKeyReleased(KEY_ONE) || clique_em_rect((Rectangle){250, 230, 700, 100}))
+            { dif = FACIL;   escolheu = true; }
+        else if (IsKeyReleased(KEY_TWO) || clique_em_rect((Rectangle){250, 380, 700, 100}))
+            { dif = MEDIO;   escolheu = true; }
+        else if (IsKeyReleased(KEY_THREE) || clique_em_rect((Rectangle){250, 530, 700, 100}))
+            { dif = DIFICIL; escolheu = true; }
+
+        if (escolheu)
+        {
+            ui->dificuldade_selecionada = dif;
+            ui->partida_atual           = iniciar_partida(dif);
+            memset(ui->entrada_texto,  0, sizeof(ui->entrada_texto));
+            memset(ui->mensagem_erro,  0, sizeof(ui->mensagem_erro));
+            ui->entrada_numero = 0;
+            ui->indice_entrada = 0;
+            ui->partida_salva  = false;
+            ui->estado_atual   = ESTADO_JOGANDO_ADIVINHACAO;
+        }
+        if (IsKeyReleased(KEY_ESCAPE))
+            ui->estado_atual = ESTADO_INSERIR_NOME;
+        break;
+    }
+
+    case ESTADO_JOGANDO_ADIVINHACAO:
+    {
+        int key = GetCharPressed();
+        while (key > 0)
+        {
+            if (key >= '0' && key <= '9' && ui->indice_entrada < 9)
+            {
+                ui->entrada_texto[ui->indice_entrada++] = (char)key;
+                ui->entrada_texto[ui->indice_entrada]   = '\0';
+            }
+            key = GetCharPressed();
+        }
+        if (IsKeyReleased(KEY_BACKSPACE) && ui->indice_entrada > 0)
+            ui->entrada_texto[--ui->indice_entrada] = '\0';
+
+        if (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){200, 480, 400, 60}))
+        {
+            if (ui->indice_entrada == 0)
+            {
+                snprintf(ui->mensagem_erro, sizeof(ui->mensagem_erro),
+                         "Digite um numero para palpitar!");
+            }
+            else
+            {
+                int palpite = atoi(ui->entrada_texto);
+                if (palpite < ui->partida_atual.min_range || palpite > ui->partida_atual.max_range)
+                {
+                    snprintf(ui->mensagem_erro, sizeof(ui->mensagem_erro),
+                             "Palpite fora do range! Digite entre %d e %d.",
+                             ui->partida_atual.min_range, ui->partida_atual.max_range);
+                }
+                else
+                {
+                    ui->entrada_numero = palpite;
+                    memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
+                    processar_palpite(&ui->partida_atual, palpite);
+                    memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
+                    ui->indice_entrada = 0;
+                    if (partida_encerrada(&ui->partida_atual))
+                    {
+                        if (!ui->partida_salva)
+                        {
+                            salvar_partida_adivinhacao(ui);
+                            ui->partida_salva = true;
+                        }
+                        ui->estado_atual = ESTADO_RESULTADO_ADIVINHACAO;
+                    }
+                }
+            }
+        }
+        if (IsKeyReleased(KEY_ESCAPE))
+            ui->estado_atual = ESTADO_DIFICULDADE;
+        break;
+    }
+
+    case ESTADO_JOGANDO_MEMORIA:
+        processar_clique_mouse_memoria(ui);
+        if (IsKeyReleased(KEY_ESCAPE))
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        break;
+
+    case ESTADO_RESULTADO_ADIVINHACAO:
+        if (IsKeyReleased(KEY_ESCAPE) || IsKeyReleased(KEY_ENTER) ||
+            clique_em_rect((Rectangle){400, 540, 400, 80}))
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        break;
+
+    case ESTADO_RESULTADO_MEMORIA:
+        if (IsKeyReleased(KEY_ESCAPE) || IsKeyReleased(KEY_ENTER) ||
+            clique_em_rect((Rectangle){400, 580, 400, 80}))
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        break;
+
+    default:
+        break;
+    }
+}
+
+void atualizar_ui(EstadoUI *ui)
+{
+    if (ui->estado_atual != ESTADO_JOGANDO_MEMORIA || !ui->aguardando_ocultar) return;
+
+    ui->timer_ocultar--;
+    if (ui->timer_ocultar <= 0)
+    {
+        if (ui->clique_casa1 > 0) ui->jogo_memoria.reveladas[ui->clique_casa1 - 1] = false;
+        if (ui->clique_casa2 > 0) ui->jogo_memoria.reveladas[ui->clique_casa2 - 1] = false;
+        ui->aguardando_ocultar = false;
+        ui->clique_casa1       = 0;
+        ui->clique_casa2       = 0;
+    }
+}
+
+void desenhar_ui(const EstadoUI *ui)
+{
+    switch (ui->estado_atual)
+    {
+    case ESTADO_MENU_PRINCIPAL:
+    case ESTADO_MENU_JOGO:      desenhar_menu_principal();          break;
+    case ESTADO_INSERIR_NOME:   desenhar_inserir_nome(ui);          break;
+    case ESTADO_DIFICULDADE:    desenhar_menu_dificuldade();        break;
+    case ESTADO_JOGANDO_ADIVINHACAO: desenhar_jogo_adivinhacao(ui); break;
+    case ESTADO_JOGANDO_MEMORIA:     desenhar_jogo_memoria(ui);     break;
+    case ESTADO_RESULTADO_ADIVINHACAO: desenhar_resultado_adivinhacao(ui); break;
+    case ESTADO_RESULTADO_MEMORIA:     desenhar_resultado_memoria(ui);     break;
+    default: break;
+    }
+}
+
+void executar_frontend(void)
+{
+    inicializar_raylib();
+
+    EstadoUI ui;
+    memset(&ui, 0, sizeof(EstadoUI));
+    ui.estado_atual = ESTADO_MENU_PRINCIPAL;
+
+    while (!WindowShouldClose() && ui.estado_atual != ESTADO_SAIR)
+    {
+        processar_entrada(&ui);
+        atualizar_ui(&ui);
+
+        BeginDrawing();
+        ClearBackground((Color){10, 5, 25, 255});
+        desenhar_ui(&ui);
+        EndDrawing();
+    }
+
+    CloseWindow();
 }
