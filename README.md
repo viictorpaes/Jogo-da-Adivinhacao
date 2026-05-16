@@ -57,6 +57,7 @@ Jogo de Adivinhação Otimizado em C <br>
 * **Manipulação de Arquivos:** Persistência de dados em formato CSV/TXT, garantindo que o progresso do jogador não seja perdido ao fechar o terminal.
 * **Algoritmo de Aleatoriedade:** Utilização da biblioteca `time.h` para garantir sementes de números aleatórios únicas a cada execução.
 
+<br>
 
 ## 🚀 Como Executar o Projeto:
 
@@ -264,12 +265,13 @@ Jogo-da-Adivinhacao/
 ├── protótipo.fig <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 ├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
-│   ├── API.md  <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
+│   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 │   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
 │   ├── AUTHORS.md <img src="https://img.shields.io/badge/-AUTHORS-8B0000?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
 │   ├── FRONTEND_RAYLIB.md <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="18"/>
+│   ├── Histórias_de_Usuário.md <img src="https://img.shields.io/badge/-Histórias_de_Usuário-111827?style=flat-square&logo=markdown&logoColor=blue" height="18"/>
 │   ├── MEMORIA.md <img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
-│   ├── schema.md  <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
+│   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
 │   └── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
@@ -292,7 +294,7 @@ Jogo-da-Adivinhacao/
     │   ├── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
     │   ├── frontend.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/> 
     │   └── frontend.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
-    ├── ux <img src="https://img.shields.io/badge/-UX-111827?style=flat-square&logo=adobe-experience-manager&logoColor=FF0000" height="18">/
+    ├── ux <img src="https://img.shields.io/badge/-Módulo_UX-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18">/
     │   ├── acessibilidade.md <img src="https://img.shields.io/badge/-%E2%99%BF%20Acessibilidade-111827?style=flat-square" height="18">
     │   ├── jogar.md <img src="https://img.shields.io/badge/-%F0%9F%8E%AE%20Jogar-111827?style=flat-square" height="18">
     │   ├── jornadas.md <img src="https://img.shields.io/badge/-Jornadas-111827?style=flat-square&logo=googlemaps&logoColor=4285F4" height="18">
@@ -313,17 +315,17 @@ Jogo-da-Adivinhacao/
 
 <h3 align="center"> 🚀 Backlog e Boarding (Trello) </h3>
 <p align="center">
-  <strong>Status:</strong> Mínimo de 10 histórias de usuário definidas seguindo o padrão 3Cs e priorizadas no backlog.
+  <strong>Status:</strong> 23 histórias de usuário implementadas e 16 futuras, definidas seguindo o padrão 3Cs e priorizadas no backlog.
 </p>
 
-<p align="center">
-  <img src="./img/Quadro:backlog.jpeg" width="420"> <br>
-</p>
 
 <p align="center">
-  <strong>Acesse o Board do projeto</strong>: <br>
+  <strong>Acesse o Board do projeto e o documento completo de HUs</strong>: <br>
   <a href="https://trello.com/b/yp8S6Ek9/jogo-de-adivinhacao-projetos-2-pif-fds" target="_blank">
     <img src="https://img.shields.io/badge/-Trello-111827?style=flat-square&logo=trello&logoColor=0052CC"/>
+  </a>
+  <a href="./docs/Histórias_de_Usuário.md" target="_blank">
+    <img src="https://img.shields.io/badge/-Histórias%20de%20Usuário-111827?style=flat-square&logo=trello&logoColor=0052CC" height="20"/>
   </a>
 </p>
 
@@ -338,95 +340,51 @@ Jogo-da-Adivinhacao/
   </a>
 </p>
 
-<h2 align="center">⚙️ Mapeamento de Fluxos e Atividades</h2>
 
-<p align="center">
-  <strong>Representação visual das 10 Histórias de Usuário (HUs) por meio de diagramas de atividades e wireframes.<br>
-  Disponíveis nos cards do <mark>Trello</mark> e na Pasta: <mark>"img"</mark> deste repositório✅</strong> <br>
-  <a href="https://trello.com/b/yp8S6Ek9/jogo-de-adivinhacao-projetos-2-pif-fds-ihc" target="_blank">
-  <img src="https://img.shields.io/badge/-Trello-111827?style=flat-square&logo=trello&logoColor=0052CC" height="23"/>
-</a>
-<a href="/img/" target="_blank">
-<img src="https://img.shields.io/badge/Assets-img-green?style=flat-square&logo=git-lfs&logoColor=white&labelColor=111827" height="24">
-</a>
-</p>
+<h2 align="center">Telas 📱</h2>
 
-<p align="center">
-  <strong>HU1 - Geração de Número Aleatório</strong><br>
-  Inicializa o gerador com base no tempo do sistema e cria um número secreto entre 1 e 100.<br>
-  <a href="./img/HU1_Geracao_de_Numero_Aleatorio_Horizontal.jpeg" target="_blank">
-    <img src="./img/HU1_Geracao_de_Numero_Aleatorio_Horizontal.jpeg" width="420" alt="HU1">
-  </a>
-</p>
+<table align="center" width="780">
+  <tr><th align="center">🏠 Tela Inicial</th></tr>
+  <tr><td align="center"><b>Menu principal do jogo — o jogador escolhe entre os modos disponíveis: Adivinhação, Memória e acesso ao Histórico/Estatísticas.</b></td></tr>
+  <tr><td align="center"><img src="img/tela_inicial.jpeg" width="750" alt="Tela Inicial"/></td></tr>
+</table>
 
-<p align="center">
-  <strong>HU2 - Loop de Adivinhação e Feedback</strong><br>
-  Compara o palpite do jogador com o número secreto e retorna dicas como “muito alto”, “muito baixo” ou vitória.<br>
-  <a href="./img/HU2_Loop_de_Adivinhacao_e_Feedback.jpeg" target="_blank">
-    <img src="./img/HU2_Loop_de_Adivinhacao_e_Feedback.jpeg" width="420" alt="HU2">
-  </a>
-</p>
+<br>
 
-<p align="center">
-  <strong>HU3 - Validação de Entradas</strong><br>
-  Valida se a entrada é um número inteiro dentro do intervalo permitido (1 a 100).<br>
-  <a href="./img/HU3_Validacao_de_Entradas_no_Terminal.jpeg" target="_blank">
-    <img src="./img/HU3_Validacao_de_Entradas_no_Terminal.jpeg" width="420" alt="HU3">
-  </a>
-</p>
+<table align="center" width="780">
+  <tr><th align="center">✏️ Salvar Nome</th></tr>
+  <tr><td align="center"><b>Tela de cadastro do astronauta — o jogador insere seu nome antes de iniciar a partida para que o resultado seja salvo no ranking.</b></td></tr>
+  <tr><td align="center"><img src="img/salvar_nome.jpeg" width="750" alt="Salvar Nome"/></td></tr>
+</table>
 
-<p align="center">
-  <strong>HU4 - Registro de Sessões</strong><br>
-  Armazena o número de tentativas ao final de cada partida em um arquivo, com tratamento de erros.<br>
-  <a href="./img/HU4_Registro_de_Sessoes.jpeg" target="_blank">
-    <img src="./img/HU4_Registro_de_Sessoes.jpeg" width="420" alt="HU4">
-  </a>
-</p>
+<br>
 
-<p align="center">
-  <strong>HU5 - Consulta ao Histórico de Partidas</strong><br>
-  Lê os dados armazenados e carrega o histórico de partidas para análise.<br>
-  <a href="./img/HU5_Leitura_do_Historico_de_Partidas.jpeg" target="_blank">
-    <img src="./img/HU5_Leitura_do_Historico_de_Partidas.jpeg" width="420" alt="HU5">
-  </a>
-</p>
+<table align="center" width="780">
+  <tr><th align="center">🔭 Jogo de Adivinhação</th></tr>
+  <tr><td align="center"><b>Modo single-player de adivinhação — sintonize a frequência de resgate correta dentro do número de tentativas disponíveis, com feedback espacial em tempo real.</b></td></tr>
+  <tr><td align="center"><img src="img/adivinhação_tela.jpeg" width="750" alt="Jogo de Adivinhação"/></td></tr>
+</table>
 
-<p align="center">
-  <strong>HU6 - Cálculo da Média de Tentativas</strong><br>
-  Calcula a média de tentativas a partir do histórico de partidas do jogador.<br>
-  <a href="./img/HU6_Calculo_da_Media_de_Tentativas.jpeg" target="_blank">
-    <img src="./img/HU6_Calculo_da_Media_de_Tentativas.jpeg" width="420" alt="HU6">
-  </a>
-</p>
+<br>
 
-<p align="center">
-  <strong>HU7 - Análise de Melhor e Pior Desempenho</strong><br>
-  Identifica a melhor e a pior sessão com base no número de tentativas do jogador.<br>
-  <a href="./img/HU7_Identificacao_de_Melhor_e_Pior_Sessao.jpeg" target="_blank">
-    <img src="./img/HU7_Identificacao_de_Melhor_e_Pior_Sessao.jpeg" width="420" alt="HU7">
-  </a>
-</p>
+<table align="center" width="780">
+  <tr><th align="center">🧠 Jogo de Memória</th></tr>
+  <tr><td align="center"><b>Modo single-player de memória — encontre os pares de coordenadas estelares no grid. Quanto menos tentativas, maior a pontuação.</b></td></tr>
+  <tr><td align="center"><img src="img/memória.jpeg" width="750" alt="Jogo de Memória"/></td></tr>
+</table>
 
-<p align="center">
-  <strong>HU8 - Seleção de Nível de Dificuldade</strong><br>
-  Permite escolher o nível de dificuldade, alterando o comportamento e desafio do jogo.<br>
-  <a href="./img/HU8_Selecao_de_Dificuldade.jpeg" target="_blank">
-    <img src="./img/HU8_Selecao_de_Dificuldade.jpeg" width="420" alt="HU8">
-  </a>
-</p>
+<br>
 
-<p align="center">
-  <strong>HU9 - Visualização do Ranking</strong><br>
-  Exibe os melhores desempenhos dos jogadores em forma de ranking.<br>
-  <a href="./img/HU9_Visualizacao_de_Ranking.jpeg" target="_blank">
-    <img src="./img/HU9_Visualizacao_de_Ranking.jpeg" width="440" alt="HU9">
-  </a>
-</p>
+<table align="center" width="780">
+  <tr><th align="center">📊 Estatísticas</th></tr>
+  <tr><td align="center"><b>Painel de desempenho — exibe médias de tentativas, melhor e pior sessão, e outros dados calculados a partir do histórico de partidas.</b></td></tr>
+  <tr><td align="center"><img src="img/estátisticas.jpeg" width="750" alt="Estatísticas"/></td></tr>
+</table>
 
-<p align="center">
-  <strong>HU10 - Instância do Jogador</strong><br>
-  Permite inserir o nome do jogador para registro no ranking e identificação da pontuação.<br>
-  <a href="./img/HU10_Inserir_Nome_do_Jogador.jpeg" target="_blank">
-    <img src="./img/HU10_Inserir_Nome_do_Jogador.jpeg" width="420" alt="HU10">
-  </a>
-</p>
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">📜 Histórico</th></tr>
+  <tr><td align="center"><b>Registro completo de todas as sessões jogadas — mostra data, nome do jogador, dificuldade, tentativas utilizadas e resultado de cada partida.</b></td></tr>
+  <tr><td align="center"><img src="img/histórico.jpeg" width="750" alt="Histórico"/></td></tr>
+</table>
