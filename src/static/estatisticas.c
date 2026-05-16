@@ -20,19 +20,22 @@
 int calcular_pontos(Dificuldade dif, int tentativas, bool venceu) {
     if (!venceu) return 0;
     int base, step;
-    switch (dif) {
+    switch (dif) 
+    {
         case FACIL:   base = 50;  step = 5;  break;
         case MEDIO:   base = 70;  step = 10; break;
         case DIFICIL: base = 100; step = 20; break;
         default: return 0;
     }
+
     int pts = base - (tentativas - 1) * step;
     return pts < 0 ? 0 : pts;
 }
 
 /* Memória
  *   Base 100, -5 por jogada além do mínimo teórico de 8 */
-int calcular_pontos_memoria(int tentativas) {
+int calcular_pontos_memoria(int tentativas) 
+{
     int pts = 100 - (tentativas - 8) * 5;
     return pts < 0 ? 0 : pts;
 }
@@ -41,15 +44,19 @@ int calcular_pontos_memoria(int tentativas) {
  *  RANKING COMPARTILHADO (adivinhação + memória por nome)
  * ════════════════════════════════════════════════════════ */
 
-typedef struct {
+typedef struct 
+{
     char nome[64];
     int  pontos_total;
     int  jogos;
 } EntradaRanking;
 
-static int encontrar_ou_inserir(EntradaRanking *r, int *n, const char *nome) {
-    for (int i = 0; i < *n; i++) {
-        if (strcmp(r[i].nome, nome) == 0) return i;
+static int encontrar_ou_inserir(EntradaRanking *r, int *n, const char *nome) 
+{
+    for (int i = 0; i < *n; i++) 
+    {
+        if (strcmp(r[i].nome, nome) == 0) 
+        return i;
     }
     if (*n >= MAX_JOGADORES) return -1;
     int idx = *n;
@@ -71,11 +78,15 @@ static int construir_ranking(EntradaRanking *ranking, int *n_jogadores) {
 
     *n_jogadores = 0;
 
-    if (n_adv > 0) {
-        for (int i = 0; i < n_adv; i++) {
-            if (adv[i].pontos > 0 && adv[i].nome[0] != '\0') {
+    if (n_adv > 0) 
+    {
+        for (int i = 0; i < n_adv; i++) 
+        {
+            if (adv[i].pontos > 0 && adv[i].nome[0] != '\0') 
+            {
                 int idx = encontrar_ou_inserir(ranking, n_jogadores, adv[i].nome);
-                if (idx >= 0) {
+                if (idx >= 0) 
+                {
                     ranking[idx].pontos_total += adv[i].pontos;
                     ranking[idx].jogos++;
                 }
@@ -83,11 +94,15 @@ static int construir_ranking(EntradaRanking *ranking, int *n_jogadores) {
         }
     }
 
-    if (n_mem > 0) {
-        for (int i = 0; i < n_mem; i++) {
-            if (mem[i].pontos > 0 && mem[i].nome[0] != '\0') {
+    if (n_mem > 0) 
+    {
+        for (int i = 0; i < n_mem; i++) 
+        {
+            if (mem[i].pontos > 0 && mem[i].nome[0] != '\0') 
+            {
                 int idx = encontrar_ou_inserir(ranking, n_jogadores, mem[i].nome);
-                if (idx >= 0) {
+                if (idx >= 0) 
+                {
                     ranking[idx].pontos_total += mem[i].pontos;
                     ranking[idx].jogos++;
                 }
@@ -96,9 +111,12 @@ static int construir_ranking(EntradaRanking *ranking, int *n_jogadores) {
     }
 
     /* Bubble sort descendente por pontos */
-    for (int i = 0; i < *n_jogadores - 1; i++) {
-        for (int j = 0; j < *n_jogadores - 1 - i; j++) {
-            if (ranking[j].pontos_total < ranking[j + 1].pontos_total) {
+    for (int i = 0; i < *n_jogadores - 1; i++) 
+    {
+        for (int j = 0; j < *n_jogadores - 1 - i; j++) 
+        {
+            if (ranking[j].pontos_total < ranking[j + 1].pontos_total) 
+            {
                 EntradaRanking tmp = ranking[j];
                 ranking[j]     = ranking[j + 1];
                 ranking[j + 1] = tmp;
@@ -127,17 +145,22 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     int n_adv = carregar_historico(adv, MAX_HISTORICO);
 
     PUSH("=== ADIVINHACAO ===");
-    if (n_adv <= 0) {
+    if (n_adv <= 0) 
+    {
         PUSH("  Nenhuma partida registrada.");
-    } else {
+    } 
+    else 
+    {
         int vit = 0, soma_tent = 0;
         int p_total[3] = {0}, p_vit[3] = {0}, p_tent[3] = {0}, p_melhor[3] = {0};
 
-        for (int i = 0; i < n_adv; i++) {
+        for (int i = 0; i < n_adv; i++) 
+        {
             int d = (int)adv[i].dificuldade;
             p_total[d]++;
             p_tent[d] += adv[i].tentativas_usadas;
-            if (adv[i].venceu) {
+            if (adv[i].venceu) 
+            {
                 vit++;
                 soma_tent += adv[i].tentativas_usadas;
                 p_vit[d]++;
@@ -158,13 +181,14 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             if (p_total[d] == 0) continue;
             int taxa_d = (p_vit[d] * 100) / p_total[d];
             double med = (double)p_tent[d] / p_total[d];
-            if (p_melhor[d] > 0)
+            if (p_melhor[d] > 0) {
                 PUSH("  %s  %dV %dD  %d%%  med.%.1f tent.  melhor:%d/%dpts",
                      nd[d], p_vit[d], p_total[d]-p_vit[d], taxa_d, med,
                      p_melhor[d], pb[d]);
-            else
+            } else {
                 PUSH("  %s  %dV %dD  %d%%  med.%.1f tent.",
                      nd[d], p_vit[d], p_total[d]-p_vit[d], taxa_d, med);
+            }
         }
     }
 
@@ -175,14 +199,19 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     int n_mem = carregar_historico_memoria(mem, MAX_HISTORICO);
 
     PUSH("=== JOGO DA MEMORIA ===");
-    if (n_mem <= 0) {
+    if (n_mem <= 0) 
+    {
         PUSH("  Nenhuma partida registrada.");
-    } else {
+    } 
+    else 
+    {
         int soma_tent = 0, melhor = 0;
-        for (int i = 0; i < n_mem; i++) {
+        for (int i = 0; i < n_mem; i++) 
+        {
             soma_tent += mem[i].tentativas;
             if (mem[i].pontos > melhor) melhor = mem[i].pontos;
         }
+
         PUSH("  Partidas: %d  |  Media de jogadas: %.1f  |  Melhor pontuacao: %d",
              n_mem, (double)soma_tent / n_mem, melhor);
     }
@@ -196,9 +225,12 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     construir_ranking(ranking, &n_jog);
 
     PUSH("=== RANKING GERAL (Adivinhacao + Memoria) ===");
-    if (n_jog == 0) {
+    if (n_jog == 0) 
+    {
         PUSH("  Nenhum jogador com pontuacao ainda.");
-    } else {
+    } 
+    else 
+    {
         int mostrar = n_jog < TOP_RANKING ? n_jog : TOP_RANKING;
         for (int i = 0; i < mostrar; i++) {
             PUSH("  #%-2d  %-15s  %d pts  (%d jogo%s)",
@@ -214,7 +246,8 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
  *  EXIBIÇÃO NO TERMINAL
  * ════════════════════════════════════════════════════════ */
 
-void exibir_estatisticas(void) {
+void exibir_estatisticas(void) 
+{
     char linhas[MAX_LINHAS_STATS][STATS_LINHA_LEN];
     int n = 0;
 
@@ -225,7 +258,8 @@ void exibir_estatisticas(void) {
     printf("            CENTRAL DE ESTATISTICAS\n");
     printf("%s\n", SEP);
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) 
+    {
         printf("  %s\n", linhas[i]);
     }
 
