@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#020617;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0c1445;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#818cf8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="planetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#312e81;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="helmetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#94a3b8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#38bdf8" flood-opacity="0.5"/>
+    </filter>
+    <filter id="orbitGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="200" rx="20" fill="url(#bgGrad)"/>
+
+  <!-- Border -->
+  <rect width="600" height="200" rx="20" fill="none" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Stars scattered -->
+  <circle cx="15"  cy="12"  r="1"   fill="white" opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="42"  cy="28"  r="0.8" fill="white" opacity="0.7"/>
+  <circle cx="58"  cy="8"   r="1.2" fill="#93c5fd" opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="88"  cy="18"  r="0.7" fill="white" opacity="0.6"/>
+  <circle cx="110" cy="5"   r="1"   fill="white" opacity="0.8"/>
+  <circle cx="135" cy="22"  r="0.6" fill="#bfdbfe" opacity="0.7"/>
+  <circle cx="170" cy="10"  r="1.1" fill="white" opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="200" cy="18"  r="0.8" fill="white" opacity="0.6"/>
+  <circle cx="235" cy="6"   r="1"   fill="#c7d2fe" opacity="0.8"/>
+  <circle cx="280" cy="14"  r="0.7" fill="white" opacity="0.7"/>
+  <circle cx="320" cy="8"   r="1.2" fill="white" opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="355" cy="20"  r="0.8" fill="#93c5fd" opacity="0.7"/>
+  <circle cx="390" cy="5"   r="1"   fill="white" opacity="0.8"/>
+  <circle cx="430" cy="15"  r="0.6" fill="white" opacity="0.6"/>
+  <circle cx="460" cy="9"   r="1.1" fill="#c7d2fe" opacity="0.8" filter="url(#starGlow)"/>
+  <circle cx="495" cy="22"  r="0.7" fill="white" opacity="0.7"/>
+  <circle cx="525" cy="7"   r="1"   fill="white" opacity="0.9"/>
+  <circle cx="560" cy="18"  r="0.8" fill="#bfdbfe" opacity="0.7"/>
+  <circle cx="585" cy="10"  r="1.2" fill="white" opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="22"  cy="170" r="0.8" fill="white" opacity="0.6"/>
+  <circle cx="50"  cy="185" r="1"   fill="#93c5fd" opacity="0.8"/>
+  <circle cx="75"  cy="175" r="0.6" fill="white" opacity="0.7"/>
+  <circle cx="210" cy="180" r="0.9" fill="white" opacity="0.7"/>
+  <circle cx="450" cy="178" r="1"   fill="#c7d2fe" opacity="0.8"/>
+  <circle cx="510" cy="190" r="0.7" fill="white" opacity="0.6"/>
+  <circle cx="545" cy="175" r="1.1" fill="white" opacity="0.8" filter="url(#starGlow)"/>
+  <circle cx="580" cy="185" r="0.8" fill="#bfdbfe" opacity="0.7"/>
+
+  <!-- Planet (left side) -->
+  <circle cx="80" cy="100" r="52" fill="url(#planetGrad)" opacity="0.9"/>
+  <!-- Planet ring -->
+  <ellipse cx="80" cy="100" rx="70" ry="14" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.5" transform="rotate(-20 80 100)" filter="url(#orbitGlow)"/>
+  <!-- Planet surface details -->
+  <ellipse cx="65" cy="88" rx="22" ry="9" fill="#1e40af" opacity="0.5" transform="rotate(-15 65 88)"/>
+  <ellipse cx="90" cy="110" rx="16" ry="6" fill="#1e3a8a" opacity="0.4" transform="rotate(10 90 110)"/>
+  <circle cx="80" cy="100" r="52" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
+
+  <!-- Astronaut (floating to the right of planet) -->
+  <!-- Suit body -->
+  <rect x="143" y="78" width="28" height="32" rx="8" fill="#cbd5e1"/>
+  <!-- Helmet -->
+  <circle cx="157" cy="72" r="16" fill="url(#helmetGrad)" filter="url(#softShadow)"/>
+  <!-- Visor -->
+  <ellipse cx="157" cy="72" rx="10" ry="9" fill="#0ea5e9" opacity="0.85"/>
+  <ellipse cx="154" cy="69" rx="3" ry="2.5" fill="white" opacity="0.4"/>
+  <!-- Helmet outline -->
+  <circle cx="157" cy="72" r="16" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Arms -->
+  <rect x="131" y="82" width="12" height="8"  rx="4" fill="#cbd5e1"/>
+  <rect x="171" y="82" width="12" height="8"  rx="4" fill="#cbd5e1"/>
+  <!-- Legs -->
+  <rect x="145" y="108" width="10" height="14" rx="4" fill="#cbd5e1"/>
+  <rect x="159" y="108" width="10" height="14" rx="4" fill="#cbd5e1"/>
+  <!-- Backpack (life support) -->
+  <rect x="168" y="82" width="8" height="18" rx="3" fill="#94a3b8"/>
+  <!-- Badge on suit -->
+  <rect x="149" y="87" width="12" height="8" rx="2" fill="#38bdf8" opacity="0.8"/>
+
+  <!-- Tether line -->
+  <path d="M 179 88 Q 195 70 210 75" stroke="#64748b" stroke-width="1.2" fill="none" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <!-- Divider -->
+  <line x1="210" y1="35" x2="210" y2="165" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Main title -->
+  <text x="228" y="78" font-family="'Segoe UI', 'Arial', sans-serif" font-size="28" font-weight="800"
+        fill="url(#textGrad)" letter-spacing="2" filter="url(#softShadow)">JOGO DA</text>
+  <text x="228" y="122" font-family="'Segoe UI', 'Arial', sans-serif" font-size="36" font-weight="900"
+        fill="url(#accentGrad)" letter-spacing="3" filter="url(#glow)">ADIVINHAÇÃO</text>
+
+  <!-- Subtitle -->
+  <text x="228" y="146" font-family="'Segoe UI', 'Arial', sans-serif" font-size="12" font-weight="400"
+        fill="#94a3b8" letter-spacing="3" opacity="0.9">SINTONIZE A FREQUÊNCIA CORRETA</text>
+
+  <!-- Accent dots -->
+  <circle cx="228" cy="163" r="3" fill="#38bdf8" opacity="0.9"/>
+  <circle cx="241" cy="163" r="3" fill="#818cf8" opacity="0.7"/>
+  <circle cx="254" cy="163" r="3" fill="#c084fc" opacity="0.5"/>
+
+  <!-- Badges -->
+  <rect x="445" y="150" width="42" height="20" rx="5" fill="#0c1445" stroke="#38bdf8" stroke-width="1.2"/>
+  <text x="466" y="164" font-family="monospace" font-size="11" font-weight="bold"
+        fill="#7dd3fc" text-anchor="middle">C11</text>
+
+  <rect x="494" y="150" width="56" height="20" rx="5" fill="#0c1445" stroke="#818cf8" stroke-width="1.2"/>
+  <text x="522" y="164" font-family="monospace" font-size="11" font-weight="bold"
+        fill="#c4b5fd" text-anchor="middle">Raylib</text>
+
+  <!-- Small floating star accent near title -->
+  <polygon points="572,48 575,55 582,55 577,60 579,67 572,63 565,67 567,60 562,55 569,55"
+           fill="#fbbf24" opacity="0.7" filter="url(#starGlow)" transform="scale(0.7) translate(245,20)"/>
+</svg>

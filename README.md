@@ -1,10 +1,15 @@
-<h1 align="center">
-Jogo de Adivinhação Otimizado em C <br>
-<img src="./img/adivinhação.jpg" width="400"><br>
-<img src="https://img.shields.io/badge/-C-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="19"/>
-<img src="https://img.shields.io/badge/-GCC-111827?style=flat-square&logo=gnu&logoColor=white"/>
-<img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/>
+<h1 align="center"> Jogo da Adivinhação Otimizado em C
+<img src="./img/logo.svg" width="560" alt="Jogo da Adivinhação"><br>
+<img src="https://img.shields.io/badge/-C-020617?style=flat-square&logo=c&logoColor=A8B9CC" height="19"/>
+<img src="https://img.shields.io/badge/-C11-020617?style=flat-square&logo=c&logoColor=38bdf8" height="19"/>
+<img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=white"/>
+<img src="https://img.shields.io/badge/-Raylib-020617?style=flat-square&logo=raylib&logoColor=white"/>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/blob/main/LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
 </h1>
+
 
 
 <h2 align="center">👥👨🏻‍🏫 Docentes Responsáveis: </h2>
@@ -32,20 +37,20 @@ Jogo de Adivinhação Otimizado em C <br>
 <h2 align="center"> ⛏️💻 Tecnologias Utilizadas: </h2>
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code"/> <br>
-  <img src="https://img.shields.io/badge/-C-111827?style=flat-square&logo=c&logoColor=A8B9CC"/>
-  <img src="https://img.shields.io/badge/-Padrão_do_C_|_11-111827?style=flat-square&logo=c&logoColor=white"/>
-  <img src="https://img.shields.io/badge/-GCC-111827?style=flat-square&logo=gnu&logoColor=white"/>
-  <img src="https://img.shields.io/badge/-Makefile-111827?style=flat-square&logo=probot&logoColor=red"/>
-  <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/>
-  <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E"/>
-  <img src="https://img.shields.io/badge/-🕹️%20Terminal-111827?style=flat-square" alt="Terminal">
-  <img src="https://img.shields.io/badge/-TXT%20/%20CSV-111827?style=flat-square&logo=files&logoColor=A85D00"/> <br>
-  <img src="https://img.shields.io/badge/-Prettier-111827?style=flat-square&logo=prettier&logoColor=F7B93E"/>
-  <img src="https://img.shields.io/badge/-Clang--Format-111827?style=flat-square&logo=llvm&logoColor=004488"/>
-  <img src="https://img.shields.io/badge/Architecture-111827?style=flat-square&logo=instructure&logoColor=white"/> <br>
-  <img src="https://img.shields.io/badge/-Git-111827?style=flat-square&logo=git&logoColor=F05032"/>
-  <img src="https://img.shields.io/badge/-GitHub-111827?style=flat-square&logo=github&logoColor=white"/>
-  <img src="https://img.shields.io/badge/-GitHub%20Desktop-111827?style=flat-square&logo=github&logoColor=6F42C1"/>
+  <img src="https://img.shields.io/badge/-C-020617?style=flat-square&logo=c&logoColor=A8B9CC"/>
+  <img src="https://img.shields.io/badge/-Padrão_do_C_|_11-020617?style=flat-square&logo=c&logoColor=38bdf8"/>
+  <img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Makefile-020617?style=flat-square&logo=probot&logoColor=red"/>
+  <img src="https://img.shields.io/badge/-Raylib-020617?style=flat-square&logo=raylib&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Figma-020617?style=flat-square&logo=figma&logoColor=F24E1E"/>
+  <img src="https://img.shields.io/badge/-🕹️%20Terminal-020617?style=flat-square" alt="Terminal">
+  <img src="https://img.shields.io/badge/-TXT%20/%20CSV-020617?style=flat-square&logo=files&logoColor=A85D00"/> <br>
+  <img src="https://img.shields.io/badge/-Prettier-020617?style=flat-square&logo=prettier&logoColor=F7B93E"/>
+  <img src="https://img.shields.io/badge/-Clang--Format-020617?style=flat-square&logo=llvm&logoColor=004488"/>
+  <img src="https://img.shields.io/badge/Architecture-020617?style=flat-square&logo=instructure&logoColor=white"/> <br>
+  <img src="https://img.shields.io/badge/-Git-020617?style=flat-square&logo=git&logoColor=F05032"/>
+  <img src="https://img.shields.io/badge/-GitHub-020617?style=flat-square&logo=github&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-GitHub%20Desktop-020617?style=flat-square&logo=github&logoColor=6F42C1"/>
 </p>
 
 <h2 align="center"><b>🛠️ Especificações Técnicas</b></h2>
@@ -264,6 +269,7 @@ Jogo-da-Adivinhacao/
 ├── Makefile <img src="https://img.shields.io/badge/-Makefile-111827?style=flat-square&logo=probot&logoColor=A20000" height="18">
 ├── protótipo.fig <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
+├── LICENSE <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square" height="18"/>
 ├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 │   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
@@ -388,3 +394,34 @@ Jogo-da-Adivinhacao/
   <tr><td align="center"><b>Registro completo de todas as sessões jogadas — mostra data, nome do jogador, dificuldade, tentativas utilizadas e resultado de cada partida.</b></td></tr>
   <tr><td align="center"><img src="img/histórico.jpeg" width="750" alt="Histórico"/></td></tr>
 </table>
+
+<h2 align="center"> LICENSE <br>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-orange.svg"/></a>
+</h2>
+
+```license
+MIT License
+
+Copyright (c) 2026, Lucas Paguetti Pereira, Eduardo de Souza Cavalcanti Junior,
+Felipe Franca Alves de Lima, Helamã Leone de Lima Procídio,
+João Pedro Arruda Guimarães, Tiago Luiz Moreira de Vasconcelos,
+Victor José Paes e Silva
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
