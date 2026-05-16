@@ -57,15 +57,17 @@ Botao desenhar_botao(float x, float y, float width, float height, const char *te
 }
 
 
-void desenhar_menu_principal(void) 
+void desenhar_menu_principal(void)
 {
-    DrawText("* MISSAO ESPACIAL *", 270, 50, 30, COR_PRIMARIA);
-    DrawText("ADIVINHACAO & MEMORIA", 220, 90, 40, COR_PRIMARIA);
-    DrawText("Bem-vindo, Astronauta! Escolha sua missao:", 270, 220, 25, COR_TEXTO);
+    DrawText("* MISSÃO ESPACIAL *", 270, 40, 30, COR_PRIMARIA);
+    DrawText("ADIVINHAÇÃO & MEMÓRIA", 220, 78, 40, COR_PRIMARIA);
+    DrawText("Bem-vindo, Astronauta! Escolha sua missão:", 265, 163, 25, COR_TEXTO);
 
-    desenhar_botao(400, 320, 400, 80, "1. Missão: Adivinhação");
-    desenhar_botao(400, 450, 400, 80, "2. Missão: Jogo da Memória");
-    desenhar_botao(400, 580, 400, 80, "3. Abortar Missão (Sair)");
+    desenhar_botao(400, 210, 400, 65, "1. Missão: Adivinhação");
+    desenhar_botao(400, 295, 400, 65, "2. Missão: Jogo da Memória");
+    desenhar_botao(400, 380, 400, 65, "3. Estatisticas");
+    desenhar_botao(400, 465, 400, 65, "4. Histórico");
+    desenhar_botao(400, 550, 400, 65, "5. Abortar Missão (Sair)");
 }
 
 void desenhar_menu_dificuldade(void)
@@ -130,9 +132,10 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
 
         const char *dir_msg = NULL;
         if (ui->entrada_numero < ui->partida_atual.numero_secreto)
-            dir_msg = "TRANSMISSAO: O numero secreto e MAIOR! Aponte para cima! ^";
+            dir_msg = "TRANSMISSAO: O numero secreto é MAIOR! Aponte para cima! ^";
+
         else if (ui->entrada_numero > ui->partida_atual.numero_secreto)
-            dir_msg = "TRANSMISSAO: O numero secreto e MENOR! Volte a orbita! v";
+            dir_msg = "TRANSMISSÃO: O número secreto é MENOR! Volte a orbita! v";
 
         if (dir_msg)
             DrawText(dir_msg, 200, 205, 22, COR_ERRO);
@@ -146,7 +149,7 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
         const char *prox_msg;
         Color        prox_cor;
         if  (pct < 5)  
-        { prox_msg = "Sinal estabelecido! Frequencia muito proxima!"; prox_cor = COR_SUCESSO;    }
+        { prox_msg = "Sinal estabelecido! Frequência muito proxima!"; prox_cor = COR_SUCESSO;    }
 
         else if (pct < 15) 
         { prox_msg = "Sinal detectado! Continue ajustando..."; prox_cor = COR_SECUNDARIA; }
@@ -176,15 +179,15 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
         DrawText(ui->mensagem_erro, 200, 550, 22, COR_ERRO);
     }
 
-    DrawText("Pressione ESC para voltar a selecao de dificuldade", 200, 590, 20, COR_TEXTO);
+    DrawText("Pressione ESC para voltar a seleção de dificuldade", 200, 590, 20, COR_TEXTO);
 }
 
 void desenhar_jogo_memoria(const EstadoUI *ui) 
 {
-    DrawText("MISSAO: JOGO DA MEMORIA 4x4", 300, 30, 40, COR_PRIMARIA);
+    DrawText("MISSÃO: JOGO DA MEMÓRIA 4x4", 300, 30, 40, COR_PRIMARIA);
     
     char stats[256];
-    snprintf(stats, sizeof(stats), "Pontuacao: %d | Pares: %d/8 | Tentativas: %d",
+    snprintf(stats, sizeof(stats), "Pontuação: %d | Pares: %d/8 | Tentativas: %d",
              ui->jogo_memoria.pontuacao,
              ui->jogo_memoria.pares_encontrados,
              ui->jogo_memoria.tentativas);
@@ -242,21 +245,21 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
     }
     
     DrawText("Clique em duas casas para revelar os pares!", 200, 700, 20, COR_TEXTO);
-    DrawText("Pressione ESC para voltar ao menu", 200, 740, 20, COR_TEXTO);
+    DrawText("Pressione ESC para voltar ao menu principal", 200, 740, 20, COR_TEXTO);
 }
 
 void desenhar_resultado_adivinhacao(const EstadoUI *ui)
 {
-    DrawText("FIM DA MISSAO", 380, 80, 50, COR_PRIMARIA);
+    DrawText("FIM DA MISSÃO", 380, 80, 50, COR_PRIMARIA);
 
     if (ui->partida_atual.venceu)
     {
-        DrawText("MISSAO CUMPRIDA!", 380, 180, 40, COR_SUCESSO);
-        DrawText("Voce acertou o numero secreto, astronauta!", 220, 260, 28, COR_TEXTO);
+        DrawText("MISSÃO CUMPRIDA!", 380, 180, 40, COR_SUCESSO);
+        DrawText("Você acertou o número secreto, astronauta!", 220, 260, 28, COR_TEXTO);
     }
     else
     {
-        DrawText("MISSAO FRACASSADA!", 340, 180, 40, COR_ERRO);
+        DrawText("MISSÃO FRACASSADA!", 340, 180, 40, COR_ERRO);
         DrawText("Voce esgotou todas as tentativas. De volta a Terra!", 200, 260, 28, COR_TEXTO);
     }
 
@@ -267,7 +270,7 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
     char linha1[128], linha2[128], linha3[128], linha4[128], linha5[128];
     snprintf(linha1, sizeof(linha1), "Astronauta : %s", ui->nome_jogador);
     snprintf(linha2, sizeof(linha2), "Patente    : %s", patente);
-    snprintf(linha3, sizeof(linha3), "Numero Secreto: %d", ui->partida_atual.numero_secreto);
+    snprintf(linha3, sizeof(linha3), "NÚmero Secreto: %d", ui->partida_atual.numero_secreto);
     snprintf(linha4, sizeof(linha4), "Tentativas : %d de %d",
              ui->partida_atual.tentativas_usadas, ui->partida_atual.max_tentativas);
 
@@ -287,40 +290,54 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
 
 void desenhar_resultado_memoria(const EstadoUI *ui)
 {
-    DrawText("MISSAO CONCLUIDA! PARABENS!", 210, 80, 45, COR_SUCESSO);
-    DrawText("Voce encontrou todos os pares, astronauta!", 220, 150, 26, COR_TEXTO);
+    DrawText("MISSÃO CONCLUIDA! PARÁBENS!", 210, 80, 45, COR_SUCESSO);
 
-    char linha1[128], linha2[64], linha3[64], linha4[64];
-    snprintf(linha1, sizeof(linha1), "Pontuacao Total : %d", ui->jogo_memoria.pontuacao);
-    snprintf(linha2, sizeof(linha2), "Pares Encontrados: %d/8", ui->jogo_memoria.pares_encontrados);
-    snprintf(linha3, sizeof(linha3), "Tentativas       : %d", ui->jogo_memoria.tentativas);
-    snprintf(linha4, sizeof(linha4), "Eficiencia       : %.1f%%",
-             (ui->jogo_memoria.pares_encontrados * 2.0f / ui->jogo_memoria.tentativas) * 100.0f);
+    char saudacao[128];
+    snprintf(saudacao, sizeof(saudacao), "Parabens, %s! Todos os pares foram encontrados!", ui->nome_jogador);
+    DrawText(saudacao, 100, 150, 24, COR_TEXTO);
 
-    DrawText(linha1, 300, 270, 30, COR_TEXTO);
-    DrawText(linha2, 300, 310, 30, COR_TEXTO);
-    DrawText(linha3, 300, 350, 30, COR_TEXTO);
-    DrawText(linha4, 300, 390, 30, COR_TEXTO);
+    int pts = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
 
-    desenhar_botao(400, 580, 400, 80, "Voltar ao Menu (ESC)");
+    char linha1[128], linha2[64], linha3[64], linha4[64], linha5[64];
+    snprintf(linha1, sizeof(linha1), "Astronauta       : %s", ui->nome_jogador);
+    snprintf(linha2, sizeof(linha2), "Pontuacao Total  : %d / 80", ui->jogo_memoria.pontuacao);
+    snprintf(linha3, sizeof(linha3), "Pares Encontrados: %d/8", ui->jogo_memoria.pares_encontrados);
+    snprintf(linha4, sizeof(linha4), "Tentativas       : %d", ui->jogo_memoria.tentativas);
+    snprintf(linha5, sizeof(linha5), "Pontos de Missao : %d pts", pts);
+
+    DrawText(linha1, 300, 230, 28, COR_TEXTO);
+    DrawText(linha2, 300, 270, 28, COR_TEXTO);
+    DrawText(linha3, 300, 310, 28, COR_TEXTO);
+    DrawText(linha4, 300, 350, 28, COR_TEXTO);
+    DrawText(linha5, 300, 390, 28, pts > 60 ? COR_SUCESSO : COR_SECUNDARIA);
+
+    DrawText("Resultado salvo no historico!", 380, 460, 22, COR_SECUNDARIA);
+
+    desenhar_botao(400, 520, 400, 80, "Voltar ao Menu (ESC)");
 }
 
 void desenhar_menu_jogo(void)
 {
-    if (IsKeyPressed(KEY_ESCAPE))
-    {
-        if (ui->estado_atual == ESTADO_JOGANDO_ADIVINHACAO)
-            ui->estado_atual = ESTADO_DIFICULDADE;
-        else if (ui->estado_atual == ESTADO_ESTATISTICAS) {
-            ui->stats_carregadas = false;   /* força recalculo na próxima visita */
-            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
-        } else
-            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+}
 
 static bool clique_em_rect(Rectangle r)
 {
     return IsMouseButtonReleased(MOUSE_LEFT_BUTTON) &&
            CheckCollisionPointRec(GetMousePosition(), r);
+}
+
+static void salvar_resultado_memoria(const EstadoUI *ui)
+{
+    RegistroMemoria reg;
+    time_t agora = time(NULL);
+    struct tm *t = localtime(&agora);
+    strftime(reg.data, sizeof(reg.data), "%Y-%m-%d", t);
+    strncpy(reg.nome, ui->nome_jogador, sizeof(reg.nome) - 1);
+    reg.nome[sizeof(reg.nome) - 1] = '\0';
+    reg.pontuacao  = ui->jogo_memoria.pontuacao;
+    reg.tentativas = ui->jogo_memoria.tentativas;
+    reg.pontos     = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
+    salvar_partida_memoria(&reg);
 }
 
 static void salvar_partida_adivinhacao(const EstadoUI *ui)
@@ -340,6 +357,84 @@ static void salvar_partida_adivinhacao(const EstadoUI *ui)
                                            ui->partida_atual.tentativas_usadas,
                                            ui->partida_atual.venceu);
     salvar_partida(&reg);
+}
+
+void desenhar_estatisticas(EstadoUI *ui)
+{
+    if (!ui->stats_carregadas)
+    {
+        preparar_linhas_estatisticas(ui->stats_linhas, &ui->stats_n_linhas);
+        ui->stats_carregadas = true;
+    }
+
+    DrawText("ESTÁTISTICAS DE MISSÕES", 270, 30, 38, COR_PRIMARIA);
+    DrawLine(50, 80, 1150, 80, COR_PRIMARIA);
+
+    int y = 100;
+    for (int i = 0; i < ui->stats_n_linhas && y < 720; i++, y += 22)
+        DrawText(ui->stats_linhas[i], 60, y, 18, COR_TEXTO);
+
+    desenhar_botao(400, 730, 400, 55, "Voltar ao Menu (ESC)");
+}
+
+void desenhar_historico(EstadoUI *ui)
+{
+    if (!ui->hist_carregado)
+    {
+        ui->hist_adiv_n = carregar_historico(ui->hist_adiv, 20);
+        ui->hist_mem_n  = carregar_historico_memoria(ui->hist_mem, 20);
+        ui->hist_carregado = true;
+    }
+
+    DrawText("HISTÓRICO DE MISSÕES", 310, 20, 38, COR_PRIMARIA);
+    DrawLine(50, 68, 1150, 68, COR_PRIMARIA);
+
+    /* Coluna esquerda — Adivinhação */
+    DrawText("Adivinhação", 60, 80, 22, COR_SECUNDARIA);
+    DrawLine(60, 106, 560, 106, COR_SECUNDARIA);
+    if (ui->hist_adiv_n == 0)
+    {
+        DrawText("Nenhuma partida registrada.", 60, 120, 18, COR_TEXTO);
+    }
+    else
+    {
+        int y = 118;
+        const char *difs[] = {"Facil", "Medio", "Dificil"};
+        for (int i = ui->hist_adiv_n - 1; i >= 0 && y < 730; i--, y += 28)
+        {
+            RegistroPartida *r = &ui->hist_adiv[i];
+            char linha[120];
+            snprintf(linha, sizeof(linha), "%s  %-12s  %s  %d/%d tent  %d pts",
+                     r->data, r->nome,
+                     difs[r->dificuldade],
+                     r->tentativas_usadas, r->max_tentativas,
+                     r->pontos);
+            Color cor = r->venceu ? COR_SUCESSO : COR_ERRO;
+            DrawText(linha, 60, y, 16, cor);
+        }
+    }
+
+    /* Coluna direita — Memória */
+    DrawText("Memória", 640, 80, 22, COR_SECUNDARIA);
+    DrawLine(640, 106, 1140, 106, COR_SECUNDARIA);
+    if (ui->hist_mem_n == 0)
+    {
+        DrawText("Nenhuma partida registrada.", 640, 120, 18, COR_TEXTO);
+    }
+    else
+    {
+        int y = 118;
+        for (int i = ui->hist_mem_n - 1; i >= 0 && y < 730; i--, y += 28)
+        {
+            RegistroMemoria *r = &ui->hist_mem[i];
+            char linha[120];
+            snprintf(linha, sizeof(linha), "%s  %-12s  %d jogadas  %d pts",
+                     r->data, r->nome, r->tentativas, r->pontos);
+            DrawText(linha, 640, y, 16, COR_TEXTO);
+        }
+    }
+
+    desenhar_botao(400, 730, 400, 55, "Voltar ao Menu (ESC)");
 }
 
 void processar_clique_mouse_memoria(EstadoUI *ui)
@@ -403,22 +498,31 @@ void processar_entrada(EstadoUI *ui)
     {
     case ESTADO_MENU_PRINCIPAL:
     case ESTADO_MENU_JOGO:
-        if (IsKeyReleased(KEY_ONE) || clique_em_rect((Rectangle){400, 320, 400, 80}))
+        if (IsKeyReleased(KEY_ONE) || clique_em_rect((Rectangle){400, 210, 400, 65}))
         {
             memset(ui->nome_jogador, 0, sizeof(ui->nome_jogador));
             ui->nome_indice  = 0;
             ui->estado_atual = ESTADO_INSERIR_NOME;
         }
-        else if (IsKeyReleased(KEY_TWO) || clique_em_rect((Rectangle){400, 450, 400, 80}))
+        else if (IsKeyReleased(KEY_TWO) || clique_em_rect((Rectangle){400, 295, 400, 65}))
         {
-            ui->jogo_memoria       = inicializar_jogo_memoria();
-            ui->clique_casa1       = 0;
-            ui->clique_casa2       = 0;
-            ui->aguardando_ocultar = false;
-            ui->timer_ocultar      = 0;
-            ui->estado_atual       = ESTADO_JOGANDO_MEMORIA;
+            memset(ui->nome_jogador, 0, sizeof(ui->nome_jogador));
+            ui->nome_indice       = 0;
+            ui->nome_para_memoria = true;
+            ui->memoria_salva     = false;
+            ui->estado_atual      = ESTADO_INSERIR_NOME;
         }
-        else if (IsKeyReleased(KEY_THREE) || clique_em_rect((Rectangle){400, 580, 400, 80}))
+        else if (IsKeyReleased(KEY_THREE) || clique_em_rect((Rectangle){400, 380, 400, 65}))
+        {
+            ui->stats_carregadas = false;
+            ui->estado_atual     = ESTADO_ESTATISTICAS;
+        }
+        else if (IsKeyReleased(KEY_FOUR) || clique_em_rect((Rectangle){400, 465, 400, 65}))
+        {
+            ui->hist_carregado = false;
+            ui->estado_atual   = ESTADO_HISTORICO;
+        }
+        else if (IsKeyReleased(KEY_FIVE) || clique_em_rect((Rectangle){400, 550, 400, 65}))
         {
             ui->estado_atual = ESTADO_SAIR;
         }
@@ -446,10 +550,27 @@ void processar_entrada(EstadoUI *ui)
                 strcpy(ui->nome_jogador, "Astronauta");
                 ui->nome_indice = (int)strlen("Astronauta");
             }
-            ui->estado_atual = ESTADO_DIFICULDADE;
+            if (ui->nome_para_memoria)
+            {
+                ui->nome_para_memoria  = false;
+                ui->jogo_memoria       = inicializar_jogo_memoria();
+                ui->clique_casa1       = 0;
+                ui->clique_casa2       = 0;
+                ui->aguardando_ocultar = false;
+                ui->timer_ocultar      = 0;
+                ui->memoria_salva      = false;
+                ui->estado_atual       = ESTADO_JOGANDO_MEMORIA;
+            }
+            else
+            {
+                ui->estado_atual = ESTADO_DIFICULDADE;
+            }
         }
         if (IsKeyReleased(KEY_ESCAPE))
-            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        {
+            ui->nome_para_memoria = false;
+            ui->estado_atual      = ESTADO_MENU_PRINCIPAL;
+        }
         break;
     }
 
@@ -549,9 +670,30 @@ void processar_entrada(EstadoUI *ui)
         break;
 
     case ESTADO_RESULTADO_MEMORIA:
+        if (!ui->memoria_salva)
+        {
+            salvar_resultado_memoria(ui);
+            ui->memoria_salva = true;
+        }
         if (IsKeyReleased(KEY_ESCAPE) || IsKeyReleased(KEY_ENTER) ||
-            clique_em_rect((Rectangle){400, 580, 400, 80}))
+            clique_em_rect((Rectangle){400, 520, 400, 80}))
             ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        break;
+
+    case ESTADO_ESTATISTICAS:
+        if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){400, 730, 400, 55}))
+        {
+            ui->stats_carregadas = false;
+            ui->estado_atual     = ESTADO_MENU_PRINCIPAL;
+        }
+        break;
+
+    case ESTADO_HISTORICO:
+        if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){400, 730, 400, 55}))
+        {
+            ui->hist_carregado = false;
+            ui->estado_atual   = ESTADO_MENU_PRINCIPAL;
+        }
         break;
 
     default:
@@ -574,7 +716,7 @@ void atualizar_ui(EstadoUI *ui)
     }
 }
 
-void desenhar_ui(const EstadoUI *ui)
+void desenhar_ui(EstadoUI *ui)
 {
     switch (ui->estado_atual)
     {
@@ -586,6 +728,8 @@ void desenhar_ui(const EstadoUI *ui)
     case ESTADO_JOGANDO_MEMORIA:     desenhar_jogo_memoria(ui);     break;
     case ESTADO_RESULTADO_ADIVINHACAO: desenhar_resultado_adivinhacao(ui); break;
     case ESTADO_RESULTADO_MEMORIA:     desenhar_resultado_memoria(ui);     break;
+    case ESTADO_ESTATISTICAS:          desenhar_estatisticas(ui);          break;
+    case ESTADO_HISTORICO:             desenhar_historico(ui);             break;
     default: break;
     }
 }
