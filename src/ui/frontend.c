@@ -56,15 +56,16 @@ Botao desenhar_botao(float x, float y, float width, float height, const char *te
     return botao;
 }
 
+
 void desenhar_menu_principal(void) 
 {
     DrawText("* MISSAO ESPACIAL *", 270, 50, 30, COR_PRIMARIA);
     DrawText("ADIVINHACAO & MEMORIA", 220, 90, 40, COR_PRIMARIA);
     DrawText("Bem-vindo, Astronauta! Escolha sua missao:", 270, 220, 25, COR_TEXTO);
 
-    desenhar_botao(400, 320, 400, 80, "1. Missao: Adivinhacao");
-    desenhar_botao(400, 450, 400, 80, "2. Missao: Jogo da Memoria");
-    desenhar_botao(400, 580, 400, 80, "3. Abortar Missao (Sair)");
+    desenhar_botao(400, 320, 400, 80, "1. Missão: Adivinhação");
+    desenhar_botao(400, 450, 400, 80, "2. Missão: Jogo da Memória");
+    desenhar_botao(400, 580, 400, 80, "3. Abortar Missão (Sair)");
 }
 
 void desenhar_menu_dificuldade(void)
@@ -81,8 +82,8 @@ void desenhar_menu_dificuldade(void)
 
 void desenhar_inserir_nome(const EstadoUI *ui)
 {
-    DrawText("IDENTIFICACAO DO ASTRONAUTA", 240, 100, 40, COR_PRIMARIA);
-    DrawText("Qual e o nome do seu astronauta?", 320, 220, 25, COR_TEXTO);
+    DrawText("IDENTIFICACÇÃO DO ASTRONAUTA", 240, 100, 40, COR_PRIMARIA);
+    DrawText("Qual é o nome do seu astronauta?", 320, 220, 25, COR_TEXTO);
 
     Rectangle input_box = {250, 280, 700, 70};
     DrawRectangleRec(input_box, (Color){20, 10, 40, 255});
@@ -123,39 +124,59 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
              ui->partida_atual.max_tentativas);
     DrawText(info_buffer, 150, 100, 20, COR_TEXTO);
     
-    if (ui->partida_atual.tentativas_usadas > 0) 
+    if (ui->partida_atual.tentativas_usadas > 0)
     {
-        DrawText("Seu ultimo palpite foi:", 200, 180, 25, COR_SECUNDARIA);
+        DrawText("Seu ultimo palpite:", 200, 175, 22, COR_SECUNDARIA);
+
+        const char *dir_msg = NULL;
+        if (ui->entrada_numero < ui->partida_atual.numero_secreto)
+            dir_msg = "TRANSMISSAO: O numero secreto e MAIOR! Aponte para cima! ^";
+        else if (ui->entrada_numero > ui->partida_atual.numero_secreto)
+            dir_msg = "TRANSMISSAO: O numero secreto e MENOR! Volte a orbita! v";
+
+        if (dir_msg)
+            DrawText(dir_msg, 200, 205, 22, COR_ERRO);
+
+        /* feedback de proximidade */
+        int dist = ui->entrada_numero - ui->partida_atual.numero_secreto;
+        if (dist < 0) dist = -dist;
+        int range = ui->partida_atual.max_range - ui->partida_atual.min_range;
+        int pct   = (range > 0) ? (dist * 100 / range) : 100;
+
+        const char *prox_msg;
+        Color        prox_cor;
+        if  (pct < 5)  
+        { prox_msg = "Sinal estabelecido! Frequencia muito proxima!"; prox_cor = COR_SUCESSO;    }
+
+        else if (pct < 15) 
+        { prox_msg = "Sinal detectado! Continue ajustando..."; prox_cor = COR_SECUNDARIA; }
+
+        else if (pct < 40) { prox_msg = "Interferencia estatica... Sinal fraco.";          prox_cor = COR_SECUNDARIA; }
         
-        if (ui->entrada_numero < ui->partida_atual.numero_secreto) 
-        {
-            DrawText("O numero secreto e MAIOR! Aponte para cima! ^", 200, 220, 25, COR_ERRO);
-        } 
-        else if (ui->entrada_numero > ui->partida_atual.numero_secreto) 
-        {
-            DrawText("O numero secreto e MENOR! Volte a orbita! v", 200, 220, 25, COR_ERRO);
-        }
+        else { prox_msg = "Sem sinal no espaco... Muito longe!";  prox_cor = COR_ERRO;       }
+
+        DrawText(prox_msg, 200, 235, 22, prox_cor);
     }
+
+    DrawText("Digite seu palpite:", 200, 310, 25, COR_TEXTO);
     
-    DrawText("Digite seu palpite:", 200, 320, 25, COR_TEXTO);
-    
-    Rectangle input_box = {200, 370, 400, 60};
+    Rectangle input_box = {200, 360, 400, 60};
     DrawRectangleRec(input_box, (Color){20, 10, 40, 255});
-    DrawRectangleLines(200, 370, 400, 60, COR_PRIMARIA);
-    
+    DrawRectangleLines(200, 360, 400, 60, COR_PRIMARIA);
+
     DrawText(ui->entrada_texto,
              (int)(input_box.x + 20),
              (int)(input_box.y + 10),
              40, COR_PRIMARIA);
-    
-    desenhar_botao(200, 480, 400, 60, "CONFIRMAR PALPITE (Enter)");
+
+    desenhar_botao(200, 470, 400, 60, "CONFIRMAR PALPITE (Enter)");
 
     if (ui->mensagem_erro[0] != '\0')
     {
-        DrawText(ui->mensagem_erro, 200, 560, 22, COR_ERRO);
+        DrawText(ui->mensagem_erro, 200, 550, 22, COR_ERRO);
     }
 
-    DrawText("Pressione ESC para voltar a selecao de dificuldade", 200, 600, 20, COR_TEXTO);
+    DrawText("Pressione ESC para voltar a selecao de dificuldade", 200, 590, 20, COR_TEXTO);
 }
 
 void desenhar_jogo_memoria(const EstadoUI *ui) 
@@ -468,7 +489,7 @@ void processar_entrada(EstadoUI *ui)
         if (IsKeyReleased(KEY_BACKSPACE) && ui->indice_entrada > 0)
             ui->entrada_texto[--ui->indice_entrada] = '\0';
 
-        if (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){200, 480, 400, 60}))
+        if (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){200, 470, 400, 60}))
         {
             if (ui->indice_entrada == 0)
             {

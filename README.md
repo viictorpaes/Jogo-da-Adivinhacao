@@ -167,16 +167,16 @@ A dificuldade selecionada altera o intervalo de números possíveis e restringe 
 | **Médio** | `1 a 100` | 7 | 2000 | 🟡 Moderado |
 | **Difícil** | `1 a 200` | 5 | 5000 | 🔴 Alto |
 
-### 🔥🧦❄️🌥️ Sistema de Feedback Termodinâmico
+### 📡🚀🌌🔭 Sistema de Feedback Espacial
 
-Para tornar a jogabilidade mais imersiva, o jogo utiliza um sistema de proximidade baseado em "temperaturas". O feedback é calculado pela diferença absoluta ($|palpite - secreto|$):
+Para tornar a jogabilidade mais imersiva, o jogo utiliza um sistema de proximidade baseado na estabilidade do sinal em órbita. O feedback é calculado pela diferença absoluta ($|palpite - secreto|$):
 
 | Feedback | Condição (Distância) | Descrição |
 | :--- | :--- | :--- |
-| **Pegando Fogo!** 🔥🔥 | $\pm 1$ | Você está a apenas uma unidade do número! |
-| **Quente!** 🔥 | $\leq 5$ | Você está muito perto, o acerto é iminente. |
-| **Morno** 🌤️ | $\leq 15$ | Você está na vizinhança correta do número. |
-| **Frio** ❄️ | $> 15$ | Você ainda está longe do objetivo. |
+| **Sinal estabelecido! Resgate a caminho!** 📡 | $\pm 1$ | Você está a apenas uma unidade do número! |
+| **Frequência muito próxima!** 🔭 | $\leq 5$ | Você está muito perto, o acerto é iminente. |
+| **Sinal detectado!** 📶 | $\leq 15$ | Você está na vizinhança correta do número. |
+| **Interferência estática...** 🌌 | $> 15$ | Você ainda está longe do objetivo. |
 
 > [!IMPORTANT]
 > Além da temperatura, o jogo continuará informando se o número secreto é **maior** ou **menor** que o palpite, auxiliando na estratégia de busca do jogador.

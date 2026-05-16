@@ -63,7 +63,8 @@ int main(void)
                 Resultado res = processar_palpite(&partida_atual, palpite);
                 
                 int tentativas_restantes = partida_atual.max_tentativas - partida_atual.tentativas_usadas;
-                exibir_dica(res, tentativas_restantes);
+                int range_total = partida_atual.max_range - partida_atual.min_range;
+                exibir_dica(res, tentativas_restantes, palpite, partida_atual.numero_secreto, range_total);
             }
 
             /* Fim da partida: exibe o resumo e salva os dados */
