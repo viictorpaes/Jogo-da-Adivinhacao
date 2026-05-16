@@ -33,7 +33,8 @@ int main(void)
     inicializar_rand();
     
     inicializar_historico();
-    
+    inicializar_historico_memoria();
+
     exibir_boas_vindas();
 
     /* 
@@ -93,9 +94,11 @@ int main(void)
             pausar();
         }
 
-        else if (opcao == MENU_MEMORIA) 
+        else if (opcao == MENU_MEMORIA)
         {
-            jogar_memoria();
+            char nome_mem[64];
+            pedir_nome_jogador(nome_mem, sizeof(nome_mem));
+            jogar_memoria(nome_mem);
         }
 
         else if (opcao == MENU_HISTORICO) 

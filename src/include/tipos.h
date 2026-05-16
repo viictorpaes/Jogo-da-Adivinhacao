@@ -15,9 +15,11 @@
 #define DIFICIL_MAX       200
 #define DIFICIL_TENTATIVAS  5
 
-#define MAX_HISTORICO     500
-#define HISTORICO_CSV     "data/historico.csv"
-#define HISTORICO_TXT     "data/historico.txt"
+#define MAX_HISTORICO        500
+#define HISTORICO_CSV        "data/historico.csv"
+#define HISTORICO_TXT        "data/historico.txt"
+#define HISTORICO_MEM_CSV    "data/historico_memoria.csv"
+#define HISTORICO_MEM_TXT    "data/historico_memoria.txt"
 
 #define LARGURA_TERMINAL   50
 
@@ -61,5 +63,14 @@ typedef struct {
     bool        venceu;
     int         pontos;
 } RegistroPartida;
+
+/* Registro de uma partida do Jogo da Memória */
+typedef struct {
+    char data[11];
+    char nome[64];
+    int  pontuacao;   /* 10 pts por par acertado (máx 80) */
+    int  tentativas;  /* número de jogadas feitas         */
+    int  pontos;      /* score por eficiência             */
+} RegistroMemoria;
 
 #endif

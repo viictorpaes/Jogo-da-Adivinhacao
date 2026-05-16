@@ -307,8 +307,15 @@ void desenhar_resultado_memoria(const EstadoUI *ui)
 
 void desenhar_menu_jogo(void)
 {
-    desenhar_menu_principal();
-}
+    if (IsKeyPressed(KEY_ESCAPE))
+    {
+        if (ui->estado_atual == ESTADO_JOGANDO_ADIVINHACAO)
+            ui->estado_atual = ESTADO_DIFICULDADE;
+        else if (ui->estado_atual == ESTADO_ESTATISTICAS) {
+            ui->stats_carregadas = false;   /* força recalculo na próxima visita */
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        } else
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
 
 static bool clique_em_rect(Rectangle r)
 {
