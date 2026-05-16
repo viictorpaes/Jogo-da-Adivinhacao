@@ -24,7 +24,9 @@ Jogo-da-Adivinhacao/
 ├── img/ <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">
 ├── data/ <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">
 │   ├── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   └── historico.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico_memoria.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   └── historico_memoria.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 └── src/ <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>
     ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
     ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
@@ -122,7 +124,14 @@ Centraliza o conhecimento do projeto:
 ## 📊 Persistência de Dados (`data/`)
 
 <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18"><br>
-Diretório que contém os arquivos físicos de dados. O `historico.txt` é a base de dados principal, enquanto o `historico.csv` permite que os dados sejam analisados em softwares externos.
+Diretório que contém os arquivos físicos de dados de ambos os jogos. Cada jogo mantém um par de arquivos independente: o `.txt` é a base de dados principal lida/escrita pelo módulo `history/`, enquanto o `.csv` espelha os mesmos dados em formato tabular para análise externa.
+
+| Arquivo | Jogo | Formato |
+| :--- | :--- | :--- |
+| `historico.txt` | Jogo da Adivinhação | Base de dados principal |
+| `historico.csv` | Jogo da Adivinhação | Exportação para análise externa |
+| `historico_memoria.txt` | Jogo da Memória | Base de dados principal |
+| `historico_memoria.csv` | Jogo da Memória | Exportação para análise externa |
 
 ---
 
