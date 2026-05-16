@@ -2,18 +2,19 @@
 #include "../utils/utils.h"
 #include <stdio.h>
 
-#define BORDA_DUPLA   "​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​​​"
-#define LINHA_SIMPLES "​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​"
+#define BORDA_DUPLA   "​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​➿​➿​➿​​➿​➿​➿​​➿​➿​➿​➿​➿​➿​➿​➿​➿​​​"
+#define LINHA_SIMPLES "​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​​➰​➰​➰​➰​➰​➰​➰​➰​➰​"
 
 
-void exibir_boas_vindas(void) 
+void exibir_boas_vindas(void)
 {
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
-    printf("|              JOGO DA ADIVINHAÇÃO               |\n");
+    printf("|        🚀  MISSÃO ESPACIAL: ADIVINHAÇÃO  🚀        |\n");
     printf("%s\n\n", BORDA_DUPLA);
-    printf("  Descubra o número secreto antes que suas tentativas acabem.\n");
-    printf("  Boa sorte!🍀​\n\n");
+    printf("  Bem-vindo, Astronauta! Descubra o número secreto\n");
+    printf("  antes que suas tentativas se esgotem no espaço.\n");
+    printf("  Prepare-se para a missão! 🛸\n\n");
     pausar();
 }
 
@@ -23,15 +24,15 @@ OpcaoMenu exibir_menu_principal(void)
 
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
-    printf("|                MENU PRINCIPAL                 |\n");
+    printf("|                MENU PRINCIPAL 🚀                |\n");
     printf("%s\n\n", BORDA_DUPLA);
 
     
-    printf("  1️⃣  Jogar - Jogo da Adivinhação\n");
-    printf("  2️⃣  Jogar - Jogo da Memória\n");
-    printf("  3️⃣  Ver Histórico\n");
-    printf("  4️⃣  Estatísticas\n");
-    printf("  5️⃣  Sair\n\n");
+    printf("  1️⃣  Missão: Adivinhação 🔭\n");
+    printf("  2️⃣  Missão: Jogo da Memória 🧠\n");
+    printf("  3️⃣  Registros de Missão 📡\n");
+    printf("  4️⃣  Painel de Controle 📊\n");
+    printf("  5️⃣  Abortar Missão 🛑\n\n");
     printf("%s\n", LINHA_SIMPLES);
 
     escolha = ler_inteiro(1, 5, "  Digite sua escolha: ");
@@ -45,12 +46,13 @@ Dificuldade exibir_menu_dificuldade(void)
 
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
-    printf("|             SELECIONE A DIFICULDADE            |\n");
-    printf("%s\n\n", BORDA_DUPLA);
+    printf("|         👨‍🚀  SELECIONE SUA PATENTE ESPACIAL  👨‍🚀         |\n");
+    printf("%s\n", BORDA_DUPLA);
+    printf("  Qual é a sua patente espacial, Astronauta?\n\n");
     
-    printf("  1️⃣​ FÁCIL   (1 a %d, %d tentativas)\n", FACIL_MAX, FACIL_TENTATIVAS);
-    printf("  2️⃣​ MÉDIO   (1 a %d, %d tentativas)\n", MEDIO_MAX, MEDIO_TENTATIVAS);
-    printf("  3️⃣​ DIFÍCIL (1 a %d, %d tentativas)\n\n", DIFICIL_MAX, DIFICIL_TENTATIVAS);
+    printf("  1️⃣​ FÁCIL: Cientista        (1 a %d, %d tentativas)\n", FACIL_MAX, FACIL_TENTATIVAS);
+    printf("  2️⃣​ MÉDIO: Piloto           (1 a %d, %d tentativas)\n", MEDIO_MAX, MEDIO_TENTATIVAS);
+    printf("  3️⃣​ DIFÍCIL: Buzz Lightyear (1 a %d, %d tentativas)\n\n", DIFICIL_MAX, DIFICIL_TENTATIVAS);
     
     printf("%s\n", LINHA_SIMPLES);
 
@@ -61,63 +63,72 @@ Dificuldade exibir_menu_dificuldade(void)
     return DIFICIL;
 }
 
-void exibir_dica(Resultado r, int tentativas_restantes) 
+static const char *mensagem_proximidade(int palpite, int numero_secreto, int range_total)
+{
+    int distancia = palpite - numero_secreto;
+    if (distancia < 0) distancia = -distancia;
+
+    int pct = (distancia * 100) / (range_total > 0 ? range_total : 1);
+
+    if (pct < 5)  return "📡 Frequência muito próxima! Você está quase lá!";
+    if (pct < 15) return "🔭 Sinal detectado! Continue ajustando...";
+    if (pct < 40) return "📟 Interferência estática... Sinal fraco.";
+    return "🛰️  Sem sinal no espaço... Muito longe!";
+}
+
+void exibir_dica(Resultado r, int tentativas_restantes, int palpite, int numero_secreto, int range_total)
 {
     printf("\n%s\n", LINHA_SIMPLES);
-    
-    if (r == MAIOR) 
-    {
-        printf(" ​🚨​DICA: O número secreto e MAIOR que seu palpite.\n");
-    } 
 
-    else if (r == MENOR) 
+    if (r == ACERTOU)
     {
-        printf(" ​🚨​DICA: O número secreto e MENOR que seu palpite.\n");
-    } 
-
-    else if (r == ACERTOU) 
-    {
-        printf("  PARABÉNS!👏 Você encontrou o número secreto.\n");
+        printf("  📡 Sinal estabelecido! Resgate a caminho!\n");
+        printf("  ✅ MISSÃO CUMPRIDA! 👏 Você encontrou o número secreto, Astronauta!\n");
     }
-
-    if (r != ACERTOU) 
+    else
     {
+        if (r == MAIOR)
+            printf("  🚨 TRANSMISSÃO: O número secreto é MAIOR! Aponte para cima! ^\n");
+        else
+            printf("  🚨 TRANSMISSÃO: O número secreto é MENOR! Volte à órbita! v\n");
+
+        printf("  %s\n", mensagem_proximidade(palpite, numero_secreto, range_total));
         printf("  Tentativas restantes: %d\n", tentativas_restantes);
     }
-    
+
     printf("%s\n\n", LINHA_SIMPLES);
 }
 
 void exibir_erro_input(void) 
 {
-    printf("\n   Entrada inválida.​❌​ Por favor, tente novamente.​​🫡​\n");
+    printf("\n  ❌ Sinal de comunicação inválido! Tente novamente, Astronauta. 🫡\n");
 }
 
 void exibir_despedida(void)
 {
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
-    printf("|              ​​🤝​ OBRIGADO POR JOGAR!​​🤝​              |\n");
+    printf("|          🛸  MISSÃO ENCERRADA — ATÉ LOGO!  🛸         |\n");
     printf("%s\n\n", BORDA_DUPLA);
-    printf("  ​​👋​Encerrando o sistema...\n\n");
+    printf("  👋 Encerrando sistemas da nave... De volta à Terra!\n\n");
 }
 
 void pedir_nome_jogador(char *nome, int max)
 {
     limpar_tela();
     printf("\n%s\n", BORDA_DUPLA);
-    printf("|             IDENTIFIQUE-SE, JOGADOR               |\n");
+    printf("|         🪐  IDENTIFICAÇÃO DO ASTRONAUTA  🪐          |\n");
     printf("%s\n\n", BORDA_DUPLA);
 
-    ler_string(nome, max, "  Seu nome: ");
+    ler_string(nome, max, "  Nome do astronauta: ");
 
     if (nome[0] == '\0') {
         int i = 0;
-        const char *padrao = "Jogador";
+        const char *padrao = "Astronauta";
         while (i < max - 1 && padrao[i]) { nome[i] = padrao[i]; i++; }
         nome[i] = '\0';
     }
 
-    printf("\n  Olá, %s! Vamos começar.​🎮​\n\n", nome);
+    printf("\n  Bem-vindo à nave, %s! Prepare-se para a missão. 🚀\n\n", nome);
     pausar();
 }

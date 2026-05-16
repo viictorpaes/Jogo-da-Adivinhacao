@@ -7,7 +7,7 @@ OpcaoMenu exibir_menu_principal(void);
 
 Dificuldade exibir_menu_dificuldade(void);
 
-void exibir_dica(Resultado r, int tentativas_restantes);
+void exibir_dica(Resultado r, int tentativas_restantes, int palpite, int numero_secreto, int range_total);
 
 void exibir_erro_input(void);
 
