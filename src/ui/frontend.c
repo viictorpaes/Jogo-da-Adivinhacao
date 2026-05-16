@@ -57,15 +57,15 @@ Botao desenhar_botao(float x, float y, float width, float height, const char *te
     return botao;
 }
 
-void desenhar_menu_principal(void) 
+void desenhar_menu_principal(void)
 {
-    DrawText("JOGO DA ADIVINHAÇÃO & MEMÓRIA", 200, 100, 40, COR_PRIMARIA);
+    DrawText("JOGO DA ADIVINHACAO & MEMORIA", 200, 80, 40, COR_PRIMARIA);
+    DrawText("Escolha uma opcao:", 450, 220, 25, COR_TEXTO);
 
-    DrawText("\n Escolha uma opção: ", 400, 250, 30, COR_TEXTO);
-
-    desenhar_botao(400, 350, 400, 80, "1. Jogo da Adivinhação");
-    desenhar_botao(400, 480, 400, 80, "2. Jogo da Memória");
-    desenhar_botao(400, 610, 400, 80, "3. Sair");
+    desenhar_botao(400, 290, 400, 70, "1. Jogo da Adivinhacao");
+    desenhar_botao(400, 390, 400, 70, "2. Jogo da Memoria");
+    desenhar_botao(400, 490, 400, 70, "3. Estatisticas");
+    desenhar_botao(400, 590, 400, 70, "4. Sair");
 }
 
 void desenhar_menu_dificuldade(void)
@@ -259,22 +259,54 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
     desenhar_botao(400, 560, 400, 80, "Voltar ao Menu (ESC)");
 }
 
-void desenhar_resultado_memoria(const EstadoUI *ui) 
+void desenhar_resultado_memoria(const EstadoUI *ui)
 {
-    DrawText("PARABÉNS! VOCÊ VENCEU!", 250, 100, 50, COR_SUCESSO);
+    DrawText("PARABENS! VOCE VENCEU!", 300, 80, 45, COR_SUCESSO);
 
-    char linha1[128], linha2[64], linha3[64], linha4[64];
-    snprintf(linha1, sizeof(linha1), "Pontuação Total: %d", ui->jogo_memoria.pontuacao);
-    snprintf(linha2, sizeof(linha2), "Pares Encontrados: %d/8", ui->jogo_memoria.pares_encontrados);
-    snprintf(linha3, sizeof(linha3), "Tentativas: %d", ui->jogo_memoria.tentativas);
-    snprintf(linha4, sizeof(linha4), "Eficiência: %.1f%%",
-             (ui->jogo_memoria.pares_encontrados * 2.0f / ui->jogo_memoria.tentativas) * 100.0f);
-    DrawText(linha1, 300, 280, 30, COR_TEXTO);
-    DrawText(linha2, 300, 320, 30, COR_TEXTO);
-    DrawText(linha3, 300, 360, 30, COR_TEXTO);
-    DrawText(linha4, 300, 400, 30, COR_TEXTO);
+    char linha1[128], linha2[64], linha3[64], linha4[64], linha5[64];
+    snprintf(linha1, sizeof(linha1), "Jogador: %s", ui->nome_jogador);
+    snprintf(linha2, sizeof(linha2), "Pontuacao Total: %d", ui->jogo_memoria.pontuacao);
+    snprintf(linha3, sizeof(linha3), "Pares Encontrados: %d/8", ui->jogo_memoria.pares_encontrados);
+    snprintf(linha4, sizeof(linha4), "Jogadas: %d", ui->jogo_memoria.tentativas);
 
-    desenhar_botao(400, 600, 400, 80, "Voltar ao Menu (ESC)");
+    int pts = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
+    snprintf(linha5, sizeof(linha5), "Pontos ganhos: %d pts", pts);
+
+    DrawText(linha1, 300, 200, 28, COR_TEXTO);
+    DrawText(linha2, 300, 240, 28, COR_TEXTO);
+    DrawText(linha3, 300, 280, 28, COR_TEXTO);
+    DrawText(linha4, 300, 320, 28, COR_TEXTO);
+    DrawText(linha5, 300, 370, 32, pts > 0 ? COR_SUCESSO : COR_ERRO);
+
+    desenhar_botao(400, 560, 400, 80, "Voltar ao Menu (ESC)");
+}
+
+void desenhar_estatisticas(EstadoUI *ui)
+{
+    /* Carrega e formata as linhas uma única vez por visita à tela */
+    if (!ui->stats_carregadas)
+    {
+        preparar_linhas_estatisticas(ui->stats_linhas, &ui->stats_n_linhas);
+        ui->stats_carregadas = true;
+    }
+
+    DrawText("CENTRAL DE ESTATISTICAS", 300, 40, 38, COR_PRIMARIA);
+
+    int y = 110;
+    for (int i = 0; i < ui->stats_n_linhas; i++)
+    {
+        Color cor = COR_TEXTO;
+        const char *l = ui->stats_linhas[i];
+
+        if (l[0] == '=' && l[1] == '=')       cor = COR_SECUNDARIA;
+        else if (l[0] == ' ' && l[1] == ' ' &&
+                 l[2] == '#')                  cor = COR_SUCESSO;
+
+        DrawText(l, 80, y, 20, cor);
+        y += 26;
+    }
+
+    desenhar_botao(450, 720, 300, 55, "Voltar (ESC)");
 }
 
 void processar_entrada(EstadoUI *ui)
@@ -283,9 +315,10 @@ void processar_entrada(EstadoUI *ui)
     {
         if (ui->estado_atual == ESTADO_JOGANDO_ADIVINHACAO)
             ui->estado_atual = ESTADO_DIFICULDADE;
-        else if (ui->estado_atual == ESTADO_INSERIR_NOME)
+        else if (ui->estado_atual == ESTADO_ESTATISTICAS) {
+            ui->stats_carregadas = false;   /* força recalculo na próxima visita */
             ui->estado_atual = ESTADO_MENU_PRINCIPAL;
-        else
+        } else
             ui->estado_atual = ESTADO_MENU_PRINCIPAL;
 
         memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
@@ -325,7 +358,18 @@ void processar_entrada(EstadoUI *ui)
                 ui->nome_jogador[i] = '\0';
                 ui->nome_indice = i;
             }
-            ui->estado_atual = ESTADO_DIFICULDADE;
+            if (ui->nome_para_memoria)
+            {
+                ui->jogo_memoria  = inicializar_jogo_memoria();
+                ui->clique_casa1  = -1;
+                ui->clique_casa2  = -1;
+                ui->memoria_salva = false;
+                ui->estado_atual  = ESTADO_JOGANDO_MEMORIA;
+            }
+            else
+            {
+                ui->estado_atual = ESTADO_DIFICULDADE;
+            }
         }
         return;
     }
@@ -476,6 +520,17 @@ void processar_clique_mouse_memoria(EstadoUI *ui)
 
                         if (jogo_memoria_finalizado(&ui->jogo_memoria))
                         {
+                            if (!ui->memoria_salva)
+                            {
+                                RegistroMemoria regm;
+                                formatar_data_atual(regm.data);
+                                snprintf(regm.nome, sizeof(regm.nome), "%s", ui->nome_jogador);
+                                regm.pontuacao  = ui->jogo_memoria.pontuacao;
+                                regm.tentativas = ui->jogo_memoria.tentativas;
+                                regm.pontos     = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
+                                salvar_partida_memoria(&regm);
+                                ui->memoria_salva = true;
+                            }
                             ui->estado_atual = ESTADO_RESULTADO_MEMORIA;
                         }
                         else if (acertou)
@@ -503,30 +558,37 @@ void atualizar_ui(EstadoUI *ui)
         
         switch (ui->estado_atual) 
         {
-        case (ESTADO_MENU_PRINCIPAL): 
+        case (ESTADO_MENU_PRINCIPAL):
         {
-            Botao btn_adiv = (Botao){{400, 350, 400, 80}, "", 
-                                      CheckCollisionPointRec(mouse_pos, (Rectangle){400, 350, 400, 80})};
-            Botao btn_mem = (Botao){{400, 480, 400, 80}, "", 
-                                     CheckCollisionPointRec(mouse_pos, (Rectangle){400, 480, 400, 80})};
-            Botao btn_sair_menu = (Botao){{400, 610, 400, 80}, "", 
-                                          CheckCollisionPointRec(mouse_pos, (Rectangle){400, 610, 400, 80})};
-            
+            Botao btn_adiv  = (Botao){{400, 290, 400, 70}, "",
+                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 290, 400, 70})};
+            Botao btn_mem   = (Botao){{400, 390, 400, 70}, "",
+                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 390, 400, 70})};
+            Botao btn_stats = (Botao){{400, 490, 400, 70}, "",
+                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 490, 400, 70})};
+            Botao btn_sair  = (Botao){{400, 590, 400, 70}, "",
+                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 590, 400, 70})};
+
             if (btn_adiv.hover)
             {
-                /* Limpa nome anterior e vai para a tela de identificação */
                 memset(ui->nome_jogador, 0, sizeof(ui->nome_jogador));
-                ui->nome_indice = 0;
-                ui->estado_atual = ESTADO_INSERIR_NOME;
-            } 
-            else if (btn_mem.hover) 
+                ui->nome_indice       = 0;
+                ui->nome_para_memoria = false;
+                ui->estado_atual      = ESTADO_INSERIR_NOME;
+            }
+            else if (btn_mem.hover)
             {
-                ui->jogo_memoria = inicializar_jogo_memoria();
-                ui->clique_casa1 = -1;
-                ui->clique_casa2 = -1;
-                ui->estado_atual = ESTADO_JOGANDO_MEMORIA;
-            } 
-            else if (btn_sair_menu.hover) 
+                memset(ui->nome_jogador, 0, sizeof(ui->nome_jogador));
+                ui->nome_indice       = 0;
+                ui->nome_para_memoria = true;
+                ui->estado_atual      = ESTADO_INSERIR_NOME;
+            }
+            else if (btn_stats.hover)
+            {
+                ui->stats_carregadas = false;
+                ui->estado_atual     = ESTADO_ESTATISTICAS;
+            }
+            else if (btn_sair.hover)
             {
                 ui->estado_atual = ESTADO_SAIR;
             }
@@ -564,20 +626,30 @@ void atualizar_ui(EstadoUI *ui)
             }
             break;
         }
-        case ESTADO_RESULTADO_ADIVINHACAO: 
+        case ESTADO_RESULTADO_ADIVINHACAO:
         {
-            Botao btn_voltar_adiv = (Botao){{400, 550, 400, 80}, "",
-                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 550, 400, 80})};
+            Botao btn_voltar_adiv = (Botao){{400, 560, 400, 80}, "",
+                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 560, 400, 80})};
             if (btn_voltar_adiv.hover) {
                 ui->estado_atual = ESTADO_MENU_PRINCIPAL;
             }
             break;
         }
-        case ESTADO_RESULTADO_MEMORIA: 
+        case ESTADO_RESULTADO_MEMORIA:
         {
-            Botao btn_voltar_mem = (Botao){{400, 600, 400, 80}, "",
-                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 600, 400, 80})};
+            Botao btn_voltar_mem = (Botao){{400, 560, 400, 80}, "",
+                CheckCollisionPointRec(mouse_pos, (Rectangle){400, 560, 400, 80})};
             if (btn_voltar_mem.hover) {
+                ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+            }
+            break;
+        }
+        case ESTADO_ESTATISTICAS:
+        {
+            Botao btn_voltar_stats = (Botao){{450, 720, 300, 55}, "",
+                CheckCollisionPointRec(mouse_pos, (Rectangle){450, 720, 300, 55})};
+            if (btn_voltar_stats.hover) {
+                ui->stats_carregadas = false;
                 ui->estado_atual = ESTADO_MENU_PRINCIPAL;
             }
             break;
@@ -595,18 +667,21 @@ void atualizar_ui(EstadoUI *ui)
     processar_entrada(ui);
 }
 
-void desenhar_ui(const EstadoUI *ui) 
+void desenhar_ui(EstadoUI *ui)
 {
     BeginDrawing();
     ClearBackground(COR_FUNDO);
-    
-    switch (ui->estado_atual) 
+
+    switch (ui->estado_atual)
     {
     case ESTADO_MENU_PRINCIPAL:
         desenhar_menu_principal();
         break;
     case ESTADO_INSERIR_NOME:
         desenhar_inserir_nome(ui);
+        break;
+    case ESTADO_ESTATISTICAS:
+        desenhar_estatisticas(ui);
         break;
     case ESTADO_DIFICULDADE:
         desenhar_menu_dificuldade();

@@ -17,6 +17,7 @@ int main(void)
 #endif
 
     inicializar_historico();
+    inicializar_historico_memoria();
     executar_frontend();
     
     return 0;
