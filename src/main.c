@@ -54,7 +54,7 @@ int main(void)
             Partida partida_atual = iniciar_partida(dif);
 
             limpar_tela();
-            printf("\n  Jogo iniciado!​​👌​ Tente adivinhar o número entre %d e %d.\n", 
+            printf("\n  Jogo iniciado!​​✅​ Tente adivinhar o número entre %d e %d.\n", 
                    partida_atual.min_range, partida_atual.max_range);
 
             /* Loop interno da partida: continua até esgotar tentativas ou vencer */

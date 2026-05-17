@@ -6,43 +6,61 @@
 
 #define PAGE_SIZE 15
 
-bool inicializar_historico(void) {
+bool inicializar_historico(void) 
+{
     FILE *f_csv = fopen(HISTORICO_CSV, "r");
-    if (f_csv == NULL) {
+    if (f_csv == NULL) 
+    {
         f_csv = fopen(HISTORICO_CSV, "w");
-        if (f_csv != NULL) {
+        if (f_csv != NULL) 
+        {
             fprintf(f_csv, "data,nome,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado,pontos\n");
             fclose(f_csv);
-        } else {
+        }
+         else 
+         {
             aviso("​⚠️​​​Falha ao criar o arquivo CSV do histórico.​⚠️​");
             return false;
         }
-    } else {
+
+    }
+
+    else 
+    {
         fclose(f_csv);
     }
 
     FILE *f_txt = fopen(HISTORICO_TXT, "r");
-    if (f_txt == NULL) {
+    if (f_txt == NULL) 
+    {
         f_txt = fopen(HISTORICO_TXT, "w");
-        if (f_txt != NULL) {
+        if (f_txt != NULL) 
+        {
             fprintf(f_txt, "​➖​➖​➖​➖​➖​​➖​➖​ HISTÓRICO DE PARTIDAS ​➖​➖​➖​➖​➖​​➖​➖​\n\n");
             fclose(f_txt);
-        } else {
+        } 
+        else 
+        {
             aviso("​⚠️​Falha ao criar o arquivo TXT do histórico.​⚠️​");
             return false;
         }
-    } else {
+    }
+
+    else 
+    {
         fclose(f_txt);
     }
 
     return true;
 }
 
-bool salvar_partida(const RegistroPartida *r) {
+bool salvar_partida(const RegistroPartida *r) 
+{
     FILE *f_csv = fopen(HISTORICO_CSV, "a");
     FILE *f_txt = fopen(HISTORICO_TXT, "a");
 
-    if (f_csv == NULL || f_txt == NULL) {
+    if (f_csv == NULL || f_txt == NULL) 
+    {
         aviso("​⚠️​Erro ao abrir os arquivos de histórico para gravação.​⚠️​");
         if (f_csv != NULL) fclose(f_csv);
         if (f_txt != NULL) fclose(f_txt);
@@ -68,9 +86,11 @@ bool salvar_partida(const RegistroPartida *r) {
     return true;
 }
 
-int carregar_historico(RegistroPartida *buf, int max) {
+int carregar_historico(RegistroPartida *buf, int max) 
+{
     FILE *f_csv = fopen(HISTORICO_CSV, "r");
-    if (f_csv == NULL) {
+    if (f_csv == NULL) 
+    {
         return -1; 
     }
 
@@ -79,38 +99,52 @@ int carregar_historico(RegistroPartida *buf, int max) {
 
     fgets(linha, sizeof(linha), f_csv);
 
-    while (count < max && fgets(linha, sizeof(linha), f_csv) != NULL) {
+    while (count < max && fgets(linha, sizeof(linha), f_csv) != NULL) 
+    {
         char str_dif[20];
         char str_res[20];
 
         int n_virgulas = 0;
-        for (int k = 0; linha[k]; k++) {
+        for (int k = 0; linha[k]; k++) 
+        {
             if (linha[k] == ',') n_virgulas++;
         }
 
         int extraidos;
-        if (n_virgulas >= 7) {
+        if (n_virgulas >= 7) 
+        {
             extraidos = sscanf(linha, "%10[^,],%63[^,],%19[^,],%d,%d,%d,%19[^,],%d",
                                buf[count].data, buf[count].nome, str_dif,
                                &buf[count].tentativas_usadas, &buf[count].max_tentativas,
                                &buf[count].numero_secreto, str_res, &buf[count].pontos);
             extraidos = (extraidos == 8) ? 6 : 0;
-        } else {
+        } 
+        else 
+        {
             extraidos = sscanf(linha, "%10[^,],%19[^,],%d,%d,%d,%19[^\n]",
                                buf[count].data, str_dif, &buf[count].tentativas_usadas,
                                &buf[count].max_tentativas, &buf[count].numero_secreto, str_res);
-            if (extraidos == 6) {
+            if (extraidos == 6) 
+            {
                 buf[count].nome[0] = '\0';
                 buf[count].pontos = 0;
             }
         }
 
-        if (extraidos == 6) {
-            if (strcmp(str_dif, "FÁCIL") == 0) {
+        if (extraidos == 6) 
+        {
+            if (strcmp(str_dif, "FÁCIL") == 0) 
+            {
                 buf[count].dificuldade = FACIL;
-            } else if (strcmp(str_dif, "MÉDIO") == 0) {
+            } 
+
+            else if (strcmp(str_dif, "MÉDIO") == 0) 
+            {
                 buf[count].dificuldade = MEDIO;
-            } else {
+            } 
+
+            else 
+            {
                 buf[count].dificuldade = DIFICIL;
             }
 
@@ -124,9 +158,11 @@ int carregar_historico(RegistroPartida *buf, int max) {
     return count;
 }
 
-void exibir_historico(void) {
+void exibir_historico(void) 
+{
     FILE *f_txt = fopen(HISTORICO_TXT, "r");
-    if (f_txt == NULL) {
+    if (f_txt == NULL) 
+    {
         printf("\n Nenhum histórico de partidas encontrado.​🤔​\n");
         pausar();
         return;
@@ -151,51 +187,69 @@ void exibir_historico(void) {
     pausar();
 }
 
-void liberar_historico(void) {
-}
+void liberar_historico(void) 
+{}
 
 /* ════════════════════════════════════════════════
  *  JOGO DA MEMÓRIA
  * CSV: data,nome,pontuacao,tentativas,pontos
  * ════════════════════════════════════════════════ */
 
-bool inicializar_historico_memoria(void) {
+bool inicializar_historico_memoria(void) 
+{
     FILE *f_csv = fopen(HISTORICO_MEM_CSV, "r");
-    if (f_csv == NULL) {
+    if (f_csv == NULL) 
+    {
         f_csv = fopen(HISTORICO_MEM_CSV, "w");
-        if (f_csv != NULL) {
+        if (f_csv != NULL) 
+        {
             fprintf(f_csv, "data,nome,pontuacao,tentativas,pontos\n");
             fclose(f_csv);
-        } else {
+        } 
+        
+        else 
+        {
             aviso("⚠️ Falha ao criar o arquivo CSV do histórico de memória.⚠️");
             return false;
         }
-    } else {
+    } 
+    
+    else 
+    {
         fclose(f_csv);
     }
 
     FILE *f_txt = fopen(HISTORICO_MEM_TXT, "r");
     if (f_txt == NULL) {
         f_txt = fopen(HISTORICO_MEM_TXT, "w");
-        if (f_txt != NULL) {
+        if (f_txt != NULL) 
+        {
             fprintf(f_txt, "➖➖➖➖➖➖➖ HISTÓRICO - JOGO DA MEMÓRIA ➖➖➖➖➖➖➖\n\n");
             fclose(f_txt);
-        } else {
+        }
+
+        else 
+        {
             aviso("⚠️ Falha ao criar o arquivo TXT do histórico de memória.⚠️");
             return false;
         }
-    } else {
+    }
+
+    else 
+    {
         fclose(f_txt);
     }
 
     return true;
 }
 
-bool salvar_partida_memoria(const RegistroMemoria *r) {
+bool salvar_partida_memoria(const RegistroMemoria *r) 
+{
     FILE *f_csv = fopen(HISTORICO_MEM_CSV, "a");
     FILE *f_txt = fopen(HISTORICO_MEM_TXT, "a");
 
-    if (f_csv == NULL || f_txt == NULL) {
+    if (f_csv == NULL || f_txt == NULL) 
+    {
         aviso("⚠️ Erro ao abrir arquivos de memória para gravação.⚠️");
         if (f_csv != NULL) fclose(f_csv);
         if (f_txt != NULL) fclose(f_txt);
@@ -213,7 +267,8 @@ bool salvar_partida_memoria(const RegistroMemoria *r) {
     return true;
 }
 
-int carregar_historico_memoria(RegistroMemoria *buf, int max) {
+int carregar_historico_memoria(RegistroMemoria *buf, int max) 
+{
     FILE *f_csv = fopen(HISTORICO_MEM_CSV, "r");
     if (f_csv == NULL) return -1;
 
@@ -222,7 +277,8 @@ int carregar_historico_memoria(RegistroMemoria *buf, int max) {
 
     fgets(linha, sizeof(linha), f_csv); /* pula cabeçalho */
 
-    while (count < max && fgets(linha, sizeof(linha), f_csv) != NULL) {
+    while (count < max && fgets(linha, sizeof(linha), f_csv) != NULL) 
+    {
         int n = sscanf(linha, "%10[^,],%63[^,],%d,%d,%d",
                        buf[count].data, buf[count].nome,
                        &buf[count].pontuacao, &buf[count].tentativas,
@@ -234,9 +290,11 @@ int carregar_historico_memoria(RegistroMemoria *buf, int max) {
     return count;
 }
 
-void exibir_historico_memoria(void) {
+void exibir_historico_memoria(void) 
+{
     FILE *f_txt = fopen(HISTORICO_MEM_TXT, "r");
-    if (f_txt == NULL) {
+    if (f_txt == NULL) 
+    {
         printf("\n  Nenhum histórico de memória encontrado.🤔\n");
         pausar();
         return;
@@ -247,10 +305,12 @@ void exibir_historico_memoria(void) {
 
     limpar_tela();
 
-    while (fgets(linha, sizeof(linha), f_txt) != NULL) {
+    while (fgets(linha, sizeof(linha), f_txt) != NULL) 
+    {
         printf("%s", linha);
         linhas_impressas++;
-        if (linhas_impressas % PAGE_SIZE == 0) {
+        if (linhas_impressas % PAGE_SIZE == 0) 
+        {
             pausar();
             limpar_tela();
         }

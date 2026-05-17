@@ -321,7 +321,7 @@ Jogo-da-Adivinhacao/
 
 <h3 align="center"> 🚀 Backlog e Boarding (Trello) </h3>
 <p align="center">
-  <strong>Status:</strong> 23 histórias de usuário implementadas e 16 futuras, definidas seguindo o padrão 3Cs e priorizadas no backlog.
+  <strong>Status:</strong> 20 histórias de usuário implementadas e 16 futuras, definidas seguindo o padrão 3Cs e priorizadas no backlog.
 </p>
 
 

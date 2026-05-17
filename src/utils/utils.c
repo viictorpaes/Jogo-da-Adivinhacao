@@ -67,7 +67,8 @@ void inicializar_rand(void)
 
 int rand_intervalo(int min, int max) 
 {
-    if (min > max) {
+    if (min > max) 
+    {
         int temp = min;
         min = max;
         max = temp;

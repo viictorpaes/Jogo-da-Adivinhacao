@@ -17,7 +17,8 @@
  *   MÉDIO  : base 70,  -10 por tentativa após a 1ª (máx  7)
  *   DIFÍCIL: base 100, -20 por tentativa após a 1ª (máx  5)
  *   DERROTA: 0 pontos */
-int calcular_pontos(Dificuldade dif, int tentativas, bool venceu) {
+int calcular_pontos(Dificuldade dif, int tentativas, bool venceu) 
+{
     if (!venceu) return 0;
     int base, step;
     switch (dif) 
@@ -69,7 +70,8 @@ static int encontrar_ou_inserir(EntradaRanking *r, int *n, const char *nome)
 }
 
 /* Constrói ranking combinado dos dois jogos */
-static int construir_ranking(EntradaRanking *ranking, int *n_jogadores) {
+static int construir_ranking(EntradaRanking *ranking, int *n_jogadores) 
+{
     static RegistroPartida adv[MAX_HISTORICO];
     static RegistroMemoria mem[MAX_HISTORICO];
 
@@ -131,7 +133,8 @@ static int construir_ranking(EntradaRanking *ranking, int *n_jogadores) {
  *  PREPARAR LINHAS (uso compartilhado: terminal + Raylib)
  * ════════════════════════════════════════════════════════ */
 
-void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas) {
+void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas) 
+{
     *n_linhas = 0;
 
 #define PUSH(fmt, ...) \
@@ -181,11 +184,14 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             if (p_total[d] == 0) continue;
             int taxa_d = (p_vit[d] * 100) / p_total[d];
             double med = (double)p_tent[d] / p_total[d];
-            if (p_melhor[d] > 0) {
+            if (p_melhor[d] > 0) 
+            {
                 PUSH("  %s  %dV %dD  %d%%  med.%.1f tent.  melhor:%d/%dpts",
                      nd[d], p_vit[d], p_total[d]-p_vit[d], taxa_d, med,
                      p_melhor[d], pb[d]);
-            } else {
+            } 
+            else 
+            {
                 PUSH("  %s  %dV %dD  %d%%  med.%.1f tent.",
                      nd[d], p_vit[d], p_total[d]-p_vit[d], taxa_d, med);
             }
@@ -224,10 +230,10 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     int n_jog = 0;
     construir_ranking(ranking, &n_jog);
 
-    PUSH("=== RANKING GERAL (Adivinhacao + Memoria) ===");
+    PUSH("=== RANKING GERAL (Adivinhação + Memória) ===");
     if (n_jog == 0) 
     {
-        PUSH("  Nenhum jogador com pontuacao ainda.");
+        PUSH("  Nenhum jogador com pontuação ainda.");
     } 
     else 
     {

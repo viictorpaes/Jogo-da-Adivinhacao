@@ -15,21 +15,23 @@ Mapeamento das principais jornadas que um jogador pode percorrer no **CesarNumbe
 ```
 Abrir o jogo
     └── Menu Principal
-          └── Selecionar "Jogar"
-                └── Escolher Dificuldade (Fácil / Médio / Difícil)
-                      └── Loop de Tentativas
-                            ├── [Acerto✅] → Resumo da Partida → Salvar? → Menu
-                            └── [Limite⚠️] → Revelar Número → Resumo → Menu
+          └── Selecionar "Missão: Adivinhação"
+                └── Informar nome (Astronauta)
+                      └── Escolher Patente Espacial (Cientista / Piloto / Buzz Lightyear)
+                            └── Loop de Tentativas
+                                  ├── [Acerto✅] → Resumo → Salvo automaticamente → Menu
+                                  └── [Limite⚠️] → Revelar Número → Resumo → Salvo automaticamente → Menu
 ```
 
 | Etapa | Ação do Usuário | Resposta do Sistema | Ponto de Fricção |
 | :--- | :--- | :--- | :--- |
-| Abertura | Executa o binário | Exibe menu principal | — |
-| Escolha de modo | Seleciona "Jogar" | Exibe seleção de dificuldade | — |
-| Dificuldade | Escolhe nível | Gera número secreto + informa intervalo | — |
-| Tentativa | Insere palpite | Feedback termodinâmico + direção | Entrada inválida não explicada |
+| Abertura | Executa o binário | Exibe tela de boas-vindas + menu principal | — |
+| Identificação | Informa nome | Sistema registra nome do astronauta | Nome vazio usa "Astronauta" como padrão |
+| Escolha de modo | Seleciona "Missão: Adivinhação" | Exibe seleção de patente | — |
+| Patente | Escolhe nível | Gera número secreto + informa intervalo e tentativas | — |
+| Tentativa | Insere palpite | Sinal espacial (% do intervalo) + direção (maior/menor) | — |
 | Fim de partida | — | Exibe resumo com tentativas e pontuação | — |
-| Pós-partida | Escolhe próxima ação | Salvar / Jogar novamente / Sair | Falta de confirmação ao sair |
+| Pós-partida | Pressiona ENTER | Salva automaticamente e retorna ao menu | Sem opção de não salvar |
 
 > [!IMPORTANT]
 > Cada jornada deve terminar com uma **ação clara**: voltar ao menu, reiniciar ou sair. Nunca deixar o usuário sem saída visível.
@@ -42,18 +44,18 @@ Abrir o jogo
 
 ```
 Menu Principal
-    └── Selecionar "Ver Histórico"
-          └── Listar Partidas (CSV / TXT)
-                └── [Opcional] Detalhes de uma partida
+    └── Selecionar "Registros de Missão"
+          └── Listar Partidas (paginado, 15 por tela)
+                └── Pressionar ENTER para avançar páginas
                       └── Voltar ao Menu
 ```
 
 | Etapa | Ação do Usuário | Resposta do Sistema | Ponto de Fricção |
 | :--- | :--- | :--- | :--- |
-| Acesso | Seleciona "Histórico" | Lê `data/historico.csv` | Arquivo inexistente → erro não tratado |
-| Listagem | — | Exibe partidas com data, tentativas, pontuação | Histórico extenso sem paginação |
-| Detalhes | Seleciona uma entrada | Exibe detalhes da sessão | Funcionalidade não implementada ainda |
-| Retorno | Escolhe voltar | Menu principal | — |
+| Acesso | Seleciona "Registros de Missão" | Lê `data/historico.txt` (criado automaticamente se inexistente) | — |
+| Listagem | — | Exibe partidas com data, nome, dificuldade, tentativas, pontuação (15 por página) | Sem filtros ou busca por nome |
+| Paginação | Pressiona ENTER | Avança para próxima página | — |
+| Retorno | Pressiona ENTER na última página | Menu principal | — |
 
 ---
 
@@ -63,36 +65,38 @@ Menu Principal
 
 ```
 Menu Principal
-    └── Selecionar "Estatísticas"
-          └── Exibir métricas agregadas
-                └── Voltar ao Menu
+    └── Selecionar "Painel de Controle"
+          └── Exibir métricas agregadas (Adivinhação + Memória + Ranking)
+                └── Pressionar ENTER → Voltar ao Menu
 ```
 
 | Métrica Exibida | Fonte de Dados | Status |
 | :--- | :--- | :---: |
-| Média de tentativas | `historico.csv` | ✅ Implementando |
-| Melhor pontuação | `historico.csv` | ✅ Implementando |
-| Total de vitórias / derrotas | `historico.csv` | ✅ Implementando |
-| Pior desempenho | `historico.csv` | ✅ Implementando |
+| Total de partidas, vitórias e derrotas (%) | `historico.csv` | ✅ Implementado |
+| Média de tentativas por dificuldade | `historico.csv` | ✅ Implementado |
+| Melhor pontuação por dificuldade | `historico.csv` | ✅ Implementado |
+| Estatísticas do Jogo da Memória | `historico_memoria.csv` | ✅ Implementado |
+| Ranking geral combinado (top 10) | `historico.csv` + `historico_memoria.csv` | ✅ Implementado |
 
 ---
 
 ## Jornada 4 — Jogo da Memória
 
-<img src="https://img.shields.io/badge/Persona-Ana_/_Bruno-22c55e?style=flat-square" height="18"/> <img src="https://img.shields.io/badge/Modo-Raylib_Visual-111827?style=flat-square&logo=raylib&logoColor=white" height="18"/> <img src="https://img.shields.io/badge/Prioridade-Média-f59e0b?style=flat-square" height="18"/>
+<img src="https://img.shields.io/badge/Persona-Ana_/_Bruno-22c55e?style=flat-square" height="18"/> <img src="https://img.shields.io/badge/Modo-Terminal_e_Raylib-111827?style=flat-square&logo=gnubash&logoColor=white" height="18"/> <img src="https://img.shields.io/badge/Prioridade-Média-f59e0b?style=flat-square" height="18"/>
 
 ```
-Menu Principal (Raylib)
-    └── Selecionar "Jogo da Memória"
-          └── Exibir grade de cartas
-                └── Selecionar par de cartas
-                      ├── [Par correto✅] → Cartas reveladas permanentemente
-                      └── [Par errado❌] → Cartas viram novamente
-                            └── [Todas reveladas🃏] → Tela de vitória → Menu
+Menu Principal
+    └── Selecionar "Missão: Jogo da Memória"
+          └── Identificação do Astronauta (nome)
+                └── Exibir tabuleiro 4×4 (16 casas, 8 pares de números)
+                      └── Selecionar duas casas (1–16)
+                            ├── [Par correto✅] → Casas reveladas permanentemente
+                            └── [Par errado❌] → Casas ocultadas novamente
+                                  └── [Todos os pares encontrados🃏] → Resumo → Salvo automaticamente → Menu
 ```
 
 > [!NOTE]
-> O Jogo da Memória está disponível apenas na versão **Raylib** (`make raylib`). O modo terminal oferece somente o jogo de adivinhação.
+> O Jogo da Memória está disponível no **modo terminal** (`make run`) e também na versão **Raylib** (`make raylib`). Cada acerto vale 10 pontos (máx. 80); a pontuação de eficiência desconta 5 pts por jogada além do mínimo teórico de 8.
 
 ---
 
@@ -100,7 +104,7 @@ Menu Principal (Raylib)
 
 | Jornada | Personas | Duração Típica | Status |
 | :--- | :--- | :---: | :---: |
-| Jogar (Adivinhação) | Ana, Bruno, Carla | 1–5 min | ✅ Completo |
-| Ver Histórico | Bruno, Carla | 1–2 min | ✅ Completo |
-| Consultar Estatísticas | Carla | < 1 min | ✅ Completo |
-| Jogo da Memória (Raylib) | Ana, Bruno | 2–5 min | ✅ Completo |
+| Missão: Adivinhação | Ana, Bruno, Carla | 1–5 min | ✅ Completo |
+| Registros de Missão | Bruno, Carla | 1–2 min | ✅ Completo |
+| Painel de Controle (Estatísticas) | Carla | < 1 min | ✅ Completo |
+| Missão: Jogo da Memória (Terminal + Raylib) | Ana, Bruno | 2–5 min | ✅ Completo |
