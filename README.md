@@ -6,7 +6,7 @@
 <img src="https://img.shields.io/badge/-Raylib-020617?style=flat-square&logo=raylib&logoColor=white"/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/blob/main/LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions)
+[![Build Status](https://img.shields.io/badge/build-passing_/_done-brightgreen)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 </h1>
 
@@ -309,7 +309,7 @@ Jogo-da-Adivinhacao/
     │   ├── historico.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   └── historico.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     ├── utils <img src="https://img.shields.io/badge/-Módulo%20Utils-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
-    │   ├── utils.c  <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   ├── utils.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   └── utils.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     ├── static<img src="https://img.shields.io/badge/-Módulo%20Stats-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── estatisticas.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
