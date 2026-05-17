@@ -55,7 +55,7 @@
 
 <h2 align="center"><b>🛠️ Especificações Técnicas</b></h2>
 
-<b>O projeto está sendo desenvolvido focando em modularização e boas práticas de programação em C:</b>
+<b>O projeto foi desenvolvido focando em modularização e boas práticas de programação em C:</b>
 
 * **Modularização:** Divisão do código em arquivos `.h` (cabeçalhos) e `.c` (implementação) para facilitar a manutenção e organização lógica (Game, Utils, History, Stats).
 * **Gerenciamento de Memória:** Uso de estruturas de dados eficientes para manipulação de ranking e histórico sem vazamento de memória.
@@ -273,7 +273,7 @@ Jogo-da-Adivinhacao/
 ├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 │   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
-│   ├── AUTHORS.md <img src="https://img.shields.io/badge/-AUTHORS-8B0000?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
+│   ├── CONTRIBUTING.md <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
 │   ├── FRONTEND_RAYLIB.md <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="18"/>
 │   ├── Histórias_de_Usuário.md <img src="https://img.shields.io/badge/-Histórias_de_Usuário-111827?style=flat-square&logo=markdown&logoColor=blue" height="18"/>
 │   ├── MEMORIA.md <img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
