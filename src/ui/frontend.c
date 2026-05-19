@@ -5,6 +5,7 @@
 #include "../history/historico.h"
 #include "../static/estatisticas.h"
 #include "../utils/utils.h"
+#include "../music/musica.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -752,6 +753,7 @@ void desenhar_ui(EstadoUI *ui)
 void executar_frontend(void)
 {
     inicializar_raylib();
+    InitMusica();
 
     EstadoUI ui;
     memset(&ui, 0, sizeof(EstadoUI));
@@ -759,6 +761,7 @@ void executar_frontend(void)
 
     while (!WindowShouldClose() && ui.estado_atual != ESTADO_SAIR)
     {
+        UpdateMusica();
         processar_entrada(&ui);
         atualizar_ui(&ui);
 
@@ -768,5 +771,6 @@ void executar_frontend(void)
         EndDrawing();
     }
 
+    UnloadMusica();
     CloseWindow();
 }
