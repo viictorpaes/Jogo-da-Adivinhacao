@@ -10,7 +10,6 @@
   <img src="https://img.shields.io/badge/-Tabuleiro%204×4-111827?style=flat-square"/>
 </p>
 
----
 
 ## 📋 Descrição
 

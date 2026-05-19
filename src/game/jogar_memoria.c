@@ -51,7 +51,6 @@ void jogar_memoria(const char *nome)
     exibir_tabuleiro(&jogo);
     exibir_resultado_memoria(&jogo);
 
-    /* ── Salvar no histórico ── */
     RegistroMemoria reg;
     formatar_data_atual(reg.data);
     snprintf(reg.nome, sizeof(reg.nome), "%s", nome);
@@ -63,6 +62,9 @@ void jogar_memoria(const char *nome)
 
     printf("\n  Pontos ganhos: %d pts 🏆\n", reg.pontos);
     printf("  Progresso salvo em: data/historico_memoria.csv\n\n");
+
+    const char *dica = heuristica_memoria(jogo.tentativas, reg.pontos);
+    printf("  💡 Dica: %s\n\n", dica);
 
     printf("Pressione ENTER para voltar ao menu...\n");
     pausar();

@@ -30,34 +30,26 @@ typedef struct
     int  entrada_numero;
     char entrada_texto[10];
     int  indice_entrada;
-
     int  clique_casa1;
     int  clique_casa2;
     bool aguardando_ocultar;
     int  timer_ocultar;
-
     char mensagem_erro[128];
-
     char nome_jogador[64];
     int  nome_indice;
     bool partida_salva;
     bool memoria_salva;
-
-    /* Roteamento após inserção de nome */
     bool nome_para_memoria;  
-    /* true → vai p/ memória; false → vai p/ dificuldade */
-
-    /* Cache de estatísticas (carregado uma vez ao entrar na tela) */
     bool stats_carregadas;
     char stats_linhas[35][160];
     int  stats_n_linhas;
-
-    /* Cache de histórico (carregado uma vez ao entrar na tela) */
     bool hist_carregado;
     RegistroPartida hist_adiv[20];
     int  hist_adiv_n;
     RegistroMemoria hist_mem[20];
     int  hist_mem_n;
+    char hist_resumo_adiv[200];
+    char hist_resumo_mem[200];
 } EstadoUI;
 
 #define LARGURA_JANELA   1200
@@ -66,7 +58,6 @@ typedef struct
 void executar_frontend(void);
 void atualizar_ui(EstadoUI *ui);
 void desenhar_ui(EstadoUI *ui);
-
 void desenhar_menu_principal(void);
 void desenhar_menu_jogo(void);
 void desenhar_inserir_nome(const EstadoUI *ui);
@@ -77,7 +68,6 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui);
 void desenhar_resultado_memoria(const EstadoUI *ui);
 void desenhar_estatisticas(EstadoUI *ui);
 void desenhar_historico(EstadoUI *ui);
-
 void processar_entrada(EstadoUI *ui);
 void processar_clique_mouse_memoria(EstadoUI *ui);
 

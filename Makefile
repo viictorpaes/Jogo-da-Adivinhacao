@@ -52,7 +52,7 @@ endif
 .PHONY: all clean run build-raylib raylib run-raylib test format help
 
 all:
-	$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -lm -o $(TARGET)
 
 build-raylib:
 	$(CC) $(CFLAGS) $(SRCS_RAYLIB) $(INCLUDES) $(RAYLIB_FLAGS) -o $(TARGET_RAYLIB)

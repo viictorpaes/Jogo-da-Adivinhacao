@@ -1,5 +1,5 @@
 <h1 align="center">👥 Contribuidores<br>
-<img src="https://img.shields.io/badge/-AUTHORS-8B0000?style=flat-square&logo=surveymonkey&logoColor=white" height="25"/></h1>
+<img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="25"/></h1>
 
 <h2 align="center">👨🏻‍🏫 Docentes Responsáveis</h2>
 

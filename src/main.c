@@ -70,7 +70,16 @@ int main(void)
 
             /* Fim da partida: exibe o resumo e salva os dados */
             exibir_resultado_final(&partida_atual);
-            
+
+            /* Heurística estratégica */
+            {
+                const char *dica = heuristica_adivinhacao(
+                    partida_atual.tentativas_usadas,
+                    partida_atual.max_tentativas,
+                    partida_atual.venceu, dif);
+                printf("\n  💡 Dica: %s\n", dica);
+            }
+
             /* --- INÍCIO DA INTEGRAÇÃO COM HISTÓRICO --- */
             RegistroPartida registro;
 
@@ -101,10 +110,10 @@ int main(void)
             jogar_memoria(nome_mem);
         }
 
-        else if (opcao == MENU_HISTORICO) 
+        else if (opcao == MENU_HISTORICO)
         {
-            exibir_historico();
-        } 
+            exibir_historico_analitico();
+        }
 
         else if (opcao == MENU_ESTATISTICAS)
         {
@@ -114,7 +123,6 @@ int main(void)
         else if (opcao == MENU_SAIR) 
         {
             exibir_despedida();
-            /* liberar_recursos(); -> Se houver alocação dinâmica no futuro */
             break;
         }
     }

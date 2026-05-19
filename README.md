@@ -11,7 +11,6 @@
 </h1>
 
 
-
 <h2 align="center">👥👨🏻‍🏫 Docentes Responsáveis: </h2>
 <ul>
   <li><strong>Aêda Monalliza Cunha de Sousa</strong> <a href="https://www.linkedin.com/in/aedasousa/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a></li>
@@ -271,14 +270,17 @@ Jogo-da-Adivinhacao/
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 ├── LICENSE <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square" height="18"/>
 ├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
+│   ├── ADR.md <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="18"/>
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 │   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
 │   ├── CONTRIBUTING.md <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
 │   ├── FRONTEND_RAYLIB.md <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="18"/>
 │   ├── Histórias_de_Usuário.md <img src="https://img.shields.io/badge/-Histórias_de_Usuário-111827?style=flat-square&logo=markdown&logoColor=blue" height="18"/>
 │   ├── MEMORIA.md <img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
+│   ├── CHANGELOG.md <img src="https://img.shields.io/badge/-Testes-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="18"/>
 │   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
-│   └── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
+│   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
+│   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
 │   ├── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
@@ -331,7 +333,7 @@ Jogo-da-Adivinhacao/
     <img src="https://img.shields.io/badge/-Trello-111827?style=flat-square&logo=trello&logoColor=0052CC"/>
   </a>
   <a href="./docs/Histórias_de_Usuário.md" target="_blank">
-    <img src="https://img.shields.io/badge/-Histórias%20de%20Usuário-111827?style=flat-square&logo=trello&logoColor=0052CC" height="20"/>
+    <img src="https://img.shields.io/badge/-Histórias%20de%20Usuário-111827?style=flat-square&logo=trello&logoColor=white" height="20"/>
   </a>
 </p>
 
@@ -347,7 +349,7 @@ Jogo-da-Adivinhacao/
 </p>
 
 
-<h2 align="center">Telas 📱</h2>
+<h2 align="center">Telas 📱 <br></h2>
 
 <table align="center" width="780">
   <tr><th align="center">🏠 Tela Inicial</th></tr>

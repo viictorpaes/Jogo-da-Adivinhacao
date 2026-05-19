@@ -1,7 +1,7 @@
 <h1 align="center">Arquitetura do Projeto<br>
 <img src="https://img.shields.io/badge/Architecture-111827?style=flat-square&logo=instructure&logoColor=white" height="25"/></h1>
 
-<p align="center">Visão geral — organização modular, responsabilidades e como os módulos interagem.</p>
+<p align="center"><b>Visão geral — organização modular, responsabilidades e como os módulos interagem.</b></p>
 
 <h2 align="center">🏗️ Estrutura de Diretórios</h2>
 
@@ -15,14 +15,17 @@ Jogo-da-Adivinhacao/
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 ├── LICENSE <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" height="18"/>
 ├── docs/ <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">
+│   ├── ADR.md <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="18"/>
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 │   ├── <mark>ARCHITECTURE.md</mark> <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
 │   ├── CONTRIBUTING.md <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
 │   ├── FRONTEND_RAYLIB.md <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="18"/>
 │   ├── Histórias_de_Usuário.md <img src="https://img.shields.io/badge/-HUs-111827?style=flat-square&logo=trello&logoColor=0052CC" height="18"/>
 │   ├── MEMORIA.md <img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
+│   ├── CHANGELOG.md <img src="https://img.shields.io/badge/-CHANGELOG-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="18"/>
 │   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
-│   └── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
+│   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
+│   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
 ├── img/ <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">
 ├── data/ <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">
 │   ├── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
@@ -84,12 +87,15 @@ Gerencia o processo de build do projeto. Suporta duas versões compiláveis — 
 
 | Comando | Descrição |
 | :--- | :--- |
-| `make` | Compila a versão terminal |
+| `make` / `make all` | Compila a versão terminal |
 | `make run` | Compila e executa a versão terminal |
 | `make build-raylib` | Compila a versão visual sem executar |
 | `make raylib` | Compila e executa a versão visual |
 | `make clean` | Remove binários compilados |
 | `make format` | Formata o código com clang-format |
+| `make test` | Executa os testes do projeto |
+| `make DEBUG=1` | Compila com símbolos de depuração (`-g -O0`) |
+| `make help` | Exibe todos os comandos disponíveis |
 
 ---
 
@@ -113,12 +119,15 @@ Centraliza o conhecimento do projeto:
 
 | Arquivo | Conteúdo |
 | :--- | :--- |
+| **ADR.md** <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="16"/> | Registro das decisões arquiteturais (5 ADRs): dual entry-point, persistência CSV+TXT, recursão em estatísticas, `EstadoUI` e heurísticas estáticas |
 | **API.md** <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="16"/> | Especificação das funções e contratos entre os módulos |
 | **ARCHITECTURE.md** <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="16"/> | Visão macro do sistema e padrões de projeto |
-| **AUTHORS.md** <img src="https://img.shields.io/badge/-AUTHORS-8B0000?style=flat-square&logo=surveymonkey&logoColor=white" height="16"/> | Contribuidores do projeto |
+| **CHANGELOG.md** <img src="https://img.shields.io/badge/-CHANGELOG-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="16"/> | Plano de testes com 20 casos de teste (19 aprovados, 95% de cobertura) distribuídos entre os módulos Adivinhação, Memória, Histórico, Estatísticas e Regressão |
+| **CONTRIBUTING.md** <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="16"/> | Contribuidores do projeto |
 | **FRONTEND_RAYLIB.md** <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="16"/> | Instruções de compilação e uso da versão gráfica |
 | **Histórias_de_Usuário.md** <img src="https://img.shields.io/badge/-HUs-111827?style=flat-square&logo=trello&logoColor=0052CC" height="16"/> | 23 histórias implementadas e 16 futuras no formato 3Cs |
 | **MEMORIA.md** <img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="16"/> | Documentação do módulo Jogo da Memória |
+| **ROADMAP.md** <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="16"/> | Registro das sprints do projeto com tarefas e responsáveis por integrante da equipe |
 | **schema.md** <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="16"/> | Definição da estrutura de dados para salvar o histórico |
 | **SECURITY.md** <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="16"/> | Lógica do RNG e boas práticas para evitar previsibilidade |
 
@@ -176,9 +185,9 @@ Responsável por salvar e carregar os dados do jogador. Faz a ponte entre as est
 <img src="https://img.shields.io/badge/-Módulo%20Utils-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
 Contém funções genéricas reutilizáveis por todos os módulos, como leitura segura de input, geração de números aleatórios sem viés e inicialização da semente de aleatoriedade.
 
-### Análise Estatística (`static/`)
+### Pontuação, Heurísticas e Estatísticas (`static/`)
 <img src="https://img.shields.io/badge/-Módulo%20Stats-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
-Módulo que processa o histórico de partidas para gerar métricas de desempenho, como o ranking de melhores jogadores e a média de tentativas por nível.
+Módulo com três responsabilidades: cálculo de pontuação (`calcular_pontos`, `calcular_pontos_memoria`), geração de heurísticas estratégicas exibidas ao final de cada partida (`heuristica_adivinhacao`, `heuristica_memoria`) e análise do histórico de partidas para exibir métricas de desempenho como ranking e média de tentativas. Também prepara linhas formatadas de estatísticas consumidas pelo frontend gráfico.
 
 ### Tipos Globais (`include/`)
 <img src="https://img.shields.io/badge/-Tipos%20Globais-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
@@ -189,16 +198,15 @@ Centraliza a definição de `structs`, `enums` e `typedefs` globais em `tipos.h`
 ## 🔗 Mapa de Dependências
 
 ```
-main.c / main_raylib.c
-    ├── ui/menu.h          (console)
-    ├── ui/frontend.h      (raylib)
-    ├── game/jogo.h
-    ├── game/memorygame.h
-    ├── game/jogar_memoria.h
-    ├── history/historico.h
-    ├── static/estatisticas.h
-    └── utils/utils.h
-            └── include/tipos.h  (compartilhado por todos)
+main.c (console)                  main_raylib.c (gráfico)
+    ├── ui/menu.h                      ├── ui/frontend.h
+    ├── game/jogo.h                    ├── game/jogo.h
+    ├── game/memorygame.h              ├── game/memorygame.h
+    ├── game/jogar_memoria.h           ├── game/jogar_memoria.h
+    ├── history/historico.h            ├── history/historico.h
+    ├── static/estatisticas.h          ├── static/estatisticas.h
+    └── utils/utils.h                  └── utils/utils.h
+                  └── include/tipos.h  (compartilhado por todos)
 ```
 
 > [!NOTE]

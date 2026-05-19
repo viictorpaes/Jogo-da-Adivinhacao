@@ -140,7 +140,6 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
         if (dir_msg)
             DrawText(dir_msg, 200, 205, 22, COR_ERRO);
 
-        /* feedback de proximidade */
         int dist = ui->entrada_numero - ui->partida_atual.numero_secreto;
         if (dist < 0) dist = -dist;
         int range = ui->partida_atual.max_range - ui->partida_atual.min_range;
@@ -285,6 +284,13 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
     DrawText(linha4, 300, 426, 25, COR_TEXTO);
     DrawText(linha5, 300, 458, 25, pts > 0 ? COR_SUCESSO : COR_ERRO);
 
+    const char *dica_adv = heuristica_adivinhacao(
+        ui->partida_atual.tentativas_usadas,
+        ui->partida_atual.max_tentativas,
+        ui->partida_atual.venceu,
+        ui->dificuldade_selecionada);
+    DrawText(dica_adv, 120, 500, 18, COR_SECUNDARIA);
+
     desenhar_botao(400, 540, 400, 80, "Voltar ao Menu (ESC)");
 }
 
@@ -311,9 +317,12 @@ void desenhar_resultado_memoria(const EstadoUI *ui)
     DrawText(linha4, 300, 350, 28, COR_TEXTO);
     DrawText(linha5, 300, 390, 28, pts > 60 ? COR_SUCESSO : COR_SECUNDARIA);
 
-    DrawText("Resultado salvo no historico!", 380, 460, 22, COR_SECUNDARIA);
+    const char *dica_mem = heuristica_memoria(ui->jogo_memoria.tentativas, pts);
+    DrawText(dica_mem, 120, 432, 18, COR_SECUNDARIA);
 
-    desenhar_botao(400, 520, 400, 80, "Voltar ao Menu (ESC)");
+    DrawText("Resultado salvo no historico!", 380, 460, 22, COR_TEXTO);
+
+    desenhar_botao(400, 500, 400, 75, "Voltar ao Menu (ESC)");
 }
 
 void desenhar_menu_jogo(void)
@@ -383,6 +392,8 @@ void desenhar_historico(EstadoUI *ui)
     {
         ui->hist_adiv_n = carregar_historico(ui->hist_adiv, 20);
         ui->hist_mem_n  = carregar_historico_memoria(ui->hist_mem, 20);
+        preparar_resumo_adivinhacao(ui->hist_resumo_adiv, sizeof(ui->hist_resumo_adiv));
+        preparar_resumo_memoria(ui->hist_resumo_mem, sizeof(ui->hist_resumo_mem));
         ui->hist_carregado = true;
     }
 
@@ -390,17 +401,19 @@ void desenhar_historico(EstadoUI *ui)
     DrawLine(50, 68, 1150, 68, COR_PRIMARIA);
 
     /* Coluna esquerda — Adivinhação */
-    DrawText("Adivinhação", 60, 80, 22, COR_SECUNDARIA);
-    DrawLine(60, 106, 560, 106, COR_SECUNDARIA);
+    DrawText("Adivinhação", 60, 78, 20, COR_SECUNDARIA);
+    DrawText(ui->hist_resumo_adiv, 60, 100, 13, COR_TEXTO);
+    DrawLine(60, 118, 560, 118, COR_SECUNDARIA);
+
     if (ui->hist_adiv_n == 0)
     {
-        DrawText("Nenhuma partida registrada.", 60, 120, 18, COR_TEXTO);
+        DrawText("Nenhuma partida registrada.", 60, 130, 18, COR_TEXTO);
     }
     else
     {
-        int y = 118;
+        int y = 128;
         const char *difs[] = {"Facil", "Medio", "Dificil"};
-        for (int i = ui->hist_adiv_n - 1; i >= 0 && y < 730; i--, y += 28)
+        for (int i = ui->hist_adiv_n - 1; i >= 0 && y < 725; i--, y += 27)
         {
             RegistroPartida *r = &ui->hist_adiv[i];
             char linha[120];
@@ -410,27 +423,29 @@ void desenhar_historico(EstadoUI *ui)
                      r->tentativas_usadas, r->max_tentativas,
                      r->pontos);
             Color cor = r->venceu ? COR_SUCESSO : COR_ERRO;
-            DrawText(linha, 60, y, 16, cor);
+            DrawText(linha, 60, y, 15, cor);
         }
     }
 
     /* Coluna direita — Memória */
-    DrawText("Memória", 640, 80, 22, COR_SECUNDARIA);
-    DrawLine(640, 106, 1140, 106, COR_SECUNDARIA);
+    DrawText("Memória", 640, 78, 20, COR_SECUNDARIA);
+    DrawText(ui->hist_resumo_mem, 640, 100, 13, COR_TEXTO);
+    DrawLine(640, 118, 1140, 118, COR_SECUNDARIA);
+
     if (ui->hist_mem_n == 0)
     {
-        DrawText("Nenhuma partida registrada.", 640, 120, 18, COR_TEXTO);
+        DrawText("Nenhuma partida registrada.", 640, 130, 18, COR_TEXTO);
     }
     else
     {
-        int y = 118;
-        for (int i = ui->hist_mem_n - 1; i >= 0 && y < 730; i--, y += 28)
+        int y = 128;
+        for (int i = ui->hist_mem_n - 1; i >= 0 && y < 725; i--, y += 27)
         {
             RegistroMemoria *r = &ui->hist_mem[i];
             char linha[120];
             snprintf(linha, sizeof(linha), "%s  %-12s  %d jogadas  %d pts",
                      r->data, r->nome, r->tentativas, r->pontos);
-            DrawText(linha, 640, y, 16, COR_TEXTO);
+            DrawText(linha, 640, y, 15, COR_TEXTO);
         }
     }
 
@@ -676,7 +691,7 @@ void processar_entrada(EstadoUI *ui)
             ui->memoria_salva = true;
         }
         if (IsKeyReleased(KEY_ESCAPE) || IsKeyReleased(KEY_ENTER) ||
-            clique_em_rect((Rectangle){400, 520, 400, 80}))
+            clique_em_rect((Rectangle){400, 500, 400, 75}))
             ui->estado_atual = ESTADO_MENU_PRINCIPAL;
         break;
 

@@ -1,7 +1,7 @@
 <h1 align="center">Frontend Gráfico com Raylib<br>
 <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="25"/></h1>
 
-<p align="center">Instruções de compilação, uso e arquitetura da versão gráfica do projeto.</p>
+<p align="center"><b>Instruções de compilação, uso e arquitetura da versão gráfica do projeto.</b></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/-C-111827?style=flat-square&logo=c&logoColor=A8B9CC"/>
@@ -122,8 +122,8 @@ O frontend mantém um estado centralizado (`EstadoUI`) que controla:
 **Fluxo por frame:**
 ```
 Loop principal
-    ├── frontend_atualizar()  → processa entrada
-    └── frontend_desenhar()   → renderiza a tela
+    ├── frontend_atualizar() → processa entrada
+    └── frontend_desenhar()  → renderiza a tela
 ```
 
 > [!NOTE]
@@ -138,3 +138,53 @@ Loop principal
 | `raylib.h: No such file or directory` | Instale a biblioteca conforme seu sistema operacional |
 | Programa não compila | Verifique a instalação do gcc/clang e do raylib |
 | Janela não abre | Use `make raylib`; ambientes WSL/SSH sem display não suportam janelas gráficas |
+
+
+<h2 align="center">Telas 📱 <br></h2>
+
+<table align="center" width="780">
+  <tr><th align="center">🏠 Tela Inicial</th></tr>
+  <tr><td align="center"><b>Menu principal do jogo — o jogador escolhe entre os modos disponíveis: Adivinhação, Memória e acesso ao Histórico/Estatísticas.</b></td></tr>
+  <tr><td align="center"><img src="../img/tela_inicial.jpeg" width="750" alt="Tela Inicial"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">✏️ Salvar Nome</th></tr>
+  <tr><td align="center"><b>Tela de cadastro do astronauta — o jogador insere seu nome antes de iniciar a partida para que o resultado seja salvo no ranking.</b></td></tr>
+  <tr><td align="center"><img src="../img/salvar_nome.jpeg" width="750" alt="Salvar Nome"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🔭 Jogo de Adivinhação</th></tr>
+  <tr><td align="center"><b>Modo single-player de adivinhação — sintonize a frequência de resgate correta dentro do número de tentativas disponíveis, com feedback espacial em tempo real.</b></td></tr>
+  <tr><td align="center"><img src="../img/adivinhação_tela.jpeg" width="750" alt="Jogo de Adivinhação"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🧠 Jogo de Memória</th></tr>
+  <tr><td align="center"><b>Modo single-player de memória — encontre os pares de coordenadas estelares no grid. Quanto menos tentativas, maior a pontuação.</b></td></tr>
+  <tr><td align="center"><img src="../img/memória.jpeg" width="750" alt="Jogo de Memória"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">📊 Estatísticas</th></tr>
+  <tr><td align="center"><b>Painel de desempenho — exibe médias de tentativas, melhor e pior sessão, e outros dados calculados a partir do histórico de partidas.</b></td></tr>
+  <tr><td align="center"><img src="../img/estátisticas.jpeg" width="750" alt="Estatísticas"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">📜 Histórico</th></tr>
+  <tr><td align="center"><b>Registro completo de todas as sessões jogadas — mostra data, nome do jogador, dificuldade, tentativas utilizadas e resultado de cada partida.</b></td></tr>
+  <tr><td align="center"><img src="../img/histórico.jpeg" width="750" alt="Histórico"/></td></tr>
+</table>
+
