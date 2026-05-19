@@ -1,27 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#020617;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#0c1445;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0f0a2e;stop-opacity:1" />
-    </linearGradient>
+    <radialGradient id="bgGrad" cx="30%" cy="50%" r="80%">
+      <stop offset="0%" style="stop-color:#0a0210;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#020008;stop-opacity:1"/>
+    </radialGradient>
     <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#818cf8;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#FFE81F;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1"/>
     </linearGradient>
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE81F;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#E6A800;stop-opacity:1"/>
     </linearGradient>
-    <linearGradient id="planetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#312e81;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="helmetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#e2e8f0;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#94a3b8;stop-opacity:1" />
-    </linearGradient>
-    <filter id="glow">
+    <radialGradient id="deathStarGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#7a7a7a;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#404040;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#181818;stop-opacity:1"/>
+    </radialGradient>
+    <filter id="saberGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="titleGlow">
       <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
@@ -29,16 +32,13 @@
       </feMerge>
     </filter>
     <filter id="starGlow">
-      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <filter id="softShadow">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#38bdf8" flood-opacity="0.5"/>
-    </filter>
-    <filter id="orbitGlow">
+    <filter id="dotGlow">
       <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
@@ -49,100 +49,132 @@
 
   <!-- Background -->
   <rect width="600" height="200" rx="20" fill="url(#bgGrad)"/>
+  <!-- Gold border -->
+  <rect width="600" height="200" rx="20" fill="none" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.7"/>
 
-  <!-- Border -->
-  <rect width="600" height="200" rx="20" fill="none" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.5"/>
+  <!-- Stars (warm tone) -->
+  <circle cx="15"  cy="12"  r="1"   fill="#fffde0" opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="42"  cy="28"  r="0.8" fill="white"   opacity="0.7"/>
+  <circle cx="58"  cy="8"   r="1.2" fill="white"   opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="88"  cy="18"  r="0.7" fill="white"   opacity="0.6"/>
+  <circle cx="110" cy="5"   r="1"   fill="#fffde0" opacity="0.8"/>
+  <circle cx="135" cy="22"  r="0.6" fill="white"   opacity="0.7"/>
+  <circle cx="170" cy="10"  r="1.1" fill="white"   opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="200" cy="18"  r="0.8" fill="white"   opacity="0.6"/>
+  <circle cx="235" cy="6"   r="1"   fill="#fff9c4" opacity="0.8"/>
+  <circle cx="280" cy="14"  r="0.7" fill="white"   opacity="0.7"/>
+  <circle cx="320" cy="8"   r="1.2" fill="white"   opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="355" cy="20"  r="0.8" fill="#fffde0" opacity="0.7"/>
+  <circle cx="390" cy="5"   r="1"   fill="white"   opacity="0.8"/>
+  <circle cx="430" cy="15"  r="0.6" fill="white"   opacity="0.6"/>
+  <circle cx="460" cy="9"   r="1.1" fill="#fff9c4" opacity="0.8" filter="url(#starGlow)"/>
+  <circle cx="495" cy="22"  r="0.7" fill="white"   opacity="0.7"/>
+  <circle cx="525" cy="7"   r="1"   fill="white"   opacity="0.9"/>
+  <circle cx="560" cy="18"  r="0.8" fill="#fffde0" opacity="0.7"/>
+  <circle cx="585" cy="10"  r="1.2" fill="white"   opacity="0.9" filter="url(#starGlow)"/>
+  <circle cx="22"  cy="170" r="0.8" fill="white"   opacity="0.6"/>
+  <circle cx="50"  cy="185" r="1"   fill="#fffde0" opacity="0.8"/>
+  <circle cx="75"  cy="175" r="0.6" fill="white"   opacity="0.7"/>
+  <circle cx="210" cy="180" r="0.9" fill="white"   opacity="0.7"/>
+  <circle cx="450" cy="178" r="1"   fill="#fff9c4" opacity="0.8"/>
+  <circle cx="510" cy="190" r="0.7" fill="white"   opacity="0.6"/>
+  <circle cx="545" cy="175" r="1.1" fill="white"   opacity="0.8" filter="url(#starGlow)"/>
+  <circle cx="580" cy="185" r="0.8" fill="#fffde0" opacity="0.7"/>
 
-  <!-- Stars scattered -->
-  <circle cx="15"  cy="12"  r="1"   fill="white" opacity="0.9" filter="url(#starGlow)"/>
-  <circle cx="42"  cy="28"  r="0.8" fill="white" opacity="0.7"/>
-  <circle cx="58"  cy="8"   r="1.2" fill="#93c5fd" opacity="0.9" filter="url(#starGlow)"/>
-  <circle cx="88"  cy="18"  r="0.7" fill="white" opacity="0.6"/>
-  <circle cx="110" cy="5"   r="1"   fill="white" opacity="0.8"/>
-  <circle cx="135" cy="22"  r="0.6" fill="#bfdbfe" opacity="0.7"/>
-  <circle cx="170" cy="10"  r="1.1" fill="white" opacity="0.9" filter="url(#starGlow)"/>
-  <circle cx="200" cy="18"  r="0.8" fill="white" opacity="0.6"/>
-  <circle cx="235" cy="6"   r="1"   fill="#c7d2fe" opacity="0.8"/>
-  <circle cx="280" cy="14"  r="0.7" fill="white" opacity="0.7"/>
-  <circle cx="320" cy="8"   r="1.2" fill="white" opacity="0.9" filter="url(#starGlow)"/>
-  <circle cx="355" cy="20"  r="0.8" fill="#93c5fd" opacity="0.7"/>
-  <circle cx="390" cy="5"   r="1"   fill="white" opacity="0.8"/>
-  <circle cx="430" cy="15"  r="0.6" fill="white" opacity="0.6"/>
-  <circle cx="460" cy="9"   r="1.1" fill="#c7d2fe" opacity="0.8" filter="url(#starGlow)"/>
-  <circle cx="495" cy="22"  r="0.7" fill="white" opacity="0.7"/>
-  <circle cx="525" cy="7"   r="1"   fill="white" opacity="0.9"/>
-  <circle cx="560" cy="18"  r="0.8" fill="#bfdbfe" opacity="0.7"/>
-  <circle cx="585" cy="10"  r="1.2" fill="white" opacity="0.9" filter="url(#starGlow)"/>
-  <circle cx="22"  cy="170" r="0.8" fill="white" opacity="0.6"/>
-  <circle cx="50"  cy="185" r="1"   fill="#93c5fd" opacity="0.8"/>
-  <circle cx="75"  cy="175" r="0.6" fill="white" opacity="0.7"/>
-  <circle cx="210" cy="180" r="0.9" fill="white" opacity="0.7"/>
-  <circle cx="450" cy="178" r="1"   fill="#c7d2fe" opacity="0.8"/>
-  <circle cx="510" cy="190" r="0.7" fill="white" opacity="0.6"/>
-  <circle cx="545" cy="175" r="1.1" fill="white" opacity="0.8" filter="url(#starGlow)"/>
-  <circle cx="580" cy="185" r="0.8" fill="#bfdbfe" opacity="0.7"/>
+  <!-- ===== DEATH STAR ===== -->
+  <circle cx="78" cy="100" r="50" fill="url(#deathStarGrad)"/>
+  <!-- Panel line vertical -->
+  <line x1="78" y1="50" x2="78" y2="150" stroke="#555" stroke-width="0.7" opacity="0.4"/>
+  <!-- Equatorial trench -->
+  <rect x="29" y="96.5" width="98" height="7" rx="1.5" fill="#090909" opacity="0.95"/>
+  <line x1="29" y1="98.5" x2="127" y2="98.5" stroke="#3a3a3a" stroke-width="0.5"/>
+  <line x1="29" y1="101.5" x2="127" y2="101.5" stroke="#3a3a3a" stroke-width="0.5"/>
+  <!-- Superlaser dish -->
+  <circle cx="60" cy="80" r="20" fill="#303030" stroke="#505050" stroke-width="1"/>
+  <circle cx="60" cy="80" r="13" fill="#252525" stroke="#404040" stroke-width="0.8"/>
+  <circle cx="60" cy="80" r="7"  fill="#181818"/>
+  <circle cx="60" cy="80" r="3"  fill="#0d0d0d" stroke="#555" stroke-width="0.5"/>
+  <!-- Superlaser lens glow (subtle green) -->
+  <circle cx="60" cy="80" r="3" fill="#00ff88" opacity="0.15" filter="url(#saberGlow)"/>
+  <!-- Surface panel blocks -->
+  <rect x="88"  y="55"  width="10" height="5" rx="1" fill="#303030" opacity="0.9"/>
+  <rect x="100" y="63"  width="8"  height="4" rx="1" fill="#2a2a2a" opacity="0.8"/>
+  <rect x="105" y="78"  width="9"  height="4" rx="1" fill="#303030" opacity="0.7"/>
+  <rect x="100" y="119" width="10" height="5" rx="1" fill="#303030" opacity="0.8"/>
+  <rect x="88"  y="132" width="10" height="5" rx="1" fill="#2a2a2a" opacity="0.9"/>
+  <!-- Subtle gold rim -->
+  <circle cx="78" cy="100" r="50" fill="none" stroke="#FFE81F" stroke-width="0.8" opacity="0.12"/>
 
-  <!-- Planet (left side) -->
-  <circle cx="80" cy="100" r="52" fill="url(#planetGrad)" opacity="0.9"/>
-  <!-- Planet ring -->
-  <ellipse cx="80" cy="100" rx="70" ry="14" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.5" transform="rotate(-20 80 100)" filter="url(#orbitGlow)"/>
-  <!-- Planet surface details -->
-  <ellipse cx="65" cy="88" rx="22" ry="9" fill="#1e40af" opacity="0.5" transform="rotate(-15 65 88)"/>
-  <ellipse cx="90" cy="110" rx="16" ry="6" fill="#1e3a8a" opacity="0.4" transform="rotate(10 90 110)"/>
-  <circle cx="80" cy="100" r="52" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
+  <!-- ===== CROSSED LIGHTSABERS ===== -->
+  <!-- Blades drawn before hilts so hilts sit on top -->
 
-  <!-- Astronaut (floating to the right of planet) -->
-  <!-- Suit body -->
-  <rect x="143" y="78" width="28" height="32" rx="8" fill="#cbd5e1"/>
-  <!-- Helmet -->
-  <circle cx="157" cy="72" r="16" fill="url(#helmetGrad)" filter="url(#softShadow)"/>
-  <!-- Visor -->
-  <ellipse cx="157" cy="72" rx="10" ry="9" fill="#0ea5e9" opacity="0.85"/>
-  <ellipse cx="154" cy="69" rx="3" ry="2.5" fill="white" opacity="0.4"/>
-  <!-- Helmet outline -->
-  <circle cx="157" cy="72" r="16" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-  <!-- Arms -->
-  <rect x="131" y="82" width="12" height="8"  rx="4" fill="#cbd5e1"/>
-  <rect x="171" y="82" width="12" height="8"  rx="4" fill="#cbd5e1"/>
-  <!-- Legs -->
-  <rect x="145" y="108" width="10" height="14" rx="4" fill="#cbd5e1"/>
-  <rect x="159" y="108" width="10" height="14" rx="4" fill="#cbd5e1"/>
-  <!-- Backpack (life support) -->
-  <rect x="168" y="82" width="8" height="18" rx="3" fill="#94a3b8"/>
-  <!-- Badge on suit -->
-  <rect x="149" y="87" width="12" height="8" rx="2" fill="#38bdf8" opacity="0.8"/>
+  <!-- Blue saber: (136,148) → (178,44), crossing at ~(158,93) -->
+  <line x1="136" y1="148" x2="178" y2="44" stroke="#3399FF" stroke-width="4.5" stroke-linecap="round" filter="url(#saberGlow)" opacity="0.9"/>
+  <line x1="136" y1="148" x2="178" y2="44" stroke="#BBDDFF" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
 
-  <!-- Tether line -->
-  <path d="M 179 88 Q 195 70 210 75" stroke="#64748b" stroke-width="1.2" fill="none" stroke-dasharray="3,2" opacity="0.7"/>
+  <!-- Red saber: (180,148) → (138,44), crossing same point -->
+  <line x1="180" y1="148" x2="138" y2="44" stroke="#FF2222" stroke-width="4.5" stroke-linecap="round" filter="url(#saberGlow)" opacity="0.9"/>
+  <line x1="180" y1="148" x2="138" y2="44" stroke="#FF9999" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Blue hilt (blade leans right going up → hilt tilts left below base) -->
+  <rect x="131" y="148" width="10" height="22" rx="3" fill="#888888" transform="rotate(-22 136 148)"/>
+  <rect x="132.5" y="150" width="7" height="3"   rx="1" fill="#aaaaaa" transform="rotate(-22 136 148)"/>
+  <rect x="132.5" y="155" width="7" height="2.5" rx="1" fill="#666666" transform="rotate(-22 136 148)"/>
+  <rect x="132.5" y="161" width="7" height="6"   rx="2" fill="#555555" transform="rotate(-22 136 148)"/>
+
+  <!-- Red hilt (blade leans left going up → hilt tilts right below base) -->
+  <rect x="175" y="148" width="10" height="22" rx="3" fill="#777777" transform="rotate(22 180 148)"/>
+  <rect x="176.5" y="150" width="7" height="3"   rx="1" fill="#999999" transform="rotate(22 180 148)"/>
+  <rect x="176.5" y="155" width="7" height="2.5" rx="1" fill="#555555" transform="rotate(22 180 148)"/>
+  <rect x="176.5" y="161" width="7" height="6"   rx="2" fill="#444444" transform="rotate(22 180 148)"/>
 
   <!-- Divider -->
-  <line x1="210" y1="35" x2="210" y2="165" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.4"/>
+  <line x1="210" y1="35" x2="210" y2="165" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.5"/>
 
-  <!-- Main title -->
-  <text x="228" y="78" font-family="'Segoe UI', 'Arial', sans-serif" font-size="28" font-weight="800"
-        fill="url(#textGrad)" letter-spacing="2" filter="url(#softShadow)">JOGO DA</text>
-  <text x="228" y="122" font-family="'Segoe UI', 'Arial', sans-serif" font-size="36" font-weight="900"
-        fill="url(#accentGrad)" letter-spacing="3" filter="url(#glow)">ADIVINHAÇÃO</text>
+  <!-- ===== TEXT ===== -->
+  <text x="228" y="76"
+        font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
+        font-size="27" font-weight="900" font-style="italic"
+        fill="url(#textGrad)" letter-spacing="4"
+        filter="url(#titleGlow)">JOGO DA</text>
 
-  <!-- Subtitle -->
-  <text x="228" y="146" font-family="'Segoe UI', 'Arial', sans-serif" font-size="12" font-weight="400"
-        fill="#94a3b8" letter-spacing="3" opacity="0.9">SINTONIZE A FREQUÊNCIA CORRETA</text>
+  <text x="228" y="122"
+        font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
+        font-size="33" font-weight="900" font-style="italic"
+        fill="url(#textGrad)" letter-spacing="3"
+        filter="url(#titleGlow)">ADIVINHAÇÃO</text>
 
-  <!-- Accent dots -->
-  <circle cx="228" cy="163" r="3" fill="#38bdf8" opacity="0.9"/>
-  <circle cx="241" cy="163" r="3" fill="#818cf8" opacity="0.7"/>
-  <circle cx="254" cy="163" r="3" fill="#c084fc" opacity="0.5"/>
+  <text x="228" y="148"
+        font-family="'Segoe UI', 'Arial', sans-serif"
+        font-size="11" font-weight="400" font-style="italic"
+        fill="#C8980A" letter-spacing="2.5" opacity="0.9">QUE A FORÇA ESTEJA COM VOCÊ</text>
+
+  <!-- Lightsaber color accent dots -->
+  <circle cx="228" cy="165" r="3" fill="#FF2222" opacity="0.95" filter="url(#dotGlow)"/>
+  <circle cx="241" cy="165" r="3" fill="#FFE81F" opacity="0.9"  filter="url(#dotGlow)"/>
+  <circle cx="254" cy="165" r="3" fill="#3399FF" opacity="0.95" filter="url(#dotGlow)"/>
 
   <!-- Badges -->
-  <rect x="445" y="150" width="42" height="20" rx="5" fill="#0c1445" stroke="#38bdf8" stroke-width="1.2"/>
+  <rect x="445" y="150" width="42" height="20" rx="5" fill="#150a00" stroke="#FFE81F" stroke-width="1.2"/>
   <text x="466" y="164" font-family="monospace" font-size="11" font-weight="bold"
-        fill="#7dd3fc" text-anchor="middle">C11</text>
+        fill="#FFE81F" text-anchor="middle">C11</text>
 
-  <rect x="494" y="150" width="56" height="20" rx="5" fill="#0c1445" stroke="#818cf8" stroke-width="1.2"/>
+  <rect x="494" y="150" width="56" height="20" rx="5" fill="#05050f" stroke="#3399FF" stroke-width="1.2"/>
   <text x="522" y="164" font-family="monospace" font-size="11" font-weight="bold"
-        fill="#c4b5fd" text-anchor="middle">Raylib</text>
+        fill="#88bbff" text-anchor="middle">Raylib</text>
 
-  <!-- Small floating star accent near title -->
-  <polygon points="572,48 575,55 582,55 577,60 579,67 572,63 565,67 567,60 562,55 569,55"
-           fill="#fbbf24" opacity="0.7" filter="url(#starGlow)" transform="scale(0.7) translate(245,20)"/>
+  <!-- Imperial symbol (top-right corner) -->
+  <g transform="translate(570, 48)" opacity="0.55">
+    <circle cx="0" cy="0" r="14"  fill="none" stroke="#FFE81F" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="6.5" fill="none" stroke="#FFE81F" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="2"   fill="#FFE81F"/>
+    <line x1="0"    y1="-14"  x2="0"    y2="-6.5" stroke="#FFE81F" stroke-width="1.5"/>
+    <line x1="0"    y1="6.5"  x2="0"    y2="14"   stroke="#FFE81F" stroke-width="1.5"/>
+    <line x1="-14"  y1="0"    x2="-6.5" y2="0"    stroke="#FFE81F" stroke-width="1.5"/>
+    <line x1="6.5"  y1="0"    x2="14"   y2="0"    stroke="#FFE81F" stroke-width="1.5"/>
+    <line x1="-9.9" y1="-9.9" x2="-4.6" y2="-4.6" stroke="#FFE81F" stroke-width="1.5"/>
+    <line x1="4.6"  y1="4.6"  x2="9.9"  y2="9.9"  stroke="#FFE81F" stroke-width="1.5"/>
+    <line x1="9.9"  y1="-9.9" x2="4.6"  y2="-4.6" stroke="#FFE81F" stroke-width="1.5"/>
+    <line x1="-4.6" y1="4.6"  x2="-9.9" y2="9.9"  stroke="#FFE81F" stroke-width="1.5"/>
+  </g>
 </svg>
