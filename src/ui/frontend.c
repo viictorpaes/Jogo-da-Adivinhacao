@@ -73,19 +73,19 @@ void desenhar_menu_principal(void)
 
 void desenhar_menu_dificuldade(void)
 {
-    DrawText("SELECIONE NIVEL DO ASTRONAUTA", 200, 80, 38, COR_PRIMARIA);
-    DrawText("Qual e a sua patente espacial?", 310, 145, 22, COR_TEXTO);
+    DrawText("SELECIONE NÍVEL DO ASTRONAUTA", 200, 80, 38, COR_PRIMARIA);
+    DrawText("Qual é a sua patente espacial?", 310, 145, 22, COR_TEXTO);
 
     desenhar_botao(250, 230, 700, 100, "[1] Cientista     (1-50,  10 tentativas)");
     desenhar_botao(250, 380, 700, 100, "[2] Piloto        (1-100,  7 tentativas)");
     desenhar_botao(250, 530, 700, 100, "[3] Buzz Lightyear (1-200,  5 tentativas)");
     DrawText("Clique ou pressione 1 / 2 / 3 para selecionar", 280, 670, 20, COR_TEXTO);
-    DrawText("Pressione ESC para voltar ao menu", 310, 700, 20, COR_TEXTO);
+    DrawText("Pressione ESC para voltar ao menu principal", 310, 700, 20, COR_TEXTO);
 }
 
 void desenhar_inserir_nome(const EstadoUI *ui)
 {
-    DrawText("IDENTIFICACÇÃO DO ASTRONAUTA", 240, 100, 40, COR_PRIMARIA);
+    DrawText("IDENTIFICAÇÃO DO ASTRONAUTA", 240, 100, 40, COR_PRIMARIA);
     DrawText("Qual é o nome do seu astronauta?", 320, 220, 25, COR_TEXTO);
 
     Rectangle input_box = {250, 280, 700, 70};
@@ -97,21 +97,20 @@ void desenhar_inserir_nome(const EstadoUI *ui)
              (int)(input_box.y + 15),
              40, COR_PRIMARIA);
 
-    /* cursor piscante */
     if ((GetTime() * 2) - (int)(GetTime() * 2) < 1.0)
     {
         int cursor_x = (int)(input_box.x + 20) + MeasureText(ui->nome_jogador, 40);
         DrawText("|", cursor_x, (int)(input_box.y + 15), 40, COR_PRIMARIA);
     }
 
-    desenhar_botao(400, 420, 400, 70, "CONFIRMAR (Enter)");
+    desenhar_botao(400, 420, 400, 70, "CONFIRMAR: (Enter)");
     DrawText("Deixe em branco para usar 'Astronauta'", 305, 520, 20, COR_TEXTO);
     DrawText("Pressione ESC para voltar ao menu", 330, 550, 20, COR_TEXTO);
 }
 
 void desenhar_jogo_adivinhacao(const EstadoUI *ui)
 {
-    DrawText("MISSAO: ADIVINHACAO", 350, 30, 40, COR_PRIMARIA);
+    DrawText("MISSÃO: ADIVINHAÇÃO", 350, 30, 40, COR_PRIMARIA);
     
     const char *patente = "Cientista";
     if      (ui->dificuldade_selecionada == MEDIO)  patente = "Piloto";
@@ -119,7 +118,7 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
 
     char info_buffer[256];
     snprintf(info_buffer, sizeof(info_buffer),
-             "Patente: %s | Range: %d a %d | Tentativas: %d/%d",
+             "Patente: %s | Intervalo: %d a %d | Tentativas: %d/%d",
              patente,
              ui->partida_atual.min_range,
              ui->partida_atual.max_range,
@@ -129,17 +128,7 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
     
     if (ui->partida_atual.tentativas_usadas > 0)
     {
-        DrawText("Seu ultimo palpite:", 200, 175, 22, COR_SECUNDARIA);
-
-        const char *dir_msg = NULL;
-        if (ui->entrada_numero < ui->partida_atual.numero_secreto)
-            dir_msg = "TRANSMISSAO: O numero secreto é MAIOR! Aponte para cima! ^";
-
-        else if (ui->entrada_numero > ui->partida_atual.numero_secreto)
-            dir_msg = "TRANSMISSÃO: O número secreto é MENOR! Volte a orbita! v";
-
-        if (dir_msg)
-            DrawText(dir_msg, 200, 205, 22, COR_ERRO);
+        DrawText("Seu último palpite:", 200, 175, 22, COR_SECUNDARIA);
 
         int dist = ui->entrada_numero - ui->partida_atual.numero_secreto;
         if (dist < 0) dist = -dist;
@@ -147,21 +136,24 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
         int pct   = (range > 0) ? (dist * 100 / range) : 100;
 
         const char *prox_msg;
-        Color        prox_cor;
-        if  (pct < 5)  
-        { prox_msg = "Sinal estabelecido! Frequência muito proxima!"; prox_cor = COR_SUCESSO;    }
+        Color prox_cor;
 
-        else if (pct < 15) 
-        { prox_msg = "Sinal detectado! Continue ajustando..."; prox_cor = COR_SECUNDARIA; }
+        if (pct < 5)
+            { prox_msg = "Sinal estabelecido! Frequência muito próxima!";  prox_cor = COR_SUCESSO;   }
 
-        else if (pct < 40) { prox_msg = "Interferencia estatica... Sinal fraco.";          prox_cor = COR_SECUNDARIA; }
-        
-        else { prox_msg = "Sem sinal no espaco... Muito longe!";  prox_cor = COR_ERRO;       }
+        else if (pct < 15)
+            { prox_msg = "Sinal detectado! Continue ajustando...";  prox_cor = COR_SECUNDARIA; }
 
-        DrawText(prox_msg, 200, 235, 22, prox_cor);
+        else if (pct < 40)
+            { prox_msg = "Interferência estática... Sinal fraco.";  prox_cor = COR_SECUNDARIA; }
+
+        else
+            { prox_msg = "Sem sinal no espaço... Muito longe!"; prox_cor = COR_ERRO;       }
+
+        DrawText(prox_msg, 200, 205, 22, prox_cor);
     }
 
-    DrawText("Digite seu palpite:", 200, 310, 25, COR_TEXTO);
+    DrawText("Digite seu palpite: ", 200, 310, 25, COR_TEXTO);
     
     Rectangle input_box = {200, 360, 400, 60};
     DrawRectangleRec(input_box, (Color){20, 10, 40, 255});
@@ -260,7 +252,7 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
     else
     {
         DrawText("MISSÃO FRACASSADA!", 340, 180, 40, COR_ERRO);
-        DrawText("Voce esgotou todas as tentativas. De volta a Terra!", 200, 260, 28, COR_TEXTO);
+        DrawText("Voce esgotou todas as tentativas, astronauta. De volta a Terra!", 200, 260, 28, COR_TEXTO);
     }
 
     const char *patente = "Cientista";
@@ -292,7 +284,7 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
         ui->dificuldade_selecionada);
     DrawText(dica_adv, 120, 500, 18, COR_SECUNDARIA);
 
-    desenhar_botao(400, 540, 400, 80, "Voltar ao Menu (ESC)");
+    desenhar_botao(400, 540, 400, 80, "Voltar ao Menu Principal (ESC)");
 }
 
 void desenhar_resultado_memoria(const EstadoUI *ui)
@@ -300,17 +292,17 @@ void desenhar_resultado_memoria(const EstadoUI *ui)
     DrawText("MISSÃO CONCLUIDA! PARÁBENS!", 210, 80, 45, COR_SUCESSO);
 
     char saudacao[128];
-    snprintf(saudacao, sizeof(saudacao), "Parabens, %s! Todos os pares foram encontrados!", ui->nome_jogador);
+    snprintf(saudacao, sizeof(saudacao), "Parábens, %s! Todos os pares foram encontrados!", ui->nome_jogador);
     DrawText(saudacao, 100, 150, 24, COR_TEXTO);
 
     int pts = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
 
     char linha1[128], linha2[64], linha3[64], linha4[64], linha5[64];
     snprintf(linha1, sizeof(linha1), "Astronauta       : %s", ui->nome_jogador);
-    snprintf(linha2, sizeof(linha2), "Pontuacao Total  : %d / 80", ui->jogo_memoria.pontuacao);
+    snprintf(linha2, sizeof(linha2), "Pontuação Total  : %d / 80", ui->jogo_memoria.pontuacao);
     snprintf(linha3, sizeof(linha3), "Pares Encontrados: %d/8", ui->jogo_memoria.pares_encontrados);
     snprintf(linha4, sizeof(linha4), "Tentativas       : %d", ui->jogo_memoria.tentativas);
-    snprintf(linha5, sizeof(linha5), "Pontos de Missao : %d pts", pts);
+    snprintf(linha5, sizeof(linha5), "Pontos de Missão : %d pts", pts);
 
     DrawText(linha1, 300, 230, 28, COR_TEXTO);
     DrawText(linha2, 300, 270, 28, COR_TEXTO);
@@ -321,9 +313,9 @@ void desenhar_resultado_memoria(const EstadoUI *ui)
     const char *dica_mem = heuristica_memoria(ui->jogo_memoria.tentativas, pts);
     DrawText(dica_mem, 120, 432, 18, COR_SECUNDARIA);
 
-    DrawText("Resultado salvo no historico!", 380, 460, 22, COR_TEXTO);
+    DrawText("Resultado salvo no histórico!", 380, 460, 22, COR_TEXTO);
 
-    desenhar_botao(400, 500, 400, 75, "Voltar ao Menu (ESC)");
+    desenhar_botao(400, 500, 400, 75, "Voltar ao Menu Principal (ESC)");
 }
 
 void desenhar_menu_jogo(void)
@@ -448,7 +440,7 @@ void desenhar_historico(EstadoUI *ui)
         }
     }
 
-    desenhar_botao(400, 730, 400, 55, "Voltar ao Menu (ESC)");
+    desenhar_botao(400, 730, 400, 55, "Voltar ao Menu Principal (ESC)");
 }
 
 void processar_clique_mouse_memoria(EstadoUI *ui)
@@ -644,7 +636,7 @@ void processar_entrada(EstadoUI *ui)
                 if (palpite < ui->partida_atual.min_range || palpite > ui->partida_atual.max_range)
                 {
                     snprintf(ui->mensagem_erro, sizeof(ui->mensagem_erro),
-                             "Palpite fora do range! Digite entre %d e %d.",
+                             "Palpite fora do intervalo! Digite um número entre %d e %d.",
                              ui->partida_atual.min_range, ui->partida_atual.max_range);
                 }
                 else
