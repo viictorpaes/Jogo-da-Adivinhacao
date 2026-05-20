@@ -1,24 +1,22 @@
 #include "musica.h"
 
-#define MUSICA_DURACAO_MAX 50.0f
-
 static Music musicaStarWars;
 
 void InitMusica(void)
 {
     InitAudioDevice();
-    musicaStarWars = LoadMusicStream("music/starwars.wav");
+    musicaStarWars = LoadMusicStream("src/music/starwars.wav");
     musicaStarWars.looping = false;
-    SetMusicVolume(musicaStarWars, 0.5f);
+    SetMusicVolume(musicaStarWars, 0.8f);
     PlayMusicStream(musicaStarWars);
 }
 
 void UpdateMusica(void)
 {
     UpdateMusicStream(musicaStarWars);
-    if (GetMusicTimePlayed(musicaStarWars) >= MUSICA_DURACAO_MAX) 
+    if (GetMusicTimePlayed(musicaStarWars) >= 70.0f) 
     {
-        PlayMusicStream(musicaStarWars);
+        SeekMusicStream(musicaStarWars, 0.0f);
     }
 }
 

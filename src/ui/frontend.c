@@ -401,7 +401,6 @@ void desenhar_historico(EstadoUI *ui)
     DrawText("HISTÓRICO DE MISSÕES", 310, 20, 38, COR_PRIMARIA);
     DrawLine(50, 68, 1150, 68, COR_PRIMARIA);
 
-    /* Coluna esquerda — Adivinhação */
     DrawText("Adivinhação", 60, 78, 20, COR_SECUNDARIA);
     DrawText(ui->hist_resumo_adiv, 60, 100, 13, COR_TEXTO);
     DrawLine(60, 118, 560, 118, COR_SECUNDARIA);
@@ -413,7 +412,7 @@ void desenhar_historico(EstadoUI *ui)
     else
     {
         int y = 128;
-        const char *difs[] = {"Facil", "Medio", "Dificil"};
+        const char *difs[] = {"Fácil", "Médio", "Difícil"};
         for (int i = ui->hist_adiv_n - 1; i >= 0 && y < 725; i--, y += 27)
         {
             RegistroPartida *r = &ui->hist_adiv[i];
@@ -428,7 +427,6 @@ void desenhar_historico(EstadoUI *ui)
         }
     }
 
-    /* Coluna direita — Memória */
     DrawText("Memória", 640, 78, 20, COR_SECUNDARIA);
     DrawText(ui->hist_resumo_mem, 640, 100, 13, COR_TEXTO);
     DrawLine(640, 118, 1140, 118, COR_SECUNDARIA);

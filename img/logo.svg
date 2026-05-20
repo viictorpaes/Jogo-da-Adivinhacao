@@ -132,36 +132,42 @@
   <line x1="210" y1="35" x2="210" y2="165" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.5"/>
 
   <!-- ===== TEXT ===== -->
-  <text x="228" y="76"
+  <text x="228" y="68"
         font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
         font-size="27" font-weight="900" font-style="italic"
         fill="url(#textGrad)" letter-spacing="4"
         filter="url(#titleGlow)">JOGO DA</text>
 
-  <text x="228" y="122"
+  <text x="228" y="105"
         font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
         font-size="33" font-weight="900" font-style="italic"
         fill="url(#textGrad)" letter-spacing="3"
         filter="url(#titleGlow)">ADIVINHAÇÃO</text>
 
-  <text x="228" y="148"
+  <text x="228" y="142"
+        font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
+        font-size="33" font-weight="900" font-style="italic"
+        fill="url(#textGrad)" letter-spacing="3"
+        filter="url(#titleGlow)">E MEMÓRIA</text>
+
+  <text x="228" y="163"
         font-family="'Segoe UI', 'Arial', sans-serif"
         font-size="11" font-weight="400" font-style="italic"
         fill="#C8980A" letter-spacing="2.5" opacity="0.9">QUE A FORÇA ESTEJA COM VOCÊ</text>
 
   <!-- Lightsaber color accent dots -->
-  <circle cx="228" cy="165" r="3" fill="#FF2222" opacity="0.95" filter="url(#dotGlow)"/>
-  <circle cx="241" cy="165" r="3" fill="#FFE81F" opacity="0.9"  filter="url(#dotGlow)"/>
-  <circle cx="254" cy="165" r="3" fill="#3399FF" opacity="0.95" filter="url(#dotGlow)"/>
+  <circle cx="228" cy="178" r="3" fill="#FF2222" opacity="0.95" filter="url(#dotGlow)"/>
+  <circle cx="241" cy="178" r="3" fill="#FFE81F" opacity="0.9"  filter="url(#dotGlow)"/>
+  <circle cx="254" cy="178" r="3" fill="#3399FF" opacity="0.95" filter="url(#dotGlow)"/>
 
   <!-- Badges -->
-  <rect x="445" y="150" width="42" height="20" rx="5" fill="#150a00" stroke="#FFE81F" stroke-width="1.2"/>
-  <text x="466" y="164" font-family="monospace" font-size="11" font-weight="bold"
+  <rect x="466" y="172" width="42" height="20" rx="5" fill="#150a00" stroke="#FFE81F" stroke-width="1.2"/>
+  <text x="487" y="186" font-family="monospace" font-size="11" font-weight="bold"
         fill="#FFE81F" text-anchor="middle">C11</text>
 
-  <rect x="494" y="150" width="56" height="20" rx="5" fill="#05050f" stroke="#3399FF" stroke-width="1.2"/>
-  <text x="522" y="164" font-family="monospace" font-size="11" font-weight="bold"
-        fill="#88bbff" text-anchor="middle">Raylib</text>
+  <rect x="515" y="172" width="56" height="20" rx="5" fill="#05050f" stroke="#6b0bdaff" stroke-width="1.2"/>
+  <text x="543" y="186" font-family="monospace" font-size="11" font-weight="bold"
+        fill="#6b0bdaff" text-anchor="middle">Raylib</text>
 
   <!-- Imperial symbol (top-right corner) -->
   <g transform="translate(570, 48)" opacity="0.55">

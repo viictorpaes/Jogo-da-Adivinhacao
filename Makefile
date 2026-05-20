@@ -13,7 +13,7 @@ INCLUDES = -I./src/game \
 		 -I./src/static \
 		 -I./src/include \
 		 -I./src/ui \
-		 -I./music
+		 -I./src/music
 
 SRCS = src/main.c \
 	 src/game/jogo.c \
@@ -32,7 +32,7 @@ SRCS_RAYLIB = src/main_raylib.c \
 	 src/history/historico.c \
 	 src/static/estatisticas.c \
 	 src/ui/frontend.c \
-	 music/musica.c
+	 src/music/musica.c
 
 TARGET = jogo
 TARGET_RAYLIB = jogo_raylib

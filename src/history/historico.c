@@ -190,10 +190,6 @@ void exibir_historico(void)
 void liberar_historico(void) 
 {}
 
-/* ════════════════════════════════════════════════
- *  JOGO DA MEMÓRIA
- * CSV: data,nome,pontuacao,tentativas,pontos
- * ════════════════════════════════════════════════ */
 
 bool inicializar_historico_memoria(void) 
 {

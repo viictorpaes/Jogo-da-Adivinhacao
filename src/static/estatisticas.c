@@ -30,7 +30,6 @@ static int maximo_recursivo(const int *arr, int n)
     return arr[n - 1] > sub ? arr[n - 1] : sub;
 }
 
-/* Soma dos quadrados das diferenças em relação à média (para desvio padrão) */
 static double soma_quadrados_recursiva(const int *arr, double media, int n)
 {
     if (n <= 0) return 0.0;
@@ -231,9 +230,6 @@ static int construir_ranking(EntradaRanking *ranking, int *n_jogadores)
     return *n_jogadores;
 }
 
-/* ════════════════════════════════════════════════════════
- *  PREPARAR LINHAS (terminal + Raylib)
- * ════════════════════════════════════════════════════════ */
 
 void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
 {
@@ -249,7 +245,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     static RegistroPartida adv[MAX_HISTORICO];
     int n_adv = carregar_historico(adv, MAX_HISTORICO);
 
-    PUSH("=== ADIVINHACAO ===");
+    PUSH("=== ADIVINHAÇÃO ===");
     if (n_adv <= 0)
     {
         PUSH("  Nenhuma partida registrada.");
@@ -290,8 +286,8 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
                  media, min_t, max_t, dp);
         }
 
-        const char *nd[] = {"FACIL  ", "MEDIO  ", "DIFICIL"};
-        const int   pb[] = {50, 70, 100};
+        const char *nd[] = {"FÁCIL  ", "MÉDIO  ", "DIFÍCIL"};
+        const int pb[] = {50, 70, 100};
         for (int d = 0; d < 3; d++)
         {
             if (p_total[d] == 0) continue;
@@ -318,7 +314,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     static RegistroMemoria mem[MAX_HISTORICO];
     int n_mem = carregar_historico_memoria(mem, MAX_HISTORICO);
 
-    PUSH("=== JOGO DA MEMORIA ===");
+    PUSH("=== JOGO DA MEMÓRIA ===");
     if (n_mem <= 0)
     {
         PUSH("  Nenhuma partida registrada.");
@@ -353,7 +349,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     int n_jog = 0;
     construir_ranking(ranking, &n_jog);
 
-    PUSH("=== RANKING GERAL (Adivinhacao + Memoria) ===");
+    PUSH("=== RANKING GERAL (Adivinhação + Memória) ===");
     if (n_jog == 0)
     {
         PUSH("  Nenhum jogador com pontuacao ainda.");
@@ -383,7 +379,7 @@ void exibir_estatisticas(void)
 
     limpar_tela();
     printf("\n%s", SEP);
-    printf("            CENTRAL DE ESTATISTICAS\n");
+    printf("            CENTRAL DE ESTÁTISTICAS\n");
     printf("%s\n", SEP);
 
     for (int i = 0; i < n; i++)

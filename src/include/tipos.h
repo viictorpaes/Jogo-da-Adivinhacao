@@ -64,13 +64,13 @@ typedef struct {
     int         pontos;
 } RegistroPartida;
 
-/* Registro de uma partida do Jogo da Memória */
+
 typedef struct {
     char data[11];
     char nome[64];
-    int  pontuacao;   /* 10 pts por par acertado (máx 80) */
-    int  tentativas;  /* número de jogadas feitas         */
-    int  pontos;      /* score por eficiência             */
+    int  pontuacao;
+    int  tentativas;
+    int  pontos;  
 } RegistroMemoria;
 
 #endif

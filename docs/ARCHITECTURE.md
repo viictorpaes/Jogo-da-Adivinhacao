@@ -14,7 +14,7 @@ Jogo-da-Adivinhacao/
 ├── protótipo.fig <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 ├── LICENSE <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square" height="18"/>
-├── docs/ <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">
+├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
 │   ├── ADR.md <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="18"/>
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 │   ├── <mark>ARCHITECTURE.md</mark> <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
@@ -26,46 +26,46 @@ Jogo-da-Adivinhacao/
 │   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
 │   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
 │   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
-├── img/ <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">
-├── data/ <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">
+├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
+├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
 │   ├── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
 │   ├── historico.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 │   ├── historico_memoria.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
 │   └── historico_memoria.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
-├── music/ <img src="https://img.shields.io/badge/-Módulo%20Music-111827?style=flat-square&logo=musicbrainz&logoColor=BA478F" height="18">
-│   ├── musica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
-│   ├── musica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-│   └── starwars.wav <img src="https://img.shields.io/badge/-WAV-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="18"/>
-└── src/ <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>
+└── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
     ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
     ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
-    ├── game/ <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    ├── game <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── jogo.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── jogo.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     │   ├── memorygame.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── memorygame.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     │   ├── jogar_memoria.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   └── jogar_memoria.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    ├── ui/ <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">
+    ├── ui <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">/
     │   ├── menu.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
     │   ├── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
     │   ├── frontend.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
     │   └── frontend.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
-    ├── ux/ <img src="https://img.shields.io/badge/-Módulo_UX-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18">
+    ├── ux <img src="https://img.shields.io/badge/-Módulo_UX-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18">/
     │   ├── acessibilidade.md <img src="https://img.shields.io/badge/-%E2%99%BF%20Acessibilidade-111827?style=flat-square" height="18">
     │   ├── jogar.md <img src="https://img.shields.io/badge/-%F0%9F%8E%AE%20Jogar-111827?style=flat-square" height="18">
     │   ├── jornadas.md <img src="https://img.shields.io/badge/-Jornadas-111827?style=flat-square&logo=googlemaps&logoColor=4285F4" height="18">
     │   └── personas.md <img src="https://img.shields.io/badge/-%F0%9F%91%A5%20Personas-111827?style=flat-square" height="18">
-    ├── history/ <img src="https://img.shields.io/badge/-Módulo%20History-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    ├── history <img src="https://img.shields.io/badge/-Módulo%20History-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── historico.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   └── historico.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    ├── utils/ <img src="https://img.shields.io/badge/-Módulo%20Utils-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    ├── utils <img src="https://img.shields.io/badge/-Módulo%20Utils-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── utils.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   └── utils.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    ├── static/ <img src="https://img.shields.io/badge/-Módulo%20Stats-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    ├── static <img src="https://img.shields.io/badge/-Módulo%20Stats-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── estatisticas.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   └── estatisticas.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    └── include/ <img src="https://img.shields.io/badge/-Tipos%20Globais-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">
+    ├── music <img src="https://img.shields.io/badge/-Módulo%20Music-111827?style=flat-square&logo=musicbrainz&logoColor=BA478F" height="18">/
+    │   ├── musica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   ├── musica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   └── starwars.wav <img src="https://img.shields.io/badge/-WAV-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="18"/>
+    └── include <img src="https://img.shields.io/badge/-Tipos%20Globais-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
         └── tipos.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
 </pre>
 
@@ -151,17 +151,26 @@ Diretório que contém os arquivos físicos de dados de ambos os jogos. Cada jog
 
 ---
 
-## 🎵 Trilha Sonora (`music/`)
+## 🎵 Trilha Sonora (`src/music/`)
 
 <img src="https://img.shields.io/badge/-Módulo%20Music-111827?style=flat-square&logo=musicbrainz&logoColor=BA478F" height="18"/><br>
 Encapsula toda a gestão de áudio da versão gráfica (Raylib). O módulo isola as chamadas à API de som para que nenhum outro módulo precise incluir `raylib.h` apenas por causa de áudio.
 
 | Arquivo | Responsabilidade |
 | :--- | :--- |
-| `musica.c` / `musica.h` <img src="https://img.shields.io/badge/-Source%20%2F%20Header-111827?style=flat-square&logo=c&logoColor=4CAF50" height="16"/> | Inicialização, atualização por frame, pausa e liberação do stream de áudio via `InitAudioDevice` / `LoadMusicStream` |
-| `starwars.wav` <img src="https://img.shields.io/badge/-WAV-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="16"/> | Arquivo de áudio PCM carregado em streaming — reproduzido em loop contínuo enquanto a janela do jogo estiver aberta |
+| `musica.c` / `musica.h` <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="16"/><img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="16"/> | Inicialização, atualização por frame, pausa e liberação do stream de áudio via `InitAudioDevice` / `LoadMusicStream` |
+| `starwars.wav` <br> <img src="https://img.shields.io/badge/-WAV-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="16"/> | Arquivo de áudio PCM carregado em streaming — reproduzido em loop contínuo enquanto a janela do jogo estiver aberta |
 
-A música roda em **loop infinito** (`looping = true`) e é atualizada a cada frame com `UpdateMusica()` — chamada no game loop principal de `main_raylib.c`.
+A música roda em **loop infinito**, mesmo com (`looping = false`) e é atualizada a cada frame com: 
+
+```c
+UpdateMusicStream(musicaStarWars);
+    if (GetMusicTimePlayed(musicaStarWars) >= 70.0f) 
+    {
+        SeekMusicStream(musicaStarWars, 0.0f);
+    }
+``` 
+chamada no game no <b>loop principal de `main_raylib.c`</b>.
 
 ---
 
@@ -224,8 +233,8 @@ main.c (console)                  main_raylib.c (gráfico)
     ├── history/historico.h            ├── history/historico.h
     ├── static/estatisticas.h          ├── static/estatisticas.h
     ├── utils/utils.h                  ├── utils/utils.h
-                                       └── music/musica.h  (áudio em loop)
-                  └── include/tipos.h  (compartilhado por todos)
+                                       └── src/music/musica.h  (áudio em loop)
+    └── include/tipos.h  (compartilhado por todos)
 ```
 
 > [!NOTE]
