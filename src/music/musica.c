@@ -5,7 +5,7 @@ static Music musicaStarWars;
 void InitMusica(void)
 {
     InitAudioDevice();
-    musicaStarWars = LoadMusicStream("src/music/starwars.wav");
+    musicaStarWars = LoadMusicStream("src/music/StarWarsMainTheme.mp3");
     musicaStarWars.looping = false;
     SetMusicVolume(musicaStarWars, 0.8f);
     PlayMusicStream(musicaStarWars);
