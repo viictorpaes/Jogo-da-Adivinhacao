@@ -6,3 +6,4 @@
   [2026-05-13] Lucas           | FÁCIL   | 08/10 | Secreto: 022 | VITÓRIA | 15 pts
   [2026-05-18] edu             | DIFÍCIL | 05/05 | Secreto: 053 | DERROTA | 0 pts
   [2026-05-18] lucas teste capstone 2 | FÁCIL  | 09/10 | Secreto: 007 | VITÓRIA | 10 pts
+  [2026-05-23] lucas paguetti tst video | FÁCIL  | 04/05 | Secreto: 003 | VITÓRIA | 35 pts

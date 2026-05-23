@@ -12,6 +12,7 @@
 #include "ui/menu.h"
 #include "game/jogo.h"
 #include "game/jogar_memoria.h"
+#include "game/jogos_extras.h"
 #include "history/historico.h"
 #include "static/estatisticas.h"
 
@@ -31,9 +32,13 @@ int main(void)
      * Prepara a semente aleatória antes de qualquer coisa.
      */
     inicializar_rand();
-    
+
     inicializar_historico();
     inicializar_historico_memoria();
+    inicializar_historico_vs();
+    inicializar_historico_memoria_vs();
+    inicializar_historico_logica();
+    inicializar_historico_precedencia();
 
     exibir_boas_vindas();
 
@@ -103,11 +108,31 @@ int main(void)
             pausar();
         }
 
+        else if (opcao == MENU_VS_ADIV)
+        {
+            jogar_adivinhacao_vs();
+        }
+
         else if (opcao == MENU_MEMORIA)
         {
             char nome_mem[64];
             pedir_nome_jogador(nome_mem, sizeof(nome_mem));
             jogar_memoria(nome_mem);
+        }
+
+        else if (opcao == MENU_VS_MEM)
+        {
+            jogar_memoria_vs();
+        }
+
+        else if (opcao == MENU_LOGICA)
+        {
+            jogar_logica_terminal();
+        }
+
+        else if (opcao == MENU_PRECEDENCIA)
+        {
+            jogar_precedencia_terminal();
         }
 
         else if (opcao == MENU_HISTORICO)

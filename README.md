@@ -310,7 +310,9 @@ Jogo-da-Adivinhacao/
     │   ├── logica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── logica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     │   ├── precedencia.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
-    │   └── precedencia.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── precedencia.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── jogos_extras.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── jogos_extras.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     ├── ui <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">/
     │   ├── menu.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/> 
     │   ├── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
@@ -344,9 +346,12 @@ Jogo-da-Adivinhacao/
   <strong>Status:</strong> 28 histórias de usuário implementadas e 16 futuras, definidas seguindo o padrão 3Cs e priorizadas no backlog.
 </p>
 
+<p align="center">
+<img src="img/trello_atualizado.jpeg" width="420">
+</p>
 
 <p align="center">
-  <strong>Acesse o Board do projeto e o documento completo de HUs</strong>: <br>
+  <strong>Acesse o Board do projeto e o documento completo de HUs Implementadas</strong>: <br>
   <a href="https://trello.com/b/yp8S6Ek9/jogo-de-adivinhacao-projetos-2-pif-fds" target="_blank">
     <img src="https://img.shields.io/badge/-Trello-111827?style=flat-square&logo=trello&logoColor=0052CC"/>
   </a>
@@ -366,10 +371,16 @@ Jogo-da-Adivinhacao/
   </a>
 </p>
 
+<p align="center">
+ <strong>Demonstração do Jogo via Raylib (Screencast 2):</strong> <br>
+  <a href="https://youtu.be/mInsL-gVaTs" target="_blank">
+    <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
+  </a>
+  <a href="https://www.figma.com/pt-br/comunidade/file/1623063562663924122/cesarnumber-v1" target="_blank">
+  </a>
+</p>
 
 <h2 align="center">Telas 📱 <br></h2>
-
-<!-- ── GERAL ─────────────────────────────────────────────────────────── -->
 
 <table align="center" width="780">
   <tr><th align="center">🏠 Tela Inicial</th></tr>
@@ -494,6 +505,58 @@ Jogo-da-Adivinhacao/
   <tr><td align="center"><b>Registro completo de todas as sessões jogadas — organizado por modo, com data, nome, dificuldade, tentativas e pontuação de cada partida.</b></td></tr>
   <tr><td align="center"><img src="img/historico.png" width="750" alt="Histórico de Missões"/></td></tr>
 </table>
+
+<h2 align="center">🐛 Issue / Bug Tracker</h2>
+
+<p align="center">
+  <b>Rastreamento de bugs e melhorias gerenciado via <strong>GitHub Issues</strong>:
+  <br><br>
+  <a href="https://github.com/viictorpaes/Jogo-da-Adivinhacao/issues" target="_blank">
+    <img src="https://img.shields.io/badge/-GitHub%20Issues-red?style=flat-square&logo=github&logoColor=black" height="22"/>
+  </a>
+</p>
+
+<table align="center" width="780">
+  <tr><th align="center">📋 Quadro de Issues — Visão Geral</th></tr>
+  <tr><td align="center"><b>Visão geral das issues abertas, fechadas e em andamento no repositório.</b></td></tr>
+  <tr><td align="center"><img src="img/issue1.jpeg" width="750" alt="GitHub Issues — Visão 1"/></td></tr>
+  <tr><td align="center"><img src="img/issue2.jpeg" width="750" alt="GitHub Issues — Visão 2"/></td></tr>
+</table>
+
+
+<h2 align="center">🧪 Testes de Sistema</h2>
+
+<p align="center">
+  O plano completo de testes (20 casos de teste, 95% de cobertura) está documentado em
+  <a href="./docs/CHANGELOG.md"><strong>docs/CHANGELOG.md</strong></a>.
+</p>
+
+ Módulo | Casos | Aprovados | Cobertura |
+| :--- | :---: | :---: | :---: |
+| Adivinhação | 5 | 5 | 100% |
+| Memória | 4 | 4 | 100% |
+| Histórico | 3 | 3 | 100% |
+| Estatísticas | 6 | 6 | 100% |
+| Regressão | 2 | 1 | 50% |
+| **Total** | **20** | **19** | **95%** |
+
+<br>
+
+
+<h2 align="center">🤝💻 Programação em Par</h2>
+
+> Relato de quais duplas trabalharam juntas e quais funcionalidades cada par implementou, conforme prática de *Pair Programming* adotada na Entrega 03.
+
+| Par | Funcionalidades Implementadas |
+| :--- | :--- |
+| **Lucas Paguetti + Victor Paes** | Liderança técnica do projeto — revisões de código, code review geral e integração dos módulos |
+| **Helamã Procídio + Eduardo Cavalcanti** | Capstone 1 — módulo de lógica proposicional (`logica.c`, `precedencia.c`) e frontend gráfico Raylib (`frontend.c`) |
+| **Felipe Franca** | Módulo de estatísticas (`estatisticas.c`) — funções recursivas de soma, mínimo, máximo e desvio padrão |
+| **Tiago Vasconcelos + João Pedro Arruda** | Implementação de features e novas Histórias de Usuário (modos VS, persistência e ranking) |
+
+<br>
+
+---
 
 <h2 align="center"> LICENSE <br>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-orange.svg"/></a>

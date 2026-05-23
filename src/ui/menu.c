@@ -27,15 +27,23 @@ OpcaoMenu exibir_menu_principal(void)
     printf("|                MENU PRINCIPAL 🚀                |\n");
     printf("%s\n\n", BORDA_DUPLA);
 
-    
-    printf("  1️⃣  Missão: Adivinhação 🔭\n");
-    printf("  2️⃣  Missão: Jogo da Memória 🧠\n");
-    printf("  3️⃣  Registros de Missão 📡\n");
-    printf("  4️⃣  Painel de Controle 📊\n");
-    printf("  5️⃣  Abortar Missão 🛑\n\n");
+    printf("  SOLO / LÓGICA\n");
+    printf("  1️⃣  Operação Resgate     (Adivinhação Solo) 🔭\n");
+    printf("  3️⃣  Mapas Estelares      (Memória Solo) 🧠\n");
+    printf("  5️⃣  Protocolo Lógico     (Fórmulas V/F) 🧮\n");
+    printf("  6️⃣  Hierarquia de Cmds   (Precedência) ⚙️\n\n");
+
+    printf("  VERSUS\n");
+    printf("  2️⃣  Batalha de Sinais    (Adivinhação VS) ⚔️\n");
+    printf("  4️⃣  1v1 Mapas Estelares  (Memória VS) 🃏\n\n");
+
+    printf("  MISSÃO\n");
+    printf("  7️⃣  Registros de Missão 📡\n");
+    printf("  8️⃣  Painel de Controle 📊\n");
+    printf("  9️⃣  Abortar Missão 🛑\n\n");
     printf("%s\n", LINHA_SIMPLES);
 
-    escolha = ler_inteiro(1, 5, "  Digite sua escolha: ");
+    escolha = ler_inteiro(1, 9, "  Digite sua escolha (1-9): ");
 
     return (OpcaoMenu)escolha;
 }

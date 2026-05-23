@@ -65,13 +65,17 @@ typedef enum
     ACERTOU = 2
 } Resultado;
 
-typedef enum 
+typedef enum
 {
     MENU_JOGAR         = 1,
-    MENU_MEMORIA       = 2,
-    MENU_HISTORICO     = 3,
-    MENU_ESTATISTICAS  = 4,
-    MENU_SAIR          = 5
+    MENU_VS_ADIV       = 2,
+    MENU_MEMORIA       = 3,
+    MENU_VS_MEM        = 4,
+    MENU_LOGICA        = 5,
+    MENU_PRECEDENCIA   = 6,
+    MENU_HISTORICO     = 7,
+    MENU_ESTATISTICAS  = 8,
+    MENU_SAIR          = 9
 } OpcaoMenu;
 
 typedef struct 

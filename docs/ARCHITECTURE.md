@@ -28,12 +28,12 @@ Jogo-da-Adivinhacao/
 │   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
-│   ├── historico.csv / .txt              <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o%20Solo-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   ├── historico_memoria.csv / .txt      <img src="https://img.shields.io/badge/-Mem%C3%B3ria%20Solo-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
-│   ├── historico_vs.csv / .txt           <img src="https://img.shields.io/badge/-VS%20Adivinha%C3%A7%C3%A3o-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   ├── historico_memoria_vs.csv / .txt   <img src="https://img.shields.io/badge/-VS%20Mem%C3%B3ria-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
-│   ├── historico_logica.csv / .txt       <img src="https://img.shields.io/badge/-L%C3%B3gica-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   └── historico_precedencia.csv / .txt  <img src="https://img.shields.io/badge/-Preced%C3%AAncia-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico.csv / .txt <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o%20Solo-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   ├── historico_memoria.csv / .txt <img src="https://img.shields.io/badge/-Mem%C3%B3ria%20Solo-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico_vs.csv / .txt <img src="https://img.shields.io/badge/-VS%20Adivinha%C3%A7%C3%A3o-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   ├── historico_memoria_vs.csv / .txt <img src="https://img.shields.io/badge/-VS%20Mem%C3%B3ria-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico_logica.csv / .txt <img src="https://img.shields.io/badge/-L%C3%B3gica-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   └── historico_precedencia.csv / .txt <img src="https://img.shields.io/badge/-Preced%C3%AAncia-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 └── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
     ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
     ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
@@ -47,7 +47,9 @@ Jogo-da-Adivinhacao/
     │   ├── logica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── logica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     │   ├── precedencia.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
-    │   └── precedencia.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── precedencia.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── jogos_extras.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── jogos_extras.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     ├── ui <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">/
     │   ├── menu.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
     │   ├── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
@@ -70,7 +72,7 @@ Jogo-da-Adivinhacao/
     ├── music <img src="https://img.shields.io/badge/-Módulo%20Music-111827?style=flat-square&logo=musicbrainz&logoColor=BA478F" height="18">/
     │   ├── musica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── musica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    │   └── starwars.wav <img src="https://img.shields.io/badge/-WAV-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="18"/>
+    │   └── StarWarsMainTheme.mp3 <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="18"/>
     └── include <img src="https://img.shields.io/badge/-Tipos%20Globais-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
         └── tipos.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
 </pre>
@@ -167,7 +169,7 @@ Encapsula toda a gestão de áudio da versão gráfica (Raylib). O módulo isola
 | Arquivo | Responsabilidade |
 | :--- | :--- |
 | `musica.c` / `musica.h` <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="16"/><img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="16"/> | Inicialização, atualização por frame, pausa e liberação do stream de áudio via `InitAudioDevice` / `LoadMusicStream` |
-| `starwars.wav` <br> <img src="https://img.shields.io/badge/-WAV-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="16"/> | Arquivo de áudio PCM carregado em streaming — reproduzido em loop contínuo enquanto a janela do jogo estiver aberta |
+| `StarWarsMainTheme.mp3` <br> <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="16"/> | Arquivo de áudio MP3 carregado em streaming — reproduzido em loop contínuo enquanto a janela do jogo estiver aberta |
 
 A música roda em **loop infinito**, mesmo com (`looping = false`) e é atualizada a cada frame com: 
 
@@ -204,6 +206,7 @@ O núcleo lógico do projeto. Contém seis modos de jogo com suas respectivas im
 | `jogar_memoria.c` / `jogar_memoria.h` | Loop principal e fluxo de turnos do Jogo da Memória no terminal |
 | `logica.c` / `logica.h` | Geração de fórmulas proposicionais, avaliação de tabela-verdade, classificação (tautologia/contradição/contingência) e timer por questão |
 | `precedencia.c` / `precedencia.h` | Banco de questões de múltipla-escolha sobre precedência de operadores lógicos, embaralhamento de opções e timer por questão |
+| `jogos_extras.c` / `jogos_extras.h` | Orquestrador dos modos VS e lógica no terminal — expõe `jogar_adivinhacao_vs`, `jogar_memoria_vs`, `jogar_logica_terminal` e `jogar_precedencia_terminal`, integrando os submódulos do `game/` para execução no console |
 
 ### Interface do Usuário (`ui/`)
 <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18"><br>
@@ -238,14 +241,15 @@ Centraliza a definição de `structs`, `enums` e `typedefs` globais em `tipos.h`
 main.c (console)                  main_raylib.c (gráfico)
     ├── ui/menu.h                      ├── ui/frontend.h
     ├── game/jogo.h                    ├── game/jogo.h
-    ├── game/memorygame.h              ├── game/memorygame.h
-    ├── game/jogar_memoria.h           ├── game/jogar_memoria.h
-    ├── history/historico.h            ├── game/logica.h          (novo)
-    ├── static/estatisticas.h          ├── game/precedencia.h     (novo)
-    ├── utils/utils.h                  ├── history/historico.h
-                                       ├── static/estatisticas.h
-                                       ├── utils/utils.h
-                                       └── music/musica.h  (áudio em loop)
+    ├── game/jogar_memoria.h           ├── game/memorygame.h
+    ├── game/jogos_extras.h            ├── game/jogar_memoria.h
+    │   ├── game/jogo.h                ├── game/logica.h
+    │   ├── game/memorygame.h          ├── game/precedencia.h
+    │   ├── game/logica.h              ├── history/historico.h
+    │   └── game/precedencia.h         ├── static/estatisticas.h
+    ├── history/historico.h            ├── utils/utils.h
+    ├── static/estatisticas.h          └── music/musica.h  (áudio em loop)
+    └── utils/utils.h
     └── include/tipos.h  (compartilhado por todos os módulos)
 ```
 

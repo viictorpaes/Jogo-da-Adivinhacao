@@ -19,6 +19,9 @@ SRCS = src/main.c \
 	 src/game/jogo.c \
 	 src/game/memorygame.c \
 	 src/game/jogar_memoria.c \
+	 src/game/jogos_extras.c \
+	 src/game/logica.c \
+	 src/game/precedencia.c \
 	 src/utils/utils.c \
 	 src/history/historico.c \
 	 src/static/estatisticas.c \

@@ -1,9 +1,24 @@
-# Histórias de Usuário — Missão Espacial: Adivinhação & Memória
+# Histórias de Usuário — Missão Espacial: <br> Adivinhação, Memória, Protocolo Lógico & **Hierarquia de Comandos**
 
 > **Formato:** Como `[papel]`, quero `[funcionalidade]`, para que `[benefício]`.
 
 ![Histórias Implementadas](https://img.shields.io/badge/HUs%20Implementadas-28-brightgreen?style=flat-square&logo=checkmarx&logoColor=white)
 ![Histórias Futuras](https://img.shields.io/badge/HUs%20Futuras-16-blue?style=flat-square&logo=rocket&logoColor=white)
+
+---
+
+## 🎮 Jogos Disponíveis
+
+| # | Nome do Jogo | Modalidade | Módulo |
+|---|---|---|---|
+| 1 | 🔭 **Missão: Adivinhação** | Solo | `src/game/jogo.c` |
+| 2 | ⚔️ **Batalha de Sinais** | Adivinhação VS — 2 jogadores | `src/game/jogo.c` |
+| 3 | 🧠 **Jogo da Memória** | Solo | `src/game/jogar_memoria.c` / `src/game/memorygame.c` |
+| 4 | 🪐 **1v1 Mapas Estelares** | Memória VS — 2 jogadores | `src/game/memorygame.c` |
+| 5 | 🧮 **Protocolo Lógico** | Fórmulas Proposicionais V/F — Solo | `src/game/logica.c` |
+| 6 | 🔢 **Hierarquia de Comandos** | Precedência de Operadores — Solo | `src/game/precedencia.c` |
+
+> Todos os jogos estão disponíveis na versão **terminal** (`src/main.c`) e na versão **gráfica Raylib** (`src/main_raylib.c` + `src/ui/frontend.c`).
 
 ---
 
