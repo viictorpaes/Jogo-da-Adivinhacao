@@ -174,45 +174,55 @@ static int encontrar_ou_inserir(EntradaRanking *r, int *n, const char *nome)
 
 static int construir_ranking(EntradaRanking *ranking, int *n_jogadores)
 {
-    static RegistroPartida adv[MAX_HISTORICO];
-    static RegistroMemoria mem[MAX_HISTORICO];
+    static RegistroPartida  adv[MAX_HISTORICO];
+    static RegistroMemoria  mem[MAX_HISTORICO];
+    static RegistroVS       vs[MAX_HISTORICO];
+    static RegistroPuzzle   log_a[MAX_HISTORICO];
+    static RegistroPuzzle   prec[MAX_HISTORICO];
 
-    int n_adv = carregar_historico(adv, MAX_HISTORICO);
-    int n_mem = carregar_historico_memoria(mem, MAX_HISTORICO);
+    int n_adv  = carregar_historico(adv, MAX_HISTORICO);
+    int n_mem  = carregar_historico_memoria(mem, MAX_HISTORICO);
+    int n_vs   = carregar_historico_vs(vs, MAX_HISTORICO);
+    int n_log  = carregar_historico_puzzle(log_a, MAX_HISTORICO, "logica");
+    int n_prec = carregar_historico_puzzle(prec,  MAX_HISTORICO, "precedencia");
 
     *n_jogadores = 0;
 
-    if (n_adv > 0)
+#define ACUM(nome_, pts_)                                              \
+    do {                                                               \
+        if ((pts_) > 0 && (nome_)[0]) {                               \
+            int _i = encontrar_ou_inserir(ranking, n_jogadores, nome_);\
+            if (_i >= 0) { ranking[_i].pontos_total += (pts_); ranking[_i].jogos++; } \
+        }                                                              \
+    } while (0)
+
+    for (int i = 0; i < n_adv;  i++) ACUM(adv[i].nome,  adv[i].pontos);
+    for (int i = 0; i < n_mem;  i++) ACUM(mem[i].nome,  mem[i].pontos);
+    for (int i = 0; i < n_vs;   i++) { ACUM(vs[i].nome1, vs[i].pontos1); ACUM(vs[i].nome2, vs[i].pontos2); }
+    for (int i = 0; i < n_log;  i++) ACUM(log_a[i].nome, log_a[i].pontos);
+    for (int i = 0; i < n_prec; i++) ACUM(prec[i].nome,  prec[i].pontos);
+
+    /* VS Memória: lê CSV diretamente (formato distinto) */
+    FILE *fmvs = fopen(HISTORICO_MEM_VS_CSV, "r");
+    if (fmvs)
     {
-        for (int i = 0; i < n_adv; i++)
+        char linha[256];
+        fgets(linha, sizeof(linha), fmvs);
+        while (fgets(linha, sizeof(linha), fmvs))
         {
-            if (adv[i].pontos > 0 && adv[i].nome[0] != '\0')
+            char d[11], n1[64], n2[64];
+            int p1, pt1, p2, pt2;
+            if (sscanf(linha, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d",
+                       d, n1, &p1, &pt1, n2, &p2, &pt2) == 7)
             {
-                int idx = encontrar_ou_inserir(ranking, n_jogadores, adv[i].nome);
-                if (idx >= 0)
-                {
-                    ranking[idx].pontos_total += adv[i].pontos;
-                    ranking[idx].jogos++;
-                }
+                ACUM(n1, pt1);
+                ACUM(n2, pt2);
             }
         }
+        fclose(fmvs);
     }
 
-    if (n_mem > 0)
-    {
-        for (int i = 0; i < n_mem; i++)
-        {
-            if (mem[i].pontos > 0 && mem[i].nome[0] != '\0')
-            {
-                int idx = encontrar_ou_inserir(ranking, n_jogadores, mem[i].nome);
-                if (idx >= 0)
-                {
-                    ranking[idx].pontos_total += mem[i].pontos;
-                    ranking[idx].jogos++;
-                }
-            }
-        }
-    }
+#undef ACUM
 
     for (int i = 0; i < *n_jogadores - 1; i++)
     {
@@ -344,12 +354,122 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
 
     PUSH(" ");
 
+    /* VS Adivinhação */
+    static RegistroVS vs_arr[MAX_HISTORICO];
+    int n_vs = carregar_historico_vs(vs_arr, MAX_HISTORICO);
+
+    PUSH("=== BATALHA DE SINAIS (VS) ===");
+    if (n_vs <= 0)
+    {
+        PUSH("  Nenhuma partida registrada.");
+    }
+    else
+    {
+        int v1 = 0, v2 = 0, emp = 0;
+        for (int i = 0; i < n_vs; i++)
+        {
+            if      (vs_arr[i].vencedor == 1) v1++;
+            else if (vs_arr[i].vencedor == 2) v2++;
+            else                              emp++;
+        }
+        PUSH("  Partidas: %d  |  Vit. J1: %d  |  Vit. J2: %d  |  Empates: %d",
+             n_vs, v1, v2, emp);
+    }
+
+    PUSH(" ");
+
+    /* VS Memória */
+    PUSH("=== 1v1 MAPAS ESTELARES ===");
+    {
+        FILE *fmvs = fopen(HISTORICO_MEM_VS_CSV, "r");
+        if (!fmvs)
+        {
+            PUSH("  Nenhuma partida registrada.");
+        }
+        else
+        {
+            char ln[256];
+            int  n_mvs = 0, tot_pares = 0;
+            fgets(ln, sizeof(ln), fmvs);
+            while (fgets(ln, sizeof(ln), fmvs))
+            {
+                char d[11], n1[64], n2[64];
+                int p1, pt1, p2, pt2;
+                if (sscanf(ln, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d",
+                           d, n1, &p1, &pt1, n2, &p2, &pt2) == 7)
+                { n_mvs++; tot_pares += p1 + p2; }
+            }
+            fclose(fmvs);
+            if (n_mvs <= 0)
+            {
+                PUSH("  Nenhuma partida registrada.");
+            }
+            else
+            {
+                PUSH("  Partidas: %d  |  Média de pares/lado: %.1f",
+                     n_mvs, (double)tot_pares / n_mvs / 2.0);
+            }
+        }
+    }
+
+    PUSH(" ");
+
+    /* Protocolo Lógico */
+    static RegistroPuzzle log_arr[MAX_HISTORICO];
+    int n_log = carregar_historico_puzzle(log_arr, MAX_HISTORICO, "logica");
+
+    PUSH("=== PROTOCOLO LÓGICO ===");
+    if (n_log <= 0)
+    {
+        PUSH("  Nenhuma partida registrada.");
+    }
+    else
+    {
+        int tot_ac = 0, tot_tot = 0, melhor = 0;
+        for (int i = 0; i < n_log; i++)
+        {
+            tot_ac  += log_arr[i].acertos;
+            tot_tot += log_arr[i].total;
+            if (log_arr[i].pontos > melhor) melhor = log_arr[i].pontos;
+        }
+        int pct = tot_tot > 0 ? (tot_ac * 100 / tot_tot) : 0;
+        PUSH("  Partidas: %d  |  Acertos: %d/%d (%d%%)  |  Melhor: %d pts",
+             n_log, tot_ac, tot_tot, pct, melhor);
+    }
+
+    PUSH(" ");
+
+    /* Hierarquia de Comandos */
+    static RegistroPuzzle prec_arr[MAX_HISTORICO];
+    int n_prec = carregar_historico_puzzle(prec_arr, MAX_HISTORICO, "precedencia");
+
+    PUSH("=== HIERARQUIA DE COMANDOS ===");
+    if (n_prec <= 0)
+    {
+        PUSH("  Nenhuma partida registrada.");
+    }
+    else
+    {
+        int tot_ac = 0, tot_tot = 0, melhor = 0;
+        for (int i = 0; i < n_prec; i++)
+        {
+            tot_ac  += prec_arr[i].acertos;
+            tot_tot += prec_arr[i].total;
+            if (prec_arr[i].pontos > melhor) melhor = prec_arr[i].pontos;
+        }
+        int pct = tot_tot > 0 ? (tot_ac * 100 / tot_tot) : 0;
+        PUSH("  Partidas: %d  |  Acertos: %d/%d (%d%%)  |  Melhor: %d pts",
+             n_prec, tot_ac, tot_tot, pct, melhor);
+    }
+
+    PUSH(" ");
+
     EntradaRanking ranking[MAX_JOGADORES];
     memset(ranking, 0, sizeof(ranking));
     int n_jog = 0;
     construir_ranking(ranking, &n_jog);
 
-    PUSH("=== RANKING GERAL (Adivinhação + Memória) ===");
+    PUSH("=== RANKING GERAL (Todos os Jogos) ===");
     if (n_jog == 0)
     {
         PUSH("  Nenhum jogador com pontuacao ainda.");

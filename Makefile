@@ -28,6 +28,8 @@ SRCS_RAYLIB = src/main_raylib.c \
 	 src/game/jogo.c \
 	 src/game/memorygame.c \
 	 src/game/jogar_memoria.c \
+	 src/game/logica.c \
+	 src/game/precedencia.c \
 	 src/utils/utils.c \
 	 src/history/historico.c \
 	 src/static/estatisticas.c \

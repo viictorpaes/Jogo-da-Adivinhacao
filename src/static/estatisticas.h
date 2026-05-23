@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "../include/tipos.h"
 
-#define MAX_LINHAS_STATS 40
+#define MAX_LINHAS_STATS 64
 #define STATS_LINHA_LEN  160
 
 int calcular_pontos(Dificuldade dif, int tentativas, bool venceu);

@@ -1,8 +1,8 @@
-# Histórias de Usuário — Jogo de Adivinhação
+# Histórias de Usuário — Missão Espacial: Adivinhação & Memória
 
 > **Formato:** Como `[papel]`, quero `[funcionalidade]`, para que `[benefício]`.
 
-![Histórias Implementadas](https://img.shields.io/badge/HUs%20Implementadas-20-brightgreen?style=flat-square&logo=checkmarx&logoColor=white)
+![Histórias Implementadas](https://img.shields.io/badge/HUs%20Implementadas-28-brightgreen?style=flat-square&logo=checkmarx&logoColor=white)
 ![Histórias Futuras](https://img.shields.io/badge/HUs%20Futuras-16-blue?style=flat-square&logo=rocket&logoColor=white)
 
 ---
@@ -36,17 +36,56 @@
 | HU-07 | Como **jogador**, quero receber feedback de proximidade espacial após cada tentativa ("Sem sinal" / "Interferência estática" / "Sinal detectado" / "Frequência muito próxima" / "Sinal estabelecido!"), para que eu saiba quão perto estou do alvo de forma imersiva. |
 | HU-08 | Como **jogador**, quero que entradas inválidas (fora do intervalo ou não numéricas) sejam rejeitadas com mensagem de erro, para que o jogo não seja interrompido por inputs incorretos. |
 | HU-09 | Como **jogador**, quero saber quantas tentativas restam a cada rodada, para que eu possa gerenciar minha estratégia antes de esgotar as chances. |
+| HU-10 | Como **jogador**, quero um cronômetro regressivo por tentativa (15s), para que cada palpite tenha urgência e uma tentativa seja consumida automaticamente ao esgotar o tempo. |
 
 ---
 
-### 🌕 Jogo da Memória
+### ⚔️ Batalha de Sinais (Adivinhação VS — 2 Jogadores)
 
 | # | História |
 |---|---|
-| HU-13 | Como **jogador**, quero virar pares de cartas em um grid para combiná-los, para que eu complete o tabuleiro memorizando as posições das coordenadas. |
-| HU-14 | Como **jogador**, quero que o tamanho do tabuleiro varie com a dificuldade (4×4 / 4×5 / 6×6), para que o desafio seja proporcional ao nível escolhido. |
-| HU-15 | Como **jogador**, quero ver um cronômetro durante a partida de memória, para que eu saiba quanto tempo levei para completar o tabuleiro. |
-| HU-16 | Como **jogador**, quero ver um contador de erros durante a partida de memória, para que eu acompanhe meu desempenho e tente melhorá-lo nas próximas partidas. |
+| HU-11 | Como **jogador**, quero disputar a adivinhação contra outro jogador em turnos alternados no mesmo dispositivo, para que a competição seja possível sem necessidade de rede. |
+| HU-12 | Como **jogador VS**, quero que o jogo se estenda por até 3 rodadas com placar acumulado, para que o vencedor seja determinado pela melhor de 3 e não por uma única tentativa. |
+
+---
+
+### 🌕 Jogo da Memória (Solo)
+
+| # | História |
+|---|---|
+| HU-13 | Como **jogador**, quero virar pares de cartas em um grid 4×4 para combiná-los, para que eu complete o tabuleiro memorizando as posições das coordenadas. |
+| HU-14 | Como **jogador**, quero um cronômetro regressivo na memória (base 30s + bônus de 10s por par acertado), para que cada erro custe tempo e acertos prolonguem a partida. |
+| HU-15 | Como **jogador**, quero ver um contador de pares encontrados e jogadas realizadas em tempo real, para que eu acompanhe meu desempenho durante a partida. |
+| HU-16 | Como **jogador**, quero que cartas erradas fiquem visíveis por um instante antes de serem ocultadas novamente, para que eu tenha chance de memorizar as posições. |
+
+---
+
+### 🪐 1v1 Mapas Estelares (Memória VS)
+
+| # | História |
+|---|---|
+| HU-24 | Como **jogador**, quero disputar o jogo da memória contra outro jogador em turnos no mesmo dispositivo, com timer independente por jogador, para que a partida seja equilibrada e competitiva. |
+| HU-25 | Como **jogador VS de memória**, quero que quem acertar um par continue jogando e quem errar passe o turno ao adversário, para que a estratégia de manter turnos longos seja recompensada. |
+
+---
+
+### 🧮 Protocolo Lógico (Fórmulas V/F)
+
+| # | História |
+|---|---|
+| HU-26 | Como **jogador**, quero avaliar se uma fórmula proposicional é Verdadeira ou Falsa para os valores dados de P, Q e R, para que eu pratique lógica proposicional de forma interativa. |
+| HU-27 | Como **jogador**, quero classificar cada fórmula como Tautologia, Contradição ou Contingência após respondê-la, para que eu aprofunde meu entendimento sobre classificação lógica. |
+| HU-28 | Como **jogador**, quero receber um timer por questão (15–30s conforme dificuldade) e feedback imediato ao final, para que a pressão do tempo torne o estudo mais desafiador. |
+
+---
+
+### 🔢 Hierarquia de Comandos (Precedência de Operadores)
+
+| # | História |
+|---|---|
+| HU-29 | Como **jogador**, quero receber uma expressão lógica sem parênteses e escolher qual opção de parentetização respeita a precedência dos operadores (~, ^, V, ->, <->), para que eu pratique a ordem de avaliação de fórmulas. |
+| HU-30 | Como **jogador**, quero que as opções de resposta sejam embaralhadas a cada questão, para que a posição da alternativa correta não seja previsível. |
+| HU-31 | Como **jogador**, quero receber feedback visual destacando a resposta correta ao final de cada questão e uma pontuação acumulada, para que eu saiba onde errei e motive a melhora. |
 
 ---
 
@@ -143,9 +182,9 @@
 
 | Status | Quantidade |
 |---|---|
-| ✅ Implementadas | 20 histórias |
+| ✅ Implementadas | 28 histórias |
 | 🚀 Futuras | 16 histórias |
-| **Total** | **36 histórias** |
+| **Total** | **44 histórias** |
 
 ---
 

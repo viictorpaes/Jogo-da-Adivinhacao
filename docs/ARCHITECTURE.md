@@ -28,10 +28,12 @@ Jogo-da-Adivinhacao/
 │   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
-│   ├── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   ├── historico.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
-│   ├── historico_memoria.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   └── historico_memoria.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico.csv / .txt              <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o%20Solo-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   ├── historico_memoria.csv / .txt      <img src="https://img.shields.io/badge/-Mem%C3%B3ria%20Solo-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico_vs.csv / .txt           <img src="https://img.shields.io/badge/-VS%20Adivinha%C3%A7%C3%A3o-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   ├── historico_memoria_vs.csv / .txt   <img src="https://img.shields.io/badge/-VS%20Mem%C3%B3ria-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico_logica.csv / .txt       <img src="https://img.shields.io/badge/-L%C3%B3gica-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   └── historico_precedencia.csv / .txt  <img src="https://img.shields.io/badge/-Preced%C3%AAncia-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 └── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
     ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
     ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
@@ -41,7 +43,11 @@ Jogo-da-Adivinhacao/
     │   ├── memorygame.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── memorygame.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     │   ├── jogar_memoria.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
-    │   └── jogar_memoria.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── jogar_memoria.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── logica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   ├── logica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── precedencia.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── precedencia.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     ├── ui <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">/
     │   ├── menu.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
     │   ├── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
@@ -126,13 +132,13 @@ Centraliza o conhecimento do projeto:
 | **ADR.md** <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="16"/> | Registro das decisões arquiteturais (5 ADRs): dual entry-point, persistência CSV+TXT, recursão em estatísticas, `EstadoUI` e heurísticas estáticas |
 | **API.md** <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="16"/> | Especificação das funções e contratos entre os módulos |
 | **ARCHITECTURE.md** <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="16"/> | Visão macro do sistema e padrões de projeto |
-| **CHANGELOG.md** <img src="https://img.shields.io/badge/-CHANGELOG-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="16"/> | Plano de testes com 20 casos de teste (19 aprovados, 95% de cobertura) distribuídos entre os módulos Adivinhação, Memória, Histórico, Estatísticas e Regressão |
+| **CHANGELOG.md** <img src="https://img.shields.io/badge/-CHANGELOG-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="16"/> | Plano de testes distribuídos entre os módulos Adivinhação, Memória, Lógica, Precedência, Histórico, Estatísticas e Regressão |
 | **CONTRIBUTING.md** <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="16"/> | Contribuidores do projeto |
-| **FRONTEND_RAYLIB.md** <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="16"/> | Instruções de compilação e uso da versão gráfica |
-| **Histórias_de_Usuário.md** <img src="https://img.shields.io/badge/-HUs-111827?style=flat-square&logo=trello&logoColor=0052CC" height="16"/> | 23 histórias implementadas e 16 futuras no formato 3Cs |
+| **FRONTEND_RAYLIB.md** <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="16"/> | Instruções de compilação e uso da versão gráfica (janela 1200×800, 6 modos) |
+| **Histórias_de_Usuário.md** <img src="https://img.shields.io/badge/-HUs-111827?style=flat-square&logo=trello&logoColor=0052CC" height="16"/> | 28 histórias implementadas e 16 futuras no formato 3Cs |
 | **MEMORIA.md** <img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="16"/> | Documentação do módulo Jogo da Memória |
 | **ROADMAP.md** <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="16"/> | Registro das sprints do projeto com tarefas e responsáveis por integrante da equipe |
-| **schema.md** <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="16"/> | Definição da estrutura de dados para salvar o histórico |
+| **schema.md** <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="16"/> | Definição das 6 estruturas de dados para salvar o histórico por modo |
 | **SECURITY.md** <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="16"/> | Lógica do RNG e boas práticas para evitar previsibilidade |
 
 ---
@@ -140,14 +146,16 @@ Centraliza o conhecimento do projeto:
 ## 📊 Persistência de Dados (`data/`)
 
 <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18"><br>
-Diretório que contém os arquivos físicos de dados de ambos os jogos. Cada jogo mantém um par de arquivos independente: o `.txt` é a base de dados principal lida/escrita pelo módulo `history/`, enquanto o `.csv` espelha os mesmos dados em formato tabular para análise externa.
+Diretório que contém os arquivos físicos de dados de todos os modos de jogo. Cada modo mantém um par de arquivos independente: o `.txt` é legível pelo módulo `history/`, enquanto o `.csv` espelha os mesmos dados em formato tabular para análise externa.
 
-| Arquivo | Jogo | Formato |
+| Par de arquivos (`csv` + `txt`) | Modo | Campos principais |
 | :--- | :--- | :--- |
-| `historico.txt` | Jogo da Adivinhação | Base de dados principal |
-| `historico.csv` | Jogo da Adivinhação | Exportação para análise externa |
-| `historico_memoria.txt` | Jogo da Memória | Base de dados principal |
-| `historico_memoria.csv` | Jogo da Memória | Exportação para análise externa |
+| `historico.*` | Adivinhação Solo | data, nome, dificuldade, tentativas, secreto, resultado, pts |
+| `historico_memoria.*` | Memória Solo | data, nome, pontuacao, tentativas, pts |
+| `historico_vs.*` | Adivinhação VS | data, nome1, nome2, dificuldade, vitórias, pts por jogador, vencedor |
+| `historico_memoria_vs.*` | Memória 1v1 | data, nome1/2, pares, pts por jogador |
+| `historico_logica.*` | Protocolo Lógico | data, nome, acertos, total, pts, modo |
+| `historico_precedencia.*` | Hierarquia de Cmds | data, nome, acertos, total, pts, modo |
 
 ---
 
@@ -187,13 +195,15 @@ O projeto possui dois pontos de entrada independentes:
 
 ### Motor do Jogo (`game/`)
 <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
-O núcleo lógico do projeto. Contém dois jogos distintos com suas respectivas implementações:
+O núcleo lógico do projeto. Contém seis modos de jogo com suas respectivas implementações:
 
 | Arquivo | Responsabilidade |
 | :--- | :--- |
-| `jogo.c` / `jogo.h` | Sorteio de números, validação de palpites e regras de pontuação/dificuldade do Jogo da Adivinhação |
-| `memorygame.c` / `memorygame.h` | Estrutura de dados do tabuleiro 4×4, embaralhamento (Fisher-Yates) e lógica de pares |
-| `jogar_memoria.c` / `jogar_memoria.h` | Loop principal e fluxo de turnos do Jogo da Memória |
+| `jogo.c` / `jogo.h` | Sorteio de números, validação de palpites e regras de pontuação/dificuldade do Jogo da Adivinhação (Solo e VS) |
+| `memorygame.c` / `memorygame.h` | Estrutura de dados do tabuleiro 4×4, embaralhamento (Fisher-Yates) e lógica de pares (Solo e 1v1) |
+| `jogar_memoria.c` / `jogar_memoria.h` | Loop principal e fluxo de turnos do Jogo da Memória no terminal |
+| `logica.c` / `logica.h` | Geração de fórmulas proposicionais, avaliação de tabela-verdade, classificação (tautologia/contradição/contingência) e timer por questão |
+| `precedencia.c` / `precedencia.h` | Banco de questões de múltipla-escolha sobre precedência de operadores lógicos, embaralhamento de opções e timer por questão |
 
 ### Interface do Usuário (`ui/`)
 <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18"><br>
@@ -230,11 +240,13 @@ main.c (console)                  main_raylib.c (gráfico)
     ├── game/jogo.h                    ├── game/jogo.h
     ├── game/memorygame.h              ├── game/memorygame.h
     ├── game/jogar_memoria.h           ├── game/jogar_memoria.h
-    ├── history/historico.h            ├── history/historico.h
-    ├── static/estatisticas.h          ├── static/estatisticas.h
-    ├── utils/utils.h                  ├── utils/utils.h
-                                       └── src/music/musica.h  (áudio em loop)
-    └── include/tipos.h  (compartilhado por todos)
+    ├── history/historico.h            ├── game/logica.h          (novo)
+    ├── static/estatisticas.h          ├── game/precedencia.h     (novo)
+    ├── utils/utils.h                  ├── history/historico.h
+                                       ├── static/estatisticas.h
+                                       ├── utils/utils.h
+                                       └── music/musica.h  (áudio em loop)
+    └── include/tipos.h  (compartilhado por todos os módulos)
 ```
 
 > [!NOTE]

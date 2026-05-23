@@ -55,9 +55,11 @@
 
 <b>O projeto foi desenvolvido focando em modularização e boas práticas de programação em C:</b>
 
-* **Modularização:** Divisão do código em arquivos `.h` (cabeçalhos) e `.c` (implementação) para facilitar a manutenção e organização lógica (Game, Utils, History, Stats).
+* **Modularização:** Divisão do código em arquivos `.h` (cabeçalhos) e `.c` (implementação) para facilitar a manutenção e organização lógica (Game, UI, History, Stats, Music).
+* **6 modos de jogo:** Adivinhação Solo/VS, Memória Solo/VS (1v1), Protocolo Lógico (tabelas-verdade) e Hierarquia de Comandos (precedência lógica).
 * **Gerenciamento de Memória:** Uso de estruturas de dados eficientes para manipulação de ranking e histórico sem vazamento de memória.
-* **Manipulação de Arquivos:** Persistência de dados em formato CSV/TXT, garantindo que o progresso do jogador não seja perdido ao fechar o terminal.
+* **Persistência Multi-modo:** Seis pares de arquivos CSV/TXT independentes — um por modo de jogo — garantindo que o progresso não seja perdido ao fechar.
+* **Timer por modo:** Contador regressivo em todos os modos (adivinhação, VS, memória, lógica e precedência), com bônus de tempo ao acertar pares na memória.
 * **Algoritmo de Aleatoriedade:** Utilização da biblioteca `time.h` para garantir sementes de números aleatórios únicas a cada execução.
 
 
@@ -162,13 +164,21 @@ Após baixar o Github desktop: <br>
 
 ### 🎮🟢🟡🔴 Níveis de Dificuldade
 
-A dificuldade selecionada altera o intervalo de números possíveis e restringe o número de tentativas, recompensando a precisão com pontuações maiores.
+A dificuldade selecionada altera o intervalo de números, o número de tentativas e o tempo por rodada, recompensando a precisão com pontuações maiores.
 
-| Nível | Intervalo | Tentativas | Pontuação Base | Desafio |
-| :--- | :---: | :---: | :---: | :--- |
-| **Fácil** | `1 a 50` | 10 | 1000 | 🟢 Baixo |
-| **Médio** | `1 a 100` | 7 | 2000 | 🟡 Moderado |
-| **Difícil** | `1 a 200` | 5 | 5000 | 🔴 Alto |
+#### Adivinhação & VS
+| Nível | Patente | Intervalo | Tentativas | Timer |
+| :--- | :--- | :---: | :---: | :---: |
+| **Fácil**  | Cadete     | `1 a 10`  | 5  | 15s / palpite |
+| **Médio**  | Piloto     | `1 a 50`  | 8  | 15s / palpite |
+| **Difícil**| Comandante | `1 a 100` | 10 | 15s / palpite |
+
+#### Protocolo Lógico & Hierarquia de Comandos
+| Nível | Questões | Tempo / questão |
+| :--- | :---: | :---: |
+| **Fácil**  | 8  | 30s |
+| **Médio**  | 10 | 20s |
+| **Difícil**| 12 | 15s |
 
 ### 📡🚀🌌🔭 Sistema de Feedback Espacial
 
@@ -281,20 +291,26 @@ Jogo-da-Adivinhacao/
 │   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
-│   ├── historico.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   ├── historico.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
-│   ├── historico_memoria.csv <img src="https://img.shields.io/badge/-CSV-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
-│   └── historico_memoria.txt <img src="https://img.shields.io/badge/-TXT-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico.csv / .txt <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   ├── historico_memoria.csv / .txt <img src="https://img.shields.io/badge/-Mem%C3%B3ria%20Solo-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico_vs.csv / .txt <img src="https://img.shields.io/badge/-VS%20Adivinha%C3%A7%C3%A3o-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   ├── historico_memoria_vs.csv / .txt <img src="https://img.shields.io/badge/-VS%20Mem%C3%B3ria-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+│   ├── historico_logica.csv / .txt <img src="https://img.shields.io/badge/-L%C3%B3gica-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
+│   └── historico_precedencia.csv / .txt  <img src="https://img.shields.io/badge/-Preced%C3%AAncia-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 └── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
     ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
     ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
     ├── game <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── jogo.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── jogo.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    │   ├── memorygame.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/> 
+    │   ├── memorygame.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── memorygame.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    │   ├── jogar_memoria.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/> 
-    │   └── jogar_memoria.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── jogar_memoria.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   ├── jogar_memoria.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── logica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   ├── logica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
+    │   ├── precedencia.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
+    │   └── precedencia.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
     ├── ui <img src="https://img.shields.io/badge/-Módulo%20UI-111827?style=flat-square&logo=materialdesign&logoColor=757575" height="18">/
     │   ├── menu.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/> 
     │   ├── menu.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=9C27B0" height="18"/>
@@ -325,7 +341,7 @@ Jogo-da-Adivinhacao/
 
 <h3 align="center"> 🚀 Backlog e Boarding (Trello) </h3>
 <p align="center">
-  <strong>Status:</strong> 20 histórias de usuário implementadas e 16 futuras, definidas seguindo o padrão 3Cs e priorizadas no backlog.
+  <strong>Status:</strong> 28 histórias de usuário implementadas e 16 futuras, definidas seguindo o padrão 3Cs e priorizadas no backlog.
 </p>
 
 
@@ -353,50 +369,130 @@ Jogo-da-Adivinhacao/
 
 <h2 align="center">Telas 📱 <br></h2>
 
+<!-- ── GERAL ─────────────────────────────────────────────────────────── -->
+
 <table align="center" width="780">
   <tr><th align="center">🏠 Tela Inicial</th></tr>
-  <tr><td align="center"><b>Menu principal do jogo — o jogador escolhe entre os modos disponíveis: Adivinhação, Memória e acesso ao Histórico/Estatísticas.</b></td></tr>
-  <tr><td align="center"><img src="img/tela_inicial.jpeg" width="750" alt="Tela Inicial"/></td></tr>
+  <tr><td align="center"><b>Menu principal — o jogador escolhe entre os seis modos de missão (Solo/VS) e acessa Histórico, Estatísticas ou sai do jogo.</b></td></tr>
+  <tr><td align="center"><img src="img/tela_inicial.png" width="750" alt="Tela Inicial"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">✏️ Salvar Nome</th></tr>
-  <tr><td align="center"><b>Tela de cadastro do astronauta — o jogador insere seu nome antes de iniciar a partida para que o resultado seja salvo no ranking.</b></td></tr>
-  <tr><td align="center"><img src="img/salvar_nome.jpeg" width="750" alt="Salvar Nome"/></td></tr>
+  <tr><th align="center">✏️ Identificação do Astronauta</th></tr>
+  <tr><td align="center"><b>Cadastro do jogador — insira seu nome antes de iniciar qualquer missão solo para que o resultado seja salvo no ranking.</b></td></tr>
+  <tr><td align="center"><img src="img/salvar_nome.png" width="750" alt="Identificação do Astronauta"/></td></tr>
+</table>
+
+<br>
+
+<!-- ── SOLO / LÓGICA ──────────────────────────────────────────────────── -->
+
+<table align="center" width="780">
+  <tr><th align="center">🎯 Selecionar Patente — Operação Resgate</th></tr>
+  <tr><td align="center"><b>Seleção de dificuldade para Adivinhação Solo — Cadete (1-10, 5 tent.), Piloto (1-50, 8 tent.) ou Comandante (1-100, 10 tent.).</b></td></tr>
+  <tr><td align="center"><img src="img/operacao_resgate_patente.png" width="750" alt="Selecionar Patente — Operação Resgate"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">🔭 Jogo de Adivinhação</th></tr>
-  <tr><td align="center"><b>Modo single-player de adivinhação — sintonize a frequência de resgate correta dentro do número de tentativas disponíveis, com feedback espacial em tempo real.</b></td></tr>
-  <tr><td align="center"><img src="img/adivinhação_tela.jpeg" width="750" alt="Jogo de Adivinhação"/></td></tr>
+  <tr><th align="center">🧠 Mapas Estelares (Solo)</th></tr>
+  <tr><td align="center"><b>Modo memória single-player — encontre os pares de coordenadas estelares no grid 4×4 dentro do tempo limite. Quanto menos jogadas, maior a pontuação.</b></td></tr>
+  <tr><td align="center"><img src="img/mapas_estelares_solo.png" width="750" alt="Mapas Estelares Solo"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">🧠 Jogo de Memória</th></tr>
-  <tr><td align="center"><b>Modo single-player de memória — encontre os pares de coordenadas estelares no grid. Quanto menos tentativas, maior a pontuação.</b></td></tr>
-  <tr><td align="center"><img src="img/memória.jpeg" width="750" alt="Jogo de Memória"/></td></tr>
+  <tr><th align="center">🔬 Selecionar Patente — Protocolo Lógico</th></tr>
+  <tr><td align="center"><b>Seleção de dificuldade para o modo de fórmulas lógicas — escolha entre Cadete, Piloto ou Comandante antes de começar as questões V/F.</b></td></tr>
+  <tr><td align="center"><img src="img/protocolo_logico_patente.png" width="750" alt="Selecionar Patente — Protocolo Lógico"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">📊 Estatísticas</th></tr>
-  <tr><td align="center"><b>Painel de desempenho — exibe médias de tentativas, melhor e pior sessão, e outros dados calculados a partir do histórico de partidas.</b></td></tr>
-  <tr><td align="center"><img src="img/estátisticas.jpeg" width="750" alt="Estatísticas"/></td></tr>
+  <tr><th align="center">🔬 Protocolo Lógico</th></tr>
+  <tr><td align="center"><b>Modo de fórmulas V/F — avalie se a fórmula proposicional exibida é Verdadeira ou Falsa para os valores dados, dentro do tempo limite.</b></td></tr>
+  <tr><td align="center"><img src="img/protocolo_logico.png" width="750" alt="Protocolo Lógico"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">📜 Histórico</th></tr>
-  <tr><td align="center"><b>Registro completo de todas as sessões jogadas — mostra data, nome do jogador, dificuldade, tentativas utilizadas e resultado de cada partida.</b></td></tr>
-  <tr><td align="center"><img src="img/histórico.jpeg" width="750" alt="Histórico"/></td></tr>
+  <tr><th align="center">⚙️ Selecionar Patente — Hierarquia de Comandos</th></tr>
+  <tr><td align="center"><b>Seleção de dificuldade para o modo de precedência lógica — escolha entre Cadete, Piloto ou Comandante antes de começar.</b></td></tr>
+  <tr><td align="center"><img src="img/hierarquia_cmds_patente.png" width="750" alt="Selecionar Patente — Hierarquia de Comandos"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">⚙️ Hierarquia de Comandos</th></tr>
+  <tr><td align="center"><b>Modo de precedência lógica — adicione parênteses para indicar a precedência correta dos operadores na fórmula exibida, escolhendo entre quatro alternativas.</b></td></tr>
+  <tr><td align="center"><img src="img/hierarquia_cmds.png" width="750" alt="Hierarquia de Comandos"/></td></tr>
+</table>
+
+<br>
+
+<!-- ── VERSUS ─────────────────────────────────────────────────────────── -->
+
+<table align="center" width="780">
+  <tr><th align="center">⚔️ Identificação — Astronauta 1 (VS)</th></tr>
+  <tr><td align="center"><b>Cadastro do primeiro jogador no modo Versus — insira o nome do Astronauta 1 antes de iniciar a Batalha de Sinais ou os 1v1 Mapas Estelares.</b></td></tr>
+  <tr><td align="center"><img src="img/salvar_nome_vs_j1.png" width="750" alt="Identificação Astronauta 1 VS"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">⚔️ Identificação — Astronauta 2 (VS)</th></tr>
+  <tr><td align="center"><b>Cadastro do segundo jogador — insira o nome do Astronauta 2 para completar a dupla antes de iniciar a partida VS.</b></td></tr>
+  <tr><td align="center"><img src="img/salvar_nome_vs_j2.png" width="750" alt="Identificação Astronauta 2 VS"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">⚔️ Batalha de Sinais — 1v1</th></tr>
+  <tr><td align="center"><b>Adivinhação Versus — os dois astronautas disputam rodadas tentando acertar a frequência secreta; o placar lateral indica de quem é o turno e o progresso.</b></td></tr>
+  <tr><td align="center"><img src="img/batalha_sinais_vs.png" width="750" alt="Batalha de Sinais 1v1"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🤝 1v1 Mapas Estelares — Turno do Astronauta 1</th></tr>
+  <tr><td align="center"><b>Memória Versus — turno do Astronauta 1; o timer individual conta regressivamente enquanto o jogador tenta revelar pares no grid 4×4.</b></td></tr>
+  <tr><td align="center"><img src="img/mapas_estelares_vs_j1.png" width="750" alt="1v1 Mapas Estelares — Turno J1"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🤝 1v1 Mapas Estelares — Turno do Astronauta 2</th></tr>
+  <tr><td align="center"><b>Memória Versus — turno do Astronauta 2; o placar exibe o tempo acumulado de cada jogador e o número de pares encontrados.</b></td></tr>
+  <tr><td align="center"><img src="img/mapas_estelares_vs_j2.png" width="750" alt="1v1 Mapas Estelares — Turno J2"/></td></tr>
+</table>
+
+<br>
+
+<!-- ── ESTATÍSTICAS & HISTÓRICO ───────────────────────────────────────── -->
+
+<table align="center" width="780">
+  <tr><th align="center">📊 Estatísticas de Missões</th></tr>
+  <tr><td align="center"><b>Painel de desempenho global — exibe médias, mínimos, máximos e ranking geral de pontos de todos os modos (Adivinhação, Memória, Lógica, VS).</b></td></tr>
+  <tr><td align="center"><img src="img/estatisticas.png" width="750" alt="Estatísticas de Missões"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">📜 Histórico de Missões</th></tr>
+  <tr><td align="center"><b>Registro completo de todas as sessões jogadas — organizado por modo, com data, nome, dificuldade, tentativas e pontuação de cada partida.</b></td></tr>
+  <tr><td align="center"><img src="img/historico.png" width="750" alt="Histórico de Missões"/></td></tr>
 </table>
 
 <h2 align="center"> LICENSE <br>

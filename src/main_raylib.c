@@ -8,17 +8,21 @@
 #include <windows.h>
 #endif
 
-int main(void) 
+int main(void)
 {
     setlocale(LC_ALL, "");
-    
+
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
     inicializar_historico();
     inicializar_historico_memoria();
+    inicializar_historico_vs();
+    inicializar_historico_memoria_vs();
+    inicializar_historico_logica();
+    inicializar_historico_precedencia();
     executar_frontend();
-    
+
     return 0;
 }
