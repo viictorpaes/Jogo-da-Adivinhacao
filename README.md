@@ -376,7 +376,7 @@ Jogo-da-Adivinhacao/
   <a href="https://youtu.be/mInsL-gVaTs" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
-  <a href="https://www.figma.com/pt-br/comunidade/file/1623063562663924122/cesarnumber-v1" target="_blank" height="25"><img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="25"/>
+  <a href="#" target="_blank" height="25"><img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="25"/>
   </a>
 </p>
 
@@ -397,8 +397,6 @@ Jogo-da-Adivinhacao/
 </table>
 
 <br>
-
-<!-- ── SOLO / LÓGICA ──────────────────────────────────────────────────── -->
 
 <table align="center" width="780">
   <tr><th align="center">🎯 Selecionar Patente — Operação Resgate</th></tr>
@@ -448,8 +446,6 @@ Jogo-da-Adivinhacao/
 
 <br>
 
-<!-- ── VERSUS ─────────────────────────────────────────────────────────── -->
-
 <table align="center" width="780">
   <tr><th align="center">⚔️ Identificação — Astronauta 1 (VS)</th></tr>
   <tr><td align="center"><b>Cadastro do primeiro jogador no modo Versus — insira o nome do Astronauta 1 antes de iniciar a Batalha de Sinais ou os 1v1 Mapas Estelares.</b></td></tr>
@@ -490,8 +486,6 @@ Jogo-da-Adivinhacao/
 
 <br>
 
-<!-- ── ESTATÍSTICAS & HISTÓRICO ───────────────────────────────────────── -->
-
 <table align="center" width="780">
   <tr><th align="center">📊 Estatísticas de Missões</th></tr>
   <tr><td align="center"><b>Painel de desempenho global — exibe médias, mínimos, máximos e ranking geral de pontos de todos os modos (Adivinhação, Memória, Lógica, VS).</b></td></tr>
@@ -509,7 +503,7 @@ Jogo-da-Adivinhacao/
 <h2 align="center">🐛 Issue / Bug Tracker</h2>
 
 <p align="center">
-  <b>Rastreamento de bugs e melhorias gerenciado via <strong>GitHub Issues</strong>:
+  <b>Rastreamento de bugs e melhorias. Gerenciado via <strong>GitHub Issues</strong>:
   <br><br>
   <a href="https://github.com/viictorpaes/Jogo-da-Adivinhacao/issues" target="_blank">
     <img src="https://img.shields.io/badge/-GitHub%20Issues-red?style=flat-square&logo=github&logoColor=black" height="22"/>
@@ -517,9 +511,16 @@ Jogo-da-Adivinhacao/
 </p>
 
 <table align="center" width="780">
-  <tr><th align="center">📋 Quadro de Issues — Visão Geral</th></tr>
-  <tr><td align="center"><b>Visão geral das issues abertas, fechadas e em andamento no repositório.</b></td></tr>
+  <tr><th align="center">📋 Quadro de Issues — Visão 1</th></tr>
+  <tr><td align="center"><b>Visão geral das issues abertas e em andamento no repositório.</b></td></tr>
   <tr><td align="center"><img src="img/issue1.jpeg" width="750" alt="GitHub Issues — Visão 1"/></td></tr>
+</table>
+
+<br/>
+
+<table align="center" width="780">
+  <tr><th align="center">📋 Quadro de Issues — Visão 2</th></tr>
+  <tr><td align="center"><b>Visão geral das issues fechadas e histórico de resoluções no repositório.</b></td></tr>
   <tr><td align="center"><img src="img/issue2.jpeg" width="750" alt="GitHub Issues — Visão 2"/></td></tr>
 </table>
 
