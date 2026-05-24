@@ -78,25 +78,56 @@ pacman -S mingw-w64-x86_64-raylib
 ## 🎮 Funcionalidades
 
 ### Menu Principal
-- Escolha entre **Jogo da Adivinhação** ou **Jogo da Memória**
-- Opção para sair da aplicação
+- Escolha entre os **6 modos de jogo** disponíveis
+- Acesse Histórico, Estatísticas ou saia da aplicação
 
-### Jogo da Adivinhação
+### 🔭 Missão: Adivinhação (Solo)
 | Etapa | Detalhe |
 | :--- | :--- |
-| Dificuldade | Fácil (1–50 / 10 tent.), Médio (1–100 / 7 tent.), Difícil (1–200 / 5 tent.) |
+| Dificuldade | Fácil (1–10 / 5 tent.), Médio (1–50 / 8 tent.), Difícil (1–100 / 10 tent.) |
 | Palpite | Campo de texto — confirme com **Enter** |
-| Feedback | O jogo informa se o número é **maior** ou **menor** |
-| Resultado | Exibe vitória/derrota, número secreto e tentativas usadas |
+| Feedback | "Maior" ou "Menor" com indicador de proximidade espacial |
+| Timer | Regressivo de 15s por palpite; tentativa consumida ao esgotar |
+| Resultado | Vitória/derrota com patente, pontuação e heurística de estratégia |
 
-### Jogo da Memória
+### ⚔️ Batalha de Sinais (Adivinhação VS — 2 Jogadores)
+| Etapa | Detalhe |
+| :--- | :--- |
+| Turnos | Dois jogadores alternam palpites no mesmo dispositivo |
+| Rodadas | Até 3 rodadas com placar acumulado |
+| Resultado | Vencedor da melhor de 3 com histórico separado |
+
+### 🧠 Jogo da Memória (Solo)
 | Etapa | Detalhe |
 | :--- | :--- |
 | Tabuleiro | 4×4 com 16 casas e 8 pares |
 | Jogada | Clique em duas casas para revelar |
+| Timer | Regressivo de 30s base + bônus de 10s por par acertado |
 | Acerto | Casas permanecem reveladas; +10 pontos |
-| Erro | Casas voltam a ficar ocultas |
 | Fim | Exibe pontuação, pares, tentativas e eficiência |
+
+### 🪐 1v1 Mapas Estelares (Memória VS — 2 Jogadores)
+| Etapa | Detalhe |
+| :--- | :--- |
+| Turnos | Acerto mantém o turno; erro passa ao adversário |
+| Timer | Independente por jogador |
+| Resultado | Vencedor por maior pontuação com histórico separado |
+
+### 🧮 Protocolo Lógico (Fórmulas V/F)
+| Etapa | Detalhe |
+| :--- | :--- |
+| Questões | Fácil: 8, Médio: 10, Difícil: 12 |
+| Timer | 30s / 20s / 15s por questão conforme dificuldade |
+| Resposta | Avaliar V/F e classificar (Tautologia/Contradição/Contingência) |
+| Patente | Sistema de rank progressivo por desempenho |
+
+### 🔢 Hierarquia de Comandos (Precedência de Operadores)
+| Etapa | Detalhe |
+| :--- | :--- |
+| Questões | Fácil: 8, Médio: 10, Difícil: 12 |
+| Timer | 35s / 30s / 25s por questão conforme dificuldade |
+| Resposta | Escolher a parentetização correta entre 4 opções embaralhadas |
+| Patente | Sistema de rank progressivo por desempenho |
 
 ---
 
@@ -104,20 +135,21 @@ pacman -S mingw-w64-x86_64-raylib
 
 | Contexto | Controle | Ação |
 | :--- | :---: | :--- |
-| Adivinhação | Números / `Enter` | Digitar e confirmar palpite |
+| Adivinhação / Lógica / Precedência | Números / `Enter` | Digitar e confirmar entrada |
 | Adivinhação | `ESC` | Voltar ao menu |
 | Memória | Clique do mouse | Selecionar casa |
 | Memória | `ESC` | Voltar ao menu |
-| Menu | Clique do mouse | Selecionar opção |
+| Lógica / Precedência | `1` / `2` / `3` / `4` | Selecionar opção de resposta |
+| Menu | Clique do mouse | Selecionar modo de jogo |
 
 ---
 
 ## 🏗️ Arquitetura do Frontend
 
 O frontend mantém um estado centralizado (`EstadoUI`) que controla:
-- Estado atual da aplicação (`MENU`, `JOGO_ADIVINHACAO`, `JOGO_MEMORIA`, `RESULTADO`)
-- Dados da partida em andamento
-- Buffer de entrada do usuário
+- Estado atual da aplicação (`MENU`, `JOGO_ADIVINHACAO`, `JOGO_BATALHA_SINAIS`, `JOGO_MEMORIA`, `JOGO_MEMORIA_VS`, `JOGO_LOGICA`, `JOGO_PRECEDENCIA`, `RESULTADO`, `HISTORICO`, `ESTATISTICAS` e estados auxiliares)
+- Dados da partida em andamento (para todos os 6 modos)
+- Buffer de entrada do usuário e cache de histórico
 
 **Fluxo por frame:**
 ```
@@ -144,8 +176,8 @@ Loop principal
 
 <table align="center" width="780">
   <tr><th align="center">🏠 Tela Inicial</th></tr>
-  <tr><td align="center"><b>Menu principal do jogo — o jogador escolhe entre os modos disponíveis: Adivinhação, Memória e acesso ao Histórico/Estatísticas.</b></td></tr>
-  <tr><td align="center"><img src="../img/tela_inicial.jpeg" width="750" alt="Tela Inicial"/></td></tr>
+  <tr><td align="center"><b>Menu principal do jogo — o jogador escolhe entre os 6 modos disponíveis ou acessa Histórico/Estatísticas.</b></td></tr>
+  <tr><td align="center"><img src="../img/tela_inicial.png" width="750" alt="Tela Inicial"/></td></tr>
 </table>
 
 <br>
@@ -153,31 +185,84 @@ Loop principal
 <table align="center" width="780">
   <tr><th align="center">✏️ Salvar Nome</th></tr>
   <tr><td align="center"><b>Tela de cadastro do astronauta — o jogador insere seu nome antes de iniciar a partida para que o resultado seja salvo no ranking.</b></td></tr>
-  <tr><td align="center"><img src="../img/salvar_nome.jpeg" width="750" alt="Salvar Nome"/></td></tr>
+  <tr><td align="center"><img src="../img/salvar_nome.png" width="750" alt="Salvar Nome"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">🔭 Jogo de Adivinhação</th></tr>
-  <tr><td align="center"><b>Modo single-player de adivinhação — sintonize a frequência de resgate correta dentro do número de tentativas disponíveis, com feedback espacial em tempo real.</b></td></tr>
-  <tr><td align="center"><img src="../img/adivinhação_tela.jpeg" width="750" alt="Jogo de Adivinhação"/></td></tr>
+  <tr><th align="center">🔭 Operação Resgate — Patente</th></tr>
+  <tr><td align="center"><b>Tela de patente da Missão Adivinhação — exibe o rank conquistado, pontuação e heurística de estratégia ao final da partida.</b></td></tr>
+  <tr><td align="center"><img src="../img/operacao_resgate_patente.png" width="750" alt="Operação Resgate Patente"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">🧠 Jogo de Memória</th></tr>
+  <tr><th align="center">⚔️ Batalha de Sinais VS</th></tr>
+  <tr><td align="center"><b>Modo 2 jogadores de adivinhação — dois astronautas competem em turnos alternados para sintonizar a frequência correta primeiro.</b></td></tr>
+  <tr><td align="center"><img src="../img/batalha_sinais_vs.png" width="750" alt="Batalha de Sinais VS"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🪐 Mapas Estelares — Solo</th></tr>
   <tr><td align="center"><b>Modo single-player de memória — encontre os pares de coordenadas estelares no grid. Quanto menos tentativas, maior a pontuação.</b></td></tr>
-  <tr><td align="center"><img src="../img/memória.jpeg" width="750" alt="Jogo de Memória"/></td></tr>
+  <tr><td align="center"><img src="../img/mapas_estelares_solo.png" width="750" alt="Mapas Estelares Solo"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🪐 Mapas Estelares — VS (Jogador 1 e 2)</th></tr>
+  <tr><td align="center"><b>Modo 2 jogadores de memória — turnos independentes; acerto mantém o turno, erro passa ao adversário. Timer separado por jogador.</b></td></tr>
+  <tr>
+    <td align="center">
+      <img src="../img/mapas_estelares_vs_j1.png" width="370" alt="Mapas Estelares VS J1"/>
+      <img src="../img/mapas_estelares_vs_j2.png" width="370" alt="Mapas Estelares VS J2"/>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🧮 Protocolo Lógico</th></tr>
+  <tr><td align="center"><b>Modo de fórmulas proposicionais — avalie V/F e classifique cada fórmula. Timer regressivo por questão; sistema de patentes progressivo.</b></td></tr>
+  <tr><td align="center"><img src="../img/protocolo_logico.png" width="750" alt="Protocolo Lógico"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🧮 Protocolo Lógico — Patente</th></tr>
+  <tr><td align="center"><b>Tela de patente do Protocolo Lógico — rank conquistado com base no percentual de acertos na sessão.</b></td></tr>
+  <tr><td align="center"><img src="../img/protocolo_logico_patente.png" width="750" alt="Protocolo Lógico Patente"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🔢 Hierarquia de Comandos</th></tr>
+  <tr><td align="center"><b>Modo de precedência de operadores — escolha a parentetização correta entre 4 opções embaralhadas, com timer regressivo por questão.</b></td></tr>
+  <tr><td align="center"><img src="../img/hierarquia_cmds.png" width="750" alt="Hierarquia de Comandos"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🔢 Hierarquia de Comandos — Patente</th></tr>
+  <tr><td align="center"><b>Tela de patente da Hierarquia de Comandos — rank conquistado com base no desempenho.</b></td></tr>
+  <tr><td align="center"><img src="../img/hierarquia_cmds_patente.png" width="750" alt="Hierarquia de Comandos Patente"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
   <tr><th align="center">📊 Estatísticas</th></tr>
-  <tr><td align="center"><b>Painel de desempenho — exibe médias de tentativas, melhor e pior sessão, e outros dados calculados a partir do histórico de partidas.</b></td></tr>
-  <tr><td align="center"><img src="../img/estátisticas.jpeg" width="750" alt="Estatísticas"/></td></tr>
+  <tr><td align="center"><b>Painel de desempenho — exibe médias de tentativas, melhor e pior sessão, desvio padrão e dados calculados a partir do histórico de partidas.</b></td></tr>
+  <tr><td align="center"><img src="../img/estatisticas.png" width="750" alt="Estatísticas"/></td></tr>
 </table>
 
 <br>
@@ -185,6 +270,6 @@ Loop principal
 <table align="center" width="780">
   <tr><th align="center">📜 Histórico</th></tr>
   <tr><td align="center"><b>Registro completo de todas as sessões jogadas — mostra data, nome do jogador, dificuldade, tentativas utilizadas e resultado de cada partida.</b></td></tr>
-  <tr><td align="center"><img src="../img/histórico.jpeg" width="750" alt="Histórico"/></td></tr>
+  <tr><td align="center"><img src="../img/historico.png" width="750" alt="Histórico"/></td></tr>
 </table>
 

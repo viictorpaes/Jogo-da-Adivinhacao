@@ -78,10 +78,91 @@
 <img src="https://img.shields.io/badge/-Módulo%20History-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
 `src/history/historico.h` / `src/history/historico.c`
 
+### Adivinhação Solo
+
 | Função | Descrição |
 | :--- | :--- |
-| `int historico_salvar(const Partida *p)` | Persiste uma partida no arquivo `data/historico.csv` |
-| `int historico_carregar(Partida *lista, int max)` | Lê o CSV e popula o array de `Partida`; retorna quantidade lida |
+| `bool inicializar_historico(void)` | Cria `data/historico.csv` e `.txt` se não existirem |
+| `bool salvar_partida(const RegistroPartida *r)` | Persiste um registro de adivinhação (CSV + TXT) |
+| `int carregar_historico(RegistroPartida *buf, int max)` | Lê o CSV e popula o array; retorna quantidade lida |
+| `void exibir_historico(void)` | Imprime o histórico de adivinhação no terminal |
+| `void liberar_historico(void)` | Libera recursos associados ao histórico |
+
+### Memória Solo
+
+| Função | Descrição |
+| :--- | :--- |
+| `bool inicializar_historico_memoria(void)` | Cria `data/historico_memoria.*` se não existirem |
+| `bool salvar_partida_memoria(const RegistroMemoria *r)` | Persiste um registro de memória (CSV + TXT) |
+| `int carregar_historico_memoria(RegistroMemoria *buf, int max)` | Lê o CSV e popula o array; retorna quantidade lida |
+| `void exibir_historico_memoria(void)` | Imprime o histórico de memória no terminal |
+
+### Adivinhação VS
+
+| Função | Descrição |
+| :--- | :--- |
+| `bool inicializar_historico_vs(void)` | Cria `data/historico_vs.*` se não existirem |
+| `bool salvar_partida_vs(const RegistroVS *r)` | Persiste um registro VS de adivinhação (CSV + TXT) |
+| `int carregar_historico_vs(RegistroVS *buf, int max)` | Lê o CSV e popula o array; retorna quantidade lida |
+
+### Memória VS
+
+| Função | Descrição |
+| :--- | :--- |
+| `bool inicializar_historico_memoria_vs(void)` | Cria `data/historico_memoria_vs.*` se não existirem |
+| `bool salvar_partida_memoria_vs(const RegistroMemoria *r1, const RegistroMemoria *r2)` | Persiste os registros dos dois jogadores (CSV + TXT) |
+| `int carregar_historico_memoria_vs(RegistroMemoriaVS *buf, int max)` | Lê o CSV e popula o array; retorna quantidade lida |
+
+### Protocolo Lógico e Hierarquia de Comandos
+
+| Função | Descrição |
+| :--- | :--- |
+| `bool inicializar_historico_logica(void)` | Cria `data/historico_logica.*` se não existirem |
+| `bool inicializar_historico_precedencia(void)` | Cria `data/historico_precedencia.*` se não existirem |
+| `bool salvar_puzzle(const RegistroPuzzle *r)` | Persiste um registro de puzzle (Lógica ou Precedência) com base no campo `r->modo` |
+| `int carregar_historico_puzzle(RegistroPuzzle *buf, int max, const char *modo)` | Lê o CSV do modo indicado (`"logica"` ou `"precedencia"`) e popula o array |
+
+---
+
+## 🧮 Módulo `game` — Protocolo Lógico
+<img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
+`src/game/logica.h` / `src/game/logica.c`
+
+| Função | Descrição |
+| :--- | :--- |
+| `JogoLogica inicializar_jogo_logica(Dificuldade dif)` | Cria novo jogo com número de questões e timer por questão baseados na dificuldade |
+| `void gerar_proxima_questao_logica(JogoLogica *j)` | Gera uma nova fórmula proposicional aleatória e define a resposta correta |
+| `void responder_vf_logica(JogoLogica *j, bool resposta)` | Registra a resposta V/F do jogador e avança para a fase de classificação |
+| `void responder_classif_logica(JogoLogica *j, ClassFormula resp)` | Registra a classificação (Tautologia/Contradição/Contingência) e encerra a questão |
+| `void atualizar_timer_logica(JogoLogica *j, double dt)` | Decrementa o timer da questão atual; avança automaticamente ao esgotar |
+| `int calcular_pontos_logica(const JogoLogica *j)` | Retorna a pontuação final com base nos acertos e no nível de dificuldade |
+
+---
+
+## 🔢 Módulo `game` — Hierarquia de Comandos (Precedência)
+<img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
+`src/game/precedencia.h` / `src/game/precedencia.c`
+
+| Função | Descrição |
+| :--- | :--- |
+| `JogoPrecedencia inicializar_jogo_precedencia(Dificuldade dif)` | Cria novo jogo com número de questões e timer por questão baseados na dificuldade |
+| `void gerar_proxima_questao_prec(JogoPrecedencia *j)` | Seleciona aleatoriamente uma questão do banco sem repetição e embaralha as opções |
+| `void responder_precedencia(JogoPrecedencia *j, int opcao)` | Registra a opção escolhida (0–3), verifica o acerto e inicia o feedback |
+| `void atualizar_timer_prec(JogoPrecedencia *j, double dt)` | Decrementa o timer da questão atual; avança automaticamente ao esgotar |
+| `int calcular_pontos_prec(const JogoPrecedencia *j)` | Retorna a pontuação final com base nos acertos e no nível de dificuldade |
+
+---
+
+## 🎲 Módulo `game` — Jogos Extras (Orquestrador Terminal)
+<img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
+`src/game/jogos_extras.h` / `src/game/jogos_extras.c`
+
+| Função | Descrição |
+| :--- | :--- |
+| `void jogar_adivinhacao_vs(void)` | Loop completo do modo Batalha de Sinais (2 jogadores, até 3 rodadas) no terminal |
+| `void jogar_memoria_vs(void)` | Loop completo do modo 1v1 Mapas Estelares (turnos alternados) no terminal |
+| `void jogar_logica_terminal(void)` | Loop completo do Protocolo Lógico (console), incluindo seleção de dificuldade e salvamento |
+| `void jogar_precedencia_terminal(void)` | Loop completo da Hierarquia de Comandos (console), incluindo seleção de dificuldade e salvamento |
 
 ---
 
@@ -91,9 +172,15 @@
 
 | Função | Descrição |
 | :--- | :--- |
-| `float estatisticas_media_tentativas(const Partida *lista, int n)` | Calcula a média de tentativas de uma lista de partidas |
-| `void estatisticas_exibir_ranking(const Partida *lista, int n)` | Exibe o ranking dos melhores desempenhos por pontuação |
-| `void estatisticas_melhor_pior(const Partida *lista, int n, Partida *melhor, Partida *pior)` | Retorna a melhor e a pior sessão pelo número de tentativas |
+| `int calcular_pontos(Dificuldade dif, int tentativas, bool venceu)` | Calcula a pontuação do Jogo da Adivinhação com base no nível e tentativas |
+| `int calcular_pontos_memoria(int tentativas)` | Calcula a pontuação do Jogo da Memória com bônus de eficiência |
+| `const char *heuristica_adivinhacao(int tentativas, int max, bool venceu, Dificuldade dif)` | Retorna string estática com dica estratégica exibida na tela de resultado |
+| `const char *heuristica_memoria(int tentativas, int pontos)` | Retorna string estática com feedback motivacional do Jogo da Memória |
+| `void preparar_resumo_adivinhacao(char *buf, int len)` | Preenche `buf` com resumo estatístico (média, min, max, desvio) do histórico de adivinhação |
+| `void preparar_resumo_memoria(char *buf, int len)` | Preenche `buf` com resumo estatístico do histórico de memória |
+| `void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)` | Preenche o array `linhas` com todas as métricas formatadas para exibição no frontend |
+| `void exibir_estatisticas(void)` | Exibe o painel completo de estatísticas no terminal |
+| `void exibir_historico_analitico(void)` | Exibe o histórico de adivinhação com resumo analítico (funções recursivas) |
 
 ---
 
@@ -104,14 +191,15 @@
 #include "ui/menu.h"
 #include "game/jogo.h"
 
-int main(void) {
+int main(void) 
+{
     utils_inicializar_semente();
 
     int opcao = menu_exibir_principal();
-    if (opcao == 1) {
+    if (opcao == 1) 
+    {
         dificuldade_t nivel = menu_selecionar_dificuldade();
         int secreto = jogo_gerar_numero(nivel);
-        /* loop de palpites... */
     }
 
     return 0;

@@ -283,8 +283,8 @@ Jogo-da-Adivinhacao/
 │   ├── ARCHITECTURE.md <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
 │   ├── CONTRIBUTING.md <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
 │   ├── FRONTEND_RAYLIB.md <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="18"/>
+│   ├── GAMES.md <img src="https://img.shields.io/badge/-Games-111827?style=flat-square&logo=gamepad&logoColor=4CAF50" height="18"/>
 │   ├── Histórias_de_Usuário.md <img src="https://img.shields.io/badge/-Histórias_de_Usuário-111827?style=flat-square&logo=markdown&logoColor=blue" height="18"/>
-│   ├── MEMORIA.md <img src="https://img.shields.io/badge/-Memória-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 │   ├── CHANGELOG.md <img src="https://img.shields.io/badge/-Testes-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="18"/>
 │   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
 │   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">

@@ -5,13 +5,13 @@
 > Formato: contexto → decisão → consequências.
 
 
-## ADR-001: Dois pontos de entrada independentes (console vs Raylib)
+## ADR-001: Dois pontos de entrada independentes (Console vs Raylib)
 
 ![Status](https://img.shields.io/badge/status-aceito-brightgreen?style=flat-square) ![Categoria](https://img.shields.io/badge/categoria-arquitetura-blue?style=flat-square)
 
 ### Contexto
 
-O projeto precisava suportar duas interfaces distintas — terminal (console) e gráfica (Raylib) — sem duplicar a lógica de negócio.
+O projeto precisava suportar <b>duas interfaces distintas</b> — <i>terminal (console)</i> e <i>gráfica (Raylib)</i> — sem duplicar a lógica de negócio.
 
 ### Decisão
 
@@ -115,6 +115,81 @@ As funções `heuristica_adivinhacao` e `heuristica_memoria` retornam `const cha
 | ✅ | Zero alocação dinâmica, sem risco de leak |
 | ✅ | Thread-safe (literais são imutáveis) |
 | ⚠️ | Para adicionar novas heurísticas localizadas/dinâmicas no futuro, a interface precisará mudar |
+
+---
+
+## ADR-006: Persistência multi-modo — arquivos independentes por tipo de jogo
+
+![Status](https://img.shields.io/badge/status-aceito-brightgreen?style=flat-square) ![Categoria](https://img.shields.io/badge/categoria-persistência-orange?style=flat-square)
+
+### Contexto
+
+Com a expansão para 6 modos (Adivinhação, Memória, Protocolo Lógico, Precedência de Operadores, e variantes VS), o modelo anterior de dois arquivos únicos misturaria dados de formatos incompatíveis e tornaria rankings por modo inviáveis.
+
+### Decisão
+
+Criar um par `CSV + TXT` independente por modo em `data/`:
+
+| Arquivo | Modo |
+|---|---|
+| `historico.csv / .txt` | Adivinhação Solo |
+| `historico_memoria.csv / .txt` | Memória Solo |
+| `historico_logica.csv / .txt` | Protocolo Lógico |
+| `historico_precedencia.csv / .txt` | Precedência de Operadores |
+| `historico_vs.csv / .txt` | Adivinhação Versus |
+| `historico_memoria_vs.csv / .txt` | Memória Versus |
+
+### Consequências
+
+| | |
+|---|---|
+| ✅ | Estatísticas e rankings isolados e corretos por modo |
+| ✅ | Cada arquivo pode crescer independentemente sem colisões de schema |
+| ⚠️ | 12 arquivos em `data/` — estrutura mais verbosa que gerenciar |
+
+---
+
+## ADR-007: Módulo de música isolado em `src/music/`
+
+![Status](https://img.shields.io/badge/status-aceito-brightgreen?style=flat-square) ![Categoria](https://img.shields.io/badge/categoria-áudio-teal?style=flat-square)
+
+### Contexto
+
+A tematização astronauta exigia trilha sonora em loop contínuo na versão Raylib, mas embutir a lógica de áudio em `frontend.c` aumentaria a complexidade de um arquivo já extenso.
+
+### Decisão
+
+Isolar toda a lógica de áudio em `src/music/musica.c` (inicialização do `AudioDevice`, carregamento do `.mp3`, loop e finalização). O `main_raylib.c` chama apenas `iniciar_musica()` e `parar_musica()`.
+
+### Consequências
+
+| | |
+|---|---|
+| ✅ | `frontend.c` não mistura lógica de renderização com áudio |
+| ✅ | Fácil desativar ou trocar a trilha sem tocar na UI |
+| ⚠️ | Arquivo `StarWarsMainTheme.mp3` (~8 MB) incluído no repositório |
+
+---
+
+## ADR-008: Sistema de patentes como feedback de progressão
+
+![Status](https://img.shields.io/badge/status-aceito-brightgreen?style=flat-square) ![Categoria](https://img.shields.io/badge/categoria-ux%2Fgamificação-gold?style=flat-square)
+
+### Contexto
+
+Os modos Protocolo Lógico e Precedência de Operadores precisavam de feedback motivacional além da pontuação numérica, alinhado com a temática espacial do jogo.
+
+### Decisão
+
+Implementar funções `get_patente_logica()` / `get_patente_precedencia()` em seus respectivos módulos (`logica.c`, `precedencia.c`). Elas retornam `const char *` para literais de patente progressivas (Recruta → Piloto → Tenente → Comandante…) baseadas em faixas de pontuação.
+
+### Consequências
+
+| | |
+|---|---|
+| ✅ | Consistente com a decisão ADR-005 (strings estáticas, sem alocação) |
+| ✅ | Reforça a tematização astronauta e incentiva replayability |
+| ⚠️ | Novas patentes ou faixas de score exigem recompilação |
 
 ---
 

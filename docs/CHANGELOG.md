@@ -1,9 +1,9 @@
 <h1 align="center">Change Log / Plano de Testes
 <br>
-<img src="https://img.shields.io/badge/testes-20-111827?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
-<img src="https://img.shields.io/badge/aprovados-19-brightgreen?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
+<img src="https://img.shields.io/badge/testes-27-111827?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
+<img src="https://img.shields.io/badge/aprovados-26-brightgreen?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
 <img src="https://img.shields.io/badge/pendentes-1-yellow?style=flat-square&logo=clockify&logoColor=white" height="22"/>
-<img src="https://img.shields.io/badge/cobertura-95%25-blue?style=flat-square&logo=jest&logoColor=white" height="22"/>
+<img src="https://img.shields.io/badge/cobertura-96%25-blue?style=flat-square&logo=jest&logoColor=white" height="22"/>
 </h1>
 
 <p align="center"><b>Especificação dos casos de teste para validar os requisitos funcionais do projeto.</b></p>
@@ -12,9 +12,9 @@
 
 ## 1. Escopo
 
-![Módulos](https://img.shields.io/badge/módulos-5-111827?style=flat-square&logo=c&logoColor=A8B9CC)
+![Módulos](https://img.shields.io/badge/módulos-7-111827?style=flat-square&logo=c&logoColor=A8B9CC)
 
-Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memória** (console e Raylib), **Histórico** (CSV/TXT), **Estatísticas** (funções recursivas e heurísticas) e **Regressão**.
+Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memória** (console e Raylib), **Protocolo Lógico**, **Hierarquia de Comandos**, **Histórico** (CSV/TXT), **Estatísticas** (funções recursivas e heurísticas) e **Regressão**.
 
 ### Cobertura por Módulo
 
@@ -22,10 +22,12 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 |--------|:--------------:|:---------:|:---------:|--------|
 | Adivinhação | 5 | 5 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
 | Memória | 4 | 4 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
+| Protocolo Lógico | 4 | 4 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
+| Hierarquia de Cmds | 3 | 3 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
 | Histórico | 3 | 3 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
 | Estatísticas | 6 | 6 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
 | Regressão | 2 | 1 | 1 | ![](https://img.shields.io/badge/50%25-yellow?style=flat-square) |
-| **Total** | **20** | **19** | **1** | ![](https://img.shields.io/badge/95%25-blue?style=flat-square) |
+| **Total** | **27** | **26** | **1** | ![](https://img.shields.io/badge/96%25-blue?style=flat-square) |
 
 ---
 
@@ -44,7 +46,7 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 | **Descrição** | O número gerado deve estar dentro do intervalo da dificuldade selecionada |
 | **Pré-condição** | Dificuldade selecionada (Fácil/Médio/Difícil) |
 | **Entrada** | Iniciar partida |
-| **Resultado esperado** | Fácil: 1–50 \| Médio: 1–100 \| Difícil: 1–200 |
+| **Resultado esperado** | Fácil: 1–10 (5 tent.) \| Médio: 1–50 (8 tent.) \| Difícil: 1–100 (10 tent.) |
 
 ---
 
@@ -157,9 +159,9 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 
 ---
 
-## 4. Casos de Teste — Histórico (Persistência)
+## 4. Casos de Teste — Histórico (Persistência — 6 pares de arquivos)
 
-![Módulo](https://img.shields.io/badge/módulo-histórico-111827?style=flat-square&logo=databricks&logoColor=FF3621)
+![Módulo](https://img.shields.io/badge/módulo-histórico-FF3621?style=flat-square&logo=databricks&logoColor=FF3621)
 ![Cobertura](https://img.shields.io/badge/cobertura-3%2F3-brightgreen?style=flat-square)
 
 ### CT-HIST-01: Criar arquivos de histórico
@@ -169,8 +171,8 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 
 | Campo | Valor |
 |-------|-------|
-| **Descrição** | `inicializar_historico()` cria CSV e TXT se não existirem |
-| **Resultado esperado** | Arquivos criados com cabeçalho correto |
+| **Descrição** | Cada `inicializar_historico_*()` cria o par CSV + TXT correspondente se não existirem |
+| **Resultado esperado** | 6 pares de arquivos criados com cabeçalho correto ao iniciar o app |
 
 ---
 
@@ -198,7 +200,7 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 
 ---
 
-## 5. Casos de Teste — Estatísticas (Funções Recursivas)
+## 5. Casos de Teste — Estatísticas (Funções Recursivas e Heurísticas)
 
 ![Módulo](https://img.shields.io/badge/módulo-estatísticas-111827?style=flat-square&logo=c&logoColor=A8B9CC)
 ![Cobertura](https://img.shields.io/badge/cobertura-6%2F6-brightgreen?style=flat-square)
@@ -278,9 +280,110 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 
 ---
 
-## 6. Testes de Regressão
+## 6. Casos de Teste — Protocolo Lógico
 
-![Módulo](https://img.shields.io/badge/módulo-regressão-111827?style=flat-square&logo=git&logoColor=F05032)
+![Módulo](https://img.shields.io/badge/módulo-protocolo%20lógico-111827?style=flat-square&logo=c&logoColor=A8B9CC)
+![Cobertura](https://img.shields.io/badge/cobertura-4%2F4-brightgreen?style=flat-square)
+
+### CT-LOG-01: Inicialização do jogo
+
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
+![Prioridade](https://img.shields.io/badge/prioridade-alta-red?style=flat-square)
+
+| Campo | Valor |
+|-------|-------|
+| **Descrição** | `inicializar_jogo_logica(MEDIO)` deve configurar 10 questões e timer de 20s |
+| **Entrada** | `dif = MEDIO` |
+| **Resultado esperado** | `j.questoes_total == 10`, `j.tempo_por_questao == 20.0`, `j.finalizado == false` |
+
+---
+
+### CT-LOG-02: Resposta correta V/F
+
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
+![Prioridade](https://img.shields.io/badge/prioridade-alta-red?style=flat-square)
+
+| Campo | Valor |
+|-------|-------|
+| **Descrição** | Responder V/F corretamente deve avançar para fase de classificação |
+| **Entrada** | `responder_vf_logica(&j, j.resp_correta_vf)` |
+| **Resultado esperado** | `j.fase == FASE_CLASSIF`, `j.acertou_vf == true` |
+
+---
+
+### CT-LOG-03: Classificação de fórmula
+
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
+![Prioridade](https://img.shields.io/badge/prioridade-média-orange?style=flat-square)
+
+| Campo | Valor |
+|-------|-------|
+| **Descrição** | Classificar corretamente incrementa `acertos_class`; incorreto mantém |
+| **Entrada** | `responder_classif_logica(&j, j.classificacao)` |
+| **Resultado esperado** | `j.acertos_class` incrementado, `j.fase == FASE_FEEDBACK` |
+
+---
+
+### CT-LOG-04: Pontuação final
+
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
+![Prioridade](https://img.shields.io/badge/prioridade-alta-red?style=flat-square)
+
+| Campo | Valor |
+|-------|-------|
+| **Descrição** | `calcular_pontos_logica` retorna valor proporcional aos acertos |
+| **Entrada** | 10 questões, 8 acertos V/F, 6 acertos de classificação, `MEDIO` |
+| **Resultado esperado** | Pontuação positiva proporcional ao desempenho |
+
+---
+
+## 7. Casos de Teste — Hierarquia de Comandos (Precedência)
+
+![Módulo](https://img.shields.io/badge/módulo-hierarquia%20de%20cmds-111827?style=flat-square&logo=c&logoColor=A8B9CC)
+![Cobertura](https://img.shields.io/badge/cobertura-3%2F3-brightgreen?style=flat-square)
+
+### CT-PREC-01: Inicialização e banco de questões
+
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
+![Prioridade](https://img.shields.io/badge/prioridade-alta-red?style=flat-square)
+
+| Campo | Valor |
+|-------|-------|
+| **Descrição** | `inicializar_jogo_precedencia(FACIL)` deve configurar 8 questões e timer de 35s |
+| **Entrada** | `dif = FACIL` |
+| **Resultado esperado** | `j.questoes_total == 8`, `j.tempo_por_questao == 35.0`, `j.n_usados == 0` |
+
+---
+
+### CT-PREC-02: Resposta correta incrementa acertos
+
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
+![Prioridade](https://img.shields.io/badge/prioridade-alta-red?style=flat-square)
+
+| Campo | Valor |
+|-------|-------|
+| **Descrição** | Selecionar a opção correta deve marcar `acertou = true` e incrementar `acertos` |
+| **Entrada** | `responder_precedencia(&j, j.questao.correta)` |
+| **Resultado esperado** | `j.acertou == true`, `j.acertos == 1`, `j.mostrando_feedback == true` |
+
+---
+
+### CT-PREC-03: Questões não se repetem
+
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
+![Prioridade](https://img.shields.io/badge/prioridade-média-orange?style=flat-square)
+
+| Campo | Valor |
+|-------|-------|
+| **Descrição** | Ao gerar N questões consecutivas, os índices usados devem ser todos distintos |
+| **Entrada** | `gerar_proxima_questao_prec` chamada 8 vezes |
+| **Resultado esperado** | `j.indices_usados` sem repetições; `j.n_usados == 8` |
+
+---
+
+## 8. Testes de Regressão
+
+![Módulo](https://img.shields.io/badge/módulo-regressão-F05032?style=flat-square&logo=git&logoColor=F05032)
 ![Cobertura](https://img.shields.io/badge/cobertura-1%2F2-yellow?style=flat-square)
 
 ### CT-REG-01: 100 sessões consecutivas de adivinhação
@@ -290,7 +393,7 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 
 | Campo | Valor |
 |-------|-------|
-| **Descrição** | Após 100 partidas, o arquivo `historico.csv` deve ter 101 linhas (cabeçalho + 100) |
+| **Descrição** | Após 100 partidas de adivinhação, `historico.csv` deve ter 101 linhas (cabeçalho + 100); idem para os demais modos |
 | **Observação** | Agendado para o Capstone 3 |
 
 ---

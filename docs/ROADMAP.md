@@ -4,7 +4,7 @@
 > <b>Registro das sprints do projeto, com as tarefas atribuídas a cada integrante da equipe.</b>
 
 <h2 align="center">👥 Equipe <br>
-<img src="https://img.shields.io/badge/-CONTRIBUTING-111827?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/></h2>
+<img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/></h2>
 
 | Membro | Papel | Área de Atuação |
 |--------|-------|-----------------|
@@ -88,6 +88,29 @@
 
 ---
 
+## Sprint 5.5 — FDS Entrega 3 + Expansão de Modos
+
+**Período:** mai/2026  
+**Objetivo:** Implementar novos modos de jogo (Lógica, Precedência, Versus), sistema de patentes, trilha sonora e cumprir os requisitos da Entrega 3 de FDS (pair programming, issue tracker, screencasts).
+
+| Tarefa | Responsável | Status |
+|--------|-------------|--------|
+| Implementar modo Protocolo Lógico (`logica.c`) | ![Helamã](https://img.shields.io/badge/Helamã-frontend-9B59B6?style=flat-square) ![Eduardo](https://img.shields.io/badge/Eduardo-core-2E8B57?style=flat-square) | ✅ Concluído |
+| Implementar modo Precedência de Operadores (`precedencia.c`) | ![Helamã](https://img.shields.io/badge/Helamã-frontend-9B59B6?style=flat-square) ![Eduardo](https://img.shields.io/badge/Eduardo-core-2E8B57?style=flat-square) | ✅ Concluído |
+| Implementar modo Versus multiplayer local (Adivinhação VS + Memória VS) | ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) | ✅ Concluído |
+| Implementar sistema de patentes progressivo | ![Felipe](https://img.shields.io/badge/Felipe-dados-E67E22?style=flat-square) | ✅ Concluído |
+| Implementar `jogos_extras.c` para novos modos no console | ![Eduardo](https://img.shields.io/badge/Eduardo-core-2E8B57?style=flat-square) | ✅ Concluído |
+| Adicionar trilha sonora temática em loop (`music/`) | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) | ✅ Concluído |
+| Persistência multi-modo: pares CSV+TXT por modo em `data/` | ![Felipe](https://img.shields.io/badge/Felipe-dados-E67E22?style=flat-square) | ✅ Concluído |
+| Expandir `frontend.c` para renderizar todos os novos modos | ![Helamã](https://img.shields.io/badge/Helamã-frontend-9B59B6?style=flat-square) | ✅ Concluído |
+| Atualizar HUs para cobrir novos modos (28 HUs implementadas) | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | ✅ Concluído |
+| Pair programming documentado — relato no README | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ✅ Concluído |
+| Issue/bug tracker atualizado no GitHub (prints adicionados) | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ✅ Concluído |
+| Screencast 2 com ênfase nos novos modos | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ✅ Concluído |
+| Testes de sistema com os novos modos | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | ✅ Concluído |
+
+---
+
 ## Sprint 6 — Capstone 3: Polimento Final
 
 **Período:** até 09/06/2026  
@@ -95,11 +118,11 @@
 
 | Tarefa | Responsável | Status |
 |--------|-------------|--------|
-| Remover comentários e código desnecessários | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ⏳ Pendente |
-| Verificar e corrigir bugs remanescentes | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | ⏳ Pendente |
-| Atualizar README final | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ⏳ Pendente |
+| Remover comentários e código desnecessários | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | 🔄 Em progresso |
+| Verificar e corrigir bugs remanescentes | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | 🔄 Em progresso |
+| Atualizar README final | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | 🔄 Em progresso |
 | Gerar 100+ sessões em `historico.txt` | ![Felipe](https://img.shields.io/badge/Felipe-dados-E67E22?style=flat-square) | ⏳ Pendente |
-| Criar/revisar documentação em `docs/` | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ⏳ Pendente |
+| Criar/revisar documentação em `docs/` | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | 🔄 Em progresso |
 | Revisão final de código e merge | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | ⏳ Pendente |
 
 

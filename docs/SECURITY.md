@@ -3,8 +3,6 @@
 
 <p align="center"><b>Lógica de geração de números aleatórios em ambos os jogos, considerações sobre previsibilidade, viés estatístico e boas práticas para evitar vazamentos acidentais durante partidas ativas.</b></p>
 
----
-
 ## 🎮 Geração de Aleatoriedade por Módulo
 
 O projeto usa `rand()` em dois contextos distintos — ambos dependem da mesma seed inicializada por `inicializar_rand()`:
@@ -15,9 +13,9 @@ O número secreto é sorteado de forma inline em [`src/game/jogo.c`](../src/game
 
 | Nível | Intervalo | Tentativas | Desafio |
 | :--- | :---: | :---: | :--- |
-| **Fácil** | `[1, 50]` | 10 | 🟢 Baixo |
-| **Médio** | `[1, 100]` | 7 | 🟡 Moderado |
-| **Difícil** | `[1, 200]` | 5 | 🔴 Alto |
+| **Fácil** | `[1, 10]` | 5 | 🟢 Baixo |
+| **Médio** | `[1, 50]` | 8 | 🟡 Moderado |
+| **Difícil** | `[1, 100]` | 10 | 🔴 Alto |
 
 ```c
 // src/game/jogo.c:29 — geração inline
