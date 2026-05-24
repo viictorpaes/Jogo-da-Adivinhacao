@@ -19,7 +19,7 @@ Jogo-da-Adivinhacao/
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
 │   ├── <mark>ARCHITECTURE.md</mark> <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="18"/>
 │   ├── CONTRIBUTING.md <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="18"/>
-│   ├── GAMES.md <img src="https://img.shields.io/badge/-Games-111827?style=flat-square&logo=gamepad&logoColor=4CAF50" height="18"/>
+│   ├── GAMES.md <img src="https://img.shields.io/badge/-🎮Games-111827?style=flat-square&logo=gamepad&logoColor=4CAF50" height="18"/>
 │   ├── FRONTEND_RAYLIB.md <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="18"/>
 │   ├── Histórias_de_Usuário.md <img src="https://img.shields.io/badge/-HUs-111827?style=flat-square&logo=trello&logoColor=0052CC" height="18"/>
 │   ├── CHANGELOG.md <img src="https://img.shields.io/badge/-CHANGELOG-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="18"/>
