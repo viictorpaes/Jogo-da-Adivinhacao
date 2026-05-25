@@ -108,6 +108,12 @@ typedef struct
 
     bool partida_salva;
 
+    bool pode_avancar_fase;
+    double timer_carry;
+
+    char hist_filtro_nome[64];
+    bool hist_com_filtro;
+
     bool stats_carregadas;
     char stats_linhas[64][160];
     int  stats_n_linhas;
@@ -126,6 +132,10 @@ typedef struct
     int              hist_prec_n;
     char hist_resumo_adiv[200];
     char hist_resumo_mem[200];
+
+    char nomes_hist[100][64];
+    int  nomes_hist_n;
+    bool nomes_hist_carregados;
 } EstadoUI;
 
 #define LARGURA_JANELA 1200

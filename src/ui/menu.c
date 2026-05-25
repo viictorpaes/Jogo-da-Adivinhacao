@@ -76,11 +76,11 @@ static const char *mensagem_proximidade(int palpite, int numero_secreto, int ran
     int distancia = palpite - numero_secreto;
     if (distancia < 0) distancia = -distancia;
 
-    int pct = (distancia * 100) / (range_total > 0 ? range_total : 1);
+    int porcentagem = (distancia * 100) / (range_total > 0 ? range_total : 1);
 
-    if (pct < 5)  return "📡 Frequência muito próxima! Você está quase lá!";
-    if (pct < 15) return "🔭 Sinal detectado! Continue ajustando...";
-    if (pct < 40) return "📟 Interferência estática... Sinal fraco.";
+    if (porcentagem < 5)  return "📡 Frequência muito próxima! Você está quase lá!";
+    if (porcentagem < 15) return "🔭 Sinal detectado! Continue ajustando...";
+    if (porcentagem < 40) return "📟 Interferência estática... Sinal fraco.";
     return "🛰️  Sem sinal no espaço... Muito longe!";
 }
 
@@ -130,7 +130,8 @@ void pedir_nome_jogador(char *nome, int max)
 
     ler_string(nome, max, "  Nome do astronauta: ");
 
-    if (nome[0] == '\0') {
+    if (nome[0] == '\0') 
+    {
         int i = 0;
         const char *padrao = "Astronauta";
         while (i < max - 1 && padrao[i]) { nome[i] = padrao[i]; i++; }

@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 #define COR_FUNDO        (Color){10,  5,  25, 255}
 #define COR_PRIMARIA     (Color){180,100, 255, 255}
@@ -21,9 +22,22 @@
 #define COR_TEXTO        (Color){230,220, 255, 255}
 #define COR_BOTAO        (Color){ 60, 30, 100, 255}
 #define COR_BOTAO_HOVER  (Color){110, 60, 170, 255}
-#define COR_AVISO        (Color){255,160,  40, 255}
-#define COR_TIMER_OK     (Color){100,220, 255, 255}
-#define COR_TIMER_PERIGO (Color){255, 80,  80, 255}
+#define COR_AVISO          (Color){255,160,  40, 255}
+#define COR_TIMER_VERDE    (Color){ 50,210,  80, 255}
+#define COR_TIMER_LARANJA  (Color){255,155,  30, 255}
+#define COR_TIMER_VERMELHO (Color){255,  55,  55, 255}
+
+static Color cor_timer(double ratio) 
+{
+    if (ratio > 0.5) 
+    return COR_TIMER_VERDE;
+
+    if (ratio > 0.2) 
+    return COR_TIMER_LARANJA;
+
+    else
+    return COR_TIMER_VERMELHO;
+}
 
 typedef struct 
 {
@@ -43,43 +57,54 @@ static void inicializar_raylib(void)
 
 static Botao desenhar_botao(float x, float y, float w, float h, const char *texto)
 {
-    Botao b;
-    b.rect  = (Rectangle){x, y, w, h};
-    b.texto = texto;
-    b.hover = CheckCollisionPointRec(GetMousePosition(), b.rect);
-    Color cor = b.hover ? COR_BOTAO_HOVER : COR_BOTAO;
-    DrawRectangleRec(b.rect, cor);
+    Botao botao;
+    botao.rect  = (Rectangle){x, y, w, h};
+    botao.texto = texto;
+    botao.hover = CheckCollisionPointRec(GetMousePosition(), botao.rect);
+    Color cor = botao.hover ? COR_BOTAO_HOVER : COR_BOTAO;
+    DrawRectangleRec(botao.rect, cor);
     DrawRectangleLines((int)x, (int)y, (int)w, (int)h, COR_PRIMARIA);
     int largura_texto = MeasureText(texto, 20);
     DrawText(texto, (int)(x + w/2 - largura_texto/2), (int)(y + h/2 - 10), 20, COR_TEXTO);
-    return b;
+    return botao;
 }
 
-static bool clique_em_rect(Rectangle r)
+static bool clique_em_rect(Rectangle retangulo)
 {
     return IsMouseButtonReleased(MOUSE_LEFT_BUTTON) &&
-           CheckCollisionPointRec(GetMousePosition(), r);
+           CheckCollisionPointRec(GetMousePosition(), retangulo);
 }
 
-static void desenhar_timer(double secs, float x, float y, float largura)
+static double timer_adiv_para_dif(Dificuldade dif)
 {
-    Color cor = secs > 5.0 ? COR_TIMER_OK : COR_TIMER_PERIGO;
+    if (dif == FACIL)   
+    return TIMER_ADIV_FACIL;
+
+    if (dif == MEDIO)   
+    return TIMER_ADIV_MEDIO;
+
+    else
+    return TIMER_ADIV_DIFICIL;
+}
+
+static void desenhar_timer(double secs, double max_secs, float x, float y, float largura)
+{
+    Color cor = cor_timer(secs / max_secs);
     char buf[32];
     snprintf(buf, sizeof(buf), "Tempo: %.0fs", secs < 0 ? 0.0 : secs);
     DrawText(buf, (int)x, (int)y, 24, cor);
 
-    float maxw = largura;
-    float filled = (float)(secs / TIMER_ADIV_SEG) * maxw;
+    float maxwidth = largura;
+    float filled = (float)(secs / max_secs) * maxwidth;
     if (filled < 0) filled = 0;
-    if (filled > maxw) filled = maxw;
-    DrawRectangle((int)x, (int)(y+30), (int)maxw, 8, COR_BOTAO);
+    if (filled > maxwidth) filled = maxwidth;
+    DrawRectangle((int)x, (int)(y+30), (int)maxwidth, 8, COR_BOTAO);
     DrawRectangle((int)x, (int)(y+30), (int)filled, 8, cor);
 }
 
-static void desenhar_timer_generico(double secs, double max_secs,
-                                    float x, float y, float largura)
+static void desenhar_timer_generico(double secs, double max_secs, float x, float y, float largura)
 {
-    Color cor = secs > max_secs * 0.3 ? COR_TIMER_OK : COR_TIMER_PERIGO;
+    Color cor = cor_timer(secs / max_secs);
     char buf[32];
     snprintf(buf, sizeof(buf), "%.0fs", secs < 0 ? 0.0 : secs);
     DrawText(buf, (int)x, (int)y, 22, cor);
@@ -94,21 +119,19 @@ static void desenhar_timer_generico(double secs, double max_secs,
 
 static void salvar_partida_adivinhacao(const EstadoUI *ui)
 {
-    RegistroPartida reg;
+    RegistroPartida regis_pt;
     time_t agora = time(NULL);
     struct tm *t = localtime(&agora);
-    strftime(reg.data, sizeof(reg.data), "%Y-%m-%d", t);
-    strncpy(reg.nome, ui->nome_jogador, sizeof(reg.nome)-1);
-    reg.nome[sizeof(reg.nome)-1] = '\0';
-    reg.dificuldade = ui->dificuldade_selecionada;
-    reg.tentativas_usadas = ui->partida_atual.tentativas_usadas;
-    reg.max_tentativas = ui->partida_atual.max_tentativas;
-    reg.numero_secreto = ui->partida_atual.numero_secreto;
-    reg.venceu  = ui->partida_atual.venceu;
-    reg.pontos  = calcular_pontos(ui->dificuldade_selecionada,
-                                           ui->partida_atual.tentativas_usadas,
-                                           ui->partida_atual.venceu);
-    salvar_partida(&reg);
+    strftime(regis_pt.data, sizeof(regis_pt.data), "%Y-%m-%d", t);
+    strncpy(regis_pt.nome, ui->nome_jogador, sizeof(regis_pt.nome)-1);
+    regis_pt.nome[sizeof(regis_pt.nome)-1] = '\0';
+    regis_pt.dificuldade = ui->dificuldade_selecionada;
+    regis_pt.tentativas_usadas = ui->partida_atual.tentativas_usadas;
+    regis_pt.max_tentativas = ui->partida_atual.max_tentativas;
+    regis_pt.numero_secreto = ui->partida_atual.numero_secreto;
+    regis_pt.venceu = ui->partida_atual.venceu;
+    regis_pt.pontos = calcular_pontos(ui->dificuldade_selecionada, ui->partida_atual.tentativas_usadas, ui->partida_atual.venceu);
+    salvar_partida(&regis_pt);
 }
 
 static void salvar_resultado_memoria(const EstadoUI *ui)
@@ -119,9 +142,9 @@ static void salvar_resultado_memoria(const EstadoUI *ui)
     strftime(reg.data, sizeof(reg.data), "%Y-%m-%d", t);
     strncpy(reg.nome, ui->nome_jogador, sizeof(reg.nome)-1);
     reg.nome[sizeof(reg.nome)-1] = '\0';
-    reg.pontuacao  = ui->jogo_memoria.pontuacao;
+    reg.pontuacao = ui->jogo_memoria.pontuacao;
     reg.tentativas = ui->jogo_memoria.tentativas;
-    reg.pontos     = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
+    reg.pontos = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
     salvar_partida_memoria(&reg);
 }
 
@@ -171,25 +194,64 @@ void desenhar_menu_principal(void)
 void desenhar_inserir_nome(const EstadoUI *ui)
 {
     bool is_p2 = (ui->estado_atual == ESTADO_INSERIR_NOME_P2);
-    const char *titulo = is_p2 ? "ASTRONAUTA 2 - IDENTIFICAÇÃO" : "IDENTIFICAÇÃO DO ASTRONAUTA";
-    DrawText(titulo, 220, 100, 40, COR_PRIMARIA);
+    const char *titulo = is_p2 ? "IDENTIFICAÇÃO DO ASTRONAUTA 2" : "IDENTIFICAÇÃO DO ASTRONAUTA";
+    DrawText(titulo, 130, 80, 36, COR_PRIMARIA);
 
     const char *nome_atual = is_p2 ? ui->nome_jogador2 : ui->nome_jogador;
-    DrawText("Qual o nome do astronauta?", 330, 220, 25, COR_TEXTO);
+    DrawText("Qual o nome do astronauta?", 130, 190, 22, COR_TEXTO);
 
-    Rectangle box = {250,280,700,70};
-    DrawRectangleRec(box, (Color){20,10,40,255});
-    DrawRectangleLines(250,280,700,70, COR_PRIMARIA);
-    DrawText(nome_atual,(int)(box.x+20),(int)(box.y+15),40,COR_PRIMARIA);
+    Rectangle caixa = {130, 225, 580, 65};
+    DrawRectangleRec(caixa, (Color){20,10,40,255});
+    DrawRectangleLines(130, 225, 580, 65, COR_PRIMARIA);
+    DrawText(nome_atual,(int)(caixa.x+16),(int)(caixa.y+12),38,COR_PRIMARIA);
 
-    if ((GetTime()*2)-(int)(GetTime()*2) < 1.0) {
-        int cx = (int)(box.x+20)+MeasureText(nome_atual,40);
-        DrawText("|",cx,(int)(box.y+15),40,COR_PRIMARIA);
+    if ((GetTime()*2)-(int)(GetTime()*2) < 1.0)
+    {
+        int cx = (int)(caixa.x+16)+MeasureText(nome_atual,38);
+        DrawText("|",cx,(int)(caixa.y+12),38,COR_PRIMARIA);
     }
 
-    desenhar_botao(400,420,400,70,"CONFIRMAR (Enter)");
-    DrawText("Deixe em branco para usar o nome: 'Astronauta' ", 305,520,20,COR_TEXTO);
-    DrawText("ESC para voltar", 490,550,20,COR_TEXTO);
+    desenhar_botao(130, 320, 340, 62, "CONFIRMAR (Enter)");
+    DrawText("Branco = 'Astronauta'", 130, 410, 18, COR_TEXTO);
+    DrawText("ESC para voltar", 130, 435, 18, COR_TEXTO);
+
+    /* autocomplete dropdown estilo Apple */
+    if (ui->nomes_hist_n > 0) {
+        char nome_lower[64];
+        strncpy(nome_lower, nome_atual, 63);
+        nome_lower[63] = '\0';
+        for (int k = 0; nome_lower[k]; k++)
+            nome_lower[k] = (char)tolower((unsigned char)nome_lower[k]);
+
+        int matches[6];
+        int nm = 0;
+        for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++) {
+            char cl[64];
+            strncpy(cl, ui->nomes_hist[ni], 63);
+            cl[63] = '\0';
+            for (int k = 0; cl[k]; k++)
+                cl[k] = (char)tolower((unsigned char)cl[k]);
+            if (!nome_lower[0] || strstr(cl, nome_lower))
+                matches[nm++] = ni;
+        }
+
+        if (nm > 0) {
+            float dx = caixa.x;
+            float dy = caixa.y + caixa.height;
+            float dw = caixa.width;
+            float dh = (float)(nm * 34 + 4);
+            DrawRectangle((int)dx, (int)dy, (int)dw, (int)dh, (Color){22,10,48,245});
+            DrawRectangleLines((int)dx, (int)dy, (int)dw, (int)dh, COR_SECUNDARIA);
+            for (int m = 0; m < nm; m++) {
+                Rectangle row = {dx, dy + 2.0f + (float)(m * 34), dw, 32};
+                bool hover = CheckCollisionPointRec(GetMousePosition(), row);
+                if (hover) DrawRectangleRec(row, COR_BOTAO_HOVER);
+                DrawText(ui->nomes_hist[matches[m]],
+                         (int)(dx + 14), (int)(dy + 6 + m * 34),
+                         20, hover ? COR_SECUNDARIA : COR_TEXTO);
+            }
+        }
+    }
 }
 
 void desenhar_inserir_nome_p2(const EstadoUI *ui)
@@ -199,16 +261,16 @@ void desenhar_inserir_nome_p2(const EstadoUI *ui)
 
 void desenhar_menu_dificuldade(EstadoUI *ui)
 {
-    const char *titulo = "SELECIONE A PATENTE";
+    const char *titulo = "SELECIONE A SUA PATENTE";
     if (ui->modo_pendente == MODO_LOGICA)      titulo = "PROTOCOLO LóGICO - PATENTE";
     if (ui->modo_pendente == MODO_PRECEDENCIA) titulo = "HIERARQUIA DE CMDS - PATENTE";
 
     DrawText(titulo, 300,80,38,COR_PRIMARIA);
     DrawText("Qual a sua patente espacial?", 350,148,22,COR_TEXTO);
 
-    desenhar_botao(200,230,800,95,"[1] Cadete      (1-10,  5 tent. | 30s/questão)");
-    desenhar_botao(200,380,800,95,"[2] Piloto      (1-50,  8 tent. | 20s/questão)");
-    desenhar_botao(200,530,800,95,"[3] Comandante  (1-100,10 tent. | 15s/questão)");
+    desenhar_botao(200,230,800,95,"[1] Cadete      (1-10,  5 tent. | 60s +15/-5)");
+    desenhar_botao(200,380,800,95,"[2] Piloto      (1-50,  8 tent. | 40s +15/-5)");
+    desenhar_botao(200,530,800,95,"[3] Comandante  (1-100,10 tent. | 35s +15/-5)");
 
     DrawText("Clique ou pressione 1/2/3", 410,665,20,COR_TEXTO);
     DrawText("ESC para voltar", 490,692,20,COR_TEXTO);
@@ -228,7 +290,7 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
              ui->partida_atual.tentativas_usadas,ui->partida_atual.max_tentativas);
     DrawText(info,90,95,20,COR_TEXTO);
 
-    desenhar_timer(ui->timer_adiv, 850, 90, 290);
+    desenhar_timer(ui->timer_adiv, timer_adiv_para_dif(ui->dificuldade_selecionada), 850, 90, 290);
 
     if (ui->partida_atual.tentativas_usadas > 0) 
     {
@@ -262,22 +324,19 @@ void desenhar_jogo_vs(const EstadoUI *ui)
 {
     DrawText("BATALHA DE SINAIS - 1v1", 340,22,36,COR_PRIMARIA);
 
-    char placar[128];
-    snprintf(placar,sizeof(placar),"Rodada %d/%d | %s: %d rodada(s) | %s: %d rodada(s)",
+    char placar_vs[128];
+    snprintf(placar_vs,sizeof(placar_vs),"Rodada %d/%d | %s: %d rodada(s) | %s: %d rodada(s)",
              ui->vs_rodada+1, VS_MAX_RODADAS,
              ui->nome_jogador,  ui->vs_rodadas_vencidas[0],
              ui->nome_jogador2, ui->vs_rodadas_vencidas[1]);
-    DrawText(placar,60,68,18,COR_TEXTO);
+    DrawText(placar_vs,60,68,18,COR_TEXTO);
 
     const char *nome_turno = ui->vs_jogador_atual == 0 ? ui->nome_jogador : ui->nome_jogador2;
     char turno_buf[128];
-    snprintf(turno_buf,sizeof(turno_buf),"TURNO DE: %s  Tent.: %d/%d",
-             nome_turno,
-             ui->vs_tentativas[ui->vs_jogador_atual],
-             VS_MAX_TENTATIVAS);
+    snprintf(turno_buf,sizeof(turno_buf),"TURNO DE: %s  Tent.: %d/%d", nome_turno, ui->vs_tentativas[ui->vs_jogador_atual],VS_MAX_TENTATIVAS);
     DrawText(turno_buf,60,100,24, ui->vs_jogador_atual == 0 ? COR_SUCESSO : COR_AVISO);
 
-    desenhar_timer(ui->vs_timer, 850, 90, 290);
+    desenhar_timer(ui->vs_timer, timer_adiv_para_dif(ui->dificuldade_selecionada), 850, 90, 290);
 
     const char *pat = "Cadete";
     if (ui->dificuldade_selecionada == MEDIO)  pat = "Piloto";
@@ -293,10 +352,10 @@ void desenhar_jogo_vs(const EstadoUI *ui)
         int range = ui->vs_partida.max_range - ui->vs_partida.min_range;
         int pct   = range > 0 ? dist*100/range : 100;
         const char *msg; Color cor;
-        if      (pct < 5)  { msg = "Sinal estabelecido! Frequência muito próxima!"; cor = COR_SUCESSO;   }
+        if (pct < 5)  { msg = "Sinal estabelecido! Frequência muito próxima!"; cor = COR_SUCESSO;   }
         else if (pct < 15) { msg = "Sinal detectado! Continue ajustando...";         cor = COR_SECUNDARIA;}
         else if (pct < 40) { msg = "Interferência estática... Sinal fraco.";         cor = COR_SECUNDARIA;}
-        else               { msg = "Sem sinal no espaço... Muito longe!";            cor = COR_ERRO;      }
+        else { msg = "Sem sinal no espaço... Muito longe!";            cor = COR_ERRO;      }
         DrawText(msg,60,175,20,cor);
     }
 
@@ -306,7 +365,7 @@ void desenhar_jogo_vs(const EstadoUI *ui)
     DrawText(tent_j1, 60,  210, 18, COR_SUCESSO);
     DrawText(tent_j2, 400, 210, 18, COR_AVISO);
 
-    DrawText("Digite seu palpite:",60,300,25,COR_TEXTO);
+    DrawText("Digite seu palpite: ",60,300,25,COR_TEXTO);
     Rectangle box = {60,350,420,60};
     DrawRectangleRec(box,(Color){20,10,40,255});
     DrawRectangleLines(60,350,420,60,COR_PRIMARIA);
@@ -378,7 +437,7 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
     DrawText(stats,180,72,22,COR_TEXTO);
 
 
-    Color tc = ui->timer_memoria > 10.0 ? COR_TIMER_OK : COR_TIMER_PERIGO;
+    Color tc = cor_timer(ui->timer_memoria / TIMER_MEM_BASE_SEG);
     char tbuf[32]; snprintf(tbuf,sizeof(tbuf),"Timer: %.0fs",ui->timer_memoria<0?0.0:ui->timer_memoria);
     DrawText(tbuf,840,72,22,tc);
     float bw = 300;
@@ -398,8 +457,8 @@ void desenhar_jogo_memoria_vs(const EstadoUI *ui)
 {
     DrawText("1v1 MAPAS ESTELARES", 390,22,36,COR_PRIMARIA);
 
-    Color cor_j1 = ui->mem_vs_timer[0] > 10 ? COR_SUCESSO : COR_ERRO;
-    Color cor_j2 = ui->mem_vs_timer[1] > 10 ? COR_AVISO   : COR_ERRO;
+    Color cor_j1 = cor_timer(ui->mem_vs_timer[0] / TIMER_MEM_BASE_SEG);
+    Color cor_j2 = cor_timer(ui->mem_vs_timer[1] / TIMER_MEM_BASE_SEG);
     char buf_j1[64], buf_j2[64];
     snprintf(buf_j1, sizeof(buf_j1), "%s: %.0fs | %d pares",
              ui->nome_jogador, ui->mem_vs_timer[0] < 0 ? 0.0 : ui->mem_vs_timer[0], ui->mem_vs_pares[0]);
@@ -446,7 +505,7 @@ void desenhar_jogo_logica(const EstadoUI *ui)
     DrawText(j->formula_str,200,152,28,COR_PRIMARIA);
 
     char vals[128] = "Valores: ";
-    for (int v = 0; v < j->n_vars; v++) 
+    for (int v = 0; v < j->qtd_vars; v++)
     {
         char tmp[16];
         snprintf(tmp,sizeof(tmp),"%c = %s  ","PQR"[v],j->vars[v]?"V":"F");
@@ -558,13 +617,13 @@ void desenhar_jogo_precedencia(const EstadoUI *ui)
 
 void desenhar_resultado_adivinhacao(const EstadoUI *ui)
 {
-    DrawText("FIM DA MISSÃO", 400,80,48,COR_PRIMARIA);
+    DrawText("FIM DA MISSÃO", 400,55,44,COR_PRIMARIA);
     if (ui->partida_atual.venceu) {
-        DrawText("MISSÃO CUMPRIDA!", 380,175,40,COR_SUCESSO);
-        DrawText("Você acertou a frequência, astronauta!",230,258,26,COR_TEXTO);
+        DrawText("MISSÃO CUMPRIDA!", 380,145,36,COR_SUCESSO);
+        DrawText("Você acertou a frequência, astronauta!",230,222,24,COR_TEXTO);
     } else {
-        DrawText("MISSÃO FRACASSADA!", 350,175,40,COR_ERRO);
-        DrawText("Todas as tentativas foram esgotadas. De volta a Terra!",155,258,26,COR_TEXTO);
+        DrawText("MISSÃO FRACASSADA!", 330,145,36,COR_ERRO);
+        DrawText("Todas as tentativas foram esgotadas. De volta a Terra!",155,222,24,COR_TEXTO);
     }
 
     const char *pat = "Cadete";
@@ -582,23 +641,46 @@ void desenhar_resultado_adivinhacao(const EstadoUI *ui)
                               ui->partida_atual.tentativas_usadas, ui->partida_atual.venceu);
     snprintf(linha_pontos, sizeof(linha_pontos), "Pontos ganhos: %d", pts);
 
-    DrawText(linha_astronauta, 300, 328, 25, COR_TEXTO);
-    DrawText(linha_patente,    300, 360, 25, COR_TEXTO);
-    DrawText(linha_secreto,    300, 392, 25, COR_TEXTO);
-    DrawText(linha_tentativas, 300, 424, 25, COR_TEXTO);
-    DrawText(linha_pontos,     300, 456, 25, pts > 0 ? COR_SUCESSO : COR_ERRO);
+    DrawText(linha_astronauta, 300, 280, 24, COR_TEXTO);
+    DrawText(linha_patente,    300, 310, 24, COR_TEXTO);
+    DrawText(linha_secreto,    300, 340, 24, COR_TEXTO);
+    DrawText(linha_tentativas, 300, 370, 24, COR_TEXTO);
+    DrawText(linha_pontos,     300, 400, 24, pts > 0 ? COR_SUCESSO : COR_ERRO);
 
     const char *dica=heuristica_adivinhacao(ui->partida_atual.tentativas_usadas,
                                              ui->partida_atual.max_tentativas,
                                              ui->partida_atual.venceu,
                                              ui->dificuldade_selecionada);
-    DrawText(dica,120,500,17,COR_SECUNDARIA);
-    desenhar_botao(400,540,400,80,"Voltar ao Menu (ESC)");
+    DrawText(dica,100,440,16,COR_SECUNDARIA);
+
+    if (ui->pode_avancar_fase)
+    {
+        const char *prox = ui->dificuldade_selecionada==FACIL ? "Piloto" : "Comandante";
+        char buf_perm[64], buf_av[64];
+        snprintf(buf_perm, sizeof(buf_perm), "Permanecer: %s", pat);
+        snprintf(buf_av,   sizeof(buf_av),   "Avancar: %s  →", prox);
+
+        desenhar_botao(100, 475, 450, 65, buf_perm);
+
+        DrawRectangle(640, 475, 450, 65, (Color){30,80,30,255});
+        DrawRectangleLines(640, 475, 450, 65, COR_SUCESSO);
+        int tw = MeasureText(buf_av, 22);
+        DrawText(buf_av, 640 + 225 - tw/2, 497, 22, COR_SUCESSO);
+
+        desenhar_botao(200, 560, 340, 55, "Voltar ao Menu (ESC)");
+        desenhar_botao(640, 560, 340, 55, "Ver meu Historico");
+    }
+    else
+    {
+        desenhar_botao( 60, 480, 320, 60, "Rejogar");
+        desenhar_botao(440, 480, 320, 60, "Voltar ao Menu (ESC)");
+        desenhar_botao(820, 480, 320, 60, "Ver meu Historico");
+    }
 }
 
 void desenhar_resultado_vs(const EstadoUI *ui)
 {
-    DrawText("FIM DA BATALHA DE SINAIS", 310,60,40,COR_PRIMARIA);
+    DrawText("FIM DA BATALHA DE SINAIS", 310,40,38,COR_PRIMARIA);
 
     int vit_j1 = ui->vs_rodadas_vencidas[0];
     int vit_j2 = ui->vs_rodadas_vencidas[1];
@@ -607,23 +689,32 @@ void desenhar_resultado_vs(const EstadoUI *ui)
 
     char placar[128];
     snprintf(placar, sizeof(placar), "VENCEDOR: %s", venc);
-    DrawText(placar, 380, 130, 34, cor_venc);
+    DrawText(placar, 380, 108, 32, cor_venc);
 
     char linha_j1[64], linha_j2[64];
     snprintf(linha_j1, sizeof(linha_j1), "%s: %d rodada(s) | %d pts", ui->nome_jogador,  vit_j1, ui->vs_pontos[0]);
     snprintf(linha_j2, sizeof(linha_j2), "%s: %d rodada(s) | %d pts", ui->nome_jogador2, vit_j2, ui->vs_pontos[1]);
-    DrawText(linha_j1, 200, 220, 26, COR_SUCESSO);
-    DrawText(linha_j2, 200, 260, 26, COR_AVISO);
+    DrawText(linha_j1, 200, 190, 24, COR_SUCESSO);
+    DrawText(linha_j2, 200, 225, 24, COR_AVISO);
 
-    desenhar_botao(400,540,400,80,"Voltar ao Menu (ESC)");
+    DrawText("Resultado salvo para ambos os astronautas!", 330, 278, 18, COR_TEXTO);
+
+    desenhar_botao(200, 330, 360, 58, "Rejogar");
+    desenhar_botao(640, 330, 360, 58, "Voltar ao Menu (ESC)");
+
+    char btn_h1[80], btn_h2[80];
+    snprintf(btn_h1, sizeof(btn_h1), "Historico: %s", ui->nome_jogador);
+    snprintf(btn_h2, sizeof(btn_h2), "Historico: %s", ui->nome_jogador2);
+    desenhar_botao(200, 410, 360, 58, btn_h1);
+    desenhar_botao(640, 410, 360, 58, btn_h2);
 }
 
 void desenhar_resultado_memoria(const EstadoUI *ui)
 {
-    DrawText("MISSÃO CONCLUÍDA!", 390,78,44,COR_SUCESSO);
+    DrawText("MISSÃO CONCLUÍDA!", 390,55,40,COR_SUCESSO);
     char saud[128];
     snprintf(saud,sizeof(saud),"Parabéns, %s! Todos os pares encontrados!",ui->nome_jogador);
-    DrawText(saud,100,150,24,COR_TEXTO);
+    DrawText(saud,100,125,22,COR_TEXTO);
 
     int pts = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
     char linha_astronauta[128], linha_pontuacao[64], linha_pares[64];
@@ -634,21 +725,24 @@ void desenhar_resultado_memoria(const EstadoUI *ui)
     snprintf(linha_jogadas,       sizeof(linha_jogadas),       "Jogadas          : %d", ui->jogo_memoria.tentativas);
     snprintf(linha_pontos_missao, sizeof(linha_pontos_missao), "Pontos de Missão : %d pts", pts);
 
-    DrawText(linha_astronauta,    300, 228, 28, COR_TEXTO);
-    DrawText(linha_pontuacao,     300, 268, 28, COR_TEXTO);
-    DrawText(linha_pares,         300, 308, 28, COR_TEXTO);
-    DrawText(linha_jogadas,       300, 348, 28, COR_TEXTO);
-    DrawText(linha_pontos_missao, 300, 388, 28, pts > 60 ? COR_SUCESSO : COR_SECUNDARIA);
+    DrawText(linha_astronauta,    300, 188, 26, COR_TEXTO);
+    DrawText(linha_pontuacao,     300, 222, 26, COR_TEXTO);
+    DrawText(linha_pares,         300, 256, 26, COR_TEXTO);
+    DrawText(linha_jogadas,       300, 290, 26, COR_TEXTO);
+    DrawText(linha_pontos_missao, 300, 324, 26, pts > 60 ? COR_SUCESSO : COR_SECUNDARIA);
 
     const char *dica=heuristica_memoria(ui->jogo_memoria.tentativas,pts);
-    DrawText(dica,120,430,17,COR_SECUNDARIA);
-    DrawText("Resultado salvo!",460,462,20,COR_TEXTO);
-    desenhar_botao(400,500,400,75,"Voltar ao Menu (ESC)");
+    DrawText(dica,120,368,16,COR_SECUNDARIA);
+    DrawText("Resultado salvo!",490,398,18,COR_TEXTO);
+
+    desenhar_botao( 60, 438, 320, 58, "Rejogar");
+    desenhar_botao(440, 438, 320, 58, "Voltar ao Menu (ESC)");
+    desenhar_botao(820, 438, 320, 58, "Ver meu Historico");
 }
 
 void desenhar_resultado_memoria_vs(const EstadoUI *ui)
 {
-    DrawText("1v1 MAPAS ESTELARES - RESULTADO",230,60,36,COR_PRIMARIA);
+    DrawText("1v1 MAPAS ESTELARES - RESULTADO",230,40,34,COR_PRIMARIA);
 
     int pts_j1 = ui->mem_vs_pontos[0];
     int pts_j2 = ui->mem_vs_pontos[1];
@@ -656,22 +750,30 @@ void desenhar_resultado_memoria_vs(const EstadoUI *ui)
     Color cor_venc = pts_j1 > pts_j2 ? COR_SUCESSO : pts_j2 > pts_j1 ? COR_AVISO : (Color){200, 200, 200, 255};
     char placar[128];
     snprintf(placar, sizeof(placar), "VENCEDOR: %s", venc);
-    DrawText(placar, 400, 130, 32, cor_venc);
+    DrawText(placar, 400, 108, 30, cor_venc);
 
     char linha_j1[128], linha_j2[128];
     snprintf(linha_j1, sizeof(linha_j1), "%s: %d pares | %d pts", ui->nome_jogador,  ui->mem_vs_pares[0], pts_j1);
     snprintf(linha_j2, sizeof(linha_j2), "%s: %d pares | %d pts", ui->nome_jogador2, ui->mem_vs_pares[1], pts_j2);
-    DrawText(linha_j1, 200, 220, 26, COR_SUCESSO);
-    DrawText(linha_j2, 200, 260, 26, COR_AVISO);
+    DrawText(linha_j1, 200, 188, 24, COR_SUCESSO);
+    DrawText(linha_j2, 200, 222, 24, COR_AVISO);
 
-    DrawText("Resultado salvo!",490,360,20,COR_TEXTO);
-    desenhar_botao(400,500,400,75,"Voltar ao Menu (ESC)");
+    DrawText("Resultado salvo para ambos os astronautas!", 330, 268, 18, COR_TEXTO);
+
+    desenhar_botao(200, 315, 360, 58, "Rejogar");
+    desenhar_botao(640, 315, 360, 58, "Voltar ao Menu (ESC)");
+
+    char btn_h1[80], btn_h2[80];
+    snprintf(btn_h1, sizeof(btn_h1), "Historico: %s", ui->nome_jogador);
+    snprintf(btn_h2, sizeof(btn_h2), "Historico: %s", ui->nome_jogador2);
+    desenhar_botao(200, 393, 360, 58, btn_h1);
+    desenhar_botao(640, 393, 360, 58, btn_h2);
 }
 
 void desenhar_resultado_logica(const EstadoUI *ui)
 {
     const JogoLogica *j = &ui->logica;
-    DrawText("PROTOCOLO LÓGICO - FIM",360,78,40,COR_PRIMARIA);
+    DrawText("PROTOCOLO LÓGICO - FIM",360,55,38,COR_PRIMARIA);
 
     int pts = calcular_pontos_logica(j);
     char linha_astronauta[128], linha_acertos_vf[128];
@@ -681,12 +783,39 @@ void desenhar_resultado_logica(const EstadoUI *ui)
     snprintf(linha_classif,    sizeof(linha_classif),    "Classif.    : %d/%d", j->acertos_class, j->questoes_total);
     snprintf(linha_pontos,     sizeof(linha_pontos),     "Pontos      : %d", pts);
 
-    DrawText(linha_astronauta, 300, 200, 26, COR_TEXTO);
-    DrawText(linha_acertos_vf, 300, 240, 26, COR_TEXTO);
-    DrawText(linha_classif,    300, 280, 26, COR_TEXTO);
-    DrawText(linha_pontos,     300, 320, 26, pts > 80 ? COR_SUCESSO : COR_SECUNDARIA);
-    DrawText("Resultado salvo!",460,380,20,COR_TEXTO);
-    desenhar_botao(400,450,400,75,"Voltar ao Menu (ESC)");
+    DrawText(linha_astronauta, 300, 160, 26, COR_TEXTO);
+    DrawText(linha_acertos_vf, 300, 196, 26, COR_TEXTO);
+    DrawText(linha_classif,    300, 232, 26, COR_TEXTO);
+    DrawText(linha_pontos,     300, 268, 26, pts > 80 ? COR_SUCESSO : COR_SECUNDARIA);
+    DrawText("Resultado salvo!",490,312,18,COR_TEXTO);
+
+    const char *pat = "Cadete";
+    if (ui->dificuldade_selecionada==MEDIO)  pat="Piloto";
+    if (ui->dificuldade_selecionada==DIFICIL) pat="Comandante";
+
+    if (ui->pode_avancar_fase)
+    {
+        const char *prox = ui->dificuldade_selecionada==FACIL ? "Piloto" : "Comandante";
+        char buf_perm[64], buf_av[64];
+        snprintf(buf_perm, sizeof(buf_perm), "Permanecer: %s", pat);
+        snprintf(buf_av,   sizeof(buf_av),   "Avancar: %s  →", prox);
+
+        desenhar_botao(100, 355, 450, 58, buf_perm);
+
+        DrawRectangle(640, 355, 450, 58, (Color){30,80,30,255});
+        DrawRectangleLines(640, 355, 450, 58, COR_SUCESSO);
+        int tw = MeasureText(buf_av, 22);
+        DrawText(buf_av, 640 + 225 - tw/2, 374, 22, COR_SUCESSO);
+
+        desenhar_botao(200, 432, 340, 55, "Voltar ao Menu (ESC)");
+        desenhar_botao(640, 432, 340, 55, "Ver meu Historico");
+    }
+    else
+    {
+        desenhar_botao( 60, 355, 320, 58, "Rejogar");
+        desenhar_botao(440, 355, 320, 58, "Voltar ao Menu (ESC)");
+        desenhar_botao(820, 355, 320, 58, "Ver meu Historico");
+    }
 }
 
 void desenhar_resultado_precedencia(const EstadoUI *ui)
@@ -699,11 +828,38 @@ void desenhar_resultado_precedencia(const EstadoUI *ui)
     snprintf(linha_astronauta, sizeof(linha_astronauta), "Astronauta : %s", ui->nome_jogador);
     snprintf(linha_acertos,    sizeof(linha_acertos),    "Acertos    : %d/%d", j->acertos, j->questoes_total);
     snprintf(linha_pontos,     sizeof(linha_pontos),     "Pontos     : %d", pts);
-    DrawText(linha_astronauta, 300, 200, 26, COR_TEXTO);
-    DrawText(linha_acertos,    300, 240, 26, COR_TEXTO);
-    DrawText(linha_pontos,     300, 280, 26, pts > 80 ? COR_SUCESSO : COR_SECUNDARIA);
-    DrawText("Resultado salvo!",460,340,20,COR_TEXTO);
-    desenhar_botao(400,410,400,75,"Voltar ao Menu (ESC)");
+    DrawText(linha_astronauta, 300, 160, 26, COR_TEXTO);
+    DrawText(linha_acertos,    300, 196, 26, COR_TEXTO);
+    DrawText(linha_pontos,     300, 232, 26, pts > 80 ? COR_SUCESSO : COR_SECUNDARIA);
+    DrawText("Resultado salvo!",490,275,18,COR_TEXTO);
+
+    const char *pat = "Cadete";
+    if (ui->dificuldade_selecionada==MEDIO)  pat="Piloto";
+    if (ui->dificuldade_selecionada==DIFICIL) pat="Comandante";
+
+    if (ui->pode_avancar_fase)
+    {
+        const char *prox = ui->dificuldade_selecionada==FACIL ? "Piloto" : "Comandante";
+        char buf_perm[64], buf_av[64];
+        snprintf(buf_perm, sizeof(buf_perm), "Permanecer: %s", pat);
+        snprintf(buf_av,   sizeof(buf_av),   "Avancar: %s  →", prox);
+
+        desenhar_botao(100, 315, 450, 58, buf_perm);
+
+        DrawRectangle(640, 315, 450, 58, (Color){30,80,30,255});
+        DrawRectangleLines(640, 315, 450, 58, COR_SUCESSO);
+        int tw = MeasureText(buf_av, 22);
+        DrawText(buf_av, 640 + 225 - tw/2, 334, 22, COR_SUCESSO);
+
+        desenhar_botao(200, 392, 340, 55, "Voltar ao Menu (ESC)");
+        desenhar_botao(640, 392, 340, 55, "Ver meu Historico");
+    }
+    else
+    {
+        desenhar_botao( 60, 315, 320, 58, "Rejogar");
+        desenhar_botao(440, 315, 320, 58, "Voltar ao Menu (ESC)");
+        desenhar_botao(820, 315, 320, 58, "Ver meu Historico");
+    }
 }
 
 void desenhar_menu_jogo(void) {}
@@ -727,132 +883,156 @@ void desenhar_historico(EstadoUI *ui)
 {
     if (!ui->hist_carregado) 
     {
-        ui->hist_adiv_n    = carregar_historico(ui->hist_adiv, 10);
-        ui->hist_mem_n     = carregar_historico_memoria(ui->hist_mem, 10);
-        ui->hist_vs_n      = carregar_historico_vs(ui->hist_vs, 10);
-        ui->hist_mem_vs_n  = carregar_historico_memoria_vs(ui->hist_mem_vs, 10);
-        ui->hist_logica_n  = carregar_historico_puzzle(ui->hist_logica, 10, "logica");
-        ui->hist_prec_n    = carregar_historico_puzzle(ui->hist_prec,   10, "precedencia");
+        ui->hist_adiv_n = carregar_historico(ui->hist_adiv, 10);
+        ui->hist_mem_n = carregar_historico_memoria(ui->hist_mem, 10);
+        ui->hist_vs_n = carregar_historico_vs(ui->hist_vs, 10);
+        ui->hist_mem_vs_n = carregar_historico_memoria_vs(ui->hist_mem_vs, 10);
+        ui->hist_logica_n = carregar_historico_puzzle(ui->hist_logica, 10, "logica");
+        ui->hist_prec_n = carregar_historico_puzzle(ui->hist_prec,  10, "precedencia");
         preparar_resumo_adivinhacao(ui->hist_resumo_adiv, sizeof(ui->hist_resumo_adiv));
         preparar_resumo_memoria(ui->hist_resumo_mem, sizeof(ui->hist_resumo_mem));
         ui->hist_carregado = true;
     }
 
     DrawText("HISTÓRICO DE MISSÕES", 330,20,38,COR_PRIMARIA);
-    DrawLine(50,68,1150,68,COR_PRIMARIA);
 
-    const char *difs[]={"Cadete","Piloto","Comandante"};
+    const char *filtro = (ui->hist_com_filtro && ui->hist_filtro_nome[0])
+                         ? ui->hist_filtro_nome : NULL;
+    if (filtro) {
+        char fmsg[96];
+        snprintf(fmsg, sizeof(fmsg), "Astronauta: %s  (ESC = historico geral)", filtro);
+        DrawText(fmsg, 50, 63, 15, COR_AVISO);
+        DrawLine(50,82,1150,82,COR_AVISO);
+    } else {
+        DrawLine(50,68,1150,68,COR_PRIMARIA);
+    }
+
+    const char *dificuldades[]={"Cadete","Piloto","Comandante"};
+    int topo = filtro ? 90 : 78;
 
 #define X1 20
-    DrawText("Adivinhação Solo",  X1,78,18,COR_SECUNDARIA);
-    DrawText(ui->hist_resumo_adiv,X1,98,12,COR_TEXTO);
-    DrawLine(X1,114,375,114,COR_SECUNDARIA);
-    if (ui->hist_adiv_n<=0)
-        DrawText("Sem registros.",X1,118,15,COR_TEXTO);
-    else 
+    DrawText("Adivinhação Solo",  X1,topo,18,COR_SECUNDARIA);
+    DrawText(ui->hist_resumo_adiv,X1,topo+20,12,COR_TEXTO);
+    DrawLine(X1,topo+36,375,topo+36,COR_SECUNDARIA);
     {
-        int y=118;
-        for (int i=ui->hist_adiv_n-1; i>=0 && y<318; i--,y+=20) 
+        int y=topo+40; bool algum=false;
+        for (int i=ui->hist_adiv_n-1; i>=0 && y<318; i--)
         {
             RegistroPartida *r=&ui->hist_adiv[i];
+            if (filtro && strstr(r->nome, filtro)==NULL) continue;
+            algum=true;
             char ln[100];
             snprintf(ln,sizeof(ln),"%s %-10s %s %d/%dt %dpts",
-                     r->data,r->nome,difs[r->dificuldade],
+                     r->data,r->nome,dificuldades[r->dificuldade],
                      r->tentativas_usadas,r->max_tentativas,r->pontos);
             DrawText(ln,X1,y,13,r->venceu?COR_SUCESSO:COR_ERRO);
+            y+=20;
         }
+        if (!algum) 
+        DrawText("Sem registros.",X1,topo+40,15,COR_TEXTO);
     }
 
     DrawLine(X1,326,375,326,COR_BOTAO);
     DrawText("Batalha de Sinais VS",X1,334,18,COR_SECUNDARIA);
     DrawLine(X1,354,375,354,COR_SECUNDARIA);
-    if (ui->hist_vs_n<=0)
-        DrawText("Sem registros.",X1,358,15,COR_TEXTO);
-    else 
     {
-        int y=358;
-        for (int i=ui->hist_vs_n-1; i>=0 && y<560; i--,y+=20) 
+        int y=358; bool algum=false;
+        for (int i=ui->hist_vs_n-1; i>=0 && y<560; i--)
         {
             RegistroVS *r=&ui->hist_vs[i];
+            if (filtro && strstr(r->nome1,filtro)==NULL && strstr(r->nome2,filtro)==NULL) continue;
+            algum=true;
             const char *venc = r->vencedor==1?r->nome1:r->vencedor==2?r->nome2:"Empate";
             char ln[100];
             snprintf(ln,sizeof(ln),"%s %s vs %s | %s",
                      r->data,r->nome1,r->nome2,venc);
             DrawText(ln,X1,y,13,COR_TEXTO);
+            y+=20;
         }
+        if (!algum) 
+        DrawText("Sem registros.",X1,358,15,COR_TEXTO);
     }
 
 #define X2 405
-    DrawText("Mapas Estelares Solo",  X2,78,18,COR_SECUNDARIA);
-    DrawText(ui->hist_resumo_mem,     X2,98,12,COR_TEXTO);
-    DrawLine(X2,114,780,114,COR_SECUNDARIA);
-    if (ui->hist_mem_n<=0)
-        DrawText("Sem registros.",X2,118,15,COR_TEXTO);
-    else 
+    DrawText("Mapas Estelares Solo",  X2,topo,18,COR_SECUNDARIA);
+    DrawText(ui->hist_resumo_mem,     X2,topo+20,12,COR_TEXTO);
+    DrawLine(X2,topo+36,780,topo+36,COR_SECUNDARIA);
     {
-        int y=118;
-        for (int i=ui->hist_mem_n-1; i>=0 && y<318; i--,y+=20) 
+        int y=topo+40; bool algum=false;
+        for (int i=ui->hist_mem_n-1; i>=0 && y<318; i--)
         {
             RegistroMemoria *r=&ui->hist_mem[i];
+            if (filtro && strstr(r->nome, filtro)==NULL) continue;
+            algum=true;
             char ln[100];
             snprintf(ln,sizeof(ln),"%s %-10s %djog %dpts",
                      r->data,r->nome,r->tentativas,r->pontos);
             DrawText(ln,X2,y,13,COR_TEXTO);
+            y+=20;
         }
+        if (!algum) 
+        DrawText("Sem registros.",X2,topo+40,15,COR_TEXTO);
     }
 
     DrawLine(X2,326,780,326,COR_BOTAO);
     DrawText("1v1 Mapas Estelares", X2,334,18,COR_SECUNDARIA);
     DrawLine(X2,354,780,354,COR_SECUNDARIA);
-    if (ui->hist_mem_vs_n<=0)
-        DrawText("Sem registros.",X2,358,15,COR_TEXTO);
-    else 
     {
-        int y=358;
-        for (int i=ui->hist_mem_vs_n-1; i>=0 && y<560; i--,y+=20) {
+        int y=358; bool algum=false;
+        for (int i=ui->hist_mem_vs_n-1; i>=0 && y<560; i--) 
+        {
             RegistroMemoriaVS *r=&ui->hist_mem_vs[i];
+            if (filtro && strstr(r->nome1,filtro)==NULL && strstr(r->nome2,filtro)==NULL) continue;
+            algum=true;
             const char *venc = r->pontos1>r->pontos2?r->nome1:r->pontos2>r->pontos1?r->nome2:"Empate";
             char ln[100];
             snprintf(ln,sizeof(ln),"%s %s %dp vs %s %dp | %s",
                      r->data,r->nome1,r->pares1,r->nome2,r->pares2,venc);
             DrawText(ln,X2,y,13,COR_TEXTO);
+            y+=20;
         }
+        if (!algum) 
+        DrawText("Sem registros.",X2,358,15,COR_TEXTO);
     }
 
 #define X3 795
-    DrawText("Protocolo Lógico",X3,78,18,COR_SECUNDARIA);
-    DrawLine(X3,98,1170,98,COR_SECUNDARIA);
-    if (ui->hist_logica_n<=0)
-        DrawText("Sem registros.",X3,102,15,COR_TEXTO);
-    else 
+    DrawText("Protocolo Lógico",X3,topo,18,COR_SECUNDARIA);
+    DrawLine(X3,topo+20,1170,topo+20,COR_SECUNDARIA);
     {
-        int y=102;
-        for (int i=ui->hist_logica_n-1; i>=0 && y<318; i--,y+=20) 
+        int y=topo+24; bool algum=false;
+        for (int i=ui->hist_logica_n-1; i>=0 && y<318; i--)
         {
             RegistroPuzzle *r=&ui->hist_logica[i];
+            if (filtro && strstr(r->nome, filtro)==NULL) continue;
+            algum=true;
             char ln[100];
             snprintf(ln,sizeof(ln),"%s %-10s %d/%d %dpts",
                      r->data,r->nome,r->acertos,r->total,r->pontos);
             DrawText(ln,X3,y,13,COR_TEXTO);
+            y+=20;
         }
+        if (!algum) 
+        DrawText("Sem registros.",X3,topo+24,15,COR_TEXTO);
     }
 
     DrawLine(X3,326,1170,326,COR_BOTAO);
     DrawText("Hierarquia de Comandos",X3,334,18,COR_SECUNDARIA);
     DrawLine(X3,354,1170,354,COR_SECUNDARIA);
-    if (ui->hist_prec_n<=0)
-        DrawText("Sem registros.",X3,358,15,COR_TEXTO);
-    else 
     {
-        int y=358;
-        for (int i=ui->hist_prec_n-1; i>=0 && y<560; i--,y+=20) 
+        int y=358; bool algum=false;
+        for (int i=ui->hist_prec_n-1; i>=0 && y<560; i--)
         {
             RegistroPuzzle *r=&ui->hist_prec[i];
+            if (filtro && strstr(r->nome, filtro)==NULL) continue;
+            algum=true;
             char ln[100];
             snprintf(ln,sizeof(ln),"%s %-10s %d/%d %dpts",
                      r->data,r->nome,r->acertos,r->total,r->pontos);
             DrawText(ln,X3,y,13,COR_TEXTO);
+            y+=20;
         }
+        if (!algum) 
+        DrawText("Sem registros.",X3,358,15,COR_TEXTO);
     }
 
 #undef X1
@@ -903,6 +1083,8 @@ void processar_clique_mouse_memoria(EstadoUI *ui)
             } 
             else 
             {
+                ui->timer_memoria -= 5.0;
+                if (ui->timer_memoria < 0.0) ui->timer_memoria = 0.0;
                 ui->aguardando_ocultar=true;
                 ui->timer_ocultar=90;
             }
@@ -952,6 +1134,8 @@ void processar_clique_mouse_memoria_vs(EstadoUI *ui)
             } 
             else 
             {
+                ui->mem_vs_timer[jogador_ativo] -= 5.0;
+                if (ui->mem_vs_timer[jogador_ativo] < 0.0) ui->mem_vs_timer[jogador_ativo] = 0.0;
                 ui->mem_vs_aguardando=true;
                 ui->mem_vs_timer_ocultar=90;
             }
@@ -1035,6 +1219,7 @@ static void processar_menu_principal(EstadoUI *ui)
         ui->nome_indice=0;
         memset(ui->nome_jogador2,0,sizeof(ui->nome_jogador2));
         ui->nome_indice2=0;
+        ui->nomes_hist_carregados=false;
         ui->estado_atual = ESTADO_INSERIR_NOME;
     } 
     else if (escolha==7) 
@@ -1051,6 +1236,47 @@ static void processar_menu_principal(EstadoUI *ui)
     {
         ui->estado_atual=ESTADO_SAIR;
     }
+}
+
+static void _add_nome_unico(EstadoUI *ui, const char *nome)
+{
+    if (!nome || !nome[0] || ui->nomes_hist_n >= 100) return;
+    for (int j = 0; j < ui->nomes_hist_n; j++)
+        if (strcmp(ui->nomes_hist[j], nome) == 0) return;
+    strncpy(ui->nomes_hist[ui->nomes_hist_n], nome, 63);
+    ui->nomes_hist[ui->nomes_hist_n][63] = '\0';
+    ui->nomes_hist_n++;
+}
+
+static void carregar_nomes_historico(EstadoUI *ui)
+{
+    ui->nomes_hist_n = 0;
+
+    { RegistroPartida buf[50]; int n = carregar_historico(buf, 50);
+      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+
+    { RegistroMemoria buf[50]; int n = carregar_historico_memoria(buf, 50);
+      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+
+    { RegistroVS buf[50]; int n = carregar_historico_vs(buf, 50);
+      for (int i = 0; i < n; i++) {
+          _add_nome_unico(ui, buf[i].nome1);
+          _add_nome_unico(ui, buf[i].nome2);
+      } }
+
+    { RegistroMemoriaVS buf[50]; int n = carregar_historico_memoria_vs(buf, 50);
+      for (int i = 0; i < n; i++) {
+          _add_nome_unico(ui, buf[i].nome1);
+          _add_nome_unico(ui, buf[i].nome2);
+      } }
+
+    { RegistroPuzzle buf[50]; int n = carregar_historico_puzzle(buf, 50, "logica");
+      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+
+    { RegistroPuzzle buf[50]; int n = carregar_historico_puzzle(buf, 50, "precedencia");
+      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+
+    ui->nomes_hist_carregados = true;
 }
 
 static void processar_nome(char *nome, int *idx, int max_len)
@@ -1079,21 +1305,51 @@ void processar_entrada(EstadoUI *ui)
 
         case ESTADO_INSERIR_NOME:
     {
-        processar_nome(ui->nome_jogador,&ui->nome_indice,64);
-        if (IsKeyReleased(KEY_ENTER)||clique_em_rect((Rectangle){400,420,400,70})) 
+        if (!ui->nomes_hist_carregados) carregar_nomes_historico(ui);
+        processar_nome(ui->nome_jogador, &ui->nome_indice, 64);
+
+        bool clicou_sugestao = false;
+        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) 
         {
-            if (ui->nome_indice==0) 
+            Rectangle caixa = {130, 225, 580, 65};
+            float dx = caixa.x, dy = caixa.y + caixa.height, dw = caixa.width;
+            char nome_lower[64];
+            strncpy(nome_lower, ui->nome_jogador, 63); nome_lower[63] = '\0';
+            for (int k = 0; nome_lower[k]; k++)
+                nome_lower[k] = (char)tolower((unsigned char)nome_lower[k]);
+            int matches[6]; int nm = 0;
+            for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++) 
+            {
+                char cl[64]; strncpy(cl, ui->nomes_hist[ni], 63); cl[63] = '\0';
+                for (int k = 0; cl[k]; k++) cl[k] = (char)tolower((unsigned char)cl[k]);
+                if (!nome_lower[0] || strstr(cl, nome_lower)) matches[nm++] = ni;
+            }
+            for (int m = 0; m < nm; m++) 
+            {
+                Rectangle row = {dx, dy + 2.0f + (float)(m * 34), dw, 32};
+                if (CheckCollisionPointRec(GetMousePosition(), row)) 
+                {
+                    strncpy(ui->nome_jogador, ui->nomes_hist[matches[m]], 63);
+                    ui->nome_indice = (int)strlen(ui->nome_jogador);
+                    clicou_sugestao = true;
+                    break;
+                }
+            }
+        }
+
+        if (!clicou_sugestao && (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){130,320,340,62})))
+        {
+            if (ui->nome_indice==0)
             {
                 strcpy(ui->nome_jogador,"Astronauta");
                 ui->nome_indice=(int)strlen("Astronauta");
             }
-            bool precisa_p2 = (ui->modo_pendente==MODO_VS_ADIV ||
-                               ui->modo_pendente==MODO_VS_MEM);
-            if (precisa_p2) 
+            bool precisa_p2 = (ui->modo_pendente==MODO_VS_ADIV || ui->modo_pendente==MODO_VS_MEM);
+            if (precisa_p2)
             {
                 ui->estado_atual = ESTADO_INSERIR_NOME_P2;
-            } 
-            else 
+            }
+            else
             {
                 iniciar_jogo_modo(ui, ui->modo_pendente);
             }
@@ -1104,9 +1360,40 @@ void processar_entrada(EstadoUI *ui)
 
     case ESTADO_INSERIR_NOME_P2:
     {
-        processar_nome(ui->nome_jogador2,&ui->nome_indice2,64);
-        if (IsKeyReleased(KEY_ENTER)||clique_em_rect((Rectangle){400,420,400,70})) {
-            if (ui->nome_indice2==0) {
+        if (!ui->nomes_hist_carregados) carregar_nomes_historico(ui);
+        processar_nome(ui->nome_jogador2, &ui->nome_indice2, 64);
+
+        bool clicou_sugestao = false;
+        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+            Rectangle caixa = {130, 225, 580, 65};
+            float dx = caixa.x, dy = caixa.y + caixa.height, dw = caixa.width;
+            char nome_lower[64];
+            strncpy(nome_lower, ui->nome_jogador2, 63); nome_lower[63] = '\0';
+            for (int k = 0; nome_lower[k]; k++)
+                nome_lower[k] = (char)tolower((unsigned char)nome_lower[k]);
+            int matches[6]; int nm = 0;
+            for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++) 
+            {
+                char cl[64]; strncpy(cl, ui->nomes_hist[ni], 63); cl[63] = '\0';
+                for (int k = 0; cl[k]; k++) cl[k] = (char)tolower((unsigned char)cl[k]);
+                if (!nome_lower[0] || strstr(cl, nome_lower)) matches[nm++] = ni;
+            }
+            for (int m = 0; m < nm; m++) {
+                Rectangle row = {dx, dy + 2.0f + (float)(m * 34), dw, 32};
+                if (CheckCollisionPointRec(GetMousePosition(), row)) 
+                {
+                    strncpy(ui->nome_jogador2, ui->nomes_hist[matches[m]], 63);
+                    ui->nome_indice2 = (int)strlen(ui->nome_jogador2);
+                    clicou_sugestao = true;
+                    break;
+                }
+            }
+        }
+
+        if (!clicou_sugestao && (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){130,320,340,62})))
+        {
+            if (ui->nome_indice2==0)
+            {
                 strcpy(ui->nome_jogador2,"Astronauta 2");
                 ui->nome_indice2=(int)strlen("Astronauta 2");
             }
@@ -1123,7 +1410,8 @@ void processar_entrada(EstadoUI *ui)
         if (IsKeyReleased(KEY_TWO)  ||clique_em_rect((Rectangle){200,380,800,95})) { dif=MEDIO;   escolheu=true; }
         if (IsKeyReleased(KEY_THREE)||clique_em_rect((Rectangle){200,530,800,95})) { dif=DIFICIL; escolheu=true; }
 
-        if (escolheu) {
+        if (escolheu) 
+        {
             ui->dificuldade_selecionada=dif;
             memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
             memset(ui->mensagem_erro,0,sizeof(ui->mensagem_erro));
@@ -1133,7 +1421,7 @@ void processar_entrada(EstadoUI *ui)
             {
                 ui->partida_atual  = iniciar_partida(dif);
                 ui->partida_salva  = false;
-                ui->timer_adiv     = TIMER_ADIV_SEG;
+                ui->timer_adiv     = timer_adiv_para_dif(dif);
                 ui->timer_adiv_ativo = true;
                 ui->estado_atual   = ESTADO_JOGANDO_ADIVINHACAO;
 
@@ -1149,7 +1437,7 @@ void processar_entrada(EstadoUI *ui)
                 ui->vs_rodada_acabou = false;
                 ui->vs_jogo_acabou   = false;
                 ui->vs_salvo         = false;
-                ui->vs_timer         = TIMER_ADIV_SEG;
+                ui->vs_timer         = timer_adiv_para_dif(dif);
                 ui->estado_atual     = ESTADO_JOGANDO_VS;
 
             } 
@@ -1159,7 +1447,8 @@ void processar_entrada(EstadoUI *ui)
                 ui->logica_salva = false;
                 ui->estado_atual = ESTADO_JOGANDO_LOGICA;
 
-            } else if (ui->modo_pendente==MODO_PRECEDENCIA) 
+            } 
+            else if (ui->modo_pendente==MODO_PRECEDENCIA) 
             {
                 ui->precedencia       = inicializar_jogo_precedencia(dif);
                 ui->precedencia_salva = false;
@@ -1175,7 +1464,8 @@ void processar_entrada(EstadoUI *ui)
         int key=GetCharPressed();
         while (key>0) 
         {
-            if (key>='0'&&key<='9'&&ui->indice_entrada<9) {
+            if (key>='0'&&key<='9'&&ui->indice_entrada<9) 
+            {
                 ui->entrada_texto[ui->indice_entrada++]=(char)key;
                 ui->entrada_texto[ui->indice_entrada]='\0';
             }
@@ -1202,12 +1492,24 @@ void processar_entrada(EstadoUI *ui)
                 {
                     ui->entrada_numero = palpite;
                     memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
-                    processar_palpite(&ui->partida_atual, palpite);
+                    Resultado res_palpite = processar_palpite(&ui->partida_atual, palpite);
                     memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
                     ui->indice_entrada=0;
-                    ui->timer_adiv = TIMER_ADIV_SEG;
+                    if (res_palpite == ACERTOU) 
+                    {
+                        ui->timer_adiv += 15.0;
+                    } 
+                    else 
+                    {
+                        ui->timer_adiv -= 5.0;
+                        if (ui->timer_adiv < 0.0) ui->timer_adiv = 0.0;
+                    }
                     if (partida_encerrada(&ui->partida_atual)) {
                         if (!ui->partida_salva) { salvar_partida_adivinhacao(ui); ui->partida_salva=true; }
+                        ui->pode_avancar_fase = ui->partida_atual.venceu &&
+                                                ui->dificuldade_selecionada < DIFICIL &&
+                                                ui->timer_adiv > 0;
+                        ui->timer_carry = ui->timer_adiv;
                         ui->estado_atual=ESTADO_RESULTADO_ADIVINHACAO;
                     }
                 }
@@ -1250,7 +1552,7 @@ void processar_entrada(EstadoUI *ui)
                     ui->vs_tentativas[0] = ui->vs_tentativas[1]=0;
                     ui->vs_jogador_atual = 0;
                     ui->vs_rodada_acabou = false;
-                    ui->vs_timer         = TIMER_ADIV_SEG;
+                    ui->vs_timer         = timer_adiv_para_dif(ui->dificuldade_selecionada);
                     memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
                     ui->indice_entrada=0;
                     memset(ui->mensagem_erro,0,sizeof(ui->mensagem_erro));
@@ -1277,7 +1579,7 @@ void processar_entrada(EstadoUI *ui)
         {
             if (ui->indice_entrada==0) 
             {
-                snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),"Digite um numero!");
+                snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),"Digite um número!");
             } 
             else 
             {
@@ -1296,7 +1598,15 @@ void processar_entrada(EstadoUI *ui)
                     Resultado res = processar_palpite(&ui->vs_partida, palpite);
                     memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
                     ui->indice_entrada=0;
-                    ui->vs_timer=TIMER_ADIV_SEG;
+                    if (res == ACERTOU) 
+                    {
+                        ui->vs_timer += 15.0;
+                    } 
+                    else 
+                    {
+                        ui->vs_timer -= 5.0;
+                        if (ui->vs_timer < 0.0) ui->vs_timer = 0.0;
+                    }
 
                     if (res==ACERTOU) 
                     {
@@ -1323,7 +1633,6 @@ void processar_entrada(EstadoUI *ui)
                                      "Empate! Ninguem acertou. Enter p/ continuar.");
                         } else 
                         {
-                            /* alterna jogador (pula quem esgotou tentativas) */
                             int prox=(jog+1)%2;
                             if (ui->vs_tentativas[prox]>=VS_MAX_TENTATIVAS) prox=jog;
                             ui->vs_jogador_atual=prox;
@@ -1348,7 +1657,13 @@ void processar_entrada(EstadoUI *ui)
     case ESTADO_JOGANDO_LOGICA:
     {
         JogoLogica *j=&ui->logica;
-        if (j->finalizado) { ui->estado_atual=ESTADO_RESULTADO_LOGICA; break; }
+        if (j->finalizado) 
+        {
+            ui->pode_avancar_fase = (j->acertos_vf + j->acertos_class > j->questoes_total) &&
+                                    ui->dificuldade_selecionada < DIFICIL;
+            ui->estado_atual = ESTADO_RESULTADO_LOGICA;
+            break;
+        }
 
         if (j->fase==FASE_RESP_VF) 
         {
@@ -1373,7 +1688,12 @@ void processar_entrada(EstadoUI *ui)
     case ESTADO_JOGANDO_PRECEDENCIA:
     {
         JogoPrecedencia *j=&ui->precedencia;
-        if (j->finalizado) { ui->estado_atual=ESTADO_RESULTADO_PRECEDENCIA; break; }
+        if (j->finalizado) 
+        {
+            ui->pode_avancar_fase = j->acertos > j->questoes_total / 2 && ui->dificuldade_selecionada < DIFICIL;
+            ui->estado_atual = ESTADO_RESULTADO_PRECEDENCIA;
+            break;
+        }
 
         if (!j->mostrando_feedback) 
         {
@@ -1389,95 +1709,357 @@ void processar_entrada(EstadoUI *ui)
     }
 
     case ESTADO_RESULTADO_ADIVINHACAO:
-        if (IsKeyReleased(KEY_ESCAPE)||IsKeyReleased(KEY_ENTER)||
-            clique_em_rect((Rectangle){400,540,400,80}))
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+    {
+        if (ui->pode_avancar_fase)
+        {
+            if (clique_em_rect((Rectangle){100, 475, 450, 65}))
+            {
+                ui->partida_atual = iniciar_partida(ui->dificuldade_selecionada);
+                ui->partida_salva = false;
+                ui->pode_avancar_fase = false;
+                ui->timer_adiv = timer_adiv_para_dif(ui->dificuldade_selecionada);
+                ui->timer_adiv_ativo = true;
+                memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
+                ui->indice_entrada = 0;
+                memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
+                ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
+                break;
+            }
+            if (clique_em_rect((Rectangle){640, 475, 450, 65}))
+            {
+                ui->dificuldade_selecionada = (Dificuldade)(ui->dificuldade_selecionada + 1);
+                ui->partida_atual = iniciar_partida(ui->dificuldade_selecionada);
+                ui->partida_salva = false;
+                ui->pode_avancar_fase = false;
+                ui->timer_adiv = timer_adiv_para_dif(ui->dificuldade_selecionada);
+                ui->timer_adiv_ativo  = true;
+                memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
+                ui->indice_entrada = 0;
+                memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
+                ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
+                break;
+            }
+            if (clique_em_rect((Rectangle){640, 560, 340, 55}))
+            {
+                strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+                ui->hist_com_filtro = true;
+                ui->hist_carregado = false;
+                ui->estado_atual = ESTADO_HISTORICO;
+                break;
+            }
+            if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){200, 560, 340, 55}))
+                ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        }
+        else
+        {
+            if (clique_em_rect((Rectangle){60, 480, 320, 60}))
+            {
+                ui->partida_atual = iniciar_partida(ui->dificuldade_selecionada);
+                ui->partida_salva = false;
+                ui->pode_avancar_fase = false;
+                ui->timer_adiv = timer_adiv_para_dif(ui->dificuldade_selecionada);
+                ui->timer_adiv_ativo = true;
+                memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
+                ui->indice_entrada = 0;
+                memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
+                ui->estado_atual = ESTADO_JOGANDO_ADIVINHACAO;
+                break;
+            }
+            if (clique_em_rect((Rectangle){820, 480, 320, 60}))
+            {
+                strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+                ui->hist_com_filtro = true;
+                ui->hist_carregado = false;
+                ui->estado_atual = ESTADO_HISTORICO;
+                break;
+            }
+            if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){440, 480, 320, 60}))
+                ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        }
         break;
+    }
 
     case ESTADO_RESULTADO_VS:
-        if (IsKeyReleased(KEY_ESCAPE)||IsKeyReleased(KEY_ENTER)||
-            clique_em_rect((Rectangle){400,540,400,80}))
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+    {
+        if (clique_em_rect((Rectangle){200, 330, 360, 58})) 
+        {
+            ui->vs_partida            = iniciar_partida(ui->dificuldade_selecionada);
+            ui->vs_jogador_atual      = 0;
+            ui->vs_rodada             = 0;
+            ui->vs_tentativas[0]      = ui->vs_tentativas[1] = 0;
+            ui->vs_pontos[0]          = ui->vs_pontos[1] = 0;
+            ui->vs_rodadas_vencidas[0] = ui->vs_rodadas_vencidas[1] = 0;
+            ui->vs_rodada_acabou      = false;
+            ui->vs_jogo_acabou        = false;
+            ui->vs_salvo              = false;
+            ui->vs_timer              = timer_adiv_para_dif(ui->dificuldade_selecionada);
+            memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
+            ui->indice_entrada = 0;
+            memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
+            ui->estado_atual = ESTADO_JOGANDO_VS;
+            break;
+        }
+        if (clique_em_rect((Rectangle){200, 410, 360, 58})) 
+        {
+            strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+            ui->hist_com_filtro = true;
+            ui->hist_carregado  = false;
+            ui->estado_atual    = ESTADO_HISTORICO;
+            break;
+        }
+        if (clique_em_rect((Rectangle){640, 410, 360, 58})) 
+        {
+            strncpy(ui->hist_filtro_nome, ui->nome_jogador2, 63);
+            ui->hist_com_filtro = true;
+            ui->hist_carregado  = false;
+            ui->estado_atual    = ESTADO_HISTORICO;
+            break;
+        }
+        if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){640, 330, 360, 58}))
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
         break;
+    }
 
     case ESTADO_RESULTADO_MEMORIA:
-        if (!ui->memoria_salva) { salvar_resultado_memoria(ui); ui->memoria_salva=true; }
-        if (IsKeyReleased(KEY_ESCAPE)||IsKeyReleased(KEY_ENTER)||
-            clique_em_rect((Rectangle){400,500,400,75}))
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+    {
+        if (!ui->memoria_salva) 
+        {
+            salvar_resultado_memoria(ui);
+            ui->memoria_salva = true;
+        }
+
+        if (clique_em_rect((Rectangle){60, 438, 320, 58})) 
+        {
+            ui->jogo_memoria        = inicializar_jogo_memoria();
+            ui->clique_casa1        = 0;
+            ui->clique_casa2        = 0;
+            ui->aguardando_ocultar  = false;
+            ui->timer_ocultar       = 0;
+            ui->memoria_salva       = false;
+            ui->timer_memoria       = TIMER_MEM_BASE_SEG;
+            ui->timer_memoria_ativo = true;
+            ui->estado_atual        = ESTADO_JOGANDO_MEMORIA;
+            break;
+        }
+        if (clique_em_rect((Rectangle){820, 438, 320, 58})) 
+        {
+            strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+            ui->hist_com_filtro = true;
+            ui->hist_carregado  = false;
+            ui->estado_atual    = ESTADO_HISTORICO;
+            break;
+        }
+        if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){440, 438, 320, 58}))
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
         break;
+    }
 
     case ESTADO_RESULTADO_MEMORIA_VS:
+    {
         if (!ui->mem_vs_salvo) 
         {
-            RegistroMemoria r1,r2;
-            data_hoje(r1.data,sizeof(r1.data));
-            data_hoje(r2.data,sizeof(r2.data));
-            strncpy(r1.nome,ui->nome_jogador,63);
-            strncpy(r2.nome,ui->nome_jogador2,63);
-            r1.pontuacao=ui->mem_vs_pares[0];
-            r2.pontuacao=ui->mem_vs_pares[1];
-            r1.tentativas=ui->mem_vs_jogo.tentativas;
-            r2.tentativas=ui->mem_vs_jogo.tentativas;
-            r1.pontos=ui->mem_vs_pontos[0];
-            r2.pontos=ui->mem_vs_pontos[1];
-            salvar_partida_memoria_vs(&r1,&r2);
-            ui->mem_vs_salvo=true;
+            RegistroMemoria r1, r2;
+            data_hoje(r1.data, sizeof(r1.data));
+            data_hoje(r2.data, sizeof(r2.data));
+            strncpy(r1.nome, ui->nome_jogador, 63);
+            strncpy(r2.nome, ui->nome_jogador2, 63);
+            r1.pontuacao  = ui->mem_vs_pares[0];
+            r2.pontuacao  = ui->mem_vs_pares[1];
+            r1.tentativas = r2.tentativas = ui->mem_vs_jogo.tentativas;
+            r1.pontos     = ui->mem_vs_pontos[0];
+            r2.pontos     = ui->mem_vs_pontos[1];
+            salvar_partida_memoria_vs(&r1, &r2);
+            ui->mem_vs_salvo = true;
         }
-        if (IsKeyReleased(KEY_ESCAPE)||IsKeyReleased(KEY_ENTER)||
-            clique_em_rect((Rectangle){400,500,400,75}))
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+
+        if (clique_em_rect((Rectangle){200, 315, 360, 58})) 
+        {
+            ui->mem_vs_jogo           = inicializar_jogo_memoria();
+            ui->mem_vs_jogador        = 0;
+            ui->mem_vs_pares[0]       = ui->mem_vs_pares[1] = 0;
+            ui->mem_vs_pontos[0]      = ui->mem_vs_pontos[1] = 0;
+            ui->mem_vs_timer[0]       = TIMER_MEM_BASE_SEG;
+            ui->mem_vs_timer[1]       = TIMER_MEM_BASE_SEG;
+            ui->mem_vs_clique1        = 0;
+            ui->mem_vs_clique2        = 0;
+            ui->mem_vs_aguardando     = false;
+            ui->mem_vs_timer_ocultar  = 0;
+            ui->mem_vs_salvo          = false;
+            ui->estado_atual          = ESTADO_JOGANDO_MEMORIA_VS;
+            break;
+        }
+        if (clique_em_rect((Rectangle){200, 393, 360, 58})) 
+        {
+            strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+            ui->hist_com_filtro = true;
+            ui->hist_carregado  = false;
+            ui->estado_atual    = ESTADO_HISTORICO;
+            break;
+        }
+        if (clique_em_rect((Rectangle){640, 393, 360, 58})) 
+        {
+            strncpy(ui->hist_filtro_nome, ui->nome_jogador2, 63);
+            ui->hist_com_filtro = true;
+            ui->hist_carregado  = false;
+            ui->estado_atual    = ESTADO_HISTORICO;
+            break;
+        }
+        if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){640, 315, 360, 58}))
+            ui->estado_atual = ESTADO_MENU_PRINCIPAL;
         break;
+    }
 
     case ESTADO_RESULTADO_LOGICA:
+    {
         if (!ui->logica_salva) 
         {
             RegistroPuzzle r;
-            data_hoje(r.data,sizeof(r.data));
-            strncpy(r.nome,ui->nome_jogador,63);
-            r.acertos=ui->logica.acertos_vf+ui->logica.acertos_class;
-            r.total  =ui->logica.questoes_total*2;
-            r.pontos =calcular_pontos_logica(&ui->logica);
-            strncpy(r.modo,"logica",sizeof(r.modo)-1);
+            data_hoje(r.data, sizeof(r.data));
+            strncpy(r.nome, ui->nome_jogador, 63);
+            r.acertos = ui->logica.acertos_vf + ui->logica.acertos_class;
+            r.total   = ui->logica.questoes_total * 2;
+            r.pontos  = calcular_pontos_logica(&ui->logica);
+            strncpy(r.modo, "logica", sizeof(r.modo) - 1);
             salvar_puzzle(&r);
-            ui->logica_salva=true;
+            ui->logica_salva = true;
         }
-        if (IsKeyReleased(KEY_ESCAPE)||IsKeyReleased(KEY_ENTER)||
-            clique_em_rect((Rectangle){400,450,400,75}))
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+        if (ui->pode_avancar_fase)
+        {
+            if (clique_em_rect((Rectangle){100, 355, 450, 58}))
+            {
+                ui->logica            = inicializar_jogo_logica(ui->dificuldade_selecionada);
+                ui->logica_salva      = false;
+                ui->pode_avancar_fase = false;
+                ui->estado_atual      = ESTADO_JOGANDO_LOGICA;
+                break;
+            }
+            if (clique_em_rect((Rectangle){640, 355, 450, 58}))
+            {
+                ui->dificuldade_selecionada = (Dificuldade)(ui->dificuldade_selecionada + 1);
+                ui->logica            = inicializar_jogo_logica(ui->dificuldade_selecionada);
+                ui->logica_salva      = false;
+                ui->pode_avancar_fase = false;
+                ui->estado_atual      = ESTADO_JOGANDO_LOGICA;
+                break;
+            }
+            if (clique_em_rect((Rectangle){640, 432, 340, 55}))
+            {
+                strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+                ui->hist_com_filtro = true;
+                ui->hist_carregado  = false;
+                ui->estado_atual    = ESTADO_HISTORICO;
+                break;
+            }
+            if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){200, 432, 340, 55}))
+                ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        }
+        else
+        {
+            if (clique_em_rect((Rectangle){60, 355, 320, 58}))
+            {
+                ui->logica            = inicializar_jogo_logica(ui->dificuldade_selecionada);
+                ui->logica_salva      = false;
+                ui->pode_avancar_fase = false;
+                ui->estado_atual      = ESTADO_JOGANDO_LOGICA;
+                break;
+            }
+            if (clique_em_rect((Rectangle){820, 355, 320, 58}))
+            {
+                strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+                ui->hist_com_filtro = true;
+                ui->hist_carregado  = false;
+                ui->estado_atual    = ESTADO_HISTORICO;
+                break;
+            }
+            if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){440, 355, 320, 58}))
+                ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        }
         break;
+    }
 
     case ESTADO_RESULTADO_PRECEDENCIA:
+    {
         if (!ui->precedencia_salva) 
         {
-            RegistroPuzzle r;
-            data_hoje(r.data,sizeof(r.data));
-            strncpy(r.nome,ui->nome_jogador,63);
-            r.acertos=ui->precedencia.acertos;
-            r.total  =ui->precedencia.questoes_total;
-            r.pontos =calcular_pontos_prec(&ui->precedencia);
-            strncpy(r.modo,"precedencia",sizeof(r.modo)-1);
-            salvar_puzzle(&r);
-            ui->precedencia_salva=true;
+            RegistroPuzzle retangulo;
+            data_hoje(retangulo.data, sizeof(retangulo.data));
+            strncpy(retangulo.nome, ui->nome_jogador, 63);
+            retangulo.acertos = ui->precedencia.acertos;
+            retangulo.total   = ui->precedencia.questoes_total;
+            retangulo.pontos  = calcular_pontos_prec(&ui->precedencia);
+            strncpy(retangulo.modo, "precedencia", sizeof(retangulo.modo) - 1);
+            salvar_puzzle(&retangulo);
+            ui->precedencia_salva = true;
         }
-        if (IsKeyReleased(KEY_ESCAPE)||IsKeyReleased(KEY_ENTER)||
-            clique_em_rect((Rectangle){400,410,400,75}))
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+        if (ui->pode_avancar_fase)
+        {
+            if (clique_em_rect((Rectangle){100, 315, 450, 58}))
+            {
+                ui->precedencia         = inicializar_jogo_precedencia(ui->dificuldade_selecionada);
+                ui->precedencia_salva   = false;
+                ui->pode_avancar_fase   = false;
+                ui->estado_atual        = ESTADO_JOGANDO_PRECEDENCIA;
+                break;
+            }
+            if (clique_em_rect((Rectangle){640, 315, 450, 58}))
+            {
+                ui->dificuldade_selecionada = (Dificuldade)(ui->dificuldade_selecionada + 1);
+                ui->precedencia         = inicializar_jogo_precedencia(ui->dificuldade_selecionada);
+                ui->precedencia_salva   = false;
+                ui->pode_avancar_fase   = false;
+                ui->estado_atual        = ESTADO_JOGANDO_PRECEDENCIA;
+                break;
+            }
+            if (clique_em_rect((Rectangle){640, 392, 340, 55}))
+            {
+                strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+                ui->hist_com_filtro = true;
+                ui->hist_carregado  = false;
+                ui->estado_atual    = ESTADO_HISTORICO;
+                break;
+            }
+            if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){200, 392, 340, 55}))
+                ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        }
+        else
+        {
+            if (clique_em_rect((Rectangle){60, 315, 320, 58}))
+            {
+                ui->precedencia         = inicializar_jogo_precedencia(ui->dificuldade_selecionada);
+                ui->precedencia_salva   = false;
+                ui->pode_avancar_fase   = false;
+                ui->estado_atual        = ESTADO_JOGANDO_PRECEDENCIA;
+                break;
+            }
+            if (clique_em_rect((Rectangle){820, 315, 320, 58}))
+            {
+                strncpy(ui->hist_filtro_nome, ui->nome_jogador, 63);
+                ui->hist_com_filtro = true;
+                ui->hist_carregado  = false;
+                ui->estado_atual    = ESTADO_HISTORICO;
+                break;
+            }
+            if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){440, 315, 320, 58}))
+                ui->estado_atual = ESTADO_MENU_PRINCIPAL;
+        }
         break;
+    }
 
     case ESTADO_ESTATISTICAS:
-        if (IsKeyReleased(KEY_ESCAPE)||clique_em_rect((Rectangle){400,730,400,55})) 
+        if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){400, 730, 400, 55})) 
         {
-            ui->stats_carregadas=false;
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+            ui->stats_carregadas = false;
+            ui->estado_atual     = ESTADO_MENU_PRINCIPAL;
         }
         break;
 
     case ESTADO_HISTORICO:
-        if (IsKeyReleased(KEY_ESCAPE)||clique_em_rect((Rectangle){400,620,400,55})) 
+        if (IsKeyReleased(KEY_ESCAPE) || clique_em_rect((Rectangle){400, 620, 400, 55})) 
         {
-            ui->hist_carregado=false;
-            ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+            ui->hist_carregado      = false;
+            ui->hist_com_filtro     = false;
+            ui->hist_filtro_nome[0] = '\0';
+            ui->estado_atual        = ESTADO_MENU_PRINCIPAL;
         }
         break;
 
@@ -1495,16 +2077,13 @@ void atualizar_ui(EstadoUI *ui)
         ui->timer_adiv -= dt;
         if (ui->timer_adiv <= 0.0) 
         {
-            ui->timer_adiv = TIMER_ADIV_SEG;
-            ui->partida_atual.tentativas_usadas++;
-            if (ui->partida_atual.tentativas_usadas >= ui->partida_atual.max_tentativas) 
-            {
-                if (!ui->partida_salva) { salvar_partida_adivinhacao(ui); ui->partida_salva=true; }
-                ui->estado_atual = ESTADO_RESULTADO_ADIVINHACAO;
-            }
+            ui->timer_adiv = 0.0;
+            if (!ui->partida_salva) { salvar_partida_adivinhacao(ui); ui->partida_salva=true; }
+            ui->pode_avancar_fase = false;
+            ui->timer_carry       = 0;
             memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
             ui->indice_entrada=0;
-            snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),"Tempo esgotado! Tentativa perdida.");
+            ui->estado_atual = ESTADO_RESULTADO_ADIVINHACAO;
         }
     }
 
@@ -1513,28 +2092,13 @@ void atualizar_ui(EstadoUI *ui)
         ui->vs_timer -= dt;
         if (ui->vs_timer <= 0.0) 
         {
-            ui->vs_timer = TIMER_ADIV_SEG;
-            int jog=ui->vs_jogador_atual;
-            ui->vs_tentativas[jog]++;
+            ui->vs_timer = 0.0;
+            ui->vs_vencedor_rodada = 0;
+            ui->vs_rodada_acabou   = true;
+            ui->vs_jogo_acabou     = (ui->vs_rodada >= VS_MAX_RODADAS-1);
             memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
             ui->indice_entrada=0;
-            snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),
-                     "Tempo de %s esgotado!",jog==0?ui->nome_jogador:ui->nome_jogador2);
-
-            bool ambos = ui->vs_tentativas[0]>=VS_MAX_TENTATIVAS &&
-                         ui->vs_tentativas[1]>=VS_MAX_TENTATIVAS;
-            if (ambos) 
-            {
-                ui->vs_vencedor_rodada=0;
-                ui->vs_rodada_acabou=true;
-                ui->vs_jogo_acabou=(ui->vs_rodada>=VS_MAX_RODADAS-1);
-            } 
-            else 
-            {
-                int prox=(jog+1)%2;
-                if (ui->vs_tentativas[prox]>=VS_MAX_TENTATIVAS) prox=jog;
-                ui->vs_jogador_atual=prox;
-            }
+            snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),"Tempo esgotado! Pressione Enter p/ continuar.");
         }
     }
 
@@ -1599,7 +2163,6 @@ void atualizar_ui(EstadoUI *ui)
         atualizar_timer_prec(&ui->precedencia, dt);
 }
 
-
 void desenhar_ui(EstadoUI *ui)
 {
     switch (ui->estado_atual) 
@@ -1627,7 +2190,6 @@ void desenhar_ui(EstadoUI *ui)
     }
 }
 
-
 void executar_frontend(void)
 {
     inicializar_raylib();
@@ -1648,7 +2210,7 @@ void executar_frontend(void)
         desenhar_ui(&ui);
         EndDrawing();
     }
-
+    
     UnloadMusica();
     CloseWindow();
 }

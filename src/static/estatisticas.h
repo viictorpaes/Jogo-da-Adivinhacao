@@ -9,10 +9,7 @@
 
 int calcular_pontos(Dificuldade dif, int tentativas, bool venceu);
 int calcular_pontos_memoria(int tentativas);
-const char *heuristica_adivinhacao
-(int tentativas, int max_tentativas, bool venceu,
-                                    Dificuldade dif
-);
+const char *heuristica_adivinhacao (int tentativas, int max_tentativas, bool venceu, Dificuldade dif);
 const char *heuristica_memoria(int tentativas, int pontos);
 void preparar_resumo_adivinhacao(char *buf, int len);
 void preparar_resumo_memoria(char *buf, int len);

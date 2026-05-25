@@ -9,7 +9,8 @@ static void embaralhar_tabuleiro(JogoMemoria *jogo)
 {
     int i, j;
 
-    for (i = 0; i < PARES; i++) {
+    for (i = 0; i < PARES; i++) 
+    {
         jogo->numeros[i * 2] = i + 1;
         jogo->numeros[i * 2 + 1] = i + 1;
     }

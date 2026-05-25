@@ -14,9 +14,15 @@
 #define DIFICIL_MAX        100
 #define DIFICIL_TENTATIVAS  10
 
-#define TIMER_ADIV_SEG       15.0   
-#define TIMER_MEM_BASE_SEG   30.0   
-#define TIMER_MEM_BONUS_SEG  10.0 
+#define TIMER_ADIV_FACIL     60.0
+#define TIMER_ADIV_MEDIO     40.0
+#define TIMER_ADIV_DIFICIL   35.0
+#define TIMER_ADIV_SEG       60.0
+#define TIMER_ADIV_BONUS     15.0
+#define TIMER_ADIV_PENALIDADE 5.0
+#define TIMER_MEM_BASE_SEG   60.0
+#define TIMER_MEM_BONUS_SEG  15.0
+#define TIMER_MEM_PENALIDADE_SEG 5.0
 
 #define VS_MAX_RODADAS      3
 #define VS_MAX_TENTATIVAS  12 
@@ -24,16 +30,16 @@
 #define LOGICA_Q_FACIL      8
 #define LOGICA_Q_MEDIO     10
 #define LOGICA_Q_DIFICIL   12
-#define LOGICA_T_FACIL     30.0
-#define LOGICA_T_MEDIO     20.0
-#define LOGICA_T_DIFICIL   15.0
+#define LOGICA_T_FACIL     60.0
+#define LOGICA_T_MEDIO     40.0
+#define LOGICA_T_DIFICIL   35.0
 
 #define PREC_Q_FACIL        8
 #define PREC_Q_MEDIO       10
 #define PREC_Q_DIFICIL     12
-#define PREC_T_FACIL       35.0
-#define PREC_T_MEDIO       30.0
-#define PREC_T_DIFICIL     25.0
+#define PREC_T_FACIL       60.0
+#define PREC_T_MEDIO       40.0
+#define PREC_T_DIFICIL     35.0
 
 #define MAX_HISTORICO         500
 #define HISTORICO_CSV         "data/historico.csv"

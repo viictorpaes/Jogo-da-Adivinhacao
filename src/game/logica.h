@@ -4,12 +4,12 @@
 #include <stdbool.h>
 #include "../include/tipos.h"
 
-#define OP_VAR  0
-#define OP_NOT  1
-#define OP_AND  2  
-#define OP_OR   3  
-#define OP_IMPL 4  
-#define OP_BIMP 5   
+#define OP_VARIAVEL     0
+#define OP_NEGACAO      1
+#define OP_CONJUNCAO    2
+#define OP_DISJUNCAO    3
+#define OP_IMPLICACAO   4
+#define OP_BIIMPLICACAO 5
 
 #define MAX_NOS_FORMULA 32
 #define LOGICA_MAX_VARS  3 
@@ -22,12 +22,12 @@ typedef struct
     int dir;   
 } NoFormula;
 
-typedef struct 
+typedef struct
 {
     NoFormula nos[MAX_NOS_FORMULA];
     int raiz;
-    int n_nos;
-    int n_vars;
+    int total_nos;
+    int qtd_vars;
 } Formula;
 
 typedef enum 
@@ -48,7 +48,7 @@ typedef struct
 {
     int questoes_total;
     double tempo_por_questao;
-    int n_vars;
+    int qtd_vars;
 
     int questoes_respondidas;
     int acertos_vf;
@@ -72,10 +72,10 @@ typedef struct
 } JogoLogica;
 
 JogoLogica inicializar_jogo_logica(Dificuldade dif);
-void gerar_proxima_questao_logica(JogoLogica *j);
-void responder_vf_logica(JogoLogica *j, bool resposta);
-void responder_classif_logica(JogoLogica *j, ClassFormula resp);
-void atualizar_timer_logica(JogoLogica *j, double dt);
-int calcular_pontos_logica(const JogoLogica *j);
+void gerar_proxima_questao_logica(JogoLogica *jogo);
+void responder_vf_logica(JogoLogica *jogo, bool resposta);
+void responder_classif_logica(JogoLogica *jogo, ClassFormula resp);
+void atualizar_timer_logica(JogoLogica *jogo, double delta_t);
+int calcular_pontos_logica(const JogoLogica *jogo);
 
 #endif

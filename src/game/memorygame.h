@@ -10,12 +10,12 @@
 
 typedef struct 
 {
-    int numeros[TOTAL_CASAS];      // Números do tabuleiro (1-8, duplicados)
-    bool reveladas[TOTAL_CASAS];   // Estado de cada casa (revelada ou não)
-    bool acertadas[TOTAL_CASAS];   // Pares já acertados
-    int pontuacao;                 // Pontuação do jogador
-    int tentativas;                // Número de tentativas
-    int pares_encontrados;         // Total de pares encontrados
+    int numeros[TOTAL_CASAS]; 
+    bool reveladas[TOTAL_CASAS];  
+    bool acertadas[TOTAL_CASAS];   
+    int pontuacao;                 
+    int tentativas;                
+    int pares_encontrados;        
 } JogoMemoria;
 
 

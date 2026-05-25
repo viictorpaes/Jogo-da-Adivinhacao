@@ -114,14 +114,14 @@ static const QuestaoPreced banco_dificil[] =
 
 static void embaralhar_opcoes(QuestaoPreced *q)
 {
-    for (int i = 3; i > 0; i--) 
+    for (int i = 3; i > 0; i--)
     {
-        int j = rand() % (i + 1);
+        int pos = rand() % (i + 1);
         const char *tmp = q->opcoes[i];
-        q->opcoes[i] = q->opcoes[j];
-        q->opcoes[j] = tmp;
-        if (q->correta == i) q->correta = j;
-        else if (q->correta == j) q->correta = i;
+        q->opcoes[i] = q->opcoes[pos];
+        q->opcoes[pos] = tmp;
+        if (q->correta == i) q->correta = pos;
+        else if (q->correta == pos) q->correta = i;
     }
 }
 
@@ -158,36 +158,36 @@ JogoPrecedencia inicializar_jogo_precedencia(Dificuldade dif)
 void gerar_proxima_questao_prec(JogoPrecedencia *j)
 {
     const QuestaoPreced *banco;
-    int banco_n;
+    int tamanho_banco;
 
     switch (j->nivel)
     {
-        case 0:  banco = banco_facil;   banco_n = BANCO_FACIL_N;   break;
-        case 1:  banco = banco_medio;   banco_n = BANCO_MEDIO_N;   break;
-        default: banco = banco_dificil; banco_n = BANCO_DIFICIL_N; break;
+        case 0:  banco = banco_facil;   tamanho_banco = BANCO_FACIL_N;   break;
+        case 1:  banco = banco_medio;   tamanho_banco = BANCO_MEDIO_N;   break;
+        default: banco = banco_dificil; tamanho_banco = BANCO_DIFICIL_N; break;
     }
 
     int tentativas = 0;
-    int idx;
+    int indice;
 
-    do 
+    do
     {
-        idx = rand() % banco_n;
-        bool usado = false;
+        indice = rand() % tamanho_banco;
+        bool ja_usado = false;
         for (int i = 0; i < j->n_usados; i++)
         {
-            if (j->indices_usados[i] == idx) { usado = true; break; }
+            if (j->indices_usados[i] == indice) { ja_usado = true; break; }
         }
-        if (!usado)
+        if (!ja_usado)
         {
             break;
         }
         tentativas++;
-    } while (tentativas < banco_n * 3);
+    } while (tentativas < tamanho_banco * 3);
 
-    if (j->n_usados < 24) j->indices_usados[j->n_usados++] = idx;
+    if (j->n_usados < 24) j->indices_usados[j->n_usados++] = indice;
 
-    j->questao = banco[idx];
+    j->questao = banco[indice];
     embaralhar_opcoes(&j->questao);
 
     j->resp_selecionada = -1;
@@ -204,7 +204,8 @@ void responder_precedencia(JogoPrecedencia *j, int opcao)
 
     j->resp_selecionada = opcao;
     j->acertou = (opcao == j->questao.correta);
-    if (j->acertou) j->acertos++;
+    if (j->acertou) { j->acertos++; j->timer += 15.0; }
+    else { j->timer -= 5.0; if (j->timer < 0.0) j->timer = 0.0; }
     j->questoes_respondidas++;
     j->mostrando_feedback = true;
     j->timer_feedback = 2.0;
@@ -213,19 +214,19 @@ void responder_precedencia(JogoPrecedencia *j, int opcao)
         j->finalizado = true;
 }
 
-void atualizar_timer_prec(JogoPrecedencia *j, double dt)
+void atualizar_timer_prec(JogoPrecedencia *j, double delta_t)
 {
     if (j->finalizado) return;
 
-    if (j->mostrando_feedback) 
+    if (j->mostrando_feedback)
     {
-        j->timer_feedback -= dt;
+        j->timer_feedback -= delta_t;
         if (j->timer_feedback <= 0.0 && !j->finalizado)
             gerar_proxima_questao_prec(j);
         return;
     }
 
-    j->timer -= dt;
+    j->timer -= delta_t;
     if (j->timer <= 0.0) 
     {
         j->resp_selecionada   = -1;

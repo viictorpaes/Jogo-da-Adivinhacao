@@ -4,23 +4,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Partida iniciar_partida(Dificuldade dif) {
+Partida iniciar_partida(Dificuldade dif) 
+{
     Partida nova_partida;
     
     nova_partida.tentativas_usadas = 0;
     nova_partida.venceu = false;
 
-    if (dif == FACIL) {
+    if (dif == FACIL) 
+    {
         nova_partida.min_range = FACIL_MIN;
         nova_partida.max_range = FACIL_MAX;
         nova_partida.max_tentativas = FACIL_TENTATIVAS;
     } 
-    else if (dif == MEDIO) {
+    else if (dif == MEDIO) 
+    {
         nova_partida.min_range = MEDIO_MIN;
         nova_partida.max_range = MEDIO_MAX;
         nova_partida.max_tentativas = MEDIO_TENTATIVAS;
     } 
-    else {
+    else 
+    {
         nova_partida.min_range = DIFICIL_MIN;
         nova_partida.max_range = DIFICIL_MAX;
         nova_partida.max_tentativas = DIFICIL_TENTATIVAS;
@@ -31,50 +35,60 @@ Partida iniciar_partida(Dificuldade dif) {
     return nova_partida;
 }
 
-Resultado processar_palpite(Partida *p, int palpite) {
+Resultado processar_palpite(Partida *p, int palpite) 
+{
     p->tentativas_usadas++;
 
-    if (palpite < p->numero_secreto) {
+    if (palpite < p->numero_secreto) 
+    {
         return MAIOR;
     } 
-    else if (palpite > p->numero_secreto) {
+    else if (palpite > p->numero_secreto) 
+    {
         return MENOR;
     } 
-    else {
+    else 
+    {
         p->venceu = true;
         return ACERTOU;
     }
 }
 
-bool partida_encerrada(const Partida *p) {
-    if (p->venceu == true) {
+bool partida_encerrada(const Partida *p) 
+{
+    if (p->venceu == true) 
+    {
         return true;
     }
     
-    if (p->tentativas_usadas >= p->max_tentativas) {
+    if (p->tentativas_usadas >= p->max_tentativas) 
+    {
         return true;
     }
     
     return false;
 }
 
-void exibir_resultado_final(const Partida *p) {
+void exibir_resultado_final(const Partida *p) 
+{
     printf("\n");
     for (int i = 0; i < LARGURA_TERMINAL; i++) printf("=");
     printf("\n");
 
-    if (p->venceu) {
+    if (p->venceu) 
+    {
         printf("VITÓRIA! ✅​​😁​\n");
         printf("Você acertou o número secreto: %d\n", p->numero_secreto);
         printf("Tentativas utilizadas: %d de %d\n", p->tentativas_usadas, p->max_tentativas);
     } 
-    else {
+    else 
+    {
         printf("DERROTA! ❌​😭​\n");
         printf("Você esgotou todas as %d tentativas.\n", p->max_tentativas);
         printf("O número secreto era: %d\n", p->numero_secreto);
     }
 
-    for (int i = 0; i < LARGURA_TERMINAL; i++) printf("=");
+    for (int i = 0; i < LARGURA_TERMINAL; i++) 
+    printf("=");
     printf("\n\n");
-
 }

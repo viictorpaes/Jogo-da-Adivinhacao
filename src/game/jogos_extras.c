@@ -217,7 +217,7 @@ static void exibir_formula_logica(const JogoLogica *jogo)
     printf("  Fórmula : %s\n", jogo->formula_str);
     printf("  Legenda : ~ = NÃO  ^ = E  V = OU  -> = IMPLICA  <-> = BICOND.\n");
     printf("  Valores : ");
-    for (int v = 0; v < jogo->n_vars; v++)
+    for (int v = 0; v < jogo->qtd_vars; v++)
         printf("%c = %s   ", "PQR"[v], jogo->vars[v] ? "V" : "F");
     printf("\n\n");
 }
