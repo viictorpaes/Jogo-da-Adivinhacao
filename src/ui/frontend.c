@@ -336,7 +336,7 @@ void desenhar_jogo_vs(const EstadoUI *ui)
     snprintf(turno_buf,sizeof(turno_buf),"TURNO DE: %s  Tent.: %d/%d", nome_turno, ui->vs_tentativas[ui->vs_jogador_atual],VS_MAX_TENTATIVAS);
     DrawText(turno_buf,60,100,24, ui->vs_jogador_atual == 0 ? COR_SUCESSO : COR_AVISO);
 
-    desenhar_timer(ui->vs_timer, timer_adiv_para_dif(ui->dificuldade_selecionada), 850, 90, 290);
+    desenhar_timer(ui->vs_timer[ui->vs_jogador_atual], timer_adiv_para_dif(ui->dificuldade_selecionada), 850, 90, 290);
 
     const char *pat = "Cadete";
     if (ui->dificuldade_selecionada == MEDIO)  pat = "Piloto";
@@ -380,10 +380,16 @@ void desenhar_jogo_vs(const EstadoUI *ui)
     DrawRectangle(560,300,580,240,COR_BOTAO);
     DrawRectangleLines(560,300,580,240,COR_PRIMARIA);
     DrawText("ASTRONAUTAS", 720,315,20,COR_PRIMARIA);
-    DrawText(ui->nome_jogador,  590,360,22,col_j1);
-    DrawText(ui->nome_jogador2, 590,400,22,col_j2);
-    if (ui->vs_jogador_atual==0) DrawText("<-- SUA VEZ",820,360,18,COR_SUCESSO);
-    else                         DrawText("<-- SUA VEZ",820,400,18,COR_AVISO);
+
+    char t_j1[24], t_j2[24];
+    snprintf(t_j1, sizeof(t_j1), "⏱ %.0fs", ui->vs_timer[0] < 0 ? 0.0 : ui->vs_timer[0]);
+    snprintf(t_j2, sizeof(t_j2), "⏱ %.0fs", ui->vs_timer[1] < 0 ? 0.0 : ui->vs_timer[1]);
+    DrawText(ui->nome_jogador,  590,360,20,col_j1);
+    DrawText(t_j1,              870,362,18,col_j1);
+    DrawText(ui->nome_jogador2, 590,400,20,col_j2);
+    DrawText(t_j2,              870,402,18,col_j2);
+    if (ui->vs_jogador_atual==0) DrawText("<",1050,362,20,COR_SUCESSO);
+    else                         DrawText("<",1050,402,20,COR_AVISO);
 }
 
 static void _desenhar_grade_memoria(const JogoMemoria *jogo,
@@ -1437,7 +1443,8 @@ void processar_entrada(EstadoUI *ui)
                 ui->vs_rodada_acabou = false;
                 ui->vs_jogo_acabou   = false;
                 ui->vs_salvo         = false;
-                ui->vs_timer         = timer_adiv_para_dif(dif);
+                ui->vs_timer[0]      = timer_adiv_para_dif(dif);
+                ui->vs_timer[1]      = timer_adiv_para_dif(dif);
                 ui->estado_atual     = ESTADO_JOGANDO_VS;
 
             } 
@@ -1552,7 +1559,8 @@ void processar_entrada(EstadoUI *ui)
                     ui->vs_tentativas[0] = ui->vs_tentativas[1]=0;
                     ui->vs_jogador_atual = 0;
                     ui->vs_rodada_acabou = false;
-                    ui->vs_timer         = timer_adiv_para_dif(ui->dificuldade_selecionada);
+                    ui->vs_timer[0]      = timer_adiv_para_dif(ui->dificuldade_selecionada);
+                    ui->vs_timer[1]      = timer_adiv_para_dif(ui->dificuldade_selecionada);
                     memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
                     ui->indice_entrada=0;
                     memset(ui->mensagem_erro,0,sizeof(ui->mensagem_erro));
@@ -1598,14 +1606,14 @@ void processar_entrada(EstadoUI *ui)
                     Resultado res = processar_palpite(&ui->vs_partida, palpite);
                     memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
                     ui->indice_entrada=0;
-                    if (res == ACERTOU) 
+                    if (res == ACERTOU)
                     {
-                        ui->vs_timer += 15.0;
-                    } 
-                    else 
+                        ui->vs_timer[jog] += 15.0;
+                    }
+                    else
                     {
-                        ui->vs_timer -= 5.0;
-                        if (ui->vs_timer < 0.0) ui->vs_timer = 0.0;
+                        ui->vs_timer[jog] -= 5.0;
+                        if (ui->vs_timer[jog] < 0.0) ui->vs_timer[jog] = 0.0;
                     }
 
                     if (res==ACERTOU) 
@@ -1717,7 +1725,7 @@ void processar_entrada(EstadoUI *ui)
                 ui->partida_atual = iniciar_partida(ui->dificuldade_selecionada);
                 ui->partida_salva = false;
                 ui->pode_avancar_fase = false;
-                ui->timer_adiv = timer_adiv_para_dif(ui->dificuldade_selecionada);
+                ui->timer_adiv = ui->timer_carry;
                 ui->timer_adiv_ativo = true;
                 memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
                 ui->indice_entrada = 0;
@@ -1731,7 +1739,7 @@ void processar_entrada(EstadoUI *ui)
                 ui->partida_atual = iniciar_partida(ui->dificuldade_selecionada);
                 ui->partida_salva = false;
                 ui->pode_avancar_fase = false;
-                ui->timer_adiv = timer_adiv_para_dif(ui->dificuldade_selecionada);
+                ui->timer_adiv = ui->timer_carry;
                 ui->timer_adiv_ativo  = true;
                 memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
                 ui->indice_entrada = 0;
@@ -1792,7 +1800,8 @@ void processar_entrada(EstadoUI *ui)
             ui->vs_rodada_acabou      = false;
             ui->vs_jogo_acabou        = false;
             ui->vs_salvo              = false;
-            ui->vs_timer              = timer_adiv_para_dif(ui->dificuldade_selecionada);
+            ui->vs_timer[0]           = timer_adiv_para_dif(ui->dificuldade_selecionada);
+            ui->vs_timer[1]           = timer_adiv_para_dif(ui->dificuldade_selecionada);
             memset(ui->entrada_texto, 0, sizeof(ui->entrada_texto));
             ui->indice_entrada = 0;
             memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
@@ -2087,18 +2096,32 @@ void atualizar_ui(EstadoUI *ui)
         }
     }
 
-    if (ui->estado_atual == ESTADO_JOGANDO_VS && !ui->vs_rodada_acabou) 
+    if (ui->estado_atual == ESTADO_JOGANDO_VS && !ui->vs_rodada_acabou)
     {
-        ui->vs_timer -= dt;
-        if (ui->vs_timer <= 0.0) 
+        int jog_ativo = ui->vs_jogador_atual;
+        ui->vs_timer[jog_ativo] -= dt;
+        if (ui->vs_timer[jog_ativo] <= 0.0)
         {
-            ui->vs_timer = 0.0;
-            ui->vs_vencedor_rodada = 0;
-            ui->vs_rodada_acabou   = true;
-            ui->vs_jogo_acabou     = (ui->vs_rodada >= VS_MAX_RODADAS-1);
-            memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
-            ui->indice_entrada=0;
-            snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),"Tempo esgotado! Pressione Enter p/ continuar.");
+            ui->vs_timer[jog_ativo] = 0.0;
+            int outro = 1 - jog_ativo;
+            bool outro_sem_tent = ui->vs_tentativas[outro] >= VS_MAX_TENTATIVAS;
+            bool outro_sem_tempo = ui->vs_timer[outro] <= 0.0;
+            if (outro_sem_tent || outro_sem_tempo)
+            {
+                ui->vs_vencedor_rodada = 0;
+                ui->vs_rodada_acabou   = true;
+                ui->vs_jogo_acabou     = (ui->vs_rodada >= VS_MAX_RODADAS-1);
+                memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
+                ui->indice_entrada=0;
+                snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),"Tempo esgotado! Pressione Enter p/ continuar.");
+            }
+            else
+            {
+                ui->vs_jogador_atual = outro;
+                memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
+                ui->indice_entrada=0;
+                memset(ui->mensagem_erro,0,sizeof(ui->mensagem_erro));
+            }
         }
     }
 

@@ -66,7 +66,7 @@ typedef struct
     bool vs_rodada_acabou;
     bool vs_jogo_acabou;
     bool vs_salvo;
-    double vs_timer;            
+    double vs_timer[2];
 
     JogoMemoria jogo_memoria;
     double timer_memoria;    

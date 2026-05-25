@@ -1,3 +1,5 @@
 ------- HISTORICO - BATALHA DE SINAIS (VS) -------
 
   [2026-05-23] lucas 1      vs lucas2       | CADETE | 2-1 | pts 65-50 | Vencedor: lucas 1
+  [2026-05-25] good stewie  vs evil stewie  | CADETE | 1-2 | pts 35-85 | Vencedor: evil stewie
+  [2026-05-25] evil stewie  vs good stewie  | CADETE | 2-1 | pts 80-40 | Vencedor: evil stewie
