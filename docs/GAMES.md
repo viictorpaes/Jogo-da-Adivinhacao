@@ -35,8 +35,6 @@ Todos os modos estão disponíveis nas duas interfaces:
 
 ![Menu principal — Missão Espacial](../img/tela_inicial.png)
 
----
-
 ## 1. 🔢 Adivinhação Solo
 
 <img src="https://img.shields.io/badge/-jogo.c-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/> <img src="https://img.shields.io/badge/-historico.csv-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
@@ -126,7 +124,6 @@ $ make run
 | `src/static/estatisticas.c` | `calcular_pontos`, heurísticas de feedback |
 | `src/history/historico.c` | Salva `RegistroPartida` no CSV e TXT |
 
----
 
 ## 2. ⚔️ Adivinhação VS (1v1)
 
@@ -172,11 +169,11 @@ Dois jogadores disputam o mesmo número secreto em turnos alternados. Vence quem
 
 #### 🪟 Gameplay — Raylib (Batalha de Sinais)
 
-![Batalha de Sinais — turno em andamento](../img/batalha_sinais_vs.png)
+![Batalha de Sinais — turno do Astronauta 1](../img/batalha_sinais_vs_j1.png)
+![Batalha de Sinais — turno do Astronauta 2](../img/batalha_sinais_vs_j2.png)
 
 #### 🪐 Identificação dos Jogadores — Raylib
 
-![Identificação do Astronauta 1](../img/salvar_nome_vs_j1.png)
 ![Identificação do Astronauta 2](../img/salvar_nome_vs_j2.png)
 
 ### 📊 Pontuação e Persistência
@@ -192,7 +189,6 @@ Dois jogadores disputam o mesmo número secreto em turnos alternados. Vence quem
 | `src/game/jogo.c` | `iniciar_partida`, `processar_palpite` (reutilizados) |
 | `src/history/historico.c` | Salva `RegistroVS` no CSV e TXT |
 
----
 
 ## 3. 🧠 Jogo da Memória Solo
 
@@ -310,8 +306,6 @@ Casa 11 revelou: 5
 | `src/static/estatisticas.c` | `calcular_pontos_memoria`, heurísticas de feedback |
 | `src/history/historico.c` | Salva `RegistroMemoria` no CSV e TXT |
 
----
-
 ## 4. 🤝 Memória VS (1v1)
 
 <img src="https://img.shields.io/badge/-jogos__extras.c-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/> <img src="https://img.shields.io/badge/-historico__memoria__vs.csv-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
@@ -342,7 +336,7 @@ Mesma mecânica do Jogo da Memória Solo, mas com dois jogadores alternando turn
 
 #### 🪟 Gameplay — Raylib (1v1 Mapas Estelares)
 
-![1v1 Mapas Estelares — turno do Astronauta, timers individuais no topo](../img/mapas_estelares_vs_j1.png)
+![1v1 Mapas Estelares — tabuleiro solo com timer](../img/mapas_estelares_solo.png)
 
 > ⏱️ Cada jogador tem seu próprio timer independente (visível no topo esquerdo e topo direito). O indicador **🔄 TURNO** alterna entre os nomes a cada jogada.
 
@@ -383,8 +377,6 @@ Mesma mecânica do Jogo da Memória Solo, mas com dois jogadores alternando turn
 | `src/game/jogos_extras.c` | `jogar_memoria_vs` — alternância de turnos e placar 1v1 |
 | `src/game/memorygame.c` | `fazer_jogada`, estado do tabuleiro (compartilhado com Solo) |
 | `src/history/historico.c` | Salva `RegistroMemoriaVS` no CSV e TXT |
-
----
 
 ## 5. 🔬 Protocolo Lógico
 
@@ -465,8 +457,6 @@ O jogo exibe uma fórmula proposicional gerada dinamicamente (variáveis P, Q, R
 | `src/game/jogos_extras.c` | `jogar_logica_terminal` — loop de questões no console |
 | `src/history/historico.c` | Salva `RegistroLogica` no CSV e TXT |
 
----
-
 ## 6. 🧮 Precedência de Operadores
 
 <img src="https://img.shields.io/badge/-precedencia.c-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/> <img src="https://img.shields.io/badge/-historico__precedencia.csv-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
@@ -534,8 +524,6 @@ O jogo apresenta uma expressão lógica sem parênteses explícitos e quatro alt
 | `src/game/jogos_extras.c` | `jogar_precedencia_terminal` — loop de questões no console |
 | `src/history/historico.c` | Salva `RegistroPrecedencia` no CSV e TXT |
 
----
-
 ## 🖥️ Diferenças entre Console e Raylib
 
 | Aspecto | 🖥️ Console (`make run`) | 🪟 Raylib (`make raylib`) |
@@ -549,7 +537,6 @@ O jogo apresenta uma expressão lógica sem parênteses explícitos e quatro alt
 
 > ♻️ Os módulos de lógica (`game/`), histórico (`history/`) e estatísticas (`static/`) são **idênticos** nas duas versões — apenas a camada de apresentação difere (ver [ADR-001](ADR.md)).
 
----
 
 ## 🛠️ Compilação Manual (Console)
 
@@ -567,7 +554,6 @@ gcc -std=c11 -Wall -Wextra \
 > [!NOTE]
 > ⚡ Prefira `make` ou `make run` — o Makefile gerencia todas as dependências e flags automaticamente.
 
----
 
 > 📖 Para detalhes de compilação da versão gráfica consulte [FRONTEND_RAYLIB.md](FRONTEND_RAYLIB.md).  
 > 🗄️ Para o schema dos arquivos de dados consulte [schema.md](schema.md).  

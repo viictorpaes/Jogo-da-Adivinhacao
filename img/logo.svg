@@ -132,23 +132,17 @@
   <line x1="210" y1="35" x2="210" y2="165" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.5"/>
 
   <!-- ===== TEXT ===== -->
-  <text x="228" y="68"
+  <text x="228" y="88"
         font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
-        font-size="27" font-weight="900" font-style="italic"
+        font-size="30" font-weight="900" font-style="italic"
         fill="url(#textGrad)" letter-spacing="4"
-        filter="url(#titleGlow)">JOGO DA</text>
+        filter="url(#titleGlow)">DESAFIOS</text>
 
-  <text x="228" y="105"
+  <text x="228" y="132"
         font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
         font-size="33" font-weight="900" font-style="italic"
         fill="url(#textGrad)" letter-spacing="3"
-        filter="url(#titleGlow)">ADIVINHAÇÃO</text>
-
-  <text x="228" y="142"
-        font-family="'Arial Black', 'Impact', 'Franklin Gothic Heavy', sans-serif"
-        font-size="33" font-weight="900" font-style="italic"
-        fill="url(#textGrad)" letter-spacing="3"
-        filter="url(#titleGlow)">E MEMÓRIA</text>
+        filter="url(#titleGlow)">DA FORÇA</text>
 
   <text x="228" y="163"
         font-family="'Segoe UI', 'Arial', sans-serif"

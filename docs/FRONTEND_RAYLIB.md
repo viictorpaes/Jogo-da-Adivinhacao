@@ -10,7 +10,6 @@
   <img src="https://img.shields.io/badge/-1200×800-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC"/>
 </p>
 
----
 
 ## 📁 Arquivos do Frontend
 
@@ -42,8 +41,6 @@ make raylib        # Compila e executa
 make clean         # Remove todos os arquivos compilados
 ```
 
----
-
 ## 🛠️ Instalação do Raylib
 
 <h3>
@@ -73,7 +70,6 @@ pacman -S mingw-w64-x86_64-raylib
 > [!NOTE]
 > No Windows sem MSYS2, baixe os binários pré-compilados em [raylib.com](https://www.raylib.com/index.html) e adicione ao PATH.
 
----
 
 ## 🎮 Funcionalidades
 
@@ -129,8 +125,6 @@ pacman -S mingw-w64-x86_64-raylib
 | Resposta | Escolher a parentetização correta entre 4 opções embaralhadas |
 | Patente | Sistema de rank progressivo por desempenho |
 
----
-
 ## 🕹️ Controles
 
 | Contexto | Controle | Ação |
@@ -142,7 +136,6 @@ pacman -S mingw-w64-x86_64-raylib
 | Lógica / Precedência | `1` / `2` / `3` / `4` | Selecionar opção de resposta |
 | Menu | Clique do mouse | Selecionar modo de jogo |
 
----
 
 ## 🏗️ Arquitetura do Frontend
 
@@ -161,7 +154,6 @@ Loop principal
 > [!NOTE]
 > A janela é definida como **1200×800 pixels**. Para alterar, modifique as constantes `SCREEN_WIDTH` e `SCREEN_HEIGHT` em `src/ui/frontend.h`.
 
----
 
 ## 🔧 Troubleshooting
 
@@ -199,30 +191,25 @@ Loop principal
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">⚔️ Batalha de Sinais VS</th></tr>
-  <tr><td align="center"><b>Modo 2 jogadores de adivinhação — dois astronautas competem em turnos alternados para sintonizar a frequência correta primeiro.</b></td></tr>
-  <tr><td align="center"><img src="../img/batalha_sinais_vs.png" width="750" alt="Batalha de Sinais VS"/></td></tr>
+  <tr><th align="center">⚔️ Batalha de Sinais VS — Turno do Astronauta 1</th></tr>
+  <tr><td align="center"><b>Modo 2 jogadores de adivinhação — turno do Astronauta 1; o placar lateral destaca "<-- SUA VEZ" e o timer conta regressivamente. Tentativas compartilhadas por rodada.</b></td></tr>
+  <tr><td align="center"><img src="../img/batalha_sinais_vs_j1.png" width="750" alt="Batalha de Sinais VS — Turno J1"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">⚔️ Batalha de Sinais VS — Turno do Astronauta 2</th></tr>
+  <tr><td align="center"><b>Turno do Astronauta 2 — feedback do palpite anterior exibido em vermelho; o placar lateral atualiza automaticamente o indicador de vez.</b></td></tr>
+  <tr><td align="center"><img src="../img/batalha_sinais_vs_j2.png" width="750" alt="Batalha de Sinais VS — Turno J2"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
   <tr><th align="center">🪐 Mapas Estelares — Solo</th></tr>
-  <tr><td align="center"><b>Modo single-player de memória — encontre os pares de coordenadas estelares no grid. Quanto menos tentativas, maior a pontuação.</b></td></tr>
+  <tr><td align="center"><b>Modo single-player de memória — encontre os pares de coordenadas estelares no grid 4×4. Quanto menos tentativas, maior a pontuação.</b></td></tr>
   <tr><td align="center"><img src="../img/mapas_estelares_solo.png" width="750" alt="Mapas Estelares Solo"/></td></tr>
-</table>
-
-<br>
-
-<table align="center" width="780">
-  <tr><th align="center">🪐 Mapas Estelares — VS (Jogador 1 e 2)</th></tr>
-  <tr><td align="center"><b>Modo 2 jogadores de memória — turnos independentes; acerto mantém o turno, erro passa ao adversário. Timer separado por jogador.</b></td></tr>
-  <tr>
-    <td align="center">
-      <img src="../img/mapas_estelares_vs_j1.png" width="370" alt="Mapas Estelares VS J1"/>
-      <img src="../img/mapas_estelares_vs_j2.png" width="370" alt="Mapas Estelares VS J2"/>
-    </td>
-  </tr>
 </table>
 
 <br>
@@ -272,4 +259,3 @@ Loop principal
   <tr><td align="center"><b>Registro completo de todas as sessões jogadas — mostra data, nome do jogador, dificuldade, tentativas utilizadas e resultado de cada partida.</b></td></tr>
   <tr><td align="center"><img src="../img/historico.png" width="750" alt="Histórico"/></td></tr>
 </table>
-

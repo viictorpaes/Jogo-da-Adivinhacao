@@ -176,9 +176,9 @@ A dificuldade selecionada altera o intervalo de números, o número de tentativa
 #### Protocolo Lógico & Hierarquia de Comandos
 | Nível | Questões | Tempo / questão |
 | :--- | :---: | :---: |
-| **Fácil**  | 8  | 30s |
-| **Médio**  | 10 | 20s |
-| **Difícil**| 12 | 15s |
+| **Fácil**  | 8  | 60s |
+| **Médio**  | 10 | 40s |
+| **Difícil**| 12 | 35s |
 
 ### 📡🚀🌌🔭 Sistema de Feedback Espacial
 
@@ -288,7 +288,8 @@ Jogo-da-Adivinhacao/
 │   ├── CHANGELOG.md <img src="https://img.shields.io/badge/-Testes-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="18"/>
 │   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
 │   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
-│   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
+│   ├── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
+│   └── Regras_Evento.md <img src="https://img.shields.io/badge/-Regras_do_Evento-111827?style=flat-square&logo=markdown&logoColor=FFD700" height="18"/>
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
 │   ├── historico.csv / .txt <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
@@ -392,7 +393,7 @@ Jogo-da-Adivinhacao/
 
 <table align="center" width="780">
   <tr><th align="center">✏️ Identificação do Astronauta</th></tr>
-  <tr><td align="center"><b>Cadastro do jogador — insira seu nome antes de iniciar qualquer missão solo para que o resultado seja salvo no ranking.</b></td></tr>
+  <tr><td align="center"><b>Cadastro do jogador — insira seu nome antes de iniciar qualquer missão solo; o campo exibe autocomplete com nomes já salvos no histórico.</b></td></tr>
   <tr><td align="center"><img src="img/salvar_nome.png" width="750" alt="Identificação do Astronauta"/></td></tr>
 </table>
 
@@ -400,15 +401,39 @@ Jogo-da-Adivinhacao/
 
 <table align="center" width="780">
   <tr><th align="center">🎯 Selecionar Patente — Operação Resgate</th></tr>
-  <tr><td align="center"><b>Seleção de dificuldade para Adivinhação Solo — Cadete (1-10, 5 tent.), Piloto (1-50, 8 tent.) ou Comandante (1-100, 10 tent.).</b></td></tr>
+  <tr><td align="center"><b>Seleção de dificuldade para Adivinhação Solo — Cadete (1-10, 5 tent., 60 s), Piloto (1-50, 8 tent., 40 s) ou Comandante (1-100, 10 tent., 35 s). Cada acerto bônus +15 s, erro −5 s.</b></td></tr>
   <tr><td align="center"><img src="img/operacao_resgate_patente.png" width="750" alt="Selecionar Patente — Operação Resgate"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
+  <tr><th align="center">🚀 Operação Resgate — Gameplay</th></tr>
+  <tr><td align="center"><b>Loop de adivinhação — campo de entrada do palpite com barra de tempo regressiva (verde &gt;50 %, laranja 20–50 %, vermelho &lt;20 %). Patente, range e tentativas exibidos no cabeçalho.</b></td></tr>
+  <tr><td align="center"><img src="img/operacao_resgate.png" width="750" alt="Operação Resgate — Gameplay"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">📡 Operação Resgate — Feedback de Sinal</th></tr>
+  <tr><td align="center"><b>Feedback de proximidade após cada palpite — a mensagem indica a distância ao número secreto segundo o sistema de sinais espaciais (Muito longe / Sinal detectado / Frequência muito próxima / Sinal estabelecido).</b></td></tr>
+  <tr><td align="center"><img src="img/operacao_resgate_feedback.png" width="750" alt="Operação Resgate — Feedback de Sinal"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🏁 Fim da Missão — Resultado</th></tr>
+  <tr><td align="center"><b>Tela de resultado ao acertar ou esgotar tentativas — exibe astronauta, patente, número secreto, tentativas usadas, pontos ganhos, heurística estratégica e opções de avançar de patente, permanecer, ver histórico ou voltar ao menu.</b></td></tr>
+  <tr><td align="center"><img src="img/fim_missao.png" width="750" alt="Fim da Missão — Resultado"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
   <tr><th align="center">🧠 Mapas Estelares (Solo)</th></tr>
-  <tr><td align="center"><b>Modo memória single-player — encontre os pares de coordenadas estelares no grid 4×4 dentro do tempo limite. Quanto menos jogadas, maior a pontuação.</b></td></tr>
+  <tr><td align="center"><b>Modo memória single-player — encontre os pares de coordenadas estelares no grid 4×4 dentro do timer regressivo. Quanto menos jogadas, maior a pontuação.</b></td></tr>
   <tr><td align="center"><img src="img/mapas_estelares_solo.png" width="750" alt="Mapas Estelares Solo"/></td></tr>
 </table>
 
@@ -416,23 +441,31 @@ Jogo-da-Adivinhacao/
 
 <table align="center" width="780">
   <tr><th align="center">🔬 Selecionar Patente — Protocolo Lógico</th></tr>
-  <tr><td align="center"><b>Seleção de dificuldade para o modo de fórmulas lógicas — escolha entre Cadete, Piloto ou Comandante antes de começar as questões V/F.</b></td></tr>
+  <tr><td align="center"><b>Seleção de dificuldade para o modo de fórmulas lógicas — Cadete (8 questões, 60 s), Piloto (10 questões, 40 s) ou Comandante (12 questões, 35 s).</b></td></tr>
   <tr><td align="center"><img src="img/protocolo_logico_patente.png" width="750" alt="Selecionar Patente — Protocolo Lógico"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">🔬 Protocolo Lógico</th></tr>
-  <tr><td align="center"><b>Modo de fórmulas V/F — avalie se a fórmula proposicional exibida é Verdadeira ou Falsa para os valores dados, dentro do tempo limite.</b></td></tr>
-  <tr><td align="center"><img src="img/protocolo_logico.png" width="750" alt="Protocolo Lógico"/></td></tr>
+  <tr><th align="center">🔬 Protocolo Lógico — Avaliação V/F</th></tr>
+  <tr><td align="center"><b>Primeira etapa por questão — avalie se a fórmula proposicional exibida (com legenda de operadores) é Verdadeira ou Falsa para os valores de P e Q apresentados, dentro do tempo limite.</b></td></tr>
+  <tr><td align="center"><img src="img/protocolo_logico.png" width="750" alt="Protocolo Lógico — Avaliação V/F"/></td></tr>
+</table>
+
+<br>
+
+<table align="center" width="780">
+  <tr><th align="center">🔬 Protocolo Lógico — Classificação da Fórmula</th></tr>
+  <tr><td align="center"><b>Segunda etapa por questão — após acertar o valor V/F, classifique a fórmula como Tautologia (sempre V), Contradição (sempre F) ou Contingência (depende dos valores). Pontuação acumulada exibida no cabeçalho.</b></td></tr>
+  <tr><td align="center"><img src="img/protocolo_logico_classificacao.png" width="750" alt="Protocolo Lógico — Classificação"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
   <tr><th align="center">⚙️ Selecionar Patente — Hierarquia de Comandos</th></tr>
-  <tr><td align="center"><b>Seleção de dificuldade para o modo de precedência lógica — escolha entre Cadete, Piloto ou Comandante antes de começar.</b></td></tr>
+  <tr><td align="center"><b>Seleção de dificuldade para o modo de precedência lógica — Cadete (8 questões, 60 s), Piloto (10 questões, 40 s) ou Comandante (12 questões, 35 s).</b></td></tr>
   <tr><td align="center"><img src="img/hierarquia_cmds_patente.png" width="750" alt="Selecionar Patente — Hierarquia de Comandos"/></td></tr>
 </table>
 
@@ -440,55 +473,39 @@ Jogo-da-Adivinhacao/
 
 <table align="center" width="780">
   <tr><th align="center">⚙️ Hierarquia de Comandos</th></tr>
-  <tr><td align="center"><b>Modo de precedência lógica — adicione parênteses para indicar a precedência correta dos operadores na fórmula exibida, escolhendo entre quatro alternativas.</b></td></tr>
+  <tr><td align="center"><b>Modo de precedência lógica — adicione parênteses para indicar a precedência correta dos operadores na fórmula exibida, escolhendo entre quatro alternativas. A ordem de precedência (~ &gt; ^ &gt; ∨ &gt; → &gt; ↔) é exibida como legenda.</b></td></tr>
   <tr><td align="center"><img src="img/hierarquia_cmds.png" width="750" alt="Hierarquia de Comandos"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">⚔️ Identificação — Astronauta 1 (VS)</th></tr>
-  <tr><td align="center"><b>Cadastro do primeiro jogador no modo Versus — insira o nome do Astronauta 1 antes de iniciar a Batalha de Sinais ou os 1v1 Mapas Estelares.</b></td></tr>
-  <tr><td align="center"><img src="img/salvar_nome_vs_j1.png" width="750" alt="Identificação Astronauta 1 VS"/></td></tr>
-</table>
-
-<br>
-
-<table align="center" width="780">
   <tr><th align="center">⚔️ Identificação — Astronauta 2 (VS)</th></tr>
-  <tr><td align="center"><b>Cadastro do segundo jogador — insira o nome do Astronauta 2 para completar a dupla antes de iniciar a partida VS.</b></td></tr>
+  <tr><td align="center"><b>Cadastro do segundo jogador no modo Versus — insira o nome do Astronauta 2 com autocomplete do histórico para completar a dupla antes de iniciar a Batalha de Sinais ou o 1v1 Mapas Estelares.</b></td></tr>
   <tr><td align="center"><img src="img/salvar_nome_vs_j2.png" width="750" alt="Identificação Astronauta 2 VS"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">⚔️ Batalha de Sinais — 1v1</th></tr>
-  <tr><td align="center"><b>Adivinhação Versus — os dois astronautas disputam rodadas tentando acertar a frequência secreta; o placar lateral indica de quem é o turno e o progresso.</b></td></tr>
-  <tr><td align="center"><img src="img/batalha_sinais_vs.png" width="750" alt="Batalha de Sinais 1v1"/></td></tr>
+  <tr><th align="center">⚔️ Batalha de Sinais — 1v1 (Turno do Astronauta 1)</th></tr>
+  <tr><td align="center"><b>Adivinhação Versus — turno do Astronauta 1; o placar lateral mostra de quem é a vez com destaque "<-- SUA VEZ", enquanto o timer conta regressivamente. Tentativas compartilhadas por rodada.</b></td></tr>
+  <tr><td align="center"><img src="img/batalha_sinais_vs_j1.png" width="750" alt="Batalha de Sinais 1v1 — Turno J1"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">🤝 1v1 Mapas Estelares — Turno do Astronauta 1</th></tr>
-  <tr><td align="center"><b>Memória Versus — turno do Astronauta 1; o timer individual conta regressivamente enquanto o jogador tenta revelar pares no grid 4×4.</b></td></tr>
-  <tr><td align="center"><img src="img/mapas_estelares_vs_j1.png" width="750" alt="1v1 Mapas Estelares — Turno J1"/></td></tr>
-</table>
-
-<br>
-
-<table align="center" width="780">
-  <tr><th align="center">🤝 1v1 Mapas Estelares — Turno do Astronauta 2</th></tr>
-  <tr><td align="center"><b>Memória Versus — turno do Astronauta 2; o placar exibe o tempo acumulado de cada jogador e o número de pares encontrados.</b></td></tr>
-  <tr><td align="center"><img src="img/mapas_estelares_vs_j2.png" width="750" alt="1v1 Mapas Estelares — Turno J2"/></td></tr>
+  <tr><th align="center">⚔️ Batalha de Sinais — 1v1 (Turno do Astronauta 2)</th></tr>
+  <tr><td align="center"><b>Adivinhação Versus — turno do Astronauta 2; o feedback do palpite anterior ("Sem sinal no espaço…") é exibido em vermelho, e o placar lateral atualiza o indicador de vez automaticamente.</b></td></tr>
+  <tr><td align="center"><img src="img/batalha_sinais_vs_j2.png" width="750" alt="Batalha de Sinais 1v1 — Turno J2"/></td></tr>
 </table>
 
 <br>
 
 <table align="center" width="780">
   <tr><th align="center">📊 Estatísticas de Missões</th></tr>
-  <tr><td align="center"><b>Painel de desempenho global — exibe médias, mínimos, máximos e ranking geral de pontos de todos os modos (Adivinhação, Memória, Lógica, VS).</b></td></tr>
+  <tr><td align="center"><b>Painel de desempenho global — exibe partidas, vitórias, médias, mínimos, máximos e desvio padrão por modo (Adivinhação, Memória, VS, Lógica, Precedência), além do ranking geral de pontos de todos os modos.</b></td></tr>
   <tr><td align="center"><img src="img/estatisticas.png" width="750" alt="Estatísticas de Missões"/></td></tr>
 </table>
 
@@ -496,7 +513,7 @@ Jogo-da-Adivinhacao/
 
 <table align="center" width="780">
   <tr><th align="center">📜 Histórico de Missões</th></tr>
-  <tr><td align="center"><b>Registro completo de todas as sessões jogadas — organizado por modo, com data, nome, dificuldade, tentativas e pontuação de cada partida.</b></td></tr>
+  <tr><td align="center"><b>Registro completo em colunas por modo — Adivinhação Solo, Mapas Estelares, Protocolo Lógico, Batalha de Sinais VS, 1v1 Mapas Estelares e Hierarquia de Comandos — com data, nome, dificuldade, tentativas e pontuação de cada sessão.</b></td></tr>
   <tr><td align="center"><img src="img/historico.png" width="750" alt="Histórico de Missões"/></td></tr>
 </table>
 

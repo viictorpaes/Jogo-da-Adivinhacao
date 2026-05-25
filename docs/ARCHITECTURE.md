@@ -25,7 +25,8 @@ Jogo-da-Adivinhacao/
 │   ├── CHANGELOG.md <img src="https://img.shields.io/badge/-CHANGELOG-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="18"/>
 │   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
 │   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
-│   └── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
+│   ├── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
+│   └── Regras_Evento.md <img src="https://img.shields.io/badge/-Regras%20Evento-111827?style=flat-square&logo=markdown&logoColor=FFD700" height="18"/>
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
 │   ├── historico.csv / .txt <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o%20Solo-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
@@ -142,6 +143,7 @@ Centraliza o conhecimento do projeto:
 | **ROADMAP.md** <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="16"/> | Registro das sprints do projeto com tarefas e responsáveis por integrante da equipe |
 | **schema.md** <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="16"/> | Definição das 6 estruturas de dados para salvar o histórico por modo |
 | **SECURITY.md** <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="16"/> | Lógica do RNG e boas práticas para evitar previsibilidade |
+| **Regras_Evento.md** <img src="https://img.shields.io/badge/-Regras%20Evento-111827?style=flat-square&logo=markdown&logoColor=FFD700" height="16"/> | Regras oficiais de evento/competição vinculadas ao projeto |
 
 ---
 
@@ -204,7 +206,7 @@ O núcleo lógico do projeto. Contém seis modos de jogo com suas respectivas im
 | `jogo.c` / `jogo.h` | Sorteio de números, validação de palpites e regras de pontuação/dificuldade do Jogo da Adivinhação (Solo e VS) |
 | `memorygame.c` / `memorygame.h` | Estrutura de dados do tabuleiro 4×4, embaralhamento (Fisher-Yates) e lógica de pares (Solo e 1v1) |
 | `jogar_memoria.c` / `jogar_memoria.h` | Loop principal e fluxo de turnos do Jogo da Memória no terminal |
-| `logica.c` / `logica.h` | Geração de fórmulas proposicionais, avaliação de tabela-verdade, classificação (tautologia/contradição/contingência) e timer por questão |
+| `logica.c` / `logica.h` | Geração de fórmulas proposicionais, avaliação de tabela-verdade, classificação (tautologia/contradição/contingência) e timer por questão. Operadores lógicos nomeados em português (`OP_VARIAVEL`, `OP_NEGACAO`, `OP_CONJUNCAO`, `OP_DISJUNCAO`, `OP_IMPLICACAO`, `OP_BIIMPLICACAO`) |
 | `precedencia.c` / `precedencia.h` | Banco de questões de múltipla-escolha sobre precedência de operadores lógicos, embaralhamento de opções e timer por questão |
 | `jogos_extras.c` / `jogos_extras.h` | Orquestrador dos modos VS e lógica no terminal — expõe `jogar_adivinhacao_vs`, `jogar_memoria_vs`, `jogar_logica_terminal` e `jogar_precedencia_terminal`, integrando os submódulos do `game/` para execução no console |
 
@@ -215,11 +217,11 @@ Isola toda a camada de apresentação, facilitando futuras mudanças visuais sem
 | Arquivo | Responsabilidade |
 | :--- | :--- |
 | `menu.c` / `menu.h` | Exibição de textos e artes ASCII para a versão de console |
-| `frontend.c` / `frontend.h` | Renderização e interação da versão gráfica com Raylib (janela 1200×800) |
+| `frontend.c` / `frontend.h` | Renderização e interação da versão gráfica com Raylib (janela 1200×800). Inclui sistema visual de timer com 3 estados de cor — verde (>50 %), laranja (20–50 %), vermelho (<20 %) — via `cor_timer()` e helper unificado `desenhar_timer()` |
 
 ### Gerência de Histórico (`history/`)
 <img src="https://img.shields.io/badge/-Módulo%20History-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
-Responsável por salvar e carregar os dados do jogador. Faz a ponte entre as estruturas de memória do C e os arquivos salvos no disco no diretório `data/`.
+Responsável por salvar e carregar os dados do jogador. Faz a ponte entre as estruturas de memória do C e os arquivos salvos no disco no diretório `data/`. Suporta **filtro por jogador** via `hist_filtro_nome` + `hist_com_filtro`, com lista `nomes_hist[]` (até 100 entradas) para autocomplete; carregamento lazy dos 6 tipos de histórico em uma única chamada.
 
 ### Utilidades (`utils/`)
 <img src="https://img.shields.io/badge/-Módulo%20Utils-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
@@ -231,7 +233,7 @@ Módulo com três responsabilidades: cálculo de pontuação (`calcular_pontos`,
 
 ### Tipos Globais (`include/`)
 <img src="https://img.shields.io/badge/-Tipos%20Globais-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
-Centraliza a definição de `structs`, `enums` e `typedefs` globais em `tipos.h`. Garante que todos os módulos utilizem as mesmas estruturas de dados de forma organizada.
+Centraliza a definição de `structs`, `enums` e `typedefs` globais em `tipos.h`. Garante que todos os módulos utilizem as mesmas estruturas de dados de forma organizada. Inclui as constantes de timer por dificuldade (`TIMER_ADIV_BONUS`, `TIMER_ADIV_PENALIDADE`, `TIMER_MEM_BONUS_SEG`, `TIMER_MEM_PENALIDADE_SEG`) e a função `timer_adiv_para_dif()` para resolução do tempo conforme a dificuldade selecionada.
 
 ---
 
