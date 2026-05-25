@@ -5,6 +5,7 @@
 <img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=white"/>
 <img src="https://img.shields.io/badge/-Raylib-020617?style=flat-square&logo=raylib&logoColor=white"/>
 
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/blob/main/LICENSE)
 [![Build Status](https://img.shields.io/badge/build-passing_/_done-brightgreen)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
