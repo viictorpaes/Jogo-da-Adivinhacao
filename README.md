@@ -94,16 +94,29 @@ sudo apt-get install libraylib-dev
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> MSYS2 / MinGW
+<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
 </h3>
+
+No terminal do **MSYS2 MinGW 64-bit**:
 
 ```bash
 pacman -S mingw-w64-x86_64-raylib
 ```
 
+Depois, `make raylib` funciona normalmente dentro do mesmo terminal MSYS2.
+
+<h3>
+<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
+</h3>
+
+Baixe os binários pré-compilados em [raylib.com/download](https://www.raylib.com/index.html), extraia (ex.: `C:\raylib`) e compile passando o caminho:
+
+```bash
+make RAYLIB_DIR=C:/raylib raylib
+```
 
 > [!TIP]
-> No Windows, baixe os binários pré-compilados em [raylib.com/download](https://www.raylib.com/index.html) e adicione ao PATH, ou use o MSYS2: `pacman -S mingw-w64-x86_64-raylib`.
+> **MSYS2 é o caminho mais simples no Windows** — instala GCC, Make e raylib de uma vez. Baixe em [msys2.org](https://www.msys2.org), instale, abra o terminal **MSYS2 MinGW 64-bit** e rode os `pacman` acima.
 
 ---
 
@@ -133,32 +146,79 @@ Após baixar o Github desktop: <br>
   </li>
 </ul> 
 
-<br>
 
-5. *No terminal Integrado:* <br>
-<img src="https://img.shields.io/badge/🕹️Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="25">
+<h2 align="center">🕹️ Compilação e Execução<br>
+<img src="https://img.shields.io/badge/-Makefile-111827?style=flat-square&logo=probot&logoColor=red"/></h2>
 
-<h3 align="left">🖥️ Terminal (Console) <br>
-<img src="https://img.shields.io/badge/🕹️Terminal_Integrado-000000?style=for-the-badge&logo=gnumetalinux&logoColor=white" height="20"></h3>
+<h3>
+<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
+</h3>
+
+**Versão terminal:**
+```bash
+make run
+```
+**Versão visual (RayLib):**
+```bash
+make raylib
+```
+
+<h3>
+<img src="https://img.shields.io/badge/Ubuntu%20%2F%20Debian-E95420?style=flat&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
+</h3>
+
+**Versão terminal:**
+```bash
+make run
+```
+**Versão visual (RayLib):**
+```bash
+make raylib
+```
+
+<h3>
+<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
+</h3>
+
+No terminal do **MSYS2 MinGW 64-bit**, os comandos são idênticos:
+
+**Versão terminal:**
+```bash
+make run
+```
+**Versão visual (RayLib):**
+```bash
+make raylib
+```
+
+<h3>
+<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
+</h3>
+
+**Versão terminal:**
+```bash
+make run
+```
+**Versão visual (RayLib) — passe o caminho onde o raylib foi extraído:**
+```bash
+make RAYLIB_DIR=C:/raylib raylib
+```
+
+> [!NOTE]
+> Para compilar **sem executar**: `make` (terminal) ou `make build-raylib` (visual).
+> Para compilar em **modo debug**: `make DEBUG=1 run` ou `make DEBUG=1 raylib`.
+> Para remover os binários gerados: `make clean`.
+
+#### 🛠️ Referência rápida de comandos
 
 | Comando | Descrição |
 | :--- | :--- |
 | `make` | Compila a versão terminal |
 | `make run` | Compila e executa a versão terminal |
-| `make DEBUG=1` | Compila com símbolos de debug (`-g -O0`) |
-
-<h3 align="left">🎨 Visual (RayLib) <br>
-<img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/></h2>
-
-| Comando | Descrição |
-| :--- | :--- |
 | `make build-raylib` | Compila a versão visual sem executar |
 | `make raylib` | Compila e executa a versão visual |
-
-#### 🛠️ Utilitários
-
-| Comando | Descrição |
-| :--- | :--- |
+| `make DEBUG=1` | Compila com símbolos de debug (`-g -O0`) |
+| `make RAYLIB_DIR=C:/raylib raylib` | Windows sem MSYS2: raylib instalado manualmente |
 | `make clean` | Remove binários compilados |
 | `make format` | Formata o código com clang-format |
 | `make help` | Lista todos os alvos disponíveis |

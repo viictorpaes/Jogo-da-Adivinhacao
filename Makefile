@@ -39,22 +39,36 @@ SRCS_RAYLIB = src/main_raylib.c \
 	 src/ui/frontend.c \
 	 src/music/musica.c
 
-TARGET = jogo
-TARGET_RAYLIB = jogo_raylib
-
-# Flags para raylib rodar
-RAYLIB_PREFIX := $(shell brew --prefix raylib 2>/dev/null)
-ifneq ($(RAYLIB_PREFIX),)
-	RAYLIB_FLAGS = -I$(RAYLIB_PREFIX)/include -L$(RAYLIB_PREFIX)/lib -lraylib -lm -lpthread
-else
-	RAYLIB_FLAGS = -lraylib -lm -lpthread
-	
-endif
-
 ifeq ($(OS),Windows_NT)
-	RAYLIB_FLAGS = -lraylib -lm -lwinmm -lgdi32 -lpthread
-
+	EXT = .exe
+	MKDIR_DATA = if not exist data mkdir data
+	RM_CMD = del /f /q
+	RUN_PREFIX =
+	# Windows: instale via MSYS2 com: pacman -S mingw-w64-x86_64-raylib
+	# Ou defina RAYLIB_DIR para o caminho onde o raylib foi extraído manualmente:
+	#   make RAYLIB_DIR=C:/raylib build-raylib
+	RAYLIB_DIR ?=
+	ifneq ($(RAYLIB_DIR),)
+		RAYLIB_FLAGS = -I$(RAYLIB_DIR)/include -L$(RAYLIB_DIR)/lib \
+			-lraylib -lopengl32 -lgdi32 -lwinmm -lshell32 -luser32 -lpthread
+	else
+		RAYLIB_FLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm -lshell32 -luser32 -lpthread
+	endif
+else
+	EXT =
+	MKDIR_DATA = mkdir -p data
+	RM_CMD = rm -f
+	RUN_PREFIX = ./
+	RAYLIB_PREFIX := $(shell brew --prefix raylib 2>/dev/null)
+	ifneq ($(RAYLIB_PREFIX),)
+		RAYLIB_FLAGS = -I$(RAYLIB_PREFIX)/include -L$(RAYLIB_PREFIX)/lib -lraylib -lm -lpthread
+	else
+		RAYLIB_FLAGS = -lraylib -lm -lpthread
+	endif
 endif
+
+TARGET = jogo$(EXT)
+TARGET_RAYLIB = jogo_raylib$(EXT)
 
 .PHONY: all clean run build-raylib raylib run-raylib test format help
 
@@ -65,15 +79,15 @@ build-raylib:
 	$(CC) $(CFLAGS) $(SRCS_RAYLIB) $(INCLUDES) $(RAYLIB_FLAGS) -o $(TARGET_RAYLIB)
 
 clean:
-	rm -f $(TARGET) $(TARGET_RAYLIB) *.o
+	-$(RM_CMD) $(TARGET) $(TARGET_RAYLIB)
 
 run: all
-	@mkdir -p data
-	./$(TARGET)
+	$(MKDIR_DATA)
+	$(RUN_PREFIX)$(TARGET)
 
 raylib: build-raylib
-	@mkdir -p data
-	./$(TARGET_RAYLIB)
+	$(MKDIR_DATA)
+	$(RUN_PREFIX)$(TARGET_RAYLIB)
 
 run-raylib: raylib
 
@@ -90,13 +104,14 @@ format:
 
 help:
 	@echo "=== EXECUÇÃO ==="
-	@echo "make run             -> compilar e executar versão terminal (console)"
-	@echo "make raylib          -> compilar e executar versão visual (RayLib)"
+	@echo "make run                          -> compilar e executar versão terminal (console)"
+	@echo "make raylib                       -> compilar e executar versão visual (RayLib)"
 	@echo ""
 	@echo "=== COMPILAÇÃO ==="
-	@echo "make or make all     -> compilar versão terminal"
-	@echo "make build-raylib    -> compilar versão visual sem executar"
-	@echo "make DEBUG=1         -> compilar com debug"
+	@echo "make or make all                  -> compilar versão terminal"
+	@echo "make build-raylib                 -> compilar versão visual sem executar"
+	@echo "make DEBUG=1 ...                  -> compilar com debug"
+	@echo "make RAYLIB_DIR=C:/raylib raylib  -> Windows sem MSYS2 (raylib manual)"
 	@echo ""
 	@echo "=== UTILITÁRIOS ==="
 	@echo "make test            -> rodar testes"
