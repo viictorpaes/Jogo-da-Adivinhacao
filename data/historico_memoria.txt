@@ -1,4 +1,0 @@
-➖➖➖➖➖➖➖ HISTÓRICO - JOGO DA MEMÓRIA ➖➖➖➖➖➖➖
-  [2026-05-16] Lucas           | Pontuacao: 80 | Tentativas: 16 | Pontos: 60
-  [2026-05-20] teste capstone 2 | Pontuacao: 80 | Tentativas: 14 | Pontos: 70
-  [2026-05-20] lucas teste capstone 2 (20/05) | Pontuacao: 80 | Tentativas: 15 | Pontos: 65

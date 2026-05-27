@@ -52,6 +52,13 @@
   <img src="https://img.shields.io/badge/-GitHub%20Desktop-020617?style=flat-square&logo=github&logoColor=6F42C1"/>
 </p>
 
+<h2 align="center">🖥️ Plataformas Disponíveis:</h2>
+<p align="center">
+  <img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420"/>
+  <img src="https://img.shields.io/badge/Windows-020617?style=flat-square&logo=windows&logoColor=0078D4"/>
+</p>
+
 <h2 align="center"><b>🛠️ Especificações Técnicas</b></h2>
 
 <b>O projeto foi desenvolvido focando em modularização e boas práticas de programação em C:</b>
@@ -424,7 +431,7 @@ Jogo-da-Adivinhacao/
 
 <h3 align="center">🎨 Diagramas, Protótipos e Validação de UX</h3>
 <p align="center">
-  <strong>Demonstração do Protótipo (Screencast):</strong> <br>
+  <strong>Entrega 1 e 2 - Demonstração do Protótipo (Screencast):</strong> <br>
   <a href="https://www.youtube.com/watch?v=OtLZ7gIEQFQ" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
@@ -434,12 +441,36 @@ Jogo-da-Adivinhacao/
 </p>
 
 <p align="center">
- <strong>Demonstração do Jogo via Raylib (Screencast 2):</strong> <br>
+ <strong>Entrega 3 - Demonstração do Jogo via Raylib (Screencast 2):</strong> <br>
   <a href="https://youtu.be/mInsL-gVaTs" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
   <a href="#" target="_blank" height="25"><img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white" height="25"/>
   </a>
+</p>
+
+<p align="center">
+ <strong>Entrega 04 — Novas Histórias + Deploy (Screencast 3):</strong> <br>
+  <a href="ADICIONAR_URL_SCREENCAST_AQUI" target="_blank">
+    <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
+  </a>
+  <a href="https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest" target="_blank">
+    <img src="https://img.shields.io/badge/-Deploy-111827?style=flat-square&logo=icloud&logoColor=white" height="25"/>
+  </a>
+</p>
+
+<h3 align="center">🚀 Deploy</h3>
+
+<p align="center">
+  <strong>Binários compilados disponíveis via GitHub Releases:</strong><br>
+  <a href="https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest" target="_blank">
+  <img src="https://img.shields.io/badge/-GitHub%20Releases-1a56db?style=flat-square&logo=github&logoColor=white" height="25"/>
+  </a>
+</p>
+
+<p align="center">
+  <b>Baixe o executável pré-compilado para o seu sistema operacional diretamente na página de releases.<br>
+  A URL 🔗 aparece no Screencast 3 (Entrega 04).</b>
 </p>
 
 <h2 align="center">Telas 📱 <br></h2>
@@ -591,15 +622,15 @@ Jogo-da-Adivinhacao/
 <table align="center" width="780">
   <tr><th align="center">📋 Quadro de Issues — Visão 1</th></tr>
   <tr><td align="center"><b>Visão geral das issues abertas e em andamento no repositório.</b></td></tr>
-  <tr><td align="center"><img src="img/issue1.jpeg" width="750" alt="GitHub Issues — Visão 1"/></td></tr>
+  <tr><td align="center"><img src="img/issues_concluídas.jpeg" width="750" alt="GitHub Issues — Visão 1"/></td></tr>
 </table>
 
-<br/>
+<br>
 
 <table align="center" width="780">
   <tr><th align="center">📋 Quadro de Issues — Visão 2</th></tr>
   <tr><td align="center"><b>Visão geral das issues fechadas e histórico de resoluções no repositório.</b></td></tr>
-  <tr><td align="center"><img src="img/issue2.jpeg" width="750" alt="GitHub Issues — Visão 2"/></td></tr>
+  <tr><td align="center"><img src="img/issues_em_andamento.jpeg" width="750" alt="GitHub Issues — Visão 2"/></td></tr>
 </table>
 
 
@@ -624,7 +655,9 @@ Jogo-da-Adivinhacao/
 
 <h2 align="center">🤝💻 Programação em Par</h2>
 
-> Relato de quais duplas trabalharam juntas e quais funcionalidades cada par implementou, conforme prática de *Pair Programming* adotada na Entrega 03.
+> Relato de quais duplas trabalharam juntas e quais funcionalidades cada par implementou, conforme prática de *Pair Programming* adotada nas Entregas 03 e 04.
+
+### Entrega 03
 
 | Par | Funcionalidades Implementadas |
 | :--- | :--- |
@@ -632,6 +665,15 @@ Jogo-da-Adivinhacao/
 | **Helamã Procídio + Eduardo Cavalcanti** | Capstone 1 — módulo de lógica proposicional (`logica.c`, `precedencia.c`) e frontend gráfico Raylib (`frontend.c`) |
 | **Felipe Franca** | Módulo de estatísticas (`estatisticas.c`) — funções recursivas de soma, mínimo, máximo e desvio padrão |
 | **Tiago Vasconcelos + João Pedro Arruda** | Implementação de features e novas Histórias de Usuário (modos VS, persistência e ranking) |
+
+### Entrega 04
+
+| Par | Funcionalidades Implementadas |
+| :--- | :--- |
+| **Lucas Paguetti + Victor Paes** | Refatoração geral de timers — introdução de `TIMER_ADIV_BONUS`, `TIMER_ADIV_PENALIDADE` e `timer_adiv_para_dif()` em `tipos.h`; revisão de nomenclatura em todos os módulos; integração final dos 6 modos no Raylib |
+| **Helamã Procídio + Eduardo Cavalcanti** | Timer independente por jogador no modo VS Memória (`memorygame.c`) e carry de timer entre fases; ajustes visuais no frontend gráfico (`frontend.c`) |
+| **Felipe Franca + Tiago Vasconcelos** | Filtro por nome no histórico — implementação de `hist_filtro_nome`, `hist_com_filtro` e lista de autocomplete `nomes_hist[]` no módulo `history/` |
+| **João Pedro Arruda** | Ajustes no `Makefile` para compatibilidade com Windows (MSYS2/MinGW) e Linux (Ubuntu); testes de compilação multiplataforma |
 
 <br>
 
