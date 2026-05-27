@@ -54,9 +54,9 @@
 
 <h2 align="center">🖥️ Plataformas Disponíveis:</h2>
 <p align="center">
-  <img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420"/>
-  <img src="https://img.shields.io/badge/Windows-020617?style=flat-square&logo=windows&logoColor=0078D4"/>
+<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/>
+<img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420"/>
+<img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white"/>
 </p>
 
 <h2 align="center"><b>🛠️ Especificações Técnicas</b></h2>
@@ -85,7 +85,7 @@
 <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/></h2>
 
 <h3>
-<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
+<img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white" alt="macOS"/>
 </h3>
 
 ```bash
@@ -93,7 +93,7 @@ brew install raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Ubuntu%20%2F%20Debian-E95420?style=flat&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
+<img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420" alt="Ubuntu"/>
 </h3>
 
 ```bash
@@ -101,7 +101,7 @@ sudo apt-get install libraylib-dev
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
+<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
 </h3>
 
 No terminal do **MSYS2 MinGW 64-bit**:
@@ -113,7 +113,7 @@ pacman -S mingw-w64-x86_64-raylib
 Depois, `make raylib` funciona normalmente dentro do mesmo terminal MSYS2.
 
 <h3>
-<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
+<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
 </h3>
 
 Baixe os binários pré-compilados em [raylib.com/download](https://www.raylib.com/index.html), extraia (ex.: `C:\raylib`) e compile passando o caminho:
@@ -140,15 +140,15 @@ Após baixar o Github desktop: <br>
 5. **Siga os seguintes comandos 🕹️** <br>
    <ul>
   <li>
-  Windows <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" width="16"/> <br>
+  <img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/>  <br>
     <code>Ctrl</code> + <code>j</code> (tecla de crase)
   </li> <br>
   <li>
-    <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black" alt="Linux"/> <br>
+    <img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420" alt="Linux"/> <br>
     <code>Ctrl</code> + <code>j</code> (tecla de crase)
   </li> <br>
   <li>
-    <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/> <br>
+    <img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white" alt="macOS"/> <br>
     <code>Command</code> + <code>j</code> (tecla de crase)
   </li>
 </ul> 
@@ -158,7 +158,7 @@ Após baixar o Github desktop: <br>
 <img src="https://img.shields.io/badge/-Makefile-111827?style=flat-square&logo=probot&logoColor=red"/></h2>
 
 <h3>
-<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
+<img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white" alt="macOS"/>
 </h3>
 
 **Versão terminal:**
@@ -171,7 +171,7 @@ make raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Ubuntu%20%2F%20Debian-E95420?style=flat&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
+<img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420" alt="Ubuntu"/>
 </h3>
 
 **Versão terminal:**
@@ -184,7 +184,7 @@ make raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
+<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
 </h3>
 
 No terminal do **MSYS2 MinGW 64-bit**, os comandos são idênticos:
@@ -199,7 +199,7 @@ make raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Windows-0078D4?style=flat&logo=windows&logoColor=white" alt="Windows"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
+<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
 </h3>
 
 **Versão terminal:**
