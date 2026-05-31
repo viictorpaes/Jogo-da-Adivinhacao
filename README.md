@@ -457,7 +457,7 @@ Jogo-da-Adivinhacao/
 
 <p align="center">
  <strong>Entrega 04 — Novas Histórias + Deploy (Screencast 3):</strong> <br>
-  <a href="ADICIONAR_URL_SCREENCAST_AQUI" target="_blank">
+  <a href="https://youtu.be/6qsiPLX8Pvo" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
   <a href="https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest" target="_blank">
