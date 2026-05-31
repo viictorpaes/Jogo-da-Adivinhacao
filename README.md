@@ -5,11 +5,10 @@
 <img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=white"/>
 <img src="https://img.shields.io/badge/-Raylib-020617?style=flat-square&logo=raylib&logoColor=white"/>
 
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/blob/main/LICENSE)
 [![Build & Release](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml/badge.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml)
 [![GitHub Release](https://img.shields.io/github/v/release/viictorpaes/Jogo-da-Adivinhacao?label=deploy&logo=github)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-yellow)
 </h1>
 
 <h2 align="center">👥👨🏻‍🏫 Docentes Responsáveis: </h2>
@@ -86,7 +85,7 @@
 <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/></h2>
 
 <h3>
-<img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white" alt="macOS"/>
+<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
 </h3>
 
 ```bash
@@ -94,7 +93,7 @@ brew install raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420" alt="Ubuntu"/>
+<img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
 </h3>
 
 ```bash
@@ -102,7 +101,7 @@ sudo apt-get install libraylib-dev
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
+<img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
 </h3>
 
 No terminal do **MSYS2 MinGW 64-bit**:
@@ -114,7 +113,7 @@ pacman -S mingw-w64-x86_64-raylib
 Depois, `make raylib` funciona normalmente dentro do mesmo terminal MSYS2.
 
 <h3>
-<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
+<img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
 </h3>
 
 Baixe os binários pré-compilados em [raylib.com/download](https://www.raylib.com/index.html), extraia (ex.: `C:\raylib`) e compile passando o caminho:
@@ -141,15 +140,15 @@ Após baixar o Github desktop: <br>
 5. **Siga os seguintes comandos 🕹️** <br>
    <ul>
   <li>
-  <img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/>  <br>
+  <img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/>  <br>
     <code>Ctrl</code> + <code>j</code> (tecla de crase)
   </li> <br>
   <li>
-    <img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420" alt="Linux"/> <br>
+    <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" alt="Linux"/> <br>
     <code>Ctrl</code> + <code>j</code> (tecla de crase)
   </li> <br>
   <li>
-    <img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white" alt="macOS"/> <br>
+    <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/> <br>
     <code>Command</code> + <code>j</code> (tecla de crase)
   </li>
 </ul> 
@@ -159,7 +158,7 @@ Após baixar o Github desktop: <br>
 <img src="https://img.shields.io/badge/-Makefile-111827?style=flat-square&logo=probot&logoColor=red"/></h2>
 
 <h3>
-<img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white" alt="macOS"/>
+<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/>
 </h3>
 
 **Versão terminal:**
@@ -172,7 +171,7 @@ make raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420" alt="Ubuntu"/>
+<img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
 </h3>
 
 **Versão terminal:**
@@ -185,7 +184,7 @@ make raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
+<img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> MSYS2 / MinGW (recomendado)
 </h3>
 
 No terminal do **MSYS2 MinGW 64-bit**, os comandos são idênticos:
@@ -200,7 +199,7 @@ make raylib
 ```
 
 <h3>
-<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
+<img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit"/> Instalação manual (sem MSYS2)
 </h3>
 
 **Versão terminal:**
@@ -346,6 +345,12 @@ Jogo-da-Adivinhacao/
 ├── protótipo.fig <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 ├── LICENSE <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square" height="18"/>
+|
+├── .github <img src="https://img.shields.io/badge/-GitHub-111827?style=flat-square&logo=github&logoColor=white" height="18">/
+│   ├── workflows <img src="https://img.shields.io/badge/-Workflows-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="18">/
+│   │   └── release.yml <img src="https://img.shields.io/badge/-CI%2FCD-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="18"/>
+│   └── md <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=markdown&logoColor=0078D4" height="18">/
+│       └── Deploy.md <img src="https://img.shields.io/badge/-Deploy-111827?style=flat-square&logo=github&logoColor=white" height="18"/>
 ├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
 │   ├── ADR.md <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="18"/>
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
@@ -473,6 +478,23 @@ Jogo-da-Adivinhacao/
   <b>Baixe o executável pré-compilado para o seu sistema operacional diretamente na página de releases.<br>
   A URL 🔗 aparece no Screencast 3 (Entrega 04).</b>
 </p>
+
+<h2 align="center">🆕 Entrega 4 — Novas Histórias de Usuário</h2>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Entrega_4-6_novas_HUs_implementadas-7C3AED?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
+</p>
+
+| # | História de Usuário | Par | Módulo |
+| :---: | :--- | :--- | :--- |
+| **HU‑E4‑01** | Como **jogador VS Memória**, quero um **timer independente** por jogador para que cada turno seja cronometrado individualmente, sem interferência do adversário | Helamã + Eduardo | `memorygame.c` |
+| **HU‑E4‑02** | Como **jogador VS Memória**, quero que o timer acumulado seja **carregado entre fases** para que a vantagem de tempo conquistada não seja zerada a cada rodada | Helamã + Eduardo | `memorygame.c` |
+| **HU‑E4‑03** | Como **jogador**, quero **filtrar o histórico pelo meu nome** para que eu veja apenas as minhas sessões, sem as dos outros jogadores cadastrados | Felipe + Tiago | `historico.c` |
+| **HU‑E4‑04** | Como **jogador**, quero que o campo de nome ofereça **autocomplete** com os nomes já salvos para que o preenchimento seja mais rápido e sem erros de digitação | Felipe + Tiago | `historico.c` |
+| **HU‑E4‑05** | Como **jogador**, quero acessar todos os **6 modos de jogo na versão Raylib** com timers e lógica de bônus/penalidade plenamente integrados para uma experiência visual completa | Lucas + Victor | `frontend.c` / `tipos.h` |
+| **HU‑E4‑06** | Como **desenvolvedor**, quero que o projeto compile **sem ajustes manuais** em Windows (MSYS2/MinGW) e Linux (Ubuntu) para que qualquer integrante possa contribuir na sua plataforma | João Pedro | `Makefile` |
+
+<br>
 
 <h2 align="center">Telas 📱 <br></h2>
 

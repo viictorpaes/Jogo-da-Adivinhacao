@@ -128,6 +128,12 @@ jobs:
 
             Binários pré-compilados da versão **Raylib** (gráfica) para todas as plataformas.
 
+            <p align="center">
+            <img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" height="20" alt="Windows 10/11"/>
+            <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" height="20" alt="Linux / Ubuntu"/>
+            <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" height="20" alt="macOS"/>
+            </p>
+
             ### Como executar
             1. Baixe o `.zip` da sua plataforma abaixo
             2. **Extraia o zip** em qualquer pasta
@@ -135,9 +141,9 @@ jobs:
 
             | Plataforma | Arquivo | Executável |
             |---|---|---|
-            | macOS | `jogo_raylib_macos.zip` | `./jogo_raylib` |
-            | Linux (Ubuntu/Debian x64) | `jogo_raylib_linux.zip` | `./jogo_raylib` |
-            | Windows 10/11 | `jogo_raylib_windows.zip` | `jogo_raylib.exe` |
+            | <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" height="16" alt="macOS"/> macOS | `jogo_raylib_macos.zip` | `./jogo_raylib` |
+            | <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" height="16" alt="Ubuntu"/> Linux (Ubuntu/Debian x64) | `jogo_raylib_linux.zip` | `./jogo_raylib` |
+            | <img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" height="16" alt="Windows"/> Windows 10/11 | `jogo_raylib_windows.zip` | `jogo_raylib.exe` |
 
             > Para a versão terminal (sem Raylib), clone o repositório e use `make run`.
           files: |

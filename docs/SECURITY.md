@@ -66,8 +66,8 @@ Para os intervalos deste jogo (50, 100, 200 valores) e para o embaralhamento (N 
 
 | Plataforma | Alternativa sem viés |
 | :--- | :--- |
-| <img src="https://img.shields.io/badge/macOS-020617?style=flat&logo=apple&logoColor=white" alt="macOS"/> | `arc4random_uniform(N)` — CSPRNG nativo, sem `srand()` |
-| <img src="https://img.shields.io/badge/Linux-020617?style=flat&logo=linux&logoColor=yellow" alt="Linux"/> | `getrandom()` syscall + *rejection sampling* |
+| <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS"/> | `arc4random_uniform(N)` — CSPRNG nativo, sem `srand()` |
+| <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" alt="Linux"/> | `getrandom()` syscall + *rejection sampling* |
 | Portabilidade | `rand()` com *rejection sampling* manual |
 
 **Esquema de *rejection sampling*:**

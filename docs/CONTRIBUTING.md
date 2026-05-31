@@ -77,7 +77,7 @@ Antes de começar, certifique-se de ter instalado:
 
 ## 💻 Configuração do Ambiente
 
-### <img src="https://img.shields.io/badge/macOS-020617?style=flat&logo=apple&logoColor=white" alt="macOS" height="18"/>
+### <img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS" height="18"/>
 
 ```bash
 # 1. Instalar Homebrew (se ainda não tiver)
@@ -97,7 +97,7 @@ git clone https://github.com/viictorpaes/Jogo-da-Adivinhacao.git
 cd Jogo-da-Adivinhacao
 ```
 
-### <img src="https://img.shields.io/badge/Ubuntu%20%2F%20Debian-020617?style=flat&logo=ubuntu&logoColor=orange" alt="Ubuntu" height="18"/>
+### <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" alt="Ubuntu" height="18"/>
 
 ```bash
 # 1. Atualizar lista de pacotes
@@ -117,7 +117,7 @@ git clone https://github.com/viictorpaes/Jogo-da-Adivinhacao.git
 cd Jogo-da-Adivinhacao
 ```
 
-### <img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11" height="18"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit" height="18"/> via MSYS2 MinGW 64-bit (recomendado)
+### <img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11" height="18"/> <img src="https://img.shields.io/badge/MSYS2%20MinGW%2064--bit-black?style=flat&logo=gnubash&logoColor=white" alt="MSYS2 MinGW 64-bit" height="18"/> via MSYS2 MinGW 64-bit (recomendado)
 
 > Baixe e instale o [MSYS2](https://www.msys2.org). Abra o terminal **MSYS2 MinGW 64-bit**.
 
@@ -139,7 +139,7 @@ cd Jogo-da-Adivinhacao
 > [!TIP]
 > No MSYS2, `mingw32-make` pode ser necessário no lugar de `make`. Caso ocorra erro, tente: `alias make=mingw32-make`.
 
-<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11" height="18"/>Instalação manual (sem MSYS2)
+<img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11" height="18"/>Instalação manual (sem MSYS2)
 
 Baixe os binários pré-compilados do Raylib em [raylib.com](https://www.raylib.com/index.html), extraia (ex.: `C:\raylib`) e compile passando o caminho:
 

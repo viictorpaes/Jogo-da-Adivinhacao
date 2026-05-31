@@ -14,6 +14,11 @@ Jogo-da-Adivinhacao/
 ├── protótipo.fig <img src="https://img.shields.io/badge/-Figma-111827?style=flat-square&logo=figma&logoColor=F24E1E" height="18"/>
 ├── README.md <img src="https://img.shields.io/badge/-Markdown-111827?style=flat-square&logo=markdown&logoColor=white" height="18"/>
 ├── LICENSE <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square" height="18"/>
+├── .github <img src="https://img.shields.io/badge/-GitHub%20Actions-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="18">/
+│   ├── workflows <img src="https://img.shields.io/badge/-Workflows-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="18">/
+│   │   └── release.yml <img src="https://img.shields.io/badge/-CI%2FCD-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="18"/>
+│   └── md <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=markdown&logoColor=white" height="18">/
+│       └── Deploy.md <img src="https://img.shields.io/badge/-Deploy-111827?style=flat-square&logo=github&logoColor=white" height="18"/>
 ├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
 │   ├── ADR.md <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="18"/>
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
@@ -109,6 +114,25 @@ Gerencia o processo de build do projeto. Suporta duas versões compiláveis — 
 | `make test` | Executa os testes do projeto |
 | `make DEBUG=1` | Compila com símbolos de depuração (`-g -O0`) |
 | `make help` | Exibe todos os comandos disponíveis |
+
+---
+
+## 🤖 CI/CD e Deploy (`.github/`)
+
+<img src="https://img.shields.io/badge/-GitHub%20Actions-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="18"/><br>
+Automatiza o build multiplataforma e a publicação de releases. A pasta `.github/` contém dois subdiretórios:
+
+| Subdiretório | Conteúdo | Responsabilidade |
+| :--- | :--- | :--- |
+| `workflows/release.yml` <img src="https://img.shields.io/badge/-CI%2FCD-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="16"/> | Pipeline YAML do GitHub Actions | Compila a versão Raylib em **macOS**, **Linux (Ubuntu 22.04)** e **Windows (MSYS2/MinGW64)** em paralelo; publica os três binários como **GitHub Release** ao detectar uma tag `v*` |
+| `md/Deploy.md` <img src="https://img.shields.io/badge/-Deploy-111827?style=flat-square&logo=github&logoColor=white" height="16"/> | Documentação do pipeline | Descreve gatilhos, matriz de jobs, estrutura dos artefatos, DLLs empacotadas e instruções para publicar uma nova release |
+
+O pipeline é disparado de duas formas:
+
+- **`push` de tag `v*`** — compila e publica a Release automaticamente  
+- **`workflow_dispatch`** — compila sem publicar (útil para validar builds)
+
+> Consulte [`.github/md/Deploy.md`](../.github/md/Deploy.md) para a documentação completa do fluxo de CI/CD.
 
 ---
 
