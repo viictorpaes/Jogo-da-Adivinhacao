@@ -485,14 +485,14 @@ Jogo-da-Adivinhacao/
   <img src="https://img.shields.io/badge/Entrega_4-6_novas_HUs_implementadas-7C3AED?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
 </p>
 
-| # | História de Usuário | Par | Módulo |
-| :---: | :--- | :--- | :--- |
-| **HU‑E4‑01** | Como **jogador VS Memória**, quero um **timer independente** por jogador para que cada turno seja cronometrado individualmente, sem interferência do adversário | Helamã + Eduardo | `memorygame.c` |
-| **HU‑E4‑02** | Como **jogador VS Memória**, quero que o timer acumulado seja **carregado entre fases** para que a vantagem de tempo conquistada não seja zerada a cada rodada | Helamã + Eduardo | `memorygame.c` |
-| **HU‑E4‑03** | Como **jogador**, quero **filtrar o histórico pelo meu nome** para que eu veja apenas as minhas sessões, sem as dos outros jogadores cadastrados | Felipe + Tiago | `historico.c` |
-| **HU‑E4‑04** | Como **jogador**, quero que o campo de nome ofereça **autocomplete** com os nomes já salvos para que o preenchimento seja mais rápido e sem erros de digitação | Felipe + Tiago | `historico.c` |
-| **HU‑E4‑05** | Como **jogador**, quero acessar todos os **6 modos de jogo na versão Raylib** com timers e lógica de bônus/penalidade plenamente integrados para uma experiência visual completa | Lucas + Victor | `frontend.c` / `tipos.h` |
-| **HU‑E4‑06** | Como **desenvolvedor**, quero que o projeto compile **sem ajustes manuais** em Windows (MSYS2/MinGW) e Linux (Ubuntu) para que qualquer integrante possa contribuir na sua plataforma | João Pedro | `Makefile` |
+| # | História de Usuário | Módulo |
+| :---: | :--- | :--- |
+| **HU‑E4‑01** | Como **jogador VS Memória**, quero um **timer independente** por jogador para que cada turno seja cronometrado individualmente, sem interferência do adversário | `memorygame.c` |
+| **HU‑E4‑02** | Como **jogador VS Memória**, quero que o timer acumulado seja **carregado entre fases** para que a vantagem de tempo conquistada não seja zerada a cada rodada | `memorygame.c` |
+| **HU‑E4‑03** | Como **jogador**, quero **filtrar o histórico pelo meu nome** para que eu veja apenas as minhas sessões, sem as dos outros jogadores cadastrados | `historico.c` |
+| **HU‑E4‑04** | Como **jogador**, quero que o campo de nome ofereça **autocomplete** com os nomes já salvos para que o preenchimento seja mais rápido e sem erros de digitação | `historico.c` |
+| **HU‑E4‑05** | Como **jogador**, quero acessar todos os **6 modos de jogo na versão Raylib** com timers e lógica de bônus/penalidade plenamente integrados para uma experiência visual completa | `frontend.c` / `tipos.h` |
+| **HU‑E4‑06** | Como **desenvolvedor**, quero que o projeto compile **sem ajustes manuais** em Windows (MSYS2/MinGW) e Linux (Ubuntu) para que qualquer integrante possa contribuir na sua plataforma | `Makefile` |
 
 <br>
 
