@@ -7,7 +7,8 @@
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/blob/main/LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing_/_done-brightgreen)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions)
+[![Build & Release](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml/badge.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/viictorpaes/Jogo-da-Adivinhacao?label=deploy&logo=github)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 </h1>
 
@@ -54,9 +55,9 @@
 
 <h2 align="center">🖥️ Plataformas Disponíveis:</h2>
 <p align="center">
-<img src="https://img.shields.io/badge/windows%2010%2F11-020617?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" alt="Windows 10/11"/>
-<img src="https://img.shields.io/badge/Linux%20%2F%20Ubuntu-020617?style=flat-square&logo=ubuntu&logoColor=E95420"/>
-<img src="https://img.shields.io/badge/macOS-020617?style=flat-square&logo=apple&logoColor=white"/>
+<img src="https://img.shields.io/badge/windows%2010%2F11-2563EB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDBBREVGIiBkPSJNMTI2IDEuNjM3bC02NyA5LjgzNHY0OS44MzFsNjctLjUzNHpNMS42NDcgNjYuNzA5bC4wMDMgNDIuNDA0IDUwLjc5MSA2Ljk4My0uMDQtNDkuMDU3em01Ni44Mi42OGwuMDk0IDQ5LjQ2NSA2Ny4zNzYgOS41MDkuMDE2LTU4Ljg2M3pNMS42MSAxOS4yOTdsLjA0NyA0Mi4zODMgNTAuNzkxLS4yODktLjAyMy00OS4wMTZ6Ii8+PC9zdmc+" height="20" alt="Windows 10/11"/>
+<img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" height="20" alt="Linux / Ubuntu"/>
+<img src="https://img.shields.io/badge/macOS-white?style=flat&logo=apple&logoColor=black" alt="macOS" height="20"/> 
 </p>
 
 <h2 align="center"><b>🛠️ Especificações Técnicas</b></h2>

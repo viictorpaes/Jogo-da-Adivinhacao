@@ -1,0 +1,148 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  # ── macOS ──────────────────────────────────────────────────────────────────
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Raylib
+        run: brew install raylib
+
+      - name: Build
+        run: make build-raylib
+
+      - name: Package
+        run: |
+          mkdir -p package/src/music package/data
+          cp jogo_raylib package/
+          cp src/music/StarWarsMainTheme.mp3 package/src/music/
+          cd package && zip -r ../jogo_raylib_macos.zip .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jogo_raylib_macos
+          path: jogo_raylib_macos.zip
+
+  # ── Linux (Ubuntu 22.04) ───────────────────────────────────────────────────
+  build-linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc make \
+            libgl1-mesa-dev libxi-dev libxcursor-dev \
+            libxinerama-dev libxrandr-dev libasound2-dev
+
+      - name: Build Raylib 5.0 from source
+        run: |
+          git clone --depth 1 --branch 5.0 https://github.com/raysan5/raylib.git /tmp/raylib
+          cd /tmp/raylib/src
+          make PLATFORM=PLATFORM_DESKTOP
+          sudo make install PLATFORM=PLATFORM_DESKTOP
+
+      - name: Build game
+        run: |
+          make build-raylib \
+            RAYLIB_FLAGS="-I/usr/local/include -L/usr/local/lib -lraylib -lGL -lm -lpthread -ldl -lX11"
+
+      - name: Package
+        run: |
+          mkdir -p package/src/music package/data
+          cp jogo_raylib package/
+          cp src/music/StarWarsMainTheme.mp3 package/src/music/
+          cd package && zip -r ../jogo_raylib_linux.zip .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jogo_raylib_linux
+          path: jogo_raylib_linux.zip
+
+  # ── Windows (MSYS2 / MinGW 64-bit) ────────────────────────────────────────
+  build-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-make
+            mingw-w64-x86_64-raylib
+            zip
+
+      - name: Build
+        run: mingw32-make build-raylib
+
+      - name: Package
+        run: |
+          mkdir -p package/src/music package/data
+          cp jogo_raylib.exe package/
+          cp src/music/StarWarsMainTheme.mp3 package/src/music/
+          # DLLs necessárias para rodar sem MSYS2 instalado
+          cp /mingw64/bin/libgcc_s_seh-1.dll package/ 2>/dev/null || true
+          cp /mingw64/bin/libwinpthread-1.dll package/ 2>/dev/null || true
+          cp /mingw64/bin/libraylib.dll        package/ 2>/dev/null || true
+          cd package && zip -r ../jogo_raylib_windows.zip .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jogo_raylib_windows
+          path: jogo_raylib_windows.zip
+
+  # ── GitHub Release (somente em push de tag v*) ────────────────────────────
+  release:
+    needs: [build-macos, build-linux, build-windows]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Jogo da Adivinhação ${{ github.ref_name }}"
+          body: |
+            ## Jogo da Adivinhação — ${{ github.ref_name }}
+
+            Binários pré-compilados da versão **Raylib** (gráfica) para todas as plataformas.
+
+            ### Como executar
+            1. Baixe o `.zip` da sua plataforma abaixo
+            2. **Extraia o zip** em qualquer pasta
+            3. Execute o binário **de dentro da pasta extraída** — a trilha sonora usa o caminho relativo `src/music/`
+
+            | Plataforma | Arquivo | Executável |
+            |---|---|---|
+            | macOS | `jogo_raylib_macos.zip` | `./jogo_raylib` |
+            | Linux (Ubuntu/Debian x64) | `jogo_raylib_linux.zip` | `./jogo_raylib` |
+            | Windows 10/11 | `jogo_raylib_windows.zip` | `jogo_raylib.exe` |
+
+            > Para a versão terminal (sem Raylib), clone o repositório e use `make run`.
+          files: |
+            artifacts/jogo_raylib_macos/jogo_raylib_macos.zip
+            artifacts/jogo_raylib_linux/jogo_raylib_linux.zip
+            artifacts/jogo_raylib_windows/jogo_raylib_windows.zip
+          draft: false
+          prerelease: false
