@@ -7,3 +7,7 @@ data,nome1,nome2,dificuldade,vitorias1,vitorias2,pontos1,pontos2,vencedor
 2026-06-05,Draco,Lyra,PILOTO,0,3,0,210,2
 2026-06-06,Atlas,Cygnus,PILOTO,2,0,140,0,1
 2026-06-07,Phoebe,Titan,COMANDANTE,1,1,80,80,0
+2026-06-08,Orion,Nebula,CADETE,3,0,135,0,1
+2026-06-09,Sirius,Vega,PILOTO,2,1,140,70,1
+2026-06-10,Phoebe,Nova,COMANDANTE,1,2,80,160,2
+2026-06-10,Lyra,Cygnus,CADETE,1,1,45,45,0

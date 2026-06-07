@@ -12,3 +12,9 @@ HISTÓRICO DE PARTIDAS
   [2026-06-06] Lyra            | MÉDIO   | 08/08 | Secreto: 067 | DERROTA | 0 pts
   [2026-06-07] Atlas           | DIFÍCIL | 03/10 | Secreto: 088 | VITÓRIA | 75 pts
   [2026-06-07] Cygnus          | DIFÍCIL | 10/10 | Secreto: 012 | DERROTA | 0 pts
+  [2026-06-08] Orion           | FÁCIL   | 03/05 | Secreto: 016 | VITÓRIA | 40 pts
+  [2026-06-08] Vega            | FÁCIL   | 05/05 | Secreto: 008 | DERROTA | 0 pts
+  [2026-06-09] Sirius          | MÉDIO   | 02/08 | Secreto: 044 | VITÓRIA | 55 pts
+  [2026-06-09] Phoebe          | MÉDIO   | 08/08 | Secreto: 073 | DERROTA | 0 pts
+  [2026-06-10] Titan           | DIFÍCIL | 04/10 | Secreto: 091 | VITÓRIA | 70 pts
+  [2026-06-10] Nebula          | DIFÍCIL | 10/10 | Secreto: 036 | DERROTA | 0 pts

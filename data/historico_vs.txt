@@ -8,3 +8,7 @@
   [2026-06-05] Draco        vs Lyra         | PILOTO     | 0-3 | pts 0-210   | Vencedor: Lyra
   [2026-06-06] Atlas        vs Cygnus       | PILOTO     | 2-0 | pts 140-0   | Vencedor: Atlas
   [2026-06-07] Phoebe       vs Titan        | COMANDANTE | 1-1 | pts 80-80   | Vencedor: EMPATE
+  [2026-06-08] Orion        vs Nebula       | CADETE     | 3-0 | pts 135-0   | Vencedor: Orion
+  [2026-06-09] Sirius       vs Vega         | PILOTO     | 2-1 | pts 140-70  | Vencedor: Sirius
+  [2026-06-10] Phoebe       vs Nova         | COMANDANTE | 1-2 | pts 80-160  | Vencedor: Nova
+  [2026-06-10] Lyra         vs Cygnus       | CADETE     | 1-1 | pts 45-45   | Vencedor: EMPATE

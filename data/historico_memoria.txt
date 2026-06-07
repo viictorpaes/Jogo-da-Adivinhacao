@@ -10,3 +10,8 @@ HISTÓRICO - JOGO DA MEMÓRIA
  [2026-06-06] Draco           | Pontuacao: 80 | Tentativas:  7 | Pontos: 105
  [2026-06-06] Lyra            | Pontuacao: 80 | Tentativas: 16 | Pontos: 60
  [2026-06-07] Atlas           | Pontuacao: 80 | Tentativas: 20 | Pontos: 40
+ [2026-06-08] Orion          | Pontuacao: 80 | Tentativas: 12 | Pontos: 80
+ [2026-06-09] Sirius         | Pontuacao: 80 | Tentativas: 10 | Pontos: 90
+ [2026-06-09] Phoebe         | Pontuacao: 80 | Tentativas: 15 | Pontos: 65
+ [2026-06-10] Titan          | Pontuacao: 80 | Tentativas:  9 | Pontos: 95
+ [2026-06-10] Nebula         | Pontuacao: 80 | Tentativas: 17 | Pontos: 55

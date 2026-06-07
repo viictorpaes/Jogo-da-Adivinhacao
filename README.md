@@ -7,7 +7,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/blob/main/LICENSE)
 [![Build & Release](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml/badge.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml)
-[![GitHub Release](https://img.shields.io/github/v/release/viictorpaes/Jogo-da-Adivinhacao?label=deploy&logo=github)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest)
 ![Version](https://img.shields.io/badge/version-1.0.0-yellow)
 </h1>
 
