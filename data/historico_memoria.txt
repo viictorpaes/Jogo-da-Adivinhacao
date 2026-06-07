@@ -5,3 +5,8 @@ HISTÓRICO - JOGO DA MEMÓRIA
  [2026-06-02] Korvath         | Pontuacao: 80 | Tentativas:  9 | Pontos: 95
  [2026-06-03] Lena            | Pontuacao: 80 | Tentativas: 18 | Pontos: 50
  [2026-06-04] Rex             | Pontuacao: 80 | Tentativas:  8 | Pontos: 100
+ [2026-06-05] Nova            | Pontuacao: 80 | Tentativas: 11 | Pontos: 85
+ [2026-06-05] Cassidy         | Pontuacao: 80 | Tentativas: 13 | Pontos: 75
+ [2026-06-06] Draco           | Pontuacao: 80 | Tentativas:  7 | Pontos: 105
+ [2026-06-06] Lyra            | Pontuacao: 80 | Tentativas: 16 | Pontos: 60
+ [2026-06-07] Atlas           | Pontuacao: 80 | Tentativas: 20 | Pontos: 40

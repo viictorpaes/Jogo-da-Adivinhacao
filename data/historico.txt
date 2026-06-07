@@ -6,3 +6,9 @@ HISTÓRICO DE PARTIDAS
   [2026-06-02] Lena            | MÉDIO   | 08/08 | Secreto: 041 | DERROTA | 0 pts
   [2026-06-03] Rex             | DIFÍCIL | 02/10 | Secreto: 077 | VITÓRIA | 80 pts
   [2026-06-04] Orion           | DIFÍCIL | 10/10 | Secreto: 055 | DERROTA | 0 pts
+  [2026-06-05] Nova            | FÁCIL   | 01/05 | Secreto: 014 | VITÓRIA | 50 pts
+  [2026-06-05] Cassidy         | FÁCIL   | 05/05 | Secreto: 009 | DERROTA | 0 pts
+  [2026-06-06] Draco           | MÉDIO   | 04/08 | Secreto: 031 | VITÓRIA | 45 pts
+  [2026-06-06] Lyra            | MÉDIO   | 08/08 | Secreto: 067 | DERROTA | 0 pts
+  [2026-06-07] Atlas           | DIFÍCIL | 03/10 | Secreto: 088 | VITÓRIA | 75 pts
+  [2026-06-07] Cygnus          | DIFÍCIL | 10/10 | Secreto: 012 | DERROTA | 0 pts

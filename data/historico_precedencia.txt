@@ -3,3 +3,6 @@
   [2026-06-01] Astronauta      |  7/8  acertos |  70 pts
   [2026-06-02] Zara            |  5/8  acertos |  50 pts
   [2026-06-03] Lena            | 10/10 acertos | 100 pts
+  [2026-06-05] Nova            |  8/10 acertos |  80 pts
+  [2026-06-06] Draco           |  6/8  acertos |  60 pts
+  [2026-06-07] Cygnus          |  9/10 acertos |  90 pts

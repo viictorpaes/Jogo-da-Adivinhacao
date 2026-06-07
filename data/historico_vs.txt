@@ -4,3 +4,7 @@
   [2026-06-02] Korvath      vs Lena         | PILOTO     | 1-2 | pts 70-140  | Vencedor: Lena
   [2026-06-03] Rex          vs Orion        | COMANDANTE | 3-0 | pts 240-0   | Vencedor: Rex
   [2026-06-04] Vega         vs Sirius       | CADETE     | 1-1 | pts 45-45   | Vencedor: EMPATE
+  [2026-06-05] Nova         vs Cassidy      | CADETE     | 2-1 | pts 90-45   | Vencedor: Nova
+  [2026-06-05] Draco        vs Lyra         | PILOTO     | 0-3 | pts 0-210   | Vencedor: Lyra
+  [2026-06-06] Atlas        vs Cygnus       | PILOTO     | 2-0 | pts 140-0   | Vencedor: Atlas
+  [2026-06-07] Phoebe       vs Titan        | COMANDANTE | 1-1 | pts 80-80   | Vencedor: EMPATE

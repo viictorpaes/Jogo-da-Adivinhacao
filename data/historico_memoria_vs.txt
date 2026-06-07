@@ -3,3 +3,6 @@
   [2026-06-01] Astronauta    5 pares (50pts) vs Zara          3 pares (30pts) | Astronauta
   [2026-06-02] Korvath       3 pares (30pts) vs Lena          5 pares (50pts) | Lena
   [2026-06-03] Rex           4 pares (40pts) vs Orion         4 pares (40pts) | EMPATE
+  [2026-06-05] Nova         6 pares (60pts) vs Cassidy       2 pares (20pts) | Nova
+  [2026-06-06] Draco        4 pares (40pts) vs Lyra          4 pares (40pts) | EMPATE
+  [2026-06-07] Atlas        7 pares (70pts) vs Cygnus        1 pares (10pts) | Atlas
