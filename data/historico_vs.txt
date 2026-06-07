@@ -1,0 +1,6 @@
+------- HISTORICO - BATALHA DE SINAIS (VS) -------
+
+  [2026-06-01] Astronauta   vs Zara         | CADETE     | 2-1 | pts 90-45   | Vencedor: Astronauta
+  [2026-06-02] Korvath      vs Lena         | PILOTO     | 1-2 | pts 70-140  | Vencedor: Lena
+  [2026-06-03] Rex          vs Orion        | COMANDANTE | 3-0 | pts 240-0   | Vencedor: Rex
+  [2026-06-04] Vega         vs Sirius       | CADETE     | 1-1 | pts 45-45   | Vencedor: EMPATE

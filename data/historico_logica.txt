@@ -1,0 +1,6 @@
+------- HISTORICO - PROTOCOLO LOGICO -------
+
+  [2026-06-01] Astronauta      | 14/16 acertos | 105 pts
+  [2026-06-02] Korvath         |  8/16 acertos |  60 pts
+  [2026-06-03] Rex             | 16/16 acertos | 120 pts
+  [2026-06-04] Vega            |  6/16 acertos |  45 pts

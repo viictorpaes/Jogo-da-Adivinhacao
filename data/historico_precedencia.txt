@@ -1,0 +1,5 @@
+------- HISTORICO - HIERARQUIA DE COMANDOS -------
+
+  [2026-06-01] Astronauta      |  7/8  acertos |  70 pts
+  [2026-06-02] Zara            |  5/8  acertos |  50 pts
+  [2026-06-03] Lena            | 10/10 acertos | 100 pts

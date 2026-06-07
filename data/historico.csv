@@ -1,0 +1,7 @@
+data,nome,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado,pontos
+2026-06-01,Astronauta,FÁCIL,2,5,7,VITÓRIA,45
+2026-06-01,Zara,FÁCIL,5,5,3,DERROTA,0
+2026-06-02,Korvath,MÉDIO,3,8,23,VITÓRIA,50
+2026-06-02,Lena,MÉDIO,8,8,41,DERROTA,0
+2026-06-03,Rex,DIFÍCIL,2,10,77,VITÓRIA,80
+2026-06-04,Orion,DIFÍCIL,10,10,55,DERROTA,0

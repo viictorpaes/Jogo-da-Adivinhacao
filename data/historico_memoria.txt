@@ -1,0 +1,7 @@
+HISTÓRICO - JOGO DA MEMÓRIA
+
+ [2026-06-01] Astronauta      | Pontuacao: 80 | Tentativas: 10 | Pontos: 90
+ [2026-06-02] Zara            | Pontuacao: 80 | Tentativas: 14 | Pontos: 70
+ [2026-06-02] Korvath         | Pontuacao: 80 | Tentativas:  9 | Pontos: 95
+ [2026-06-03] Lena            | Pontuacao: 80 | Tentativas: 18 | Pontos: 50
+ [2026-06-04] Rex             | Pontuacao: 80 | Tentativas:  8 | Pontos: 100
