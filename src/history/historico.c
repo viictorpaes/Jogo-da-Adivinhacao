@@ -360,7 +360,12 @@ bool salvar_partida_vs(const RegistroVS *r)
 {
     FILE *fc = fopen(HISTORICO_VS_CSV, "a");
     FILE *ft = fopen(HISTORICO_VS_TXT, "a");
-    if (!fc || !ft) { if (fc) fclose(fc); if (ft) fclose(ft); return false; }
+    if (!fc || !ft)
+    {
+        if (fc) fclose(fc);
+        if (ft) fclose(ft);
+        return false;
+    }
 
     const char *difs[] = {"CADETE", "PILOTO", "COMANDANTE"};
     const char *dif = difs[(int)r->dificuldade];
@@ -419,7 +424,12 @@ bool salvar_partida_memoria_vs(const RegistroMemoria *r1, const RegistroMemoria 
 {
     FILE *fc = fopen(HISTORICO_MEM_VS_CSV, "a");
     FILE *ft = fopen(HISTORICO_MEM_VS_TXT, "a");
-    if (!fc || !ft) { if (fc) fclose(fc); if (ft) fclose(ft); return false; }
+    if (!fc || !ft)
+    {
+        if (fc) fclose(fc);
+        if (ft) fclose(ft);
+        return false;
+    }
 
     fprintf(fc, "%s,%s,%d,%d,%s,%d,%d\n",
             r1->data, r1->nome, r1->pontuacao, r1->pontos,
@@ -473,7 +483,21 @@ bool salvar_puzzle(const RegistroPuzzle *r)
 
     FILE *fc = fopen(csv, "a");
     FILE *ft = fopen(txt, "a");
-    if (!fc || !ft) { if (fc) fclose(fc); if (ft) fclose(ft); return false; }
+    
+    if (!fc || !ft)
+    {
+        if (fc) 
+        {
+            fclose(fc);
+        } 
+
+        if (ft) 
+        {
+            fclose(ft);
+        }
+
+        return false;
+    }
 
     fprintf(fc, "%s,%s,%d,%d,%d,%s\n",
             r->data, r->nome, r->acertos, r->total, r->pontos, r->modo);

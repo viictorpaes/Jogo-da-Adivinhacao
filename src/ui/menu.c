@@ -64,11 +64,22 @@ Dificuldade exibir_menu_dificuldade(void)
     
     printf("%s\n", LINHA_SIMPLES);
 
-    escolha = ler_inteiro(1, 3, "  Escolha o nível: ");
+    escolha = ler_inteiro(1, 3, "\n Escolha o nível: ");
 
-    if (escolha == 1) return FACIL;
-    if (escolha == 2) return MEDIO;
-    return DIFICIL;
+    if (escolha == 1) 
+    {
+         return FACIL; 
+    }
+
+    else if (escolha == 2) 
+    {  
+        return MEDIO;
+    }
+
+    else 
+    {
+        return DIFICIL;
+    }
 }
 
 static const char *mensagem_proximidade(int palpite, int numero_secreto, int range_total)
@@ -78,10 +89,25 @@ static const char *mensagem_proximidade(int palpite, int numero_secreto, int ran
 
     int porcentagem = (distancia * 100) / (range_total > 0 ? range_total : 1);
 
-    if (porcentagem < 5)  return "📡 Frequência muito próxima! Você está quase lá!";
-    if (porcentagem < 15) return "🔭 Sinal detectado! Continue ajustando...";
-    if (porcentagem < 40) return "📟 Interferência estática... Sinal fraco.";
-    return "🛰️  Sem sinal no espaço... Muito longe!";
+    if (porcentagem < 5) 
+    {
+        return "📡 Frequência muito próxima! Você está quase lá!";
+    }
+
+    if (porcentagem < 15) 
+    {
+        return "🔭 Sinal detectado! Continue ajustando...";
+    }
+
+    if (porcentagem < 40) 
+    {
+        return "📟 Interferência estática... Sinal fraco.";
+    }
+
+    else
+    {
+        return "🛰️  Sem sinal no espaço... Muito longe!";
+    }
 }
 
 void exibir_dica(Resultado r, int tentativas_restantes, int palpite, int numero_secreto, int range_total)
@@ -95,10 +121,14 @@ void exibir_dica(Resultado r, int tentativas_restantes, int palpite, int numero_
     }
     else
     {
-        if (r == MAIOR)
+        if (r == MAIOR) 
+        {
             printf("  🚨 TRANSMISSÃO: O número secreto é MAIOR! Aponte para cima! ^\n");
+        }
         else
+        {
             printf("  🚨 TRANSMISSÃO: O número secreto é MENOR! Volte à órbita! v\n");
+        }
 
         printf("  %s\n", mensagem_proximidade(palpite, numero_secreto, range_total));
         printf("  Tentativas restantes: %d\n", tentativas_restantes);

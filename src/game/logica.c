@@ -34,13 +34,19 @@ static int gerar_no(JogoLogica *jogo, int profundidade)
     int tipo = rand() % max_op + 1;
 
     int indice = alocar_no(jogo);
-    if (indice < 0) return 0;
+
+    if (indice < 0) 
+    {
+        return 0;
+    }
+
     jogo->formula.nos[indice].tipo = tipo;
     jogo->formula.nos[indice].esq  = gerar_no(jogo, profundidade - 1);
     if (tipo != OP_NEGACAO)
     {
         jogo->formula.nos[indice].dir = gerar_no(jogo, profundidade - 1);
     }
+
     return indice;
 }
 
@@ -68,12 +74,17 @@ static bool avaliar(const JogoLogica *jogo, int indice, const bool vars[])
         case OP_DISJUNCAO:
         return avaliar(jogo, no->esq, vars) || avaliar(jogo, no->dir, vars);
 
-        case OP_IMPLICACAO: val_esq = avaliar(jogo, no->esq, vars); val_dir = avaliar(jogo, no->dir, vars);
-        return !val_esq || val_dir;
+        case OP_IMPLICACAO:
+            val_esq = avaliar(jogo, no->esq, vars);
+            val_dir = avaliar(jogo, no->dir, vars);
+            return !val_esq || val_dir;
 
-        case OP_BIIMPLICACAO: val_esq = avaliar(jogo, no->esq, vars); val_dir = avaliar(jogo, no->dir, vars);
-        return val_esq == val_dir;
+        case OP_BIIMPLICACAO:
+            val_esq = avaliar(jogo, no->esq, vars);
+            val_dir = avaliar(jogo, no->dir, vars);
+            return val_esq == val_dir;
     }
+
     return false;
 }
 
@@ -94,25 +105,30 @@ static void formula_str(const JogoLogica *jogo, int indice, char *buf, int taman
         case OP_VARIAVEL:
             snprintf(buf, tamanho, "%c", "PQR"[no->var]);
             break;
+
         case OP_NEGACAO:
             formula_str(jogo, no->esq, str_esq, sizeof(str_esq));
             snprintf(buf, tamanho, "~%s", str_esq);
             break;
+
         case OP_CONJUNCAO:
             formula_str(jogo, no->esq, str_esq, sizeof(str_esq));
             formula_str(jogo, no->dir, str_dir, sizeof(str_dir));
             snprintf(buf, tamanho, "(%s ^ %s)", str_esq, str_dir);
             break;
+
         case OP_DISJUNCAO:
             formula_str(jogo, no->esq, str_esq, sizeof(str_esq));
             formula_str(jogo, no->dir, str_dir, sizeof(str_dir));
             snprintf(buf, tamanho, "(%s V %s)", str_esq, str_dir);
             break;
+
         case OP_IMPLICACAO:
             formula_str(jogo, no->esq, str_esq, sizeof(str_esq));
             formula_str(jogo, no->dir, str_dir, sizeof(str_dir));
             snprintf(buf, tamanho, "(%s -> %s)", str_esq, str_dir);
             break;
+
         case OP_BIIMPLICACAO:
             formula_str(jogo, no->esq, str_esq, sizeof(str_esq));
             formula_str(jogo, no->dir, str_dir, sizeof(str_dir));
@@ -131,8 +147,14 @@ static ClassFormula classificar(JogoLogica *jogo)
         bool vars[3] = {false, false, false};
         for (int var = 0; var < jogo->qtd_vars; var++)
             vars[var] = (i >> var) & 1;
-        if (avaliar(jogo, jogo->formula.raiz, vars)) achou_verdadeiro = true;
-        else                                         achou_falso = true;
+        if (avaliar(jogo, jogo->formula.raiz, vars)) 
+        {
+            achou_verdadeiro = true;
+        }
+        else
+        {
+            achou_falso = true;
+        }
     }
     if (achou_verdadeiro && !achou_falso)
     {
@@ -154,9 +176,23 @@ JogoLogica inicializar_jogo_logica(Dificuldade dif)
 
     switch (dif)
     {
-        case FACIL:   jogo.questoes_total = LOGICA_Q_FACIL;   jogo.qtd_vars = 2; jogo.tempo_por_questao = LOGICA_T_FACIL;   break;
-        case MEDIO:   jogo.questoes_total = LOGICA_Q_MEDIO;   jogo.qtd_vars = 3; jogo.tempo_por_questao = LOGICA_T_MEDIO;   break;
-        case DIFICIL: jogo.questoes_total = LOGICA_Q_DIFICIL; jogo.qtd_vars = 3; jogo.tempo_por_questao = LOGICA_T_DIFICIL; break;
+        case FACIL:
+            jogo.questoes_total    = LOGICA_Q_FACIL;
+            jogo.qtd_vars          = 2;
+            jogo.tempo_por_questao = LOGICA_T_FACIL;
+            break;
+
+        case MEDIO:
+            jogo.questoes_total    = LOGICA_Q_MEDIO;
+            jogo.qtd_vars          = 3;
+            jogo.tempo_por_questao = LOGICA_T_MEDIO;
+            break;
+
+        case DIFICIL:
+            jogo.questoes_total    = LOGICA_Q_DIFICIL;
+            jogo.qtd_vars          = 3;
+            jogo.tempo_por_questao = LOGICA_T_DIFICIL;
+            break;
     }
 
     jogo.resp_vf = -1;
@@ -178,7 +214,10 @@ void gerar_proxima_questao_logica(JogoLogica *jogo)
     jogo->classificacao = classificar(jogo);
 
     for (int v = 0; v < jogo->qtd_vars; v++)
+    {
         jogo->vars[v] = rand() & 1;
+    }
+
     jogo->resp_correta_vf = avaliar(jogo, jogo->formula.raiz, jogo->vars);
 
     jogo->resp_vf         = -1;
@@ -192,44 +231,86 @@ void gerar_proxima_questao_logica(JogoLogica *jogo)
 
 void responder_vf_logica(JogoLogica *jogo, bool resposta)
 {
-    if (jogo->fase != FASE_RESP_VF) return;
+    if (jogo->fase != FASE_RESP_VF) 
+    {
+        return;
+    }
+
     jogo->resp_vf    = resposta ? 1 : 0;
     jogo->acertou_vf = (resposta == jogo->resp_correta_vf);
-    if (jogo->acertou_vf) { jogo->acertos_vf++; jogo->timer += 15.0; }
-    else { jogo->timer -= 5.0; if (jogo->timer < 0.0) jogo->timer = 0.0; }
+
+    if (jogo->acertou_vf)
+    {
+        jogo->acertos_vf++;
+        jogo->timer += 15.0;
+    }
+    else
+    {
+        jogo->timer -= 5.0;
+        if (jogo->timer < 0.0)
+        {
+            jogo->timer = 0.0;
+        }
+    }
+
     jogo->fase = FASE_CLASSIF;
 }
 
 void responder_classif_logica(JogoLogica *jogo, ClassFormula resp)
 {
-    if (jogo->fase != FASE_CLASSIF) return;
-    jogo->resp_class    = (int)resp;
+    if (jogo->fase != FASE_CLASSIF) 
+    {
+        return;
+    }
+
+    jogo->resp_class = (int)resp;
     jogo->acertou_class = (resp == jogo->classificacao);
-    if (jogo->acertou_class) { jogo->acertos_class++; jogo->timer += 15.0; }
-    else { jogo->timer -= 5.0; if (jogo->timer < 0.0) jogo->timer = 0.0; }
+    if (jogo->acertou_class)
+    {
+        jogo->acertos_class++;
+        jogo->timer += 15.0;
+    }
+    else
+    {
+        jogo->timer -= 5.0;
+        if (jogo->timer < 0.0)
+        {
+            jogo->timer = 0.0;
+        }
+    }
+
     jogo->questoes_respondidas++;
-    jogo->fase           = FASE_FEEDBACK;
+    jogo->fase = FASE_FEEDBACK;
     jogo->timer_feedback = 2.5;
-    if (jogo->questoes_respondidas >= jogo->questoes_total)
+    if (jogo->questoes_respondidas >= jogo->questoes_total) 
+    {
         jogo->finalizado = true;
+    }
 }
 
 void atualizar_timer_logica(JogoLogica *jogo, double delta_t)
 {
     if (jogo->finalizado) 
-    return;
+    { 
+        return;
+    }
 
     if (jogo->fase == FASE_FEEDBACK)
     {
         jogo->timer_feedback -= delta_t;
-        if (jogo->timer_feedback <= 0.0 && !jogo->finalizado)
+        if (jogo->timer_feedback <= 0.0 && !jogo->finalizado) 
+        {
             gerar_proxima_questao_logica(jogo);
+        }
+
         return;
     }
 
     jogo->timer -= delta_t;
     if (jogo->timer > 0.0) 
-    return;
+    {
+        return;
+    }
 
     jogo->timer = 0.0;
     if (jogo->fase == FASE_RESP_VF)
@@ -241,13 +322,16 @@ void atualizar_timer_logica(JogoLogica *jogo, double delta_t)
     }
     else if (jogo->fase == FASE_CLASSIF)
     {
-        jogo->resp_class    = 0;
+        jogo->resp_class = 0;
         jogo->acertou_class = false;
         jogo->questoes_respondidas++;
-        jogo->fase           = FASE_FEEDBACK;
+        jogo->fase = FASE_FEEDBACK;
         jogo->timer_feedback = 2.0;
-        if (jogo->questoes_respondidas >= jogo->questoes_total)
+        if (jogo->questoes_respondidas >= jogo->questoes_total) 
+        {
+
             jogo->finalizado = true;
+        }
     }
 }
 

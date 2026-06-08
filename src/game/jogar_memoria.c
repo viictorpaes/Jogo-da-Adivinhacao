@@ -56,7 +56,7 @@ void jogar_memoria(const char *nome)
     snprintf(reg.nome, sizeof(reg.nome), "%s", nome);
     reg.pontuacao  = jogo.pontuacao;
     reg.tentativas = jogo.tentativas;
-    reg.pontos     = calcular_pontos_memoria(jogo.tentativas);
+    reg.pontos = calcular_pontos_memoria(jogo.tentativas);
 
     salvar_partida_memoria(&reg);
 

@@ -5,20 +5,17 @@
 #include <string.h>
 #include <time.h>
 
-static void embaralhar_tabuleiro(JogoMemoria *jogo) 
+static void embaralhar_tabuleiro(JogoMemoria *jogo)
 {
-    int i, j;
-
-    for (i = 0; i < PARES; i++) 
+    for (int i = 0; i < PARES; i++)
     {
-        jogo->numeros[i * 2] = i + 1;
+        jogo->numeros[i * 2]     = i + 1;
         jogo->numeros[i * 2 + 1] = i + 1;
     }
 
-    for (i = TOTAL_CASAS - 1; i > 0; i--) 
+    for (int i = TOTAL_CASAS - 1; i > 0; i--)
     {
-        j = rand() % (i + 1);
-        
+        int j    = rand() % (i + 1);
         int temp = jogo->numeros[i];
         jogo->numeros[i] = jogo->numeros[j];
         jogo->numeros[j] = temp;

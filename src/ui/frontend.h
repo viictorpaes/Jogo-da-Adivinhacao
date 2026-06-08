@@ -37,6 +37,7 @@ typedef enum
     ESTADO_SAIR
 } EstadoAplicacao;
 
+
 typedef enum 
 {
     MODO_SOLO_ADIV = 0,
@@ -46,6 +47,7 @@ typedef enum
     MODO_LOGICA = 4,
     MODO_PRECEDENCIA = 5,
 } ModoJogo;
+
 
 typedef struct
 {
@@ -137,6 +139,7 @@ typedef struct
     int  nomes_hist_n;
     bool nomes_hist_carregados;
 } EstadoUI;
+
 
 #define LARGURA_JANELA 1200
 #define ALTURA_JANELA 800

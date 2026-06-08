@@ -18,19 +18,13 @@
 
 int main(void) 
 {
-    /* 
-     * 0. CONFIGURAÇÃO DE ENCODING (Resolve os bugs visuais)
-     */
-    setlocale(LC_ALL, ""); /* Adota o padrão de acentuação do sistema */
+  
+    setlocale(LC_ALL, "");
     
     #ifdef _WIN32
-    SetConsoleOutputCP(CP_UTF8); /* Força o terminal do Windows a renderizar UTF-8 (bordas e ícones) */
+    SetConsoleOutputCP(CP_UTF8);
     #endif
 
-    /* 
-     * 1. INICIALIZAÇÃO
-     * Prepara a semente aleatória antes de qualquer coisa.
-     */
     inicializar_rand();
 
     inicializar_historico();
@@ -42,16 +36,12 @@ int main(void)
 
     exibir_boas_vindas();
 
-    /* 
-     * 2. LOOP PRINCIPAL DO PROGRAMA
-     * Mantém o programa rodando até o usuário escolher a opção SAIR.
-     */
     while (true) 
     {
         OpcaoMenu opcao = exibir_menu_principal();
 
-        if (opcao == MENU_JOGAR) {
-            /* Fluxo de uma nova partida */
+        if (opcao == MENU_JOGAR) 
+        {
             char nome_jogador[64];
             pedir_nome_jogador(nome_jogador, sizeof(nome_jogador));
 
@@ -62,7 +52,6 @@ int main(void)
             printf("\n  Jogo iniciado!​​✅​ Tente adivinhar o número entre %d e %d.\n", 
                    partida_atual.min_range, partida_atual.max_range);
 
-            /* Loop interno da partida: continua até esgotar tentativas ou vencer */
             while (!partida_encerrada(&partida_atual)) 
             {
                 int palpite = ler_inteiro(partida_atual.min_range, partida_atual.max_range, "\n  Digite seu palpite: ");
@@ -73,10 +62,8 @@ int main(void)
                 exibir_dica(res, tentativas_restantes, palpite, partida_atual.numero_secreto, range_total);
             }
 
-            /* Fim da partida: exibe o resumo e salva os dados */
             exibir_resultado_final(&partida_atual);
 
-            /* Heurística estratégica */
             {
                 const char *dica = heuristica_adivinhacao(
                     partida_atual.tentativas_usadas,
@@ -85,7 +72,6 @@ int main(void)
                 printf("\n  💡 Dica: %s\n", dica);
             }
 
-            /* --- INÍCIO DA INTEGRAÇÃO COM HISTÓRICO --- */
             RegistroPartida registro;
 
             formatar_data_atual(registro.data);
@@ -98,11 +84,8 @@ int main(void)
             registro.pontos           = calcular_pontos(dif, partida_atual.tentativas_usadas,
                                                         partida_atual.venceu);
 
-            /* Manda gravar nos arquivos .csv e .txt */
             salvar_partida(&registro);
-            /* --- FIM DA INTEGRAÇÃO --- */
             
-            /* Mensagem de sucesso solicitada na issue */
             printf("\nPartida finalizada!​​✅ O progresso do jogador foi salvo em: data/historico.txt e data/historico.csv\n\n");
             
             pausar();

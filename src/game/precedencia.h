@@ -4,8 +4,6 @@
 #include <stdbool.h>
 #include "../include/tipos.h"
 
-/* Precedência: ~ > ^ > V > -> > <->   (do maior para o menor) */
-
 typedef struct 
 {
     const char *formula;       
@@ -35,9 +33,9 @@ typedef struct
 } JogoPrecedencia;
 
 JogoPrecedencia inicializar_jogo_precedencia(Dificuldade dif);
-void gerar_proxima_questao_prec(JogoPrecedencia *j);
-void responder_precedencia(JogoPrecedencia *j, int opcao);
-void atualizar_timer_prec(JogoPrecedencia *j, double dt);
-int calcular_pontos_prec(const JogoPrecedencia *j);
+void gerar_proxima_questao_prec(JogoPrecedencia *jogo);
+void responder_precedencia(JogoPrecedencia *jogo, int opcao);
+void atualizar_timer_prec(JogoPrecedencia *jogo, double dt);
+int calcular_pontos_prec(const JogoPrecedencia *jogo);
 
 #endif

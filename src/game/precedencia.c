@@ -134,19 +134,21 @@ JogoPrecedencia inicializar_jogo_precedencia(Dificuldade dif)
     switch (dif)
     {
         case FACIL:
-            j.questoes_total    = PREC_Q_FACIL;
+            j.questoes_total = PREC_Q_FACIL;
             j.tempo_por_questao = PREC_T_FACIL;
-            j.nivel             = 0;
+            j.nivel = 0;
             break;
+
         case MEDIO:
-            j.questoes_total    = PREC_Q_MEDIO;
+            j.questoes_total = PREC_Q_MEDIO;
             j.tempo_por_questao = PREC_T_MEDIO;
-            j.nivel             = 1;
+            j.nivel = 1;
             break;
+
         case DIFICIL:
-            j.questoes_total    = PREC_Q_DIFICIL;
+            j.questoes_total = PREC_Q_DIFICIL;
             j.tempo_por_questao = PREC_T_DIFICIL;
-            j.nivel             = 2;
+            j.nivel = 2;
             break;
     }
 
@@ -155,16 +157,27 @@ JogoPrecedencia inicializar_jogo_precedencia(Dificuldade dif)
     return j;
 }
 
-void gerar_proxima_questao_prec(JogoPrecedencia *j)
+void gerar_proxima_questao_prec(JogoPrecedencia *jogo)
 {
     const QuestaoPreced *banco;
     int tamanho_banco;
 
-    switch (j->nivel)
+    switch (jogo->nivel)
     {
-        case 0:  banco = banco_facil;   tamanho_banco = BANCO_FACIL_N;   break;
-        case 1:  banco = banco_medio;   tamanho_banco = BANCO_MEDIO_N;   break;
-        default: banco = banco_dificil; tamanho_banco = BANCO_DIFICIL_N; break;
+        case 0:
+            banco = banco_facil;
+            tamanho_banco = BANCO_FACIL_N;
+            break;
+
+        case 1:
+            banco = banco_medio;
+            tamanho_banco = BANCO_MEDIO_N;
+            break;
+
+        default:
+            banco = banco_dificil;
+            tamanho_banco = BANCO_DIFICIL_N;
+            break;
     }
 
     int tentativas = 0;
@@ -174,9 +187,13 @@ void gerar_proxima_questao_prec(JogoPrecedencia *j)
     {
         indice = rand() % tamanho_banco;
         bool ja_usado = false;
-        for (int i = 0; i < j->n_usados; i++)
+        for (int i = 0; i < jogo->n_usados; i++)
         {
-            if (j->indices_usados[i] == indice) { ja_usado = true; break; }
+            if (jogo->indices_usados[i] == indice)
+            {
+                ja_usado = true;
+                break;
+            }
         }
         if (!ja_usado)
         {
@@ -185,61 +202,93 @@ void gerar_proxima_questao_prec(JogoPrecedencia *j)
         tentativas++;
     } while (tentativas < tamanho_banco * 3);
 
-    if (j->n_usados < 24) j->indices_usados[j->n_usados++] = indice;
-
-    j->questao = banco[indice];
-    embaralhar_opcoes(&j->questao);
-
-    j->resp_selecionada = -1;
-    j->acertou = false;
-    j->mostrando_feedback = false;
-    j->timer = j->tempo_por_questao;
-    j->timer_feedback = 0.0;
-}
-
-void responder_precedencia(JogoPrecedencia *j, int opcao)
-{
-    if (j->mostrando_feedback || j->finalizado) return;
-    if (opcao < 0 || opcao > 3) return;
-
-    j->resp_selecionada = opcao;
-    j->acertou = (opcao == j->questao.correta);
-    if (j->acertou) { j->acertos++; j->timer += 15.0; }
-    else { j->timer -= 5.0; if (j->timer < 0.0) j->timer = 0.0; }
-    j->questoes_respondidas++;
-    j->mostrando_feedback = true;
-    j->timer_feedback = 2.0;
-
-    if (j->questoes_respondidas >= j->questoes_total)
-        j->finalizado = true;
-}
-
-void atualizar_timer_prec(JogoPrecedencia *j, double delta_t)
-{
-    if (j->finalizado) return;
-
-    if (j->mostrando_feedback)
+    if (jogo->n_usados < 24)
     {
-        j->timer_feedback -= delta_t;
-        if (j->timer_feedback <= 0.0 && !j->finalizado)
-            gerar_proxima_questao_prec(j);
+        jogo->indices_usados[jogo->n_usados++] = indice;
+    }
+
+    jogo->questao = banco[indice];
+    embaralhar_opcoes(&jogo->questao);
+
+    jogo->resp_selecionada  = -1;
+    jogo->acertou           = false;
+    jogo->mostrando_feedback = false;
+    jogo->timer             = jogo->tempo_por_questao;
+    jogo->timer_feedback    = 0.0;
+}
+
+void responder_precedencia(JogoPrecedencia *jogo, int opcao)
+{
+    if (jogo->mostrando_feedback || jogo->finalizado)
+    {
         return;
     }
 
-    j->timer -= delta_t;
-    if (j->timer <= 0.0) 
+    if (opcao < 0 || opcao > 3)
     {
-        j->resp_selecionada   = -1;
-        j->acertou            = false;
-        j->questoes_respondidas++;
-        j->mostrando_feedback = true;
-        j->timer_feedback     = 2.0;
-        if (j->questoes_respondidas >= j->questoes_total)
-            j->finalizado = true;
+        return;
+    }
+
+    jogo->resp_selecionada = opcao;
+    jogo->acertou = (opcao == jogo->questao.correta);
+
+    if (jogo->acertou)
+    {
+        jogo->acertos++;
+        jogo->timer += 15.0;
+    }
+    else
+    {
+        jogo->timer -= 5.0;
+        if (jogo->timer < 0.0)
+        {
+            jogo->timer = 0.0;
+        }
+    }
+
+    jogo->questoes_respondidas++;
+    jogo->mostrando_feedback = true;
+    jogo->timer_feedback     = 2.0;
+
+    if (jogo->questoes_respondidas >= jogo->questoes_total)
+    {
+        jogo->finalizado = true;
     }
 }
 
-int calcular_pontos_prec(const JogoPrecedencia *j)
+void atualizar_timer_prec(JogoPrecedencia *jogo, double delta_t)
 {
-    return j->acertos * 10;
+    if (jogo->finalizado)
+    {
+        return;
+    }
+
+    if (jogo->mostrando_feedback)
+    {
+        jogo->timer_feedback -= delta_t;
+        if (jogo->timer_feedback <= 0.0 && !jogo->finalizado)
+        {
+            gerar_proxima_questao_prec(jogo);
+        }
+        return;
+    }
+
+    jogo->timer -= delta_t;
+    if (jogo->timer <= 0.0)
+    {
+        jogo->resp_selecionada   = -1;
+        jogo->acertou            = false;
+        jogo->questoes_respondidas++;
+        jogo->mostrando_feedback = true;
+        jogo->timer_feedback     = 2.0;
+        if (jogo->questoes_respondidas >= jogo->questoes_total)
+        {
+            jogo->finalizado = true;
+        }
+    }
+}
+
+int calcular_pontos_prec(const JogoPrecedencia *jogo)
+{
+    return jogo->acertos * 10;
 }

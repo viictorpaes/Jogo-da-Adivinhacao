@@ -56,7 +56,7 @@ Resultado processar_palpite(Partida *p, int palpite)
 
 bool partida_encerrada(const Partida *p) 
 {
-    if (p->venceu == true) 
+    if (p->venceu)
     {
         return true;
     }
@@ -88,7 +88,9 @@ void exibir_resultado_final(const Partida *p)
         printf("O número secreto era: %d\n", p->numero_secreto);
     }
 
-    for (int i = 0; i < LARGURA_TERMINAL; i++) 
-    printf("=");
+    for (int i = 0; i < LARGURA_TERMINAL; i++)
+    {
+        printf("=");
+    }
     printf("\n\n");
 }

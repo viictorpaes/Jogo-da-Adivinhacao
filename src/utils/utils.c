@@ -20,7 +20,9 @@ int ler_inteiro(int min, int max, const char *prompt)
 
         quantidade_lida = scanf("%d", &valor);
 
-        while ((caractere_temp = getchar()) != '\n' && caractere_temp != EOF){
+        while ((caractere_temp = getchar()) != '\n' && caractere_temp != EOF)
+        {
+           NULL;
         }
 
         if (quantidade_lida == 1 && valor >= min && valor <= max) {
@@ -56,7 +58,7 @@ void limpar_tela(void)
 
 void pausar(void) 
 {
-    printf("\nPressione ENTER para continuar...");
+    printf("\nPressione ENTER para continuar... ");
     getchar(); 
 }
 
@@ -73,6 +75,7 @@ int rand_intervalo(int min, int max)
         min = max;
         max = temp;
     }
+
     return (rand() % (max - min + 1)) + min;
 }
 
@@ -85,6 +88,7 @@ void formatar_data_atual(char *buf)
     {
         strftime(buf, 11, "%Y-%m-%d", tempo_local);
     }
+    
     else 
     {
         strcpy(buf, "0000-00-00");
