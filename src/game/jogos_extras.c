@@ -56,8 +56,10 @@ void jogar_adivinhacao_vs(void)
                 break;
             }
 
-            if (tentativas[jogador] >= VS_MAX_TENTATIVAS)
+            if (tentativas[jogador] >= VS_MAX_TENTATIVAS) 
+            {
                 jogador = 1 - jogador;
+            }
 
             const char *nome_turno = jogador == 0 ? nome1 : nome2;
             printf("  [%s] Tentativa %d/%d\n",
@@ -307,7 +309,7 @@ void jogar_logica_terminal(void)
     registro.acertos = jogo.acertos_vf + jogo.acertos_class;
     registro.total   = jogo.questoes_total * 2;
     registro.pontos  = pontos;
-    strncpy(registro.modo, "lógica", sizeof(registro.modo) - 1);
+    strncpy(registro.modo, "logica", sizeof(registro.modo) - 1);
     salvar_puzzle(&registro);
 
     printf(" Resultado salvo! ✅\n\n");

@@ -1,4 +1,4 @@
-HISTÓRICO - JOGO DA MEMÓRIA
+------- HISTÓRICO - JOGO DA MEMÓRIA -------
 
  [2026-06-01] Astronauta      | Pontuacao: 80 | Tentativas: 10 | Pontos: 90
  [2026-06-02] Zara            | Pontuacao: 80 | Tentativas: 14 | Pontos: 70
@@ -15,3 +15,6 @@ HISTÓRICO - JOGO DA MEMÓRIA
  [2026-06-09] Phoebe         | Pontuacao: 80 | Tentativas: 15 | Pontos: 65
  [2026-06-10] Titan          | Pontuacao: 80 | Tentativas:  9 | Pontos: 95
  [2026-06-10] Nebula         | Pontuacao: 80 | Tentativas: 17 | Pontos: 55
+ [2026-06-11] Felix          | Pontuacao: 80 | Tentativas: 11 | Pontos: 85
+ [2026-06-11] Mira           | Pontuacao: 80 | Tentativas: 13 | Pontos: 75
+ [2026-06-12] Aurora         | Pontuacao: 80 | Tentativas:  8 | Pontos: 100

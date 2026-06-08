@@ -13,8 +13,6 @@ void pausar(void);
 
 void inicializar_rand(void);
 
-int rand_intervalo(int min, int max);
-
 void formatar_data_atual(char *buf);
 
 void erro_fatal(const char *msg);

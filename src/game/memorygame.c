@@ -15,7 +15,7 @@ static void embaralhar_tabuleiro(JogoMemoria *jogo)
 
     for (int i = TOTAL_CASAS - 1; i > 0; i--)
     {
-        int j    = rand() % (i + 1);
+        int j = rand() % (i + 1);
         int temp = jogo->numeros[i];
         jogo->numeros[i] = jogo->numeros[j];
         jogo->numeros[j] = temp;
@@ -36,21 +36,11 @@ static void revelar_casas(JogoMemoria *jogo, int pos1, int pos2)
 }
 
 
-JogoMemoria inicializar_jogo_memoria(void) 
+JogoMemoria inicializar_jogo_memoria(void)
 {
     JogoMemoria jogo;
-    
     memset(&jogo, 0, sizeof(JogoMemoria));
-    
-    memset(jogo.reveladas, false, sizeof(jogo.reveladas));
-    memset(jogo.acertadas, false, sizeof(jogo.acertadas));
-    
     embaralhar_tabuleiro(&jogo);
-    
-    jogo.pontuacao = 0;
-    jogo.tentativas = 0;
-    jogo.pares_encontrados = 0;
-    
     return jogo;
 }
 

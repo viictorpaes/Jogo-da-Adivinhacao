@@ -12,3 +12,6 @@
   [2026-06-09] Vega            | 14/16 acertos | 105 pts
   [2026-06-09] Phoebe          | 12/16 acertos |  90 pts
   [2026-06-10] Titan           |  6/16 acertos |  45 pts
+  [2026-06-11] Felix           | 10/16 acertos |  75 pts
+  [2026-06-12] Mira            | 14/16 acertos | 105 pts
+  [2026-06-12] Volt            |  8/16 acertos |  60 pts

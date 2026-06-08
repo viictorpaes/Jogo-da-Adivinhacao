@@ -9,3 +9,6 @@
   [2026-06-08] Orion           |  8/10 acertos |  80 pts
   [2026-06-09] Phoebe          |  6/8  acertos |  60 pts
   [2026-06-10] Titan           | 10/10 acertos | 100 pts
+  [2026-06-11] Felix           |  7/8  acertos |  70 pts
+  [2026-06-12] Mira            |  9/10 acertos |  90 pts
+  [2026-06-12] Aurora          |  5/8  acertos |  50 pts

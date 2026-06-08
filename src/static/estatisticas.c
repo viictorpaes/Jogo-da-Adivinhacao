@@ -115,7 +115,7 @@ int calcular_pontos(Dificuldade dif, int tentativas, bool venceu)
         case FACIL: base = 50; step = 5;  
         break;
 
-        case MEDIO: base = 70;  step = 10; 
+        case MEDIO: base = 70; step = 10; 
         break;
 
         case DIFICIL: base = 100; step = 20; 
@@ -147,6 +147,7 @@ void preparar_resumo_adivinhacao(char *buf, int len)
 
     static int tent_vit[MAX_HISTORICO];
     int num_vit = 0;
+
     for (int i = 0; i < num_partidas; i++)
     {
         if (adv[i].venceu)
@@ -161,11 +162,11 @@ void preparar_resumo_adivinhacao(char *buf, int len)
         return;
     }
 
-    double media  = (double)soma_recursiva(tent_vit, num_vit) / num_vit;
-    int    min_t  = minimo_recursivo(tent_vit, num_vit);
-    int    max_t  = maximo_recursivo(tent_vit, num_vit);
-    double sq     = soma_quadrados_recursiva(tent_vit, media, num_vit);
-    double dp     = (num_vit > 1) ? sqrt(sq / (num_vit - 1)) : 0.0;
+    double media = (double)soma_recursiva(tent_vit, num_vit) / num_vit;
+    int min_t = minimo_recursivo(tent_vit, num_vit);
+    int max_t = maximo_recursivo(tent_vit, num_vit);
+    double sq = soma_quadrados_recursiva(tent_vit, media, num_vit);
+    double dp = (num_vit > 1) ? sqrt(sq / (num_vit - 1)) : 0.0;
 
     snprintf(buf, len,
              "%d partidas | %d vit. | Média %.1ft | Mín %d | Máx %d | DP +/-%.1f",
@@ -178,7 +179,7 @@ void preparar_resumo_memoria(char *buf, int len)
     int num_partidas = carregar_historico_memoria(mem, MAX_HISTORICO);
     if (num_partidas <= 0)
     {
-        snprintf(buf, len, "Nenhuma partida registrada.");
+        snprintf(buf, len, "\nNenhuma partida registrada.");
         return;
     }
 
@@ -189,10 +190,10 @@ void preparar_resumo_memoria(char *buf, int len)
     }
 
     double media = (double)soma_recursiva(tentativas_mem, num_partidas) / num_partidas;
-    int    min_t = minimo_recursivo(tentativas_mem, num_partidas);
-    int    max_t = maximo_recursivo(tentativas_mem, num_partidas);
-    double sq    = soma_quadrados_recursiva(tentativas_mem, media, num_partidas);
-    double dp    = (num_partidas > 1) ? sqrt(sq / (num_partidas - 1)) : 0.0;
+    int min_t = minimo_recursivo(tentativas_mem, num_partidas);
+    int max_t = maximo_recursivo(tentativas_mem, num_partidas);
+    double sq  = soma_quadrados_recursiva(tentativas_mem, media, num_partidas);
+    double dp  = (num_partidas > 1) ? sqrt(sq / (num_partidas - 1)) : 0.0;
 
     snprintf(buf, len,
              "%d partidas | Média %.1f jog. | Mín %d | Máx %d | DP +/-%.1f",
@@ -220,22 +221,24 @@ static int encontrar_ou_inserir(EntradaRanking *rank, int *n_rank, const char *n
     {
         return -1;
     }
+
     int novo_idx = *n_rank;
     strncpy(rank[novo_idx].nome, nome, sizeof(rank[novo_idx].nome) - 1);
     rank[novo_idx].nome[sizeof(rank[novo_idx].nome) - 1] = '\0';
     rank[novo_idx].pontos_total = 0;
     rank[novo_idx].jogos        = 0;
     (*n_rank)++;
+
     return novo_idx;
 }
 
 static int construir_ranking(EntradaRanking *ranking, int *num_jogadores)
 {
-    static RegistroPartida  adv[MAX_HISTORICO];
-    static RegistroMemoria  mem[MAX_HISTORICO];
-    static RegistroVS       vs[MAX_HISTORICO];
-    static RegistroPuzzle   log_a[MAX_HISTORICO];
-    static RegistroPuzzle   prec[MAX_HISTORICO];
+    static RegistroPartida adv[MAX_HISTORICO];
+    static RegistroMemoria mem[MAX_HISTORICO];
+    static RegistroVS vs[MAX_HISTORICO];
+    static RegistroPuzzle log_a[MAX_HISTORICO];
+    static RegistroPuzzle prec[MAX_HISTORICO];
 
     int num_adv  = carregar_historico(adv, MAX_HISTORICO);
     int num_mem  = carregar_historico_memoria(mem, MAX_HISTORICO);
@@ -374,11 +377,12 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
         if (num_vit > 0)
         {
             double media = (double)soma_recursiva(tent_vit, num_vit) / num_vit;
-            int    min_t = minimo_recursivo(tent_vit, num_vit);
-            int    max_t = maximo_recursivo(tent_vit, num_vit);
-            double sq    = soma_quadrados_recursiva(tent_vit, media, num_vit);
-            double dp    = (num_vit > 1) ? sqrt(sq / (num_vit - 1)) : 0.0;
-            PUSH("  Média: %.1f tent.  |  Mín: %d  |  Máx: %d  |  DP: +/-%.1f  (vitórias)",
+            int min_t = minimo_recursivo(tent_vit, num_vit);
+            int max_t = maximo_recursivo(tent_vit, num_vit);
+            double sq = soma_quadrados_recursiva(tent_vit, media, num_vit);
+            double dp = (num_vit > 1) ? sqrt(sq / (num_vit - 1)) : 0.0;
+
+            PUSH("\n Média: %.1f tent.  |  Mín: %d  |  Máx: %d  |  DP: +/-%.1f  (vitórias)",
                  media, min_t, max_t, dp);
         }
 
@@ -431,13 +435,13 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             pontos_mem[i]     = mem[i].pontos;
         }
 
-        double media          = (double)soma_recursiva(tentativas_mem, num_mem) / num_mem;
-        int    min_tent       = minimo_recursivo(tentativas_mem, num_mem);
-        int    max_tent       = maximo_recursivo(tentativas_mem, num_mem);
-        double sq             = soma_quadrados_recursiva(tentativas_mem, media, num_mem);
-        double dp             = (num_mem > 1) ? sqrt(sq / (num_mem - 1)) : 0.0;
-        int    melhor_pontos  = maximo_recursivo(pontos_mem, num_mem);
-        int    pior_pontos    = minimo_recursivo(pontos_mem, num_mem);
+        double media = (double)soma_recursiva(tentativas_mem, num_mem) / num_mem;
+        int    min_tent = minimo_recursivo(tentativas_mem, num_mem);
+        int    max_tent = maximo_recursivo(tentativas_mem, num_mem);
+        double sq = soma_quadrados_recursiva(tentativas_mem, media, num_mem);
+        double dp = (num_mem > 1) ? sqrt(sq / (num_mem - 1)) : 0.0;
+        int    melhor_pontos = maximo_recursivo(pontos_mem, num_mem);
+        int    pior_pontos = minimo_recursivo(pontos_mem, num_mem);
 
         PUSH("  Partidas: %d  |  Média: %.1f jog.  |  Mín: %d  |  Máx: %d  |  DP: +/-%.1f",
              num_mem, media, min_tent, max_tent, dp);
@@ -501,7 +505,9 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
                     total_pares += pares1 + pares2;
                 }
             }
+
             fclose(fmvs);
+            
             if (num_mvs <= 0)
             {
                 PUSH("  Nenhuma partida registrada.");
@@ -517,7 +523,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     PUSH(" ");
 
     static RegistroPuzzle log_arr[MAX_HISTORICO];
-    int num_log = carregar_historico_puzzle(log_arr, MAX_HISTORICO, "lógica");
+    int num_log = carregar_historico_puzzle(log_arr, MAX_HISTORICO, "logica");
 
     PUSH("=== PROTOCOLO LÓGICO ===");
     if (num_log <= 0)

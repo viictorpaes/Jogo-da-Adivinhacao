@@ -20,11 +20,6 @@ void UpdateMusica(void)
     }
 }
 
-void StopMusica(void)
-{
-    StopMusicStream(musicaStarWars);
-}
-
 void UnloadMusica(void)
 {
     UnloadMusicStream(musicaStarWars);

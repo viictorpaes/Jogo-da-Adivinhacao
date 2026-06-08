@@ -8,7 +8,6 @@ bool inicializar_historico(void);
 bool salvar_partida(const RegistroPartida *r);
 int  carregar_historico(RegistroPartida *buf, int max);
 void exibir_historico(void);
-void liberar_historico(void);
 
 bool inicializar_historico_memoria(void);
 bool salvar_partida_memoria(const RegistroMemoria *r);

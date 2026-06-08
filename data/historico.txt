@@ -1,4 +1,4 @@
-HISTÓRICO DE PARTIDAS
+------- HISTÓRICO DE PARTIDAS -------
 
   [2026-06-01] Astronauta      | FÁCIL   | 02/05 | Secreto: 007 | VITÓRIA | 45 pts
   [2026-06-01] Zara            | FÁCIL   | 05/05 | Secreto: 003 | DERROTA | 0 pts
@@ -18,3 +18,7 @@ HISTÓRICO DE PARTIDAS
   [2026-06-09] Phoebe          | MÉDIO   | 08/08 | Secreto: 073 | DERROTA | 0 pts
   [2026-06-10] Titan           | DIFÍCIL | 04/10 | Secreto: 091 | VITÓRIA | 70 pts
   [2026-06-10] Nebula          | DIFÍCIL | 10/10 | Secreto: 036 | DERROTA | 0 pts
+  [2026-06-11] Felix           | FÁCIL   | 02/05 | Secreto: 007 | VITÓRIA | 45 pts
+  [2026-06-11] Mira            | MÉDIO   | 05/08 | Secreto: 033 | VITÓRIA | 40 pts
+  [2026-06-12] Volt            | DIFÍCIL | 07/10 | Secreto: 062 | VITÓRIA | 50 pts
+  [2026-06-12] Aurora          | MÉDIO   | 08/08 | Secreto: 048 | DERROTA | 0 pts

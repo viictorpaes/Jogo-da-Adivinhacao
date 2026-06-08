@@ -17,3 +17,7 @@ data,nome,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado,
 2026-06-09,Phoebe,MÉDIO,8,8,73,DERROTA,0
 2026-06-10,Titan,DIFÍCIL,4,10,91,VITÓRIA,70
 2026-06-10,Nebula,DIFÍCIL,10,10,36,DERROTA,0
+2026-06-11,Felix,FÁCIL,2,5,7,VITÓRIA,45
+2026-06-11,Mira,MÉDIO,5,8,33,VITÓRIA,40
+2026-06-12,Volt,DIFÍCIL,7,10,62,VITÓRIA,50
+2026-06-12,Aurora,MÉDIO,8,8,48,DERROTA,0

@@ -27,15 +27,18 @@
 #define COR_TIMER_LARANJA  (Color){255,155,  30, 255}
 #define COR_TIMER_VERMELHO (Color){255,  55,  55, 255}
 
-static Color cor_timer(double ratio) 
+static Color cor_timer(double ratio)
 {
     if (ratio > 0.5) 
-    return COR_TIMER_VERDE;
+    { 
+        return COR_TIMER_VERDE;
+    }
 
     if (ratio > 0.2) 
-    return COR_TIMER_LARANJA;
-
-    else
+    { 
+        return COR_TIMER_LARANJA;
+    }
+    
     return COR_TIMER_VERMELHO;
 }
 
@@ -77,14 +80,20 @@ static bool clique_em_rect(Rectangle retangulo)
 
 static double timer_adiv_para_dif(Dificuldade dif)
 {
-    if (dif == FACIL)   
-    return TIMER_ADIV_FACIL;
+    if (dif == FACIL) 
+    { 
+        return TIMER_ADIV_FACIL; 
+    }
 
-    if (dif == MEDIO)   
-    return TIMER_ADIV_MEDIO;
-
-    else
-    return TIMER_ADIV_DIFICIL;
+    else if (dif == MEDIO) 
+    {
+         return TIMER_ADIV_MEDIO;
+    }
+    
+    else 
+    {
+        return TIMER_ADIV_DIFICIL;
+    }
 }
 
 static void desenhar_timer(double secs, double max_secs, float x, float y, float largura)
@@ -94,12 +103,11 @@ static void desenhar_timer(double secs, double max_secs, float x, float y, float
     snprintf(buf, sizeof(buf), "Tempo: %.0fs", secs < 0 ? 0.0 : secs);
     DrawText(buf, (int)x, (int)y, 24, cor);
 
-    float maxwidth = largura;
-    float filled = (float)(secs / max_secs) * maxwidth;
+    float filled = (float)(secs / max_secs) * largura;
     if (filled < 0) filled = 0;
-    if (filled > maxwidth) filled = maxwidth;
-    DrawRectangle((int)x, (int)(y+30), (int)maxwidth, 8, COR_BOTAO);
-    DrawRectangle((int)x, (int)(y+30), (int)filled, 8, cor);
+    if (filled > largura) filled = largura;
+    DrawRectangle((int)x, (int)(y+30), (int)largura, 8, COR_BOTAO);
+    DrawRectangle((int)x, (int)(y+30), (int)filled,  8, cor);
 }
 
 static void desenhar_timer_generico(double secs, double max_secs, float x, float y, float largura)
@@ -119,19 +127,21 @@ static void desenhar_timer_generico(double secs, double max_secs, float x, float
 
 static void salvar_partida_adivinhacao(const EstadoUI *ui)
 {
-    RegistroPartida regis_pt;
+    RegistroPartida reg;
     time_t agora = time(NULL);
-    struct tm *t = localtime(&agora);
-    strftime(regis_pt.data, sizeof(regis_pt.data), "%Y-%m-%d", t);
-    strncpy(regis_pt.nome, ui->nome_jogador, sizeof(regis_pt.nome)-1);
-    regis_pt.nome[sizeof(regis_pt.nome)-1] = '\0';
-    regis_pt.dificuldade = ui->dificuldade_selecionada;
-    regis_pt.tentativas_usadas = ui->partida_atual.tentativas_usadas;
-    regis_pt.max_tentativas = ui->partida_atual.max_tentativas;
-    regis_pt.numero_secreto = ui->partida_atual.numero_secreto;
-    regis_pt.venceu = ui->partida_atual.venceu;
-    regis_pt.pontos = calcular_pontos(ui->dificuldade_selecionada, ui->partida_atual.tentativas_usadas, ui->partida_atual.venceu);
-    salvar_partida(&regis_pt);
+    struct tm *t  = localtime(&agora);
+    strftime(reg.data, sizeof(reg.data), "%Y-%m-%d", t);
+    strncpy(reg.nome, ui->nome_jogador, sizeof(reg.nome) - 1);
+    reg.nome[sizeof(reg.nome) - 1] = '\0';
+    reg.dificuldade      = ui->dificuldade_selecionada;
+    reg.tentativas_usadas = ui->partida_atual.tentativas_usadas;
+    reg.max_tentativas   = ui->partida_atual.max_tentativas;
+    reg.numero_secreto   = ui->partida_atual.numero_secreto;
+    reg.venceu           = ui->partida_atual.venceu;
+    reg.pontos           = calcular_pontos(ui->dificuldade_selecionada,
+                                           ui->partida_atual.tentativas_usadas,
+                                           ui->partida_atual.venceu);
+    salvar_partida(&reg);
 }
 
 static void salvar_resultado_memoria(const EstadoUI *ui)
@@ -194,7 +204,7 @@ void desenhar_menu_principal(void)
 void desenhar_inserir_nome(const EstadoUI *ui)
 {
     bool is_p2 = (ui->estado_atual == ESTADO_INSERIR_NOME_P2);
-    const char *titulo = is_p2 ? "IDENTIFICAÇÃO DO ASTRONAUTA 2" : "IDENTIFICAÇÃO DO ASTRONAUTA";
+    const char *titulo = is_p2 ? "IDENTIFICAÇÃO DO ASTRONAUTA 2" : "IDENTIFICAÇÃO DO ASTRONAUTA 1";
     DrawText(titulo, 130, 80, 36, COR_PRIMARIA);
 
     const char *nome_atual = is_p2 ? ui->nome_jogador2 : ui->nome_jogador;
@@ -215,8 +225,8 @@ void desenhar_inserir_nome(const EstadoUI *ui)
     DrawText("Branco = 'Astronauta'", 130, 410, 18, COR_TEXTO);
     DrawText("ESC para voltar", 130, 435, 18, COR_TEXTO);
 
-    /* autocomplete dropdown estilo Apple */
-    if (ui->nomes_hist_n > 0) {
+    if (ui->nomes_hist_n > 0)
+    {
         char nome_lower[64];
         strncpy(nome_lower, nome_atual, 63);
         nome_lower[63] = '\0';
@@ -225,7 +235,8 @@ void desenhar_inserir_nome(const EstadoUI *ui)
 
         int matches[6];
         int nm = 0;
-        for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++) {
+        for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++)
+        {
             char cl[64];
             strncpy(cl, ui->nomes_hist[ni], 63);
             cl[63] = '\0';
@@ -235,14 +246,16 @@ void desenhar_inserir_nome(const EstadoUI *ui)
                 matches[nm++] = ni;
         }
 
-        if (nm > 0) {
+        if (nm > 0)
+        {
             float dx = caixa.x;
             float dy = caixa.y + caixa.height;
             float dw = caixa.width;
             float dh = (float)(nm * 34 + 4);
             DrawRectangle((int)dx, (int)dy, (int)dw, (int)dh, (Color){22,10,48,245});
             DrawRectangleLines((int)dx, (int)dy, (int)dw, (int)dh, COR_SECUNDARIA);
-            for (int m = 0; m < nm; m++) {
+            for (int m = 0; m < nm; m++)
+            {
                 Rectangle row = {dx, dy + 2.0f + (float)(m * 34), dw, 32};
                 bool hover = CheckCollisionPointRec(GetMousePosition(), row);
                 if (hover) DrawRectangleRec(row, COR_BOTAO_HOVER);
@@ -254,19 +267,14 @@ void desenhar_inserir_nome(const EstadoUI *ui)
     }
 }
 
-void desenhar_inserir_nome_p2(const EstadoUI *ui)
-{
-    desenhar_inserir_nome(ui);
-}
-
 void desenhar_menu_dificuldade(EstadoUI *ui)
 {
-    const char *titulo = "SELECIONE A SUA PATENTE";
+    const char *titulo = "SELECIONE A SUA PATENTE: ";
     if (ui->modo_pendente == MODO_LOGICA)      titulo = "PROTOCOLO LóGICO - PATENTE";
     if (ui->modo_pendente == MODO_PRECEDENCIA) titulo = "HIERARQUIA DE CMDS - PATENTE";
 
     DrawText(titulo, 300,80,38,COR_PRIMARIA);
-    DrawText("Qual a sua patente espacial?", 350,148,22,COR_TEXTO);
+    DrawText("Qual a sua patente espacial? ", 350,148,22,COR_TEXTO);
 
     desenhar_botao(200,230,800,95,"[1] Cadete      (1-10,  5 tent. | 60s +15/-5)");
     desenhar_botao(200,380,800,95,"[2] Piloto      (1-50,  8 tent. | 40s +15/-5)");
@@ -292,22 +300,39 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
 
     desenhar_timer(ui->timer_adiv, timer_adiv_para_dif(ui->dificuldade_selecionada), 850, 90, 290);
 
-    if (ui->partida_atual.tentativas_usadas > 0) 
+    if (ui->partida_atual.tentativas_usadas > 0)
     {
         int dist = ui->entrada_numero - ui->partida_atual.numero_secreto;
         if (dist < 0) dist = -dist;
-        int range = ui->partida_atual.max_range - ui->partida_atual.min_range;
-        int pct   = range > 0 ? dist*100/range : 100;
+        int range       = ui->partida_atual.max_range - ui->partida_atual.min_range;
+        int pct         = range > 0 ? dist * 100 / range : 100;
         const char *msg; Color cor;
-        if      (pct < 5)  { msg = "Sinal estabelecido! Frequência muito próxima!"; cor = COR_SUCESSO;   }
-        else if (pct < 15) { msg = "Sinal detectado! Continue ajustando...";         cor = COR_SECUNDARIA;}
-        else if (pct < 40) { msg = "Interferência estática... Sinal fraco.";         cor = COR_SECUNDARIA;}
-        else               { msg = "Sem sinal no espaço... Muito longe!";            cor = COR_ERRO;      }
-        DrawText("Último palpite:", 140,175,22,COR_SECUNDARIA);
-        DrawText(msg,140,205,22,cor);
+
+        if (pct < 5)  
+        { 
+            msg = "Sinal estabelecido! Frequência muito próxima!"; cor = COR_SUCESSO;    
+        }
+
+        else if (pct < 15) 
+        { 
+            msg = "Sinal detectado! Continue ajustando...";  cor = COR_SECUNDARIA; 
+        }
+
+        else if (pct < 40) 
+        { 
+            msg = "Interferência estática... Sinal fraco.";  cor = COR_SECUNDARIA; 
+        }
+
+        else               
+        { 
+            msg = "Sem sinal no espaço... Muito longe!"; cor = COR_ERRO;       
+        }
+
+        DrawText("Último palpite:", 140, 175, 22, COR_SECUNDARIA);
+        DrawText(msg, 140, 205, 22, cor);
     }
 
-    DrawText("Digite seu palpite:", 140,310,25,COR_TEXTO);
+    DrawText("Digite seu palpite: ", 140,310,25,COR_TEXTO);
     Rectangle box = {140,360,420,60};
     DrawRectangleRec(box,(Color){20,10,40,255});
     DrawRectangleLines(140,360,420,60,COR_PRIMARIA);
@@ -346,17 +371,18 @@ void desenhar_jogo_vs(const EstadoUI *ui)
              ui->vs_partida.min_range, ui->vs_partida.max_range);
     DrawText(info_range, 60, 138, 20, COR_TEXTO);
 
-    if (ui->vs_partida.tentativas_usadas > 0) {
+    if (ui->vs_partida.tentativas_usadas > 0)
+    {
         int dist = ui->entrada_numero - ui->vs_partida.numero_secreto;
         if (dist < 0) dist = -dist;
-        int range = ui->vs_partida.max_range - ui->vs_partida.min_range;
-        int pct   = range > 0 ? dist*100/range : 100;
+        int range       = ui->vs_partida.max_range - ui->vs_partida.min_range;
+        int pct         = range > 0 ? dist * 100 / range : 100;
         const char *msg; Color cor;
-        if (pct < 5)  { msg = "Sinal estabelecido! Frequência muito próxima!"; cor = COR_SUCESSO;   }
-        else if (pct < 15) { msg = "Sinal detectado! Continue ajustando...";         cor = COR_SECUNDARIA;}
-        else if (pct < 40) { msg = "Interferência estática... Sinal fraco.";         cor = COR_SECUNDARIA;}
-        else { msg = "Sem sinal no espaço... Muito longe!";            cor = COR_ERRO;      }
-        DrawText(msg,60,175,20,cor);
+        if      (pct < 5)  { msg = "Sinal estabelecido! Frequência muito próxima!"; cor = COR_SUCESSO;    }
+        else if (pct < 15) { msg = "Sinal detectado! Continue ajustando...";         cor = COR_SECUNDARIA; }
+        else if (pct < 40) { msg = "Interferência estática... Sinal fraco.";         cor = COR_SECUNDARIA; }
+        else               { msg = "Sem sinal no espaço... Muito longe!";            cor = COR_ERRO;       }
+        DrawText(msg, 60, 175, 20, cor);
     }
 
     char tent_j1[64], tent_j2[64];
@@ -407,23 +433,37 @@ static void _desenhar_grade_memoria(const JogoMemoria *jogo,
             int y   = inicio_y + (tamanho_casa + espacamento) * i;
             Rectangle casa = {(float)x, (float)y, (float)tamanho_casa, (float)tamanho_casa};
             Color cor;
-            if      (jogo->acertadas[pos])                               
-            cor = COR_SUCESSO;
+
+            if (jogo->acertadas[pos]) 
+            {                               
+                cor = COR_SUCESSO;
+            }
+
             else if (clique1 > 0 && (pos+1 == clique1 || pos+1 == clique2)) 
-            cor = COR_ERRO;
-            else if (jogo->reveladas[pos])                               
-            cor = COR_PRIMARIA;
-            else                                                         
-            cor = COR_BOTAO;
+            { 
+                cor = COR_ERRO;
+            }
+
+            else if (jogo->reveladas[pos]) 
+            {                           
+                cor = COR_PRIMARIA;
+            }
+
+            else 
+            {                                                        
+                cor = COR_BOTAO;
+            }
+
             DrawRectangleRec(casa, cor);
             DrawRectangleLines(x, y, tamanho_casa, tamanho_casa, COR_TEXTO);
-            if (jogo->acertadas[pos] || jogo->reveladas[pos]) {
+            if (jogo->acertadas[pos] || jogo->reveladas[pos])
+            {
                 char num_str[8];
                 snprintf(num_str, sizeof(num_str), "%d", jogo->numeros[pos]);
                 int largura_texto = MeasureText(num_str, 36);
                 DrawText(num_str, x + tamanho_casa/2 - largura_texto/2, y + tamanho_casa/2 - 18, 36, COR_TEXTO);
-            } 
-            else 
+            }
+            else
             {
                 DrawText("?", x + tamanho_casa/2 - 10, y + tamanho_casa/2 - 18, 36, COR_TEXTO);
             }
@@ -443,14 +483,16 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
     DrawText(stats,180,72,22,COR_TEXTO);
 
 
-    Color tc = cor_timer(ui->timer_memoria / TIMER_MEM_BASE_SEG);
-    char tbuf[32]; snprintf(tbuf,sizeof(tbuf),"Timer: %.0fs",ui->timer_memoria<0?0.0:ui->timer_memoria);
-    DrawText(tbuf,840,72,22,tc);
-    float bw = 300;
-    float bf = (float)(ui->timer_memoria / TIMER_MEM_BASE_SEG)*bw;
-    if(bf<0)bf=0; if(bf>bw)bf=bw;
-    DrawRectangle(840,98,(int)bw,8,COR_BOTAO);
-    DrawRectangle(840,98,(int)bf,8,tc);
+    Color cor_t = cor_timer(ui->timer_memoria / TIMER_MEM_BASE_SEG);
+    float bar_largura = 300;
+    float bar_cheia   = (float)(ui->timer_memoria / TIMER_MEM_BASE_SEG) * bar_largura;
+    if (bar_cheia < 0) bar_cheia = 0;
+    if (bar_cheia > bar_largura)  bar_cheia = bar_largura;
+    char tbuf[32];
+    snprintf(tbuf, sizeof(tbuf), "Timer: %.0fs", ui->timer_memoria < 0 ? 0.0 : ui->timer_memoria);
+    DrawText(tbuf, 840, 72, 22, cor_t);
+    DrawRectangle(840, 98, (int)bar_largura, 8, COR_BOTAO);
+    DrawRectangle(840, 98, (int)bar_cheia,   8, cor_t);
 
     _desenhar_grade_memoria(&ui->jogo_memoria, 200, 145, 80, 8, 4, 4,
                             ui->clique_casa1, ui->clique_casa2);
@@ -507,7 +549,7 @@ void desenhar_jogo_logica(const EstadoUI *ui)
 
     DrawLine(60,130,1140,130,COR_BOTAO);
 
-    DrawText("Fórmula:",60,152,22,COR_SECUNDARIA);
+    DrawText("Fórmula: ",60,152,22,COR_SECUNDARIA);
     DrawText(j->formula_str,200,152,28,COR_PRIMARIA);
 
     char vals[128] = "Valores: ";
@@ -623,13 +665,16 @@ void desenhar_jogo_precedencia(const EstadoUI *ui)
 
 void desenhar_resultado_adivinhacao(const EstadoUI *ui)
 {
-    DrawText("FIM DA MISSÃO", 400,55,44,COR_PRIMARIA);
-    if (ui->partida_atual.venceu) {
-        DrawText("MISSÃO CUMPRIDA!", 380,145,36,COR_SUCESSO);
-        DrawText("Você acertou a frequência, astronauta!",230,222,24,COR_TEXTO);
-    } else {
-        DrawText("MISSÃO FRACASSADA!", 330,145,36,COR_ERRO);
-        DrawText("Todas as tentativas foram esgotadas. De volta a Terra!",155,222,24,COR_TEXTO);
+    DrawText("FIM DA MISSÃO", 400, 55, 44, COR_PRIMARIA);
+    if (ui->partida_atual.venceu)
+    {
+        DrawText("MISSÃO CUMPRIDA!", 380, 145, 36, COR_SUCESSO);
+        DrawText("Você acertou a frequência, astronauta!", 230, 222, 24, COR_TEXTO);
+    }
+    else
+    {
+        DrawText("MISSÃO FRACASSADA!", 330, 145, 36, COR_ERRO);
+        DrawText("Todas as tentativas foram esgotadas. De volta a Terra!", 155, 222, 24, COR_TEXTO);
     }
 
     const char *pat = "Cadete";
@@ -868,8 +913,6 @@ void desenhar_resultado_precedencia(const EstadoUI *ui)
     }
 }
 
-void desenhar_menu_jogo(void) {}
-
 void desenhar_estatisticas(EstadoUI *ui)
 {
     if (!ui->stats_carregadas) 
@@ -904,13 +947,16 @@ void desenhar_historico(EstadoUI *ui)
 
     const char *filtro = (ui->hist_com_filtro && ui->hist_filtro_nome[0])
                          ? ui->hist_filtro_nome : NULL;
-    if (filtro) {
+    if (filtro)
+    {
         char fmsg[96];
         snprintf(fmsg, sizeof(fmsg), "Astronauta: %s  (ESC = historico geral)", filtro);
         DrawText(fmsg, 50, 63, 15, COR_AVISO);
-        DrawLine(50,82,1150,82,COR_AVISO);
-    } else {
-        DrawLine(50,68,1150,68,COR_PRIMARIA);
+        DrawLine(50, 82, 1150, 82, COR_AVISO);
+    }
+    else
+    {
+        DrawLine(50, 68, 1150, 68, COR_PRIMARIA);
     }
 
     const char *dificuldades[]={"Cadete","Piloto","Comandante"};
@@ -1080,19 +1126,20 @@ void processar_clique_mouse_memoria(EstadoUI *ui)
         {
             ui->clique_casa2=p;
             bool ok=fazer_jogada(&ui->jogo_memoria,ui->clique_casa1,ui->clique_casa2);
-            if (ok) 
+            if (ok)
             {
                 ui->timer_memoria += TIMER_MEM_BONUS_SEG;
-                ui->clique_casa1=0; ui->clique_casa2=0;
+                ui->clique_casa1 = 0;
+                ui->clique_casa2 = 0;
                 if (jogo_memoria_finalizado(&ui->jogo_memoria))
-                    ui->estado_atual=ESTADO_RESULTADO_MEMORIA;
-            } 
-            else 
+                    ui->estado_atual = ESTADO_RESULTADO_MEMORIA;
+            }
+            else
             {
                 ui->timer_memoria -= 5.0;
                 if (ui->timer_memoria < 0.0) ui->timer_memoria = 0.0;
-                ui->aguardando_ocultar=true;
-                ui->timer_ocultar=90;
+                ui->aguardando_ocultar = true;
+                ui->timer_ocultar      = 90;
             }
         }
         return;
@@ -1101,8 +1148,15 @@ void processar_clique_mouse_memoria(EstadoUI *ui)
 
 void processar_clique_mouse_memoria_vs(EstadoUI *ui)
 {
-    if (ui->mem_vs_aguardando) return;
-    if (!IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) return;
+    if (ui->mem_vs_aguardando) 
+    {
+        return;
+    }
+
+    if (!IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) 
+    { 
+        return;
+    }
 
     Vector2 mouse = GetMousePosition();
     int tamanho_casa = 80, espacamento = 8, origem_x = 280, origem_y = 145;
@@ -1129,21 +1183,22 @@ void processar_clique_mouse_memoria_vs(EstadoUI *ui)
         {
             ui->mem_vs_clique2=p;
             bool ok = fazer_jogada(&ui->mem_vs_jogo, ui->mem_vs_clique1, ui->mem_vs_clique2);
-            if (ok) 
+            if (ok)
             {
                 ui->mem_vs_pares[jogador_ativo]++;
-                ui->mem_vs_pontos[jogador_ativo] = ui->mem_vs_jogo.pontuacao;
-                ui->mem_vs_timer[jogador_ativo] += TIMER_MEM_BONUS_SEG;
-                ui->mem_vs_clique1=0; ui->mem_vs_clique2=0;
+                ui->mem_vs_pontos[jogador_ativo]  = ui->mem_vs_jogo.pontuacao;
+                ui->mem_vs_timer[jogador_ativo]  += TIMER_MEM_BONUS_SEG;
+                ui->mem_vs_clique1 = 0;
+                ui->mem_vs_clique2 = 0;
                 if (jogo_memoria_finalizado(&ui->mem_vs_jogo))
-                    ui->estado_atual=ESTADO_RESULTADO_MEMORIA_VS;
-            } 
-            else 
+                    ui->estado_atual = ESTADO_RESULTADO_MEMORIA_VS;
+            }
+            else
             {
                 ui->mem_vs_timer[jogador_ativo] -= 5.0;
                 if (ui->mem_vs_timer[jogador_ativo] < 0.0) ui->mem_vs_timer[jogador_ativo] = 0.0;
-                ui->mem_vs_aguardando=true;
-                ui->mem_vs_timer_ocultar=90;
+                ui->mem_vs_aguardando    = true;
+                ui->mem_vs_timer_ocultar = 90;
             }
         }
         return;
@@ -1153,14 +1208,14 @@ void processar_clique_mouse_memoria_vs(EstadoUI *ui)
 
 static void iniciar_jogo_modo(EstadoUI *ui, ModoJogo modo)
 {
-    switch (modo) 
+    switch (modo)
     {
         case MODO_SOLO_ADIV:
-            ui->estado_atual = ESTADO_DIFICULDADE;
-            break;
+
         case MODO_VS_ADIV:
             ui->estado_atual = ESTADO_DIFICULDADE;
             break;
+            
         case MODO_SOLO_MEM:
             ui->jogo_memoria       = inicializar_jogo_memoria();
             ui->clique_casa1       = 0; ui->clique_casa2=0;
@@ -1170,6 +1225,7 @@ static void iniciar_jogo_modo(EstadoUI *ui, ModoJogo modo)
             ui->timer_memoria_ativo = true;
             ui->estado_atual       = ESTADO_JOGANDO_MEMORIA;
             break;
+
         case MODO_VS_MEM:
             ui->mem_vs_jogo       = inicializar_jogo_memoria();
             ui->mem_vs_jogador    = 0;
@@ -1183,9 +1239,9 @@ static void iniciar_jogo_modo(EstadoUI *ui, ModoJogo modo)
             ui->mem_vs_salvo      = false;
             ui->estado_atual      = ESTADO_JOGANDO_MEMORIA_VS;
             break;
+
         case MODO_LOGICA:
-            ui->estado_atual = ESTADO_DIFICULDADE;
-            break;
+
         case MODO_PRECEDENCIA:
             ui->estado_atual = ESTADO_DIFICULDADE;
             break;
@@ -1258,29 +1314,31 @@ static void carregar_nomes_historico(EstadoUI *ui)
 {
     ui->nomes_hist_n = 0;
 
-    { RegistroPartida buf[50]; int n = carregar_historico(buf, 50);
-      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+    RegistroPartida    buf_adiv[50]; int n_adiv = carregar_historico(buf_adiv, 50);
+    for (int i = 0; i < n_adiv; i++) _add_nome_unico(ui, buf_adiv[i].nome);
 
-    { RegistroMemoria buf[50]; int n = carregar_historico_memoria(buf, 50);
-      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+    RegistroMemoria    buf_mem[50];  int n_mem  = carregar_historico_memoria(buf_mem, 50);
+    for (int i = 0; i < n_mem; i++)  _add_nome_unico(ui, buf_mem[i].nome);
 
-    { RegistroVS buf[50]; int n = carregar_historico_vs(buf, 50);
-      for (int i = 0; i < n; i++) {
-          _add_nome_unico(ui, buf[i].nome1);
-          _add_nome_unico(ui, buf[i].nome2);
-      } }
+    RegistroVS         buf_vs[50];   int n_vs   = carregar_historico_vs(buf_vs, 50);
+    for (int i = 0; i < n_vs; i++)
+    {
+        _add_nome_unico(ui, buf_vs[i].nome1);
+        _add_nome_unico(ui, buf_vs[i].nome2);
+    }
 
-    { RegistroMemoriaVS buf[50]; int n = carregar_historico_memoria_vs(buf, 50);
-      for (int i = 0; i < n; i++) {
-          _add_nome_unico(ui, buf[i].nome1);
-          _add_nome_unico(ui, buf[i].nome2);
-      } }
+    RegistroMemoriaVS  buf_mvs[50]; int n_mvs = carregar_historico_memoria_vs(buf_mvs, 50);
+    for (int i = 0; i < n_mvs; i++)
+    {
+        _add_nome_unico(ui, buf_mvs[i].nome1);
+        _add_nome_unico(ui, buf_mvs[i].nome2);
+    }
 
-    { RegistroPuzzle buf[50]; int n = carregar_historico_puzzle(buf, 50, "logica");
-      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+    RegistroPuzzle buf_log[50]; int n_log = carregar_historico_puzzle(buf_log, 50, "logica");
+    for (int i = 0; i < n_log; i++) _add_nome_unico(ui, buf_log[i].nome);
 
-    { RegistroPuzzle buf[50]; int n = carregar_historico_puzzle(buf, 50, "precedencia");
-      for (int i = 0; i < n; i++) _add_nome_unico(ui, buf[i].nome); }
+    RegistroPuzzle buf_prec[50]; int n_prec = carregar_historico_puzzle(buf_prec, 50, "precedencia");
+    for (int i = 0; i < n_prec; i++) _add_nome_unico(ui, buf_prec[i].nome);
 
     ui->nomes_hist_carregados = true;
 }
@@ -1315,25 +1373,29 @@ void processar_entrada(EstadoUI *ui)
         processar_nome(ui->nome_jogador, &ui->nome_indice, 64);
 
         bool clicou_sugestao = false;
-        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) 
+        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
         {
-            Rectangle caixa = {130, 225, 580, 65};
-            float dx = caixa.x, dy = caixa.y + caixa.height, dw = caixa.width;
+            Rectangle caixa_auto = {130, 225, 580, 65};
+            float dx = caixa_auto.x, dy = caixa_auto.y + caixa_auto.height, dw = caixa_auto.width;
             char nome_lower[64];
-            strncpy(nome_lower, ui->nome_jogador, 63); nome_lower[63] = '\0';
+            strncpy(nome_lower, ui->nome_jogador, 63);
+            nome_lower[63] = '\0';
             for (int k = 0; nome_lower[k]; k++)
                 nome_lower[k] = (char)tolower((unsigned char)nome_lower[k]);
-            int matches[6]; int nm = 0;
-            for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++) 
+            int matches[6];
+            int nm = 0;
+            for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++)
             {
-                char cl[64]; strncpy(cl, ui->nomes_hist[ni], 63); cl[63] = '\0';
+                char cl[64];
+                strncpy(cl, ui->nomes_hist[ni], 63);
+                cl[63] = '\0';
                 for (int k = 0; cl[k]; k++) cl[k] = (char)tolower((unsigned char)cl[k]);
                 if (!nome_lower[0] || strstr(cl, nome_lower)) matches[nm++] = ni;
             }
-            for (int m = 0; m < nm; m++) 
+            for (int m = 0; m < nm; m++)
             {
                 Rectangle row = {dx, dy + 2.0f + (float)(m * 34), dw, 32};
-                if (CheckCollisionPointRec(GetMousePosition(), row)) 
+                if (CheckCollisionPointRec(GetMousePosition(), row))
                 {
                     strncpy(ui->nome_jogador, ui->nomes_hist[matches[m]], 63);
                     ui->nome_indice = (int)strlen(ui->nome_jogador);
@@ -1343,24 +1405,20 @@ void processar_entrada(EstadoUI *ui)
             }
         }
 
-        if (!clicou_sugestao && (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){130,320,340,62})))
+        if (!clicou_sugestao && (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){130, 320, 340, 62})))
         {
-            if (ui->nome_indice==0)
+            if (ui->nome_indice == 0)
             {
-                strcpy(ui->nome_jogador,"Astronauta");
-                ui->nome_indice=(int)strlen("Astronauta");
+                strcpy(ui->nome_jogador, "Astronauta");
+                ui->nome_indice = (int)strlen("Astronauta");
             }
-            bool precisa_p2 = (ui->modo_pendente==MODO_VS_ADIV || ui->modo_pendente==MODO_VS_MEM);
+            bool precisa_p2 = (ui->modo_pendente == MODO_VS_ADIV || ui->modo_pendente == MODO_VS_MEM);
             if (precisa_p2)
-            {
                 ui->estado_atual = ESTADO_INSERIR_NOME_P2;
-            }
             else
-            {
                 iniciar_jogo_modo(ui, ui->modo_pendente);
-            }
         }
-        if (IsKeyReleased(KEY_ESCAPE)) ui->estado_atual=ESTADO_MENU_PRINCIPAL;
+        if (IsKeyReleased(KEY_ESCAPE)) ui->estado_atual = ESTADO_MENU_PRINCIPAL;
         break;
     }
 
@@ -1370,23 +1428,29 @@ void processar_entrada(EstadoUI *ui)
         processar_nome(ui->nome_jogador2, &ui->nome_indice2, 64);
 
         bool clicou_sugestao = false;
-        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-            Rectangle caixa = {130, 225, 580, 65};
-            float dx = caixa.x, dy = caixa.y + caixa.height, dw = caixa.width;
+        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+        {
+            Rectangle caixa_auto = {130, 225, 580, 65};
+            float dx = caixa_auto.x, dy = caixa_auto.y + caixa_auto.height, dw = caixa_auto.width;
             char nome_lower[64];
-            strncpy(nome_lower, ui->nome_jogador2, 63); nome_lower[63] = '\0';
+            strncpy(nome_lower, ui->nome_jogador2, 63);
+            nome_lower[63] = '\0';
             for (int k = 0; nome_lower[k]; k++)
                 nome_lower[k] = (char)tolower((unsigned char)nome_lower[k]);
-            int matches[6]; int nm = 0;
-            for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++) 
+            int matches[6];
+            int nm = 0;
+            for (int ni = 0; ni < ui->nomes_hist_n && nm < 6; ni++)
             {
-                char cl[64]; strncpy(cl, ui->nomes_hist[ni], 63); cl[63] = '\0';
+                char cl[64];
+                strncpy(cl, ui->nomes_hist[ni], 63);
+                cl[63] = '\0';
                 for (int k = 0; cl[k]; k++) cl[k] = (char)tolower((unsigned char)cl[k]);
                 if (!nome_lower[0] || strstr(cl, nome_lower)) matches[nm++] = ni;
             }
-            for (int m = 0; m < nm; m++) {
+            for (int m = 0; m < nm; m++)
+            {
                 Rectangle row = {dx, dy + 2.0f + (float)(m * 34), dw, 32};
-                if (CheckCollisionPointRec(GetMousePosition(), row)) 
+                if (CheckCollisionPointRec(GetMousePosition(), row))
                 {
                     strncpy(ui->nome_jogador2, ui->nomes_hist[matches[m]], 63);
                     ui->nome_indice2 = (int)strlen(ui->nome_jogador2);
@@ -1396,25 +1460,36 @@ void processar_entrada(EstadoUI *ui)
             }
         }
 
-        if (!clicou_sugestao && (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){130,320,340,62})))
+        if (!clicou_sugestao && (IsKeyReleased(KEY_ENTER) || clique_em_rect((Rectangle){130, 320, 340, 62})))
         {
-            if (ui->nome_indice2==0)
+            if (ui->nome_indice2 == 0)
             {
-                strcpy(ui->nome_jogador2,"Astronauta 2");
-                ui->nome_indice2=(int)strlen("Astronauta 2");
+                strcpy(ui->nome_jogador2, "Astronauta 2");
+                ui->nome_indice2 = (int)strlen("Astronauta 2");
             }
             iniciar_jogo_modo(ui, ui->modo_pendente);
         }
-        if (IsKeyReleased(KEY_ESCAPE)) ui->estado_atual=ESTADO_INSERIR_NOME;
+        if (IsKeyReleased(KEY_ESCAPE)) ui->estado_atual = ESTADO_INSERIR_NOME;
         break;
     }
 
     case ESTADO_DIFICULDADE:
     {
         Dificuldade dif=FACIL; bool escolheu=false;
-        if (IsKeyReleased(KEY_ONE)  ||clique_em_rect((Rectangle){200,230,800,95})) { dif=FACIL;   escolheu=true; }
-        if (IsKeyReleased(KEY_TWO)  ||clique_em_rect((Rectangle){200,380,800,95})) { dif=MEDIO;   escolheu=true; }
-        if (IsKeyReleased(KEY_THREE)||clique_em_rect((Rectangle){200,530,800,95})) { dif=DIFICIL; escolheu=true; }
+        if (IsKeyReleased(KEY_ONE)  ||clique_em_rect((Rectangle){200,230,800,95})) 
+        { 
+            dif=FACIL;   escolheu=true; 
+        }
+
+        if (IsKeyReleased(KEY_TWO)  ||clique_em_rect((Rectangle){200,380,800,95})) 
+        { 
+            dif=MEDIO;   escolheu=true; 
+        }
+
+        if (IsKeyReleased(KEY_THREE)||clique_em_rect((Rectangle){200,530,800,95})) 
+        {
+            dif=DIFICIL; escolheu=true; 
+        }
 
         if (escolheu) 
         {
@@ -1495,7 +1570,8 @@ void processar_entrada(EstadoUI *ui)
                     snprintf(ui->mensagem_erro, sizeof(ui->mensagem_erro),
                              "Fora do intervalo! %d a %d.",
                              ui->partida_atual.min_range, ui->partida_atual.max_range);
-                } else 
+                } 
+                else 
                 {
                     ui->entrada_numero = palpite;
                     memset(ui->mensagem_erro, 0, sizeof(ui->mensagem_erro));
@@ -1990,14 +2066,14 @@ void processar_entrada(EstadoUI *ui)
     {
         if (!ui->precedencia_salva) 
         {
-            RegistroPuzzle retangulo;
-            data_hoje(retangulo.data, sizeof(retangulo.data));
-            strncpy(retangulo.nome, ui->nome_jogador, 63);
-            retangulo.acertos = ui->precedencia.acertos;
-            retangulo.total   = ui->precedencia.questoes_total;
-            retangulo.pontos  = calcular_pontos_prec(&ui->precedencia);
-            strncpy(retangulo.modo, "precedencia", sizeof(retangulo.modo) - 1);
-            salvar_puzzle(&retangulo);
+            RegistroPuzzle reg;
+            data_hoje(reg.data, sizeof(reg.data));
+            strncpy(reg.nome, ui->nome_jogador, 63);
+            reg.acertos = ui->precedencia.acertos;
+            reg.total   = ui->precedencia.questoes_total;
+            reg.pontos  = calcular_pontos_prec(&ui->precedencia);
+            strncpy(reg.modo, "precedencia", sizeof(reg.modo) - 1);
+            salvar_puzzle(&reg);
             ui->precedencia_salva = true;
         }
         if (ui->pode_avancar_fase)
@@ -2087,7 +2163,11 @@ void atualizar_ui(EstadoUI *ui)
         if (ui->timer_adiv <= 0.0) 
         {
             ui->timer_adiv = 0.0;
-            if (!ui->partida_salva) { salvar_partida_adivinhacao(ui); ui->partida_salva=true; }
+            if (!ui->partida_salva)
+            {
+                salvar_partida_adivinhacao(ui);
+                ui->partida_salva = true;
+            }
             ui->pode_avancar_fase = false;
             ui->timer_carry       = 0;
             memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
@@ -2133,8 +2213,12 @@ void atualizar_ui(EstadoUI *ui)
             if (ui->timer_memoria <= 0.0) 
             {
                 ui->timer_memoria = 0.0;
-                if (!ui->memoria_salva) { salvar_resultado_memoria(ui); ui->memoria_salva=true; }
-                ui->estado_atual=ESTADO_RESULTADO_MEMORIA;
+                if (!ui->memoria_salva)
+                {
+                    salvar_resultado_memoria(ui);
+                    ui->memoria_salva = true;
+                }
+                ui->estado_atual = ESTADO_RESULTADO_MEMORIA;
             }
         }
     }
@@ -2144,10 +2228,11 @@ void atualizar_ui(EstadoUI *ui)
         ui->timer_ocultar--;
         if (ui->timer_ocultar <= 0) 
         {
-            if (ui->clique_casa1>0) ui->jogo_memoria.reveladas[ui->clique_casa1-1]=false;
-            if (ui->clique_casa2>0) ui->jogo_memoria.reveladas[ui->clique_casa2-1]=false;
-            ui->aguardando_ocultar=false;
-            ui->clique_casa1=0; ui->clique_casa2=0;
+            if (ui->clique_casa1 > 0) ui->jogo_memoria.reveladas[ui->clique_casa1 - 1] = false;
+            if (ui->clique_casa2 > 0) ui->jogo_memoria.reveladas[ui->clique_casa2 - 1] = false;
+            ui->aguardando_ocultar = false;
+            ui->clique_casa1 = 0;
+            ui->clique_casa2 = 0;
         }
     }
 
@@ -2171,12 +2256,12 @@ void atualizar_ui(EstadoUI *ui)
         ui->mem_vs_timer_ocultar--;
         if (ui->mem_vs_timer_ocultar<=0) 
         {
-            if (ui->mem_vs_clique1>0) ui->mem_vs_jogo.reveladas[ui->mem_vs_clique1-1]=false;
-            if (ui->mem_vs_clique2>0) ui->mem_vs_jogo.reveladas[ui->mem_vs_clique2-1]=false;
-            ui->mem_vs_aguardando=false;
-            ui->mem_vs_clique1=0; ui->mem_vs_clique2=0;
-
-            ui->mem_vs_jogador=(ui->mem_vs_jogador+1)%2;
+            if (ui->mem_vs_clique1 > 0) ui->mem_vs_jogo.reveladas[ui->mem_vs_clique1 - 1] = false;
+            if (ui->mem_vs_clique2 > 0) ui->mem_vs_jogo.reveladas[ui->mem_vs_clique2 - 1] = false;
+            ui->mem_vs_aguardando = false;
+            ui->mem_vs_clique1    = 0;
+            ui->mem_vs_clique2    = 0;
+            ui->mem_vs_jogador    = (ui->mem_vs_jogador + 1) % 2;
         }
     }
     if (ui->estado_atual == ESTADO_JOGANDO_LOGICA)
@@ -2193,7 +2278,7 @@ void desenhar_ui(EstadoUI *ui)
     case ESTADO_MENU_PRINCIPAL:
     case ESTADO_MENU_JOGO:         desenhar_menu_principal();         break;
     case ESTADO_INSERIR_NOME:      desenhar_inserir_nome(ui);         break;
-    case ESTADO_INSERIR_NOME_P2:   desenhar_inserir_nome_p2(ui);      break;
+    case ESTADO_INSERIR_NOME_P2:   desenhar_inserir_nome(ui);         break;
     case ESTADO_DIFICULDADE:       desenhar_menu_dificuldade(ui);     break;
     case ESTADO_JOGANDO_ADIVINHACAO: desenhar_jogo_adivinhacao(ui);   break;
     case ESTADO_JOGANDO_VS:          desenhar_jogo_vs(ui);            break;

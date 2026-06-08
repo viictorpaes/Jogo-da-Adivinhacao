@@ -4,7 +4,6 @@
 
 void InitMusica(void);
 void UpdateMusica(void);
-void StopMusica(void);
 void UnloadMusica(void);
 
 #endif

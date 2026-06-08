@@ -8,44 +8,44 @@
 
 bool inicializar_historico(void) 
 {
-    FILE *f_csv = fopen(HISTORICO_CSV, "r");
-    if (f_csv == NULL)
+    FILE *file_csv = fopen(HISTORICO_CSV, "r");
+    if (file_csv == NULL)
     {
-        f_csv = fopen(HISTORICO_CSV, "w");
-        if (f_csv != NULL)
+        file_csv = fopen(HISTORICO_CSV, "w");
+        if (file_csv != NULL)
         {
-            fprintf(f_csv, "data,nome,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado,pontos\n");
-            fclose(f_csv);
+            fprintf(file_csv, "data,nome,dificuldade,tentativas_usadas,max_tentativas,numero_secreto,resultado,pontos\n");
+            fclose(file_csv);
         }
         else
         {
-            aviso("​⚠️​​​Falha ao criar o arquivo CSV do histórico.​⚠️​");
+            aviso("⚠️ Falha ao criar o arquivo CSV do histórico. ⚠️");
             return false;
         }
     }
     else
     {
-        fclose(f_csv);
+        fclose(file_csv);
     }
 
-    FILE *f_txt = fopen(HISTORICO_TXT, "r");
-    if (f_txt == NULL)
+    FILE *file_txt = fopen(HISTORICO_TXT, "r");
+    if (file_txt == NULL)
     {
-        f_txt = fopen(HISTORICO_TXT, "w");
-        if (f_txt != NULL)
+        file_txt = fopen(HISTORICO_TXT, "w");
+        if (file_txt != NULL)
         {
-            fprintf(f_txt, "​➖​➖​➖​➖​➖​​➖​➖​ HISTÓRICO DE PARTIDAS ​➖​➖​➖​➖​➖​​➖​➖​\n\n");
-            fclose(f_txt);
+            fprintf(file_txt, "------- HISTÓRICO DE PARTIDAS -------\n\n");
+            fclose(file_txt);
         }
         else
         {
-            aviso("​⚠️​Falha ao criar o arquivo TXT do histórico.​⚠️​");
+            aviso("⚠️ Falha ao criar o arquivo TXT do histórico. ⚠️");
             return false;
         }
     }
     else
     {
-        fclose(f_txt);
+        fclose(file_txt);
     }
 
     return true;
@@ -53,14 +53,14 @@ bool inicializar_historico(void)
 
 bool salvar_partida(const RegistroPartida *r) 
 {
-    FILE *f_csv = fopen(HISTORICO_CSV, "a");
-    FILE *f_txt = fopen(HISTORICO_TXT, "a");
+    FILE *file_csv = fopen(HISTORICO_CSV, "a");
+    FILE *file_txt = fopen(HISTORICO_TXT, "a");
 
-    if (f_csv == NULL || f_txt == NULL) 
+    if (file_csv == NULL || file_txt == NULL) 
     {
-        aviso("​⚠️​Erro ao abrir os arquivos de histórico para gravação.​⚠️​");
-        if (f_csv != NULL) fclose(f_csv);
-        if (f_txt != NULL) fclose(f_txt);
+        aviso("⚠️ Erro ao abrir os arquivos de histórico para gravação. ⚠️");
+        if (file_csv != NULL) fclose(file_csv);
+        if (file_txt != NULL) fclose(file_txt);
         return false;
     }
 
@@ -70,23 +70,23 @@ bool salvar_partida(const RegistroPartida *r)
 
     const char *str_res = r->venceu ? "VITÓRIA" : "DERROTA";
 
-    fprintf(f_csv, "%s,%s,%s,%d,%d,%d,%s,%d\n",
+    fprintf(file_csv, "%s,%s,%s,%d,%d,%d,%s,%d\n",
             r->data, r->nome, str_dif, r->tentativas_usadas,
             r->max_tentativas, r->numero_secreto, str_res, r->pontos);
 
-    fprintf(f_txt, "  [%s] %-15s | %-7s | %02d/%02d | Secreto: %03d | %-7s | %d pts\n",
+    fprintf(file_txt, "  [%s] %-15s | %-7s | %02d/%02d | Secreto: %03d | %-7s | %d pts\n",
             r->data, r->nome, str_dif, r->tentativas_usadas,
             r->max_tentativas, r->numero_secreto, str_res, r->pontos);
 
-    fclose(f_csv);
-    fclose(f_txt);
+    fclose(file_csv);
+    fclose(file_txt);
     return true;
 }
 
 int carregar_historico(RegistroPartida *buf, int max) 
 {
-    FILE *f_csv = fopen(HISTORICO_CSV, "r");
-    if (f_csv == NULL) 
+    FILE *file_csv = fopen(HISTORICO_CSV, "r");
+    if (file_csv == NULL) 
     {
         return -1; 
     }
@@ -94,9 +94,9 @@ int carregar_historico(RegistroPartida *buf, int max)
     char linha[256];
     int count = 0;
 
-    fgets(linha, sizeof(linha), f_csv);
+    fgets(linha, sizeof(linha), file_csv);
 
-    while (count < max && fgets(linha, sizeof(linha), f_csv) != NULL) 
+    while (count < max && fgets(linha, sizeof(linha), file_csv) != NULL) 
     {
         char str_dif[20];
         char str_res[20];
@@ -151,16 +151,16 @@ int carregar_historico(RegistroPartida *buf, int max)
         }
     }
 
-    fclose(f_csv);
+    fclose(file_csv);
     return count;
 }
 
 void exibir_historico(void) 
 {
-    FILE *f_txt = fopen(HISTORICO_TXT, "r");
-    if (f_txt == NULL) 
+    FILE *file_txt = fopen(HISTORICO_TXT, "r");
+    if (file_txt == NULL) 
     {
-        printf("\n Nenhum histórico de partidas encontrado.​🤔​\n");
+        printf("\n Nenhum histórico de partidas encontrado. 🤔\n");
         pausar();
         return;
     }
@@ -170,7 +170,7 @@ void exibir_historico(void)
 
     limpar_tela();
     
-    while (fgets(linha, sizeof(linha), f_txt) != NULL) 
+    while (fgets(linha, sizeof(linha), file_txt) != NULL) 
     {
         printf("%s", linha);
         linhas_impressas++;
@@ -182,24 +182,20 @@ void exibir_historico(void)
         }
     }
 
-    fclose(f_txt);
+    fclose(file_txt);
     pausar();
 }
 
-void liberar_historico(void) 
-{}
-
-
 bool inicializar_historico_memoria(void) 
 {
-    FILE *f_csv = fopen(HISTORICO_MEM_CSV, "r");
-    if (f_csv == NULL)
+    FILE *file_csv = fopen(HISTORICO_MEM_CSV, "r");
+    if (file_csv == NULL)
     {
-        f_csv = fopen(HISTORICO_MEM_CSV, "w");
-        if (f_csv != NULL)
+        file_csv = fopen(HISTORICO_MEM_CSV, "w");
+        if (file_csv != NULL)
         {
-            fprintf(f_csv, "data,nome,pontuacao,tentativas,pontos\n");
-            fclose(f_csv);
+            fprintf(file_csv, "data,nome,pontuacao,tentativas,pontos\n");
+            fclose(file_csv);
         }
         else
         {
@@ -209,17 +205,17 @@ bool inicializar_historico_memoria(void)
     }
     else
     {
-        fclose(f_csv);
+        fclose(file_csv);
     }
 
-    FILE *f_txt = fopen(HISTORICO_MEM_TXT, "r");
-    if (f_txt == NULL)
+    FILE *file_txt = fopen(HISTORICO_MEM_TXT, "r");
+    if (file_txt == NULL)
     {
-        f_txt = fopen(HISTORICO_MEM_TXT, "w");
-        if (f_txt != NULL)
+        file_txt = fopen(HISTORICO_MEM_TXT, "w");
+        if (file_txt != NULL)
         {
-            fprintf(f_txt, "➖➖➖➖➖➖➖ HISTÓRICO - JOGO DA MEMÓRIA ➖➖➖➖➖➖➖\n\n");
-            fclose(f_txt);
+            fprintf(file_txt, "------- HISTÓRICO - JOGO DA MEMÓRIA -------\n\n");
+            fclose(file_txt);
         }
         else
         {
@@ -229,7 +225,7 @@ bool inicializar_historico_memoria(void)
     }
     else
     {
-        fclose(f_txt);
+        fclose(file_txt);
     }
 
     return true;
@@ -237,39 +233,39 @@ bool inicializar_historico_memoria(void)
 
 bool salvar_partida_memoria(const RegistroMemoria *r) 
 {
-    FILE *f_csv = fopen(HISTORICO_MEM_CSV, "a");
-    FILE *f_txt = fopen(HISTORICO_MEM_TXT, "a");
+    FILE *file_csv = fopen(HISTORICO_MEM_CSV, "a");
+    FILE *file_txt = fopen(HISTORICO_MEM_TXT, "a");
 
-    if (f_csv == NULL || f_txt == NULL) 
+    if (file_csv == NULL || file_txt == NULL) 
     {
         aviso("⚠️ Erro ao abrir arquivos de memória para gravação.⚠️");
-        if (f_csv != NULL) fclose(f_csv);
-        if (f_txt != NULL) fclose(f_txt);
+        if (file_csv != NULL) fclose(file_csv);
+        if (file_txt != NULL) fclose(file_txt);
         return false;
     }
 
-    fprintf(f_csv, "%s,%s,%d,%d,%d\n",
+    fprintf(file_csv, "%s,%s,%d,%d,%d\n",
             r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
 
-    fprintf(f_txt, " [%s] %-15s | Pontuacao: %2d | Tentativas: %2d | Pontos: %d\n",
+    fprintf(file_txt, " [%s] %-15s | Pontuacao: %2d | Tentativas: %2d | Pontos: %d\n",
             r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
 
-    fclose(f_csv);
-    fclose(f_txt);
+    fclose(file_csv);
+    fclose(file_txt);
     return true;
 }
 
 int carregar_historico_memoria(RegistroMemoria *buf, int max) 
 {
-    FILE *f_csv = fopen(HISTORICO_MEM_CSV, "r");
-    if (f_csv == NULL) return -1;
+    FILE *file_csv = fopen(HISTORICO_MEM_CSV, "r");
+    if (file_csv == NULL) return -1;
 
     char linha[256];
     int count = 0;
 
-    fgets(linha, sizeof(linha), f_csv);
+    fgets(linha, sizeof(linha), file_csv);
 
-    while (count < max && fgets(linha, sizeof(linha), f_csv) != NULL) 
+    while (count < max && fgets(linha, sizeof(linha), file_csv) != NULL) 
     {
         int n = sscanf(linha, "%10[^,],%63[^,],%d,%d,%d",
                        buf[count].data, buf[count].nome,
@@ -278,14 +274,14 @@ int carregar_historico_memoria(RegistroMemoria *buf, int max)
         if (n == 5) count++;
     }
 
-    fclose(f_csv);
+    fclose(file_csv);
     return count;
 }
 
 void exibir_historico_memoria(void)
 {
-    FILE *f_txt = fopen(HISTORICO_MEM_TXT, "r");
-    if (f_txt == NULL)
+    FILE *file_txt = fopen(HISTORICO_MEM_TXT, "r");
+    if (file_txt == NULL)
     {
         printf("\n  Nenhum histórico de memória encontrado.🤔\n");
         pausar();
@@ -297,7 +293,7 @@ void exibir_historico_memoria(void)
 
     limpar_tela();
 
-    while (fgets(linha, sizeof(linha), f_txt) != NULL)
+    while (fgets(linha, sizeof(linha), file_txt) != NULL)
     {
         printf("%s", linha);
         linhas_impressas++;
@@ -308,40 +304,45 @@ void exibir_historico_memoria(void)
         }
     }
 
-    fclose(f_txt);
+    fclose(file_txt);
     pausar();
 }
 
 static bool inicializar_par_arquivos(const char *csv_path, const char *txt_path,
                                      const char *csv_header, const char *txt_header)
 {
-    FILE *f = fopen(csv_path, "r");
-    if (!f)
+    FILE *file_csv = fopen(csv_path, "r");
+    if (!file_csv)
     {
-        f = fopen(csv_path, "w");
-        if (!f) return false;
-        fprintf(f, "%s\n", csv_header);
-        fclose(f);
-    }
-    else
-    {
-        fclose(f);
-    }
+        file_csv = fopen(csv_path, "w");
 
-    f = fopen(txt_path, "r");
-    if (!f)
-    {
-        f = fopen(txt_path, "w");
-        if (!f)
+        if (!file_csv) 
         {
             return false;
         }
-        fprintf(f, "%s\n\n", txt_header);
-        fclose(f);
+
+        fprintf(file_csv, "%s\n", csv_header);
+        fclose(file_csv);
     }
     else
     {
-        fclose(f);
+        fclose(file_csv);
+    }
+
+    FILE *file_txt = fopen(txt_path, "r");
+    if (!file_txt)
+    {
+        file_txt = fopen(txt_path, "w");
+        if (!file_txt)
+        {
+            return false;
+        }
+        fprintf(file_txt, "%s\n\n", txt_header);
+        fclose(file_txt);
+    }
+    else
+    {
+        fclose(file_txt);
     }
 
     return true;
@@ -350,20 +351,30 @@ static bool inicializar_par_arquivos(const char *csv_path, const char *txt_path,
 
 bool inicializar_historico_vs(void)
 {
-    return inicializar_par_arquivos(
+    return inicializar_par_arquivos
+    (
         HISTORICO_VS_CSV, HISTORICO_VS_TXT,
         "data,nome1,nome2,dificuldade,vitorias1,vitorias2,pontos1,pontos2,vencedor",
-        "------- HISTORICO - BATALHA DE SINAIS (VS) -------");
+        "------- HISTORICO - BATALHA DE SINAIS (VS) -------"
+    );
 }
 
 bool salvar_partida_vs(const RegistroVS *r)
 {
-    FILE *fc = fopen(HISTORICO_VS_CSV, "a");
-    FILE *ft = fopen(HISTORICO_VS_TXT, "a");
-    if (!fc || !ft)
+    FILE *file_csv = fopen(HISTORICO_VS_CSV, "a");
+    FILE *file_txt = fopen(HISTORICO_VS_TXT, "a");
+    if (!file_csv || !file_txt)
     {
-        if (fc) fclose(fc);
-        if (ft) fclose(ft);
+        if (file_csv) 
+        {
+            fclose(file_csv);
+        }
+
+        if (file_txt) 
+        { 
+            fclose(file_txt); 
+        }
+
         return false;
     }
 
@@ -372,28 +383,28 @@ bool salvar_partida_vs(const RegistroVS *r)
     const char *venc = r->vencedor == 1 ? r->nome1
                      : r->vencedor == 2 ? r->nome2 : "EMPATE";
 
-    fprintf(fc, "%s,%s,%s,%s,%d,%d,%d,%d,%d\n",
+    fprintf(file_csv, "%s,%s,%s,%s,%d,%d,%d,%d,%d\n",
             r->data, r->nome1, r->nome2, dif,
             r->vitorias1, r->vitorias2, r->pontos1, r->pontos2, r->vencedor);
 
-    fprintf(ft, "  [%s] %-12s vs %-12s | %s | %d-%d | pts %d-%d | Vencedor: %s\n",
+    fprintf(file_txt, "  [%s] %-12s vs %-12s | %s | %d-%d | pts %d-%d | Vencedor: %s\n",
             r->data, r->nome1, r->nome2, dif,
             r->vitorias1, r->vitorias2, r->pontos1, r->pontos2, venc);
 
-    fclose(fc); fclose(ft);
+    fclose(file_csv); fclose(file_txt);
     return true;
 }
 
 int carregar_historico_vs(RegistroVS *buf, int max)
 {
-    FILE *f = fopen(HISTORICO_VS_CSV, "r");
-    if (!f) return -1;
+    FILE *file_csv = fopen(HISTORICO_VS_CSV, "r");
+    if (!file_csv) return -1;
 
     char linha[256];
     int  count = 0;
-    fgets(linha, sizeof(linha), f);
+    fgets(linha, sizeof(linha), file_csv);
 
-    while (count < max && fgets(linha, sizeof(linha), f)) 
+    while (count < max && fgets(linha, sizeof(linha), file_csv)) 
     {
         char dif[20];
         int n = sscanf(linha, "%10[^,],%63[^,],%63[^,],%19[^,],%d,%d,%d,%d,%d",
@@ -407,7 +418,7 @@ int carregar_historico_vs(RegistroVS *buf, int max)
             count++;
         }
     }
-    fclose(f);
+    fclose(file_csv);
     return count;
 }
 
@@ -422,40 +433,52 @@ bool inicializar_historico_memoria_vs(void)
 
 bool salvar_partida_memoria_vs(const RegistroMemoria *r1, const RegistroMemoria *r2)
 {
-    FILE *fc = fopen(HISTORICO_MEM_VS_CSV, "a");
-    FILE *ft = fopen(HISTORICO_MEM_VS_TXT, "a");
-    if (!fc || !ft)
+    FILE *file_csv = fopen(HISTORICO_MEM_VS_CSV, "a");
+    FILE *file_txt = fopen(HISTORICO_MEM_VS_TXT, "a");
+    if (!file_csv || !file_txt)
     {
-        if (fc) fclose(fc);
-        if (ft) fclose(ft);
+        if (file_csv) 
+        { 
+            fclose(file_csv); 
+        }
+
+        if (file_txt) 
+        { 
+            fclose(file_txt); 
+        }
+
         return false;
     }
 
-    fprintf(fc, "%s,%s,%d,%d,%s,%d,%d\n",
+    fprintf(file_csv, "%s,%s,%d,%d,%s,%d,%d\n",
             r1->data, r1->nome, r1->pontuacao, r1->pontos,
             r2->nome, r2->pontuacao, r2->pontos);
 
     const char *venc = r1->pontos > r2->pontos ? r1->nome
                      : r2->pontos > r1->pontos ? r2->nome : "EMPATE";
-    fprintf(ft, "  [%s] %-12s %2d pares (%dpts) vs %-12s %2d pares (%dpts) | %s\n",
+
+    fprintf(file_txt, "  [%s] %-12s %2d pares (%dpts) vs %-12s %2d pares (%dpts) | %s\n",
             r1->data, r1->nome, r1->pontuacao, r1->pontos,
             r2->nome, r2->pontuacao, r2->pontos, venc);
 
-    fclose(fc); fclose(ft);
+    fclose(file_csv); fclose(file_txt);
     return true;
 }
 
 
 int carregar_historico_memoria_vs(RegistroMemoriaVS *buf, int max)
 {
-    FILE *f = fopen(HISTORICO_MEM_VS_CSV, "r");
-    if (!f) return -1;
+    FILE *file_csv = fopen(HISTORICO_MEM_VS_CSV, "r");
+    if (!file_csv) 
+    { 
+        return -1; 
+    }
 
     char linha[256];
     int  count = 0;
-    fgets(linha, sizeof(linha), f);
+    fgets(linha, sizeof(linha), file_csv);
 
-    while (count < max && fgets(linha, sizeof(linha), f))
+    while (count < max && fgets(linha, sizeof(linha), file_csv))
     {
         int n = sscanf(linha, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d",
                        buf[count].data,
@@ -463,7 +486,7 @@ int carregar_historico_memoria_vs(RegistroMemoriaVS *buf, int max)
                        buf[count].nome2, &buf[count].pares2, &buf[count].pontos2);
         if (n == 7) count++;
     }
-    fclose(f);
+    fclose(file_csv);
     return count;
 }
 
@@ -481,47 +504,47 @@ bool salvar_puzzle(const RegistroPuzzle *r)
     const char *csv = strcmp(r->modo, "logica") == 0 ? HISTORICO_LOG_CSV : HISTORICO_PRE_CSV;
     const char *txt = strcmp(r->modo, "logica") == 0 ? HISTORICO_LOG_TXT : HISTORICO_PRE_TXT;
 
-    FILE *fc = fopen(csv, "a");
-    FILE *ft = fopen(txt, "a");
+    FILE *file_csv = fopen(csv, "a");
+    FILE *file_txt = fopen(txt, "a");
     
-    if (!fc || !ft)
+    if (!file_csv || !file_txt)
     {
-        if (fc) 
+        if (file_csv) 
         {
-            fclose(fc);
+            fclose(file_csv);
         } 
 
-        if (ft) 
+        if (file_txt) 
         {
-            fclose(ft);
+            fclose(file_txt);
         }
 
         return false;
     }
 
-    fprintf(fc, "%s,%s,%d,%d,%d,%s\n",
+    fprintf(file_csv, "%s,%s,%d,%d,%d,%s\n",
             r->data, r->nome, r->acertos, r->total, r->pontos, r->modo);
-    fprintf(ft, "  [%s] %-15s | %d/%d acertos | %d pts\n",
+    fprintf(file_txt, "  [%s] %-15s | %d/%d acertos | %d pts\n",
             r->data, r->nome, r->acertos, r->total, r->pontos);
 
-    fclose(fc); fclose(ft);
+    fclose(file_csv); fclose(file_txt);
     return true;
 }
 
 int carregar_historico_puzzle(RegistroPuzzle *buf, int max, const char *modo)
 {
     const char *csv = strcmp(modo, "logica") == 0 ? HISTORICO_LOG_CSV : HISTORICO_PRE_CSV;
-    FILE *f = fopen(csv, "r");
-    if (!f)
+    FILE *file_csv = fopen(csv, "r");
+    if (!file_csv)
     {
         return -1;
     }
 
     char linha[256];
     int  count = 0;
-    fgets(linha, sizeof(linha), f);
+    fgets(linha, sizeof(linha), file_csv);
 
-    while (count < max && fgets(linha, sizeof(linha), f)) 
+    while (count < max && fgets(linha, sizeof(linha), file_csv)) 
     {
         int n = sscanf(linha, "%10[^,],%63[^,],%d,%d,%d,%31[^\n]",
                        buf[count].data, buf[count].nome,
@@ -529,7 +552,7 @@ int carregar_historico_puzzle(RegistroPuzzle *buf, int max, const char *modo)
                        &buf[count].pontos, buf[count].modo);
         if (n == 6) count++;
     }
-    fclose(f);
+    fclose(file_csv);
     return count;
 }
 

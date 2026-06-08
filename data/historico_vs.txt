@@ -12,3 +12,7 @@
   [2026-06-09] Sirius       vs Vega         | PILOTO     | 2-1 | pts 140-70  | Vencedor: Sirius
   [2026-06-10] Phoebe       vs Nova         | COMANDANTE | 1-2 | pts 80-160  | Vencedor: Nova
   [2026-06-10] Lyra         vs Cygnus       | CADETE     | 1-1 | pts 45-45   | Vencedor: EMPATE
+  [2026-06-11] Felix        vs Mira         | CADETE | 2-1 | pts 90-45 | Vencedor: Felix
+  [2026-06-11] Volt         vs Aurora       | PILOTO | 1-2 | pts 70-140 | Vencedor: Aurora
+  [2026-06-12] Rex          vs Draco        | COMANDANTE | 3-0 | pts 240-0 | Vencedor: Rex
+  [2026-06-12] Sirius       vs Phoebe       | CADETE | 1-1 | pts 45-45 | Vencedor: EMPATE

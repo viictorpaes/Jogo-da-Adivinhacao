@@ -29,7 +29,7 @@ int ler_inteiro(int min, int max, const char *prompt)
             return valor;
         }
 
-        printf("Entrada inválida.​​❌​ Por favor, digite um número entre %d e %d.\n", min, max);
+        printf("Entrada inválida. ❌ Por favor, digite um número entre %d e %d.\n", min, max);
     }
 }
 
@@ -58,25 +58,13 @@ void limpar_tela(void)
 
 void pausar(void) 
 {
-    printf("\nPressione ENTER para continuar... ");
+    printf("\n Pressione ENTER para continuar... ");
     getchar(); 
 }
 
 void inicializar_rand(void) 
 {
     srand((unsigned int)time(NULL));
-}
-
-int rand_intervalo(int min, int max) 
-{
-    if (min > max) 
-    {
-        int temp = min;
-        min = max;
-        max = temp;
-    }
-
-    return (rand() % (max - min + 1)) + min;
 }
 
 void formatar_data_atual(char *buf) 
@@ -98,7 +86,7 @@ void formatar_data_atual(char *buf)
 void erro_fatal(const char *msg) 
 {
     fprintf(stderr, "\n[ERRO FATAL] %s\n", msg);
-    fprintf(stderr, "O programa será encerrado.​​🚨​\n");
+    fprintf(stderr, "O programa será encerrado. 🚨\n");
     exit(EXIT_FAILURE);
 }
 

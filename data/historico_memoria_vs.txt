@@ -9,3 +9,6 @@
   [2026-06-08] Orion        5 pares (50pts) vs Nebula        3 pares (30pts) | Orion
   [2026-06-09] Sirius       2 pares (20pts) vs Titan         6 pares (60pts) | Titan
   [2026-06-10] Phoebe       4 pares (40pts) vs Nova          4 pares (40pts) | EMPATE
+  [2026-06-11] Felix        6 pares (60pts) vs Mira          2 pares (20pts) | Felix
+  [2026-06-12] Volt         3 pares (30pts) vs Aurora        5 pares (50pts) | Aurora
+  [2026-06-12] Rex          4 pares (40pts) vs Draco         4 pares (40pts) | EMPATE
