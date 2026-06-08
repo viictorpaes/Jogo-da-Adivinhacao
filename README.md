@@ -455,8 +455,8 @@ Jogo-da-Adivinhacao/
 </p>
 
 <p align="center">
- <strong>Entrega 04 — Novas Histórias + Deploy (Screencast 3):</strong> <br>
-  <a href="https://youtu.be/6qsiPLX8Pvo" target="_blank">
+ <strong>Entrega 04 — Novas Histórias + Detalhamento (Screencast 3):</strong> <br>
+  <a href="# LINK URL AQUI" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
   <a href="https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest" target="_blank">
@@ -464,24 +464,10 @@ Jogo-da-Adivinhacao/
   </a>
 </p>
 
-<h3 align="center">🚀 Deploy</h3>
+<h2 align="center">🆕 Entrega 4 FDS — Novas Histórias de Usuário</h2>
 
 <p align="center">
-  <strong>Binários compilados disponíveis via GitHub Releases:</strong><br>
-  <a href="https://github.com/viictorpaes/Jogo-da-Adivinhacao/releases/latest" target="_blank">
-  <img src="https://img.shields.io/badge/-GitHub%20Releases-1a56db?style=flat-square&logo=github&logoColor=white" height="25"/>
-  </a>
-</p>
-
-<p align="center">
-  <b>Baixe o executável pré-compilado para o seu sistema operacional diretamente na página de releases.<br>
-  A URL 🔗 aparece no Screencast 3 (Entrega 04).</b>
-</p>
-
-<h2 align="center">🆕 Entrega 4 — Novas Histórias de Usuário</h2>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Entrega_4-6_novas_HUs_implementadas-7C3AED?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
+  <img src="https://img.shields.io/badge/Entrega_4-6_novas_HUs_implementadas-7C3AED?style=flat-square&logo=checkmarx&logoColor=green" height="22"/>
 </p>
 
 | # | História de Usuário | Módulo |
