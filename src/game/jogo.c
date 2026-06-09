@@ -17,12 +17,14 @@ Partida iniciar_partida(Dificuldade dif)
         nova_partida.max_range = FACIL_MAX;
         nova_partida.max_tentativas = FACIL_TENTATIVAS;
     } 
+
     else if (dif == MEDIO) 
     {
         nova_partida.min_range = MEDIO_MIN;
         nova_partida.max_range = MEDIO_MAX;
         nova_partida.max_tentativas = MEDIO_TENTATIVAS;
     } 
+
     else 
     {
         nova_partida.min_range = DIFICIL_MIN;
@@ -43,10 +45,12 @@ Resultado processar_palpite(Partida *p, int palpite)
     {
         return MAIOR;
     } 
+
     else if (palpite > p->numero_secreto) 
     {
         return MENOR;
     } 
+
     else 
     {
         p->venceu = true;
@@ -81,6 +85,7 @@ void exibir_resultado_final(const Partida *p)
         printf("Você acertou o número secreto: %d\n", p->numero_secreto);
         printf("Tentativas utilizadas: %d de %d\n", p->tentativas_usadas, p->max_tentativas);
     } 
+
     else 
     {
         printf("DERROTA! ❌​😭​\n");
@@ -93,4 +98,5 @@ void exibir_resultado_final(const Partida *p)
         printf("=");
     }
     printf("\n\n");
+
 }

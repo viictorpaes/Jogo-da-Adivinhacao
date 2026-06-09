@@ -10,6 +10,7 @@ static int alocar_no(JogoLogica *jogo)
     {
         return -1;
     }
+
     else
     {
         int indice = jogo->formula.total_nos++;
@@ -142,24 +143,32 @@ static ClassFormula classificar(JogoLogica *jogo)
 {
     int total_combinacoes = 1 << jogo->qtd_vars;
     bool achou_verdadeiro = false, achou_falso = false;
+
     for (int i = 0; i < total_combinacoes; i++)
     {
         bool vars[3] = {false, false, false};
+
         for (int var = 0; var < jogo->qtd_vars; var++)
+        {
             vars[var] = (i >> var) & 1;
+        }
+
         if (avaliar(jogo, jogo->formula.raiz, vars)) 
         {
             achou_verdadeiro = true;
         }
+
         else
         {
             achou_falso = true;
         }
     }
+
     if (achou_verdadeiro && !achou_falso)
     {
         return CLASS_TAUTOLOGIA;
     }
+    
     if (!achou_verdadeiro && achou_falso)
     {
         return CLASS_CONTRADICAO;

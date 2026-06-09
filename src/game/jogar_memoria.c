@@ -68,4 +68,5 @@ void jogar_memoria(const char *nome)
 
     printf("Pressione ENTER para voltar ao menu...\n");
     pausar();
+
 }

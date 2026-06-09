@@ -120,8 +120,16 @@ static void embaralhar_opcoes(QuestaoPreced *q)
         const char *tmp = q->opcoes[i];
         q->opcoes[i] = q->opcoes[pos];
         q->opcoes[pos] = tmp;
-        if (q->correta == i) q->correta = pos;
-        else if (q->correta == pos) q->correta = i;
+
+        if (q->correta == i) 
+        { 
+          q->correta = pos;
+        }
+
+        else if (q->correta == pos) 
+        { 
+          q->correta = i;
+        }
     }
 }
 
@@ -187,6 +195,7 @@ void gerar_proxima_questao_prec(JogoPrecedencia *jogo)
     {
         indice = rand() % tamanho_banco;
         bool ja_usado = false;
+
         for (int i = 0; i < jogo->n_usados; i++)
         {
             if (jogo->indices_usados[i] == indice)
@@ -237,9 +246,11 @@ void responder_precedencia(JogoPrecedencia *jogo, int opcao)
         jogo->acertos++;
         jogo->timer += 15.0;
     }
+
     else
     {
         jogo->timer -= 5.0;
+
         if (jogo->timer < 0.0)
         {
             jogo->timer = 0.0;
@@ -266,6 +277,7 @@ void atualizar_timer_prec(JogoPrecedencia *jogo, double delta_t)
     if (jogo->mostrando_feedback)
     {
         jogo->timer_feedback -= delta_t;
+
         if (jogo->timer_feedback <= 0.0 && !jogo->finalizado)
         {
             gerar_proxima_questao_prec(jogo);
@@ -274,6 +286,7 @@ void atualizar_timer_prec(JogoPrecedencia *jogo, double delta_t)
     }
 
     jogo->timer -= delta_t;
+
     if (jogo->timer <= 0.0)
     {
         jogo->resp_selecionada   = -1;
@@ -281,6 +294,7 @@ void atualizar_timer_prec(JogoPrecedencia *jogo, double delta_t)
         jogo->questoes_respondidas++;
         jogo->mostrando_feedback = true;
         jogo->timer_feedback     = 2.0;
+        
         if (jogo->questoes_respondidas >= jogo->questoes_total)
         {
             jogo->finalizado = true;

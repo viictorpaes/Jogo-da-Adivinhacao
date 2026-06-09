@@ -56,10 +56,12 @@ void exibir_tabuleiro(const JogoMemoria *jogo)
     printf("╚════════════════════════════════╝\n\n");
     
     printf("    ");
+
     for (coluna = 1; coluna <= TABULEIRO_SIZE; coluna++) 
     {
         printf("  [%d]  ", coluna);
     }
+
     printf("\n");
     
     for (linha = 0; linha < TABULEIRO_SIZE; linha++) 
@@ -74,10 +76,12 @@ void exibir_tabuleiro(const JogoMemoria *jogo)
             {
                 printf("  ✅  ");
             } 
+
             else if (jogo->reveladas[posicao]) 
             {
                 printf("  %d  ", jogo->numeros[posicao]);
             } 
+            
             else 
             {
                 printf("  ?  ");

@@ -17,6 +17,7 @@ void jogar_adivinhacao_vs(void)
     char nome1[64], nome2[64];
 
     limpar_tela();
+
     printf("\n" SEPARADOR);
     printf("  ⚔️  BATALHA DE SINAIS — 1v1  ⚔️\n");
     printf(SEPARADOR "\n");
@@ -27,7 +28,7 @@ void jogar_adivinhacao_vs(void)
 
     Dificuldade dif = exibir_menu_dificuldade();
 
-    int vitorias[2]     = {0, 0};
+    int vitorias[2] = {0, 0};
     int pontos_total[2] = {0, 0};
 
     for (int rodada = 0; rodada < VS_MAX_RODADAS; rodada++)
@@ -44,7 +45,7 @@ void jogar_adivinhacao_vs(void)
         int tentativas[2] = {0, 0};
         int jogador = 0;
 
-        printf("  Número gerado! Range: %d a %d | %d tentativas por jogador.\n\n",
+        printf(" \nNúmero gerado! Range: %d a %d | %d tentativas por jogador.\n\n",
                partida.min_range, partida.max_range, VS_MAX_TENTATIVAS);
 
         while (1)
@@ -66,8 +67,10 @@ void jogar_adivinhacao_vs(void)
                    nome_turno, tentativas[jogador] + 1, VS_MAX_TENTATIVAS);
 
             char prompt[128];
-            snprintf(prompt, sizeof(prompt), "  Palpite (%d a %d): ",
-                     partida.min_range, partida.max_range);
+
+            snprintf(prompt, sizeof(prompt), "  Palpite (%d a %d): ", 
+            partida.min_range, partida.max_range);
+
             int palpite = ler_inteiro(partida.min_range, partida.max_range, prompt);
             tentativas[jogador]++;
 
@@ -78,17 +81,24 @@ void jogar_adivinhacao_vs(void)
                 pontos_total[jogador] += calcular_pontos(dif, tentativas[jogador], 1);
                 break;
             }
+
             else if (palpite < numero_secreto)
             {
                 printf(" 🚀 O número secreto é MAIOR! ^\n\n");
             }
+
             else
             {
                 printf(" 🚀 O número secreto é MENOR! v\n\n");
             }
 
             int prox = 1 - jogador;
-            if (tentativas[prox] >= VS_MAX_TENTATIVAS) prox = jogador;
+
+            if (tentativas[prox] >= VS_MAX_TENTATIVAS) 
+            { 
+                prox = jogador;
+            }
+
             jogador = prox;
         }
 
@@ -96,6 +106,7 @@ void jogar_adivinhacao_vs(void)
     }
 
     limpar_tela();
+
     printf("\n" SEPARADOR);
     printf("\n\t 🏆  FIM DA BATALHA DE SINAIS  🏆\n");
     printf(SEPARADOR "\n");
@@ -107,10 +118,12 @@ void jogar_adivinhacao_vs(void)
     {
         printf(" 🥇 VENCEDOR: %s!\n\n", nome1);
     }
+
     else if (vitorias[1] > vitorias[0])
     {
         printf(" 🥇 VENCEDOR: %s!\n\n", nome2);
     }
+
     else
     {
         printf(" 🤝 EMPATE!\n\n");
@@ -156,7 +169,7 @@ void jogar_memoria_vs(void)
         printf("\n\t 1v1 MAPAS ESTELARES 🌕\n");
         printf(" %s: %d pares  |  %s: %d pares\n\n",
                nome1, pares[0], nome2, pares[1]);
-        printf("  TURNO: %s\n\n", jogador == 0 ? nome1 : nome2);
+        printf(" \nTURNO: %s\n\n", jogador == 0 ? nome1 : nome2);
 
         exibir_tabuleiro(&jogo);
 
@@ -171,6 +184,7 @@ void jogar_memoria_vs(void)
                    jogador == 0 ? nome1 : nome2);
             pausar();
         }
+
         else
         {
             exibir_tabuleiro(&jogo);
@@ -191,12 +205,20 @@ void jogar_memoria_vs(void)
     printf(" %s: %d pares\n", nome2, pares[1]);
     printf("\n");
 
-    if (pares[0] > pares[1])
+    if (pares[0] > pares[1]) 
+    {
         printf(" 🥇 VENCEDOR: %s!\n\n", nome1);
-    else if (pares[1] > pares[0])
+    }
+
+    else if (pares[1] > pares[0]) 
+    {
         printf(" 🥇 VENCEDOR: %s!\n\n", nome2);
-    else
+    }
+
+    else 
+    {
         printf(" 🤝 EMPATE!\n\n");
+    }
 
     RegistroMemoria registro1, registro2;
     formatar_data_atual(registro1.data);
@@ -225,6 +247,7 @@ static void exibir_formula_logica(const JogoLogica *jogo)
     printf("\nFórmula : %s\n", jogo->formula_str);
     printf("Legenda : ~ = NÃO  ^ = E  V = OU  -> = IMPLICA  <-> = BICOND.\n");
     printf("Valores : ");
+
     for (int v = 0; v < jogo->qtd_vars; v++)
         printf("%c = %s   ", "PQR"[v], jogo->vars[v] ? "V" : "F");
     printf("\n\n");
@@ -233,6 +256,7 @@ static void exibir_formula_logica(const JogoLogica *jogo)
 void jogar_logica_terminal(void)
 {
     char nome[64];
+
     pedir_nome_jogador(nome, sizeof(nome));
     Dificuldade dif = exibir_menu_dificuldade();
 
@@ -242,7 +266,7 @@ void jogar_logica_terminal(void)
     {
         limpar_tela();
         printf("\n" SEPARADOR);
-        printf("  PROTOCOLO LÓGICO | Questão %d/%d\n",
+        printf(" \nPROTOCOLO LÓGICO | Questão %d/%d\n",
                jogo.questoes_respondidas + 1, jogo.questoes_total);
         printf(SEPARADOR "\n");
 
@@ -256,10 +280,12 @@ void jogar_logica_terminal(void)
 
         const char *resp_str  = escolheu_v ? "Verdadeira" : "Falsa";
         const char *certa_str = jogo.resp_correta_vf ? "Verdadeira" : "Falsa";
+
         if (jogo.acertou_vf)
         {
             printf(" ✅ Correto! (%s)\n\n", resp_str);
         }
+
         else
         {
             printf("  ❌ Errado! Você respondeu: %s | Correto: %s\n\n", resp_str, certa_str);
@@ -270,14 +296,17 @@ void jogar_logica_terminal(void)
         printf(" (TAUTOLOGIA = sempre V | CONTRADIÇÃO = sempre F | CONTINGÊNCIA = V ou F)\n");
 
         int resposta_classif = ler_inteiro(1, 3, "  Classificação (1/2/3): ");
+
         ClassFormula classificacao = (ClassFormula)(resposta_classif - 1);
         responder_classif_logica(&jogo, classificacao);
 
         const char *classes[] = {"Tautologia", "Contradição", "Contingência"};
+
         if (jogo.acertou_class)
         {
             printf(" ✅ Correto! (%s)\n", classes[classificacao]);
         }
+
         else
         {
             printf(" ❌ Errado! Você respondeu: %s | Correto: %s\n", 
@@ -287,8 +316,10 @@ void jogar_logica_terminal(void)
         printf("\n");
         pausar();
 
-        if (!jogo.finalizado)
+        if (!jogo.finalizado) 
+        {
             gerar_proxima_questao_logica(&jogo);
+        }
     }
 
     limpar_tela();
@@ -319,6 +350,7 @@ void jogar_logica_terminal(void)
 void jogar_precedencia_terminal(void)
 {
     char nome[64];
+
     pedir_nome_jogador(nome, sizeof(nome));
     Dificuldade dif = exibir_menu_dificuldade();
 
@@ -335,28 +367,38 @@ void jogar_precedencia_terminal(void)
         printf(" Fórmula: %s\n\n", jogo.questao.formula);
         printf(" Adicione parênteses para indicar a precedência correta:\n\n");
 
-        for (int k = 0; k < 4; k++)
+        for (int k = 0; k < 4; k++) 
+        {
             printf("  [%d] %s\n", k + 1, jogo.questao.opcoes[k]);
+        }
 
         printf("\n");
+
         int resposta = ler_inteiro(1, 4, " Resposta (1-4): ");
         responder_precedencia(&jogo, resposta - 1);
 
-        if (jogo.acertou)
+        if (jogo.acertou) 
+        {
             printf("\n ✅ Correto! +10 pts\n");
-        else
-            printf("\n ❌ Errado! Correto: [%d] %s\n",
-                   jogo.questao.correta + 1, jogo.questao.opcoes[jogo.questao.correta]);
+        }
+        else 
+        {
+            printf("\n ❌ Errado! Correto: [%d] %s\n", jogo.questao.correta + 1, jogo.questao.opcoes[jogo.questao.correta]);
+        }
 
         printf("\n");
         pausar();
 
-        if (!jogo.finalizado)
+        if (!jogo.finalizado) 
+        {
             gerar_proxima_questao_prec(&jogo);
+        }
     }
 
     limpar_tela();
+
     int pontos = calcular_pontos_prec(&jogo);
+
     printf("\n" SEPARADOR);
     printf(" HIERARQUIA DE COMANDOS — FIM\n");
     printf(SEPARADOR "\n");
@@ -374,6 +416,8 @@ void jogar_precedencia_terminal(void)
     strncpy(registro.modo, "precedência", sizeof(registro.modo) - 1);
     salvar_puzzle(&registro);
 
-    printf(" Resultado salvo! ✅\n\n");
+    printf(" \nResultado salvo! ✅\n\n");
     pausar();
+
+    return 0;
 }
