@@ -1,4 +1,4 @@
-<h1 align="center"> Jogo da Adivinhação Otimizado em C
+<h1 align="center"> Jogo da Adivinhação Otimizado em C <br>
 <img src="./img/logo.svg" width="560" alt="Jogo da Adivinhação"><br>
 <img src="https://img.shields.io/badge/-C-020617?style=flat-square&logo=c&logoColor=A8B9CC" height="19"/>
 <img src="https://img.shields.io/badge/-C11-020617?style=flat-square&logo=c&logoColor=38bdf8" height="19"/>
@@ -436,7 +436,7 @@ Jogo-da-Adivinhacao/
 
 <h3 align="center">🎨 Diagramas, Protótipos e Validação de UX</h3>
 <p align="center">
-  <strong>Entrega 1 e 2 - Demonstração do Protótipo (Screencast):</strong> <br>
+  <strong>Entrega 01 e 02 - Demonstração do Protótipo (Screencast):</strong> <br>
   <a href="https://www.youtube.com/watch?v=OtLZ7gIEQFQ" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
@@ -446,7 +446,7 @@ Jogo-da-Adivinhacao/
 </p>
 
 <p align="center">
- <strong>Entrega 3 - Demonstração do Jogo via Raylib (Screencast 2):</strong> <br>
+ <strong>Entrega 03 - Demonstração do Jogo via Raylib (Screencast 2):</strong> <br>
   <a href="https://youtu.be/mInsL-gVaTs" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
