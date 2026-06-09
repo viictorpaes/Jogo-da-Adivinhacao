@@ -1,6 +1,6 @@
 # --- Executáveis Finais ---
 # Geralmente o binário fica na raiz ou em uma pasta bin/
-main
+/main
 *.exe
 *.out
 *.app
