@@ -41,8 +41,9 @@ Jogo-da-Adivinhacao/
 │   ├── historico_logica.csv / .txt <img src="https://img.shields.io/badge/-L%C3%B3gica-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
 │   └── historico_precedencia.csv / .txt <img src="https://img.shields.io/badge/-Preced%C3%AAncia-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 └── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
-    ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
-    ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
+    ├── main <img src="https://img.shields.io/badge/-Módulo%20Main-111827?style=flat-square&logo=c&logoColor=FF0000" height="18">/
+    │   ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
+    │   └── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
     ├── game <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── jogo.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── jogo.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
@@ -206,20 +207,20 @@ UpdateMusicStream(musicaStarWars);
         SeekMusicStream(musicaStarWars, 0.0f);
     }
 ``` 
-chamada no game no <b>loop principal de `main_raylib.c`</b>.
+chamada no game no <b>loop principal de `src/main/main_raylib.c`</b>.
 
 ---
 
-## 💻 Módulo Principal (`src/`)
+## 💻 Módulo Principal (`src/main/`)
 
 ### Pontos de Entrada
 <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/> <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/><br>
-O projeto possui dois pontos de entrada independentes:
+Os dois pontos de entrada foram encapsulados no submódulo `src/main/`, seguindo o mesmo padrão dos demais módulos do projeto:
 
 | Arquivo | Versão |
 | :--- | :--- |
-| `main.c` | Orquestra a versão de console — inicializa o sistema e invoca o loop principal do menu |
-| `main_raylib.c` | Ponto de entrada da versão gráfica — inicializa o contexto Raylib e entrega o controle ao frontend |
+| `src/main/main.c` | Orquestra a versão de console — inicializa o sistema e invoca o loop principal do menu |
+| `src/main/main_raylib.c` | Ponto de entrada da versão gráfica — inicializa o contexto Raylib e entrega o controle ao frontend |
 
 ### Motor do Jogo (`game/`)
 <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18"><br>
@@ -264,7 +265,7 @@ Centraliza a definição de `structs`, `enums` e `typedefs` globais em `tipos.h`
 ## 🔗 Mapa de Dependências
 
 ```
-main.c (console)                  main_raylib.c (gráfico)
+main/main.c (console)             main/main_raylib.c (gráfico)
     ├── ui/menu.h                      ├── ui/frontend.h
     ├── game/jogo.h                    ├── game/jogo.h
     ├── game/jogar_memoria.h           ├── game/memorygame.h

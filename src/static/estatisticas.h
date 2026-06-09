@@ -5,7 +5,7 @@
 #include "../include/tipos.h"
 
 #define MAX_LINHAS_STATS 64
-#define STATS_LINHA_LEN  160
+#define STATS_LINHA_LEN 160
 
 int calcular_pontos(Dificuldade dif, int tentativas, bool venceu);
 int calcular_pontos_memoria(int tentativas);

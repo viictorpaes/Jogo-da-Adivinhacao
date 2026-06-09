@@ -1,13 +1,12 @@
 <h1 align="center"> Jogo da Adivinhação Otimizado em C <br>
 <img src="./img/logo.svg" width="560" alt="Jogo da Adivinhação"><br>
 <img src="https://img.shields.io/badge/-C-020617?style=flat-square&logo=c&logoColor=A8B9CC" height="19"/>
-<img src="https://img.shields.io/badge/-C11-020617?style=flat-square&logo=c&logoColor=38bdf8" height="19"/>
-<img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=white"/>
+<img src="https://img.shields.io/badge/-C11-020617?style=flat-square&logo=c&logoColor=pink" height="19"/>
+<img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=red"/>
 <img src="https://img.shields.io/badge/-Raylib-020617?style=flat-square&logo=raylib&logoColor=white"/>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/blob/main/LICENSE)
-[![Build & Release](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml/badge.svg)](https://github.com/viictorpaes/Jogo-da-Adivinhacao/actions/workflows/release.yml)
-![Version](https://img.shields.io/badge/version-1.0.0-yellow)
+![Version](https://img.shields.io/badge/version-1.0.0-purple)
 </h1>
 
 <h2 align="center">👥👨🏻‍🏫 Docentes Responsáveis: </h2>
@@ -22,13 +21,13 @@
 
 <h2 align="center">👤👨‍🎓 Integrantes do Projeto: </h2>
 <ul>
-<li><b>Lucas Paguetti Pereira (Líder 👑)</b> <a href="https://www.linkedin.com/in/lucas-paguetti-pereira" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/wqiluc" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
-<li>Eduardo de Souza Cavalcanti Junior <a href="https://www.linkedin.com/in/eduardoscavalcantij/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/eduardo-scavalcanti" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
-<li>Felipe Franca Alves de Lima <a href="https://www.linkedin.com/in/felipefrancaal/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/ffrancaal" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
-<li>Helamã Leone de Lima Procídio <a href="https://www.linkedin.com/in/helam%C3%A3-procidio-428772367/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/procidiohelama-star" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
-<li>João Pedro Arruda Guimarães <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-arruda-guimar%C3%A3es-157952287/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/Jp230603" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
-<li>Tiago Luiz Moreira de Vasconcelos <a href="https://www.linkedin.com/in/tiagoluiz23/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/tlmv23" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
-<li>Victor José Paes e Silva <a href="https://www.linkedin.com/in/viictorpaes/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/viictorpaes" target="_blank"><img src="https://img.shields.io/badge/GitHub-C0C0C0?style=for-the-badge&logo=github&logoColor=black" height="16"/></a></li>
+<li><b>Lucas Paguetti Pereira (Líder 👑)</b> <a href="https://www.linkedin.com/in/lucas-paguetti-pereira" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/wqiluc" target="_blank"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" height="16"/></a></li>
+<li>Eduardo de Souza Cavalcanti Junior <a href="https://www.linkedin.com/in/eduardoscavalcantij/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/eduardo-scavalcanti" target="_blank"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" height="16"/></a></li>
+<li>Felipe Franca Alves de Lima <a href="https://www.linkedin.com/in/felipefrancaal/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/ffrancaal" target="_blank"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" height="16"/></a></li>
+<li>Helamã Leone de Lima Procídio <a href="https://www.linkedin.com/in/helam%C3%A3-procidio-428772367/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/procidiohelama-star" target="_blank"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" height="16"/></a></li>
+<li>João Pedro Arruda Guimarães <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-arruda-guimar%C3%A3es-157952287/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/Jp230603" target="_blank"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" height="16"/></a></li>
+<li>Tiago Luiz Moreira de Vasconcelos <a href="https://www.linkedin.com/in/tiagoluiz23/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/tlmv23" target="_blank"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" height="16"/></a></li>
+<li>Victor José Paes e Silva <a href="https://www.linkedin.com/in/viictorpaes/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="14"/></a> <a href="https://github.com/viictorpaes" target="_blank"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" height="16"/></a></li>
 </ul>
 
 
@@ -36,8 +35,8 @@
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code"/> <br>
   <img src="https://img.shields.io/badge/-C-020617?style=flat-square&logo=c&logoColor=A8B9CC"/>
-  <img src="https://img.shields.io/badge/-Padrão_do_C_|_11-020617?style=flat-square&logo=c&logoColor=38bdf8"/>
-  <img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Padrão_do_C_|_11-020617?style=flat-square&logo=c&logoColor=pink"/>
+  <img src="https://img.shields.io/badge/-GCC-020617?style=flat-square&logo=gnu&logoColor=red"/>
   <img src="https://img.shields.io/badge/-Makefile-020617?style=flat-square&logo=probot&logoColor=red"/>
   <img src="https://img.shields.io/badge/-Raylib-020617?style=flat-square&logo=raylib&logoColor=white"/>
   <img src="https://img.shields.io/badge/-Figma-020617?style=flat-square&logo=figma&logoColor=F24E1E"/>
@@ -74,7 +73,7 @@
 
 ### Pré-requisitos
 
-* **Compilador GCC** <img src="https://img.shields.io/badge/GCC-111827?style=flat-square&logo=gnu&logoColor=white"/> <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square"/>
+* **Compilador GCC** <img src="https://img.shields.io/badge/GCC-111827?style=flat-square&logo=gnu&logoColor=red"/> <img src="https://img.shields.io/badge/Versão-4.8+-orange?style=flat-square"/>
 * **Git (Versionamento)** <img src="https://img.shields.io/badge/Git-111827?style=flat-square&logo=git&logoColor=F05032"/> <img src="https://img.shields.io/badge/Versão-2.0+-orange?style=flat-square"/>
 * **Padrão da Linguagem C** <img src="https://img.shields.io/badge/-111827?style=flat-square&logo=c&logoColor=white"/> <img src="https://img.shields.io/badge/Versão-11-orange?style=flat-square"/>
 * **Raylib** <img src="https://img.shields.io/badge/-Raylib-111827?style=flat-square&logo=raylib&logoColor=white"/> — necessário apenas para a versão gráfica (`make raylib`)
@@ -372,8 +371,9 @@ Jogo-da-Adivinhacao/
 │   ├── historico_logica.csv / .txt <img src="https://img.shields.io/badge/-L%C3%B3gica-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
 │   └── historico_precedencia.csv / .txt  <img src="https://img.shields.io/badge/-Preced%C3%AAncia-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 └── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
-    ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
-    ├── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
+    ├── main <img src="https://img.shields.io/badge/-Módulo%20Main-111827?style=flat-square&logo=c&logoColor=FF0000" height="18">/
+    │   ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
+    │   └── main_raylib.c <img src="https://img.shields.io/badge/-Entry%20Raylib-111827?style=flat-square&logo=c&logoColor=FF6B35" height="18"/>
     ├── game <img src="https://img.shields.io/badge/-Módulo%20Game-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
     │   ├── jogo.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── jogo.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>

@@ -7,7 +7,8 @@ else
 	CFLAGS = -std=c11 -Wall -Wextra -O2
 endif
 
-INCLUDES = -I./src/game \
+INCLUDES = -I./src \
+		 -I./src/game \
 		 -I./src/utils \
 		 -I./src/history \
 		 -I./src/static \
@@ -15,7 +16,7 @@ INCLUDES = -I./src/game \
 		 -I./src/ui \
 		 -I./src/music
 
-SRCS = src/main.c \
+SRCS = src/main/main.c \
 	 src/game/jogo.c \
 	 src/game/memorygame.c \
 	 src/game/jogar_memoria.c \
@@ -27,7 +28,7 @@ SRCS = src/main.c \
 	 src/static/estatisticas.c \
 	 src/ui/menu.c
 
-SRCS_RAYLIB = src/main_raylib.c \
+SRCS_RAYLIB = src/main/main_raylib.c \
 	 src/game/jogo.c \
 	 src/game/memorygame.c \
 	 src/game/jogar_memoria.c \
@@ -48,23 +49,28 @@ ifeq ($(OS),Windows_NT)
 	# Ou defina RAYLIB_DIR para o caminho onde o raylib foi extraído manualmente:
 	#   make RAYLIB_DIR=C:/raylib build-raylib
 	RAYLIB_DIR ?=
+
 	ifneq ($(RAYLIB_DIR),)
 		RAYLIB_FLAGS = -I$(RAYLIB_DIR)/include -L$(RAYLIB_DIR)/lib \
 			-lraylib -lopengl32 -lgdi32 -lwinmm -lshell32 -luser32 -lpthread
 	else
 		RAYLIB_FLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm -lshell32 -luser32 -lpthread
 	endif
+
 else
 	EXT =
 	MKDIR_DATA = mkdir -p data
 	RM_CMD = rm -f
 	RUN_PREFIX = ./
 	RAYLIB_PREFIX := $(shell brew --prefix raylib 2>/dev/null)
+
 	ifneq ($(RAYLIB_PREFIX),)
 		RAYLIB_FLAGS = -I$(RAYLIB_PREFIX)/include -L$(RAYLIB_PREFIX)/lib -lraylib -lm -lpthread
+
 	else
 		RAYLIB_FLAGS = -lraylib -lm -lpthread
 	endif
+	
 endif
 
 TARGET = jogo$(EXT)
