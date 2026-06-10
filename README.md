@@ -472,7 +472,7 @@ Jogo-da-Adivinhacao/
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
   <a href="#" target="_blank">
-    <img src="https://img.shields.io/badge/-GitHub_Releases-111827?style=flat-square&logo=github&logoColor=white" height="25"/>
+    <img src="https://img.shields.io/badge/-💡Pitch-111827?style=flat-square&logo&logoColor=white" height="25"/>
   </a>
 </p>
 
