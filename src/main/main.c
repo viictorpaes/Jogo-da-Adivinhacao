@@ -43,18 +43,20 @@ int main(void)
         if (opcao == MENU_JOGAR) 
         {
             char nome_jogador[64];
+
             pedir_nome_jogador(nome_jogador, sizeof(nome_jogador));
 
             Dificuldade dif = exibir_menu_dificuldade();
             Partida partida_atual = iniciar_partida(dif);
 
             limpar_tela();
-            printf("\n  Jogo iniciado!​​✅​ Tente adivinhar o número entre %d e %d.\n", 
+
+            printf("\n Jogo iniciado!​​✅​ Tente adivinhar o número entre %d e %d.\n", 
                    partida_atual.min_range, partida_atual.max_range);
 
             while (!partida_encerrada(&partida_atual)) 
             {
-                int palpite = ler_inteiro(partida_atual.min_range, partida_atual.max_range, "\n  Digite seu palpite: ");
+                int palpite = ler_inteiro(partida_atual.min_range, partida_atual.max_range, "\nDigite seu palpite: ");
                 Resultado res = processar_palpite(&partida_atual, palpite);
                 
                 int tentativas_restantes = partida_atual.max_tentativas - partida_atual.tentativas_usadas;
@@ -63,7 +65,6 @@ int main(void)
             }
 
             exibir_resultado_final(&partida_atual);
-
             {
                 const char *dica = heuristica_adivinhacao(
                     partida_atual.tentativas_usadas,

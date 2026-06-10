@@ -25,7 +25,8 @@ int ler_inteiro(int min, int max, const char *prompt)
            NULL;
         }
 
-        if (quantidade_lida == 1 && valor >= min && valor <= max) {
+        if (quantidade_lida == 1 && valor >= min && valor <= max) 
+        {
             return valor;
         }
 

@@ -2551,6 +2551,14 @@ void processar_entrada(EstadoUI *ui)
 
 void atualizar_ui(EstadoUI *ui)
 {
+    bool em_jogo = (ui->estado_atual == ESTADO_JOGANDO_ADIVINHACAO ||
+                    ui->estado_atual == ESTADO_JOGANDO_VS           ||
+                    ui->estado_atual == ESTADO_JOGANDO_MEMORIA       ||
+                    ui->estado_atual == ESTADO_JOGANDO_MEMORIA_VS    ||
+                    ui->estado_atual == ESTADO_JOGANDO_LOGICA        ||
+                    ui->estado_atual == ESTADO_JOGANDO_PRECEDENCIA);
+    TrocarMusica(em_jogo);
+
     double dt = GetFrameTime();
 
     if (ui->estado_atual == ESTADO_JOGANDO_ADIVINHACAO && ui->timer_adiv_ativo) 

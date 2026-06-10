@@ -6,8 +6,8 @@
 #include <string.h>
 
 #define MAX_JOGADORES 50
-#define TOP_RANKING   10
-#define SEPARADOR           "  ────────────────────────────────────────────────\n"
+#define TOP_RANKING 10
+#define SEPARADOR "  ────────────────────────────────────────────────\n"
 
 
 static int soma_recursiva(const int *valores, int qtd)
@@ -179,9 +179,7 @@ void preparar_resumo_adivinhacao(char *buf, int len)
     double soma_sq = soma_quadrados_recursiva(tent_vit, media, num_vit);
     double dp = (num_vit > 1) ? sqrt(soma_sq / (num_vit - 1)) : 0.0;
 
-    snprintf(buf, len,
-             "%d partidas | %d vit. | Média %.1ft | Mín %d | Máx %d | DP +/-%.1f",
-             num_partidas, num_vit, media, min_tent, max_tent, dp);
+    snprintf(buf, len, "%d partidas | %d vit. | Média %.1ft | Mín %d | Máx %d | DP +/-%.1f", num_partidas, num_vit, media, min_tent, max_tent, dp);
 }
 
 void preparar_resumo_memoria(char *buf, int len)
@@ -208,9 +206,7 @@ void preparar_resumo_memoria(char *buf, int len)
     double soma_sq = soma_quadrados_recursiva(tentativas_mem, media, num_partidas);
     double dp = (num_partidas > 1) ? sqrt(soma_sq / (num_partidas - 1)) : 0.0;
 
-    snprintf(buf, len,
-             "%d partidas | Média %.1f jog. | Mín %d | Máx %d | DP +/-%.1f",
-             num_partidas, media, min_tent, max_tent, dp);
+    snprintf(buf, len, "%d partidas | Média %.1f jog. | Mín %d | Máx %d | DP +/-%.1f", num_partidas, media, min_tent, max_tent, dp);
 }
 
 typedef struct
@@ -219,6 +215,7 @@ typedef struct
     int  pontos_total;
     int  jogos;
 } EntradaRanking;
+
 
 static int encontrar_ou_inserir(EntradaRanking *rank, int *n_rank, const char *nome)
 {
@@ -312,8 +309,7 @@ static int construir_ranking(EntradaRanking *ranking, int *num_jogadores)
         {
             char data[11], nome1[64], nome2[64];
             int pares1, pontos1, pares2, pontos2;
-            if (sscanf(linha, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d",
-                       data, nome1, &pares1, &pontos1, nome2, &pares2, &pontos2) == 7)
+            if (sscanf(linha, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d", data, nome1, &pares1, &pontos1, nome2, &pares2, &pontos2) == 7)
             {
                 ACUM(nome1, pontos1);
                 ACUM(nome2, pontos2);
@@ -362,6 +358,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
     {
         PUSH("  Nenhuma partida registrada.");
     }
+
     else
     {
         static int tent_vit[MAX_HISTORICO];
@@ -380,6 +377,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             {
                 tent_vit[num_vit++] = adv[i].tentativas_usadas;
                 vit_por_dif[dif]++;
+
                 if (adv[i].pontos > melhor_por_dif[dif])
                 {
                     melhor_por_dif[dif] = adv[i].pontos;
@@ -400,8 +398,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             double soma_sq = soma_quadrados_recursiva(tent_vit, media, num_vit);
             double dp = (num_vit > 1) ? sqrt(soma_sq / (num_vit - 1)) : 0.0;
 
-            PUSH("\n Média: %.1f tent.  |  Mín: %d  |  Máx: %d  |  DP: +/-%.1f  (vitórias)",
-                 media, min_tent, max_tent, dp);
+            PUSH("\n Média: %.1f tent.  |  Mín: %d  |  Máx: %d  |  DP: +/-%.1f  (vitórias)", media, min_tent, max_tent, dp);
         }
 
         const char *label_dif[]  = {"FÁCIL  ", "MÉDIO  ", "DIFÍCIL"};
@@ -455,7 +452,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
         for (int i = 0; i < num_mem; i++)
         {
             tentativas_mem[i] = mem[i].tentativas;
-            pontos_mem[i]     = mem[i].pontos;
+            pontos_mem[i] = mem[i].pontos;
         }
 
         double media = (double)soma_recursiva(tentativas_mem, num_mem) / num_mem;
@@ -530,8 +527,8 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             {
                 char data[11], nome1[64], nome2[64];
                 int  pares1, pontos1, pares2, pontos2;
-                if (sscanf(linha, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d",
-                           data, nome1, &pares1, &pontos1, nome2, &pares2, &pontos2) == 7)
+
+                if (sscanf(linha, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d", data, nome1, &pares1, &pontos1, nome2, &pares2, &pontos2) == 7)
                 {
                     num_mvs++;
                     total_pares += pares1 + pares2;

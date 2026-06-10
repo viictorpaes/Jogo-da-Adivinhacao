@@ -79,7 +79,8 @@ Jogo-da-Adivinhacao/
     ├── music <img src="https://img.shields.io/badge/-Módulo%20Music-111827?style=flat-square&logo=musicbrainz&logoColor=BA478F" height="18">/
     │   ├── musica.c <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="18"/>
     │   ├── musica.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
-    │   └── StarWarsMainTheme.mp3 <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="18"/>
+    │   ├── StarWarsMainTheme.mp3 <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="18"/>
+    │   └── Cantina Band - John Williams (youtube).mp3 <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="18"/>
     └── include <img src="https://img.shields.io/badge/-Tipos%20Globais-111827?style=flat-square&logo=c&logoColor=A8B9CC" height="18">/
         └── tipos.h <img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="18"/>
 </pre>
@@ -159,7 +160,7 @@ Centraliza o conhecimento do projeto:
 | :--- | :--- |
 | **ADR.md** <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="16"/> | Registro das decisões arquiteturais (5 ADRs): dual entry-point, persistência CSV+TXT, recursão em estatísticas, `EstadoUI` e heurísticas estáticas |
 | **API.md** <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="16"/> | Especificação das funções e contratos entre os módulos |
-| **ARCHITECTURE.md** <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="16"/> | Visão macro do sistema e padrões de projeto |
+| <mark>**ARCHITECTURE.md**</mark> <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="16"/> | Visão macro do sistema e padrões de projeto |
 | **GAMES.md** <img src="https://img.shields.io/badge/-Games-111827?style=flat-square&logo=gamepad&logoColor=4CAF50" height="16"/> | Descrição detalhada dos 6 modos de jogo: regras, dificuldades, pontuação, struct, funções e módulos fonte para Console e Raylib |
 | **CHANGELOG.md** <img src="https://img.shields.io/badge/-CHANGELOG-111827?style=flat-square&logo=checkmarx&logoColor=brightgreen" height="16"/> | Plano de testes distribuídos entre os módulos Adivinhação, Memória, Lógica, Precedência, Histórico, Estatísticas e Regressão |
 | **CONTRIBUTING.md** <img src="https://img.shields.io/badge/-CONTRIBUTING-yellow?style=flat-square&logo=surveymonkey&logoColor=white" height="16"/> | Contribuidores do projeto |
@@ -195,19 +196,17 @@ Encapsula toda a gestão de áudio da versão gráfica (Raylib). O módulo isola
 
 | Arquivo | Responsabilidade |
 | :--- | :--- |
-| `musica.c` / `musica.h` <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="16"/><img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="16"/> | Inicialização, atualização por frame, pausa e liberação do stream de áudio via `InitAudioDevice` / `LoadMusicStream` |
-| `StarWarsMainTheme.mp3` <br> <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="16"/> | Arquivo de áudio MP3 carregado em streaming — reproduzido em loop contínuo enquanto a janela do jogo estiver aberta |
+| `musica.c` / `musica.h` <img src="https://img.shields.io/badge/-Source-111827?style=flat-square&logo=c&logoColor=4CAF50" height="16"/><img src="https://img.shields.io/badge/-Header-111827?style=flat-square&logo=c&logoColor=00599C" height="16"/> | Inicialização, atualização por frame e liberação dos dois streams de áudio via `InitAudioDevice` / `LoadMusicStream`. Expõe `TrocarMusica(bool para_jogo)` para alternar contexto |
+| `StarWarsMainTheme.mp3` <br> <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="16"/> | Trilha do **menu** — carregada com `looping = false`; seek manual para `0.0f` ao atingir 70 s garante o loop contínuo enquanto o jogador estiver nos menus |
+| `Cantina Band - John Williams (youtube).mp3` <br> <img src="https://img.shields.io/badge/-MP3-111827?style=flat-square&logo=audacity&logoColor=FF6600" height="16"/> | Trilha **in-game** — carregada com `looping = true`; toca ao entrar em qualquer partida e para ao retornar ao menu |
 
-A música roda em **loop infinito**, mesmo com (`looping = false`) e é atualizada a cada frame com: 
+O módulo implementa **troca contextual de trilha** via `TrocarMusica(bool para_jogo)`, chamada a cada transição de tela no loop principal de `src/main/main_raylib.c`:
 
 ```c
-UpdateMusicStream(musicaStarWars);
-    if (GetMusicTimePlayed(musicaStarWars) >= 70.0f) 
-    {
-        SeekMusicStream(musicaStarWars, 0.0f);
-    }
-``` 
-chamada no game no <b>loop principal de `src/main/main_raylib.c`</b>.
+TrocarMusica(true);   // menu → partida: para Star Wars, inicia Cantina Band do início
+TrocarMusica(false);  // partida → menu: para Cantina Band, reinicia Star Wars
+UpdateMusica();       // a cada frame — atualiza apenas o stream ativo
+```
 
 ---
 
