@@ -349,6 +349,7 @@ Jogo-da-Adivinhacao/
 │   │   └── release.yml <img src="https://img.shields.io/badge/-CI%2FCD-111827?style=flat-square&logo=githubactions&logoColor=2088FF" height="18"/>
 │   └── md <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=markdown&logoColor=0078D4" height="18">/
 │       └── Deploy.md <img src="https://img.shields.io/badge/-Deploy-111827?style=flat-square&logo=github&logoColor=white" height="18"/>
+|
 ├── docs <img src="https://img.shields.io/badge/-Docs-111827?style=flat-square&logo=read-the-docs&logoColor=0078D4" height="18">/
 │   ├── ADR.md <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="18"/>
 │   ├── API.md <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="18"/>
@@ -362,7 +363,10 @@ Jogo-da-Adivinhacao/
 │   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
 │   ├── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
 │   └── Regras_Evento.md <img src="https://img.shields.io/badge/-Regras_do_Evento-111827?style=flat-square&logo=markdown&logoColor=FFD700" height="18"/>
+│   └── Roteiro_Pitch.md <img src="https://img.shields.io/badge/-🎬%20Demo%20Video-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="18"/>
+|
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
+|
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
 │   ├── historico.csv / .txt <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
 │   ├── historico_memoria.csv / .txt <img src="https://img.shields.io/badge/-Mem%C3%B3ria%20Solo-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
@@ -370,6 +374,7 @@ Jogo-da-Adivinhacao/
 │   ├── historico_memoria_vs.csv / .txt <img src="https://img.shields.io/badge/-VS%20Mem%C3%B3ria-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
 │   ├── historico_logica.csv / .txt <img src="https://img.shields.io/badge/-L%C3%B3gica-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
 │   └── historico_precedencia.csv / .txt  <img src="https://img.shields.io/badge/-Preced%C3%AAncia-111827?style=flat-square&logo=files&logoColor=A85D00" height="18"/>
+|
 └── src <img src="https://img.shields.io/badge/-<>src-111827?style=flat-square&logo=visualstudiocode&logoColor=007ACC" height="18"/>/
     ├── main <img src="https://img.shields.io/badge/-Módulo%20Main-111827?style=flat-square&logo=c&logoColor=FF0000" height="18">/
     │   ├── main.c <img src="https://img.shields.io/badge/-Entry%20Console-111827?style=flat-square&logo=c&logoColor=FF0000" height="18"/>
@@ -472,7 +477,7 @@ Jogo-da-Adivinhacao/
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
   <a href="./docs/Roteiro_Pitch.md" target="_blank">
-    <img src="https://img.shields.io/badge/-🎬%20Roteiro%20Demo%201%20min-111827?style=flat-square&logo=slides&logoColor=white" height="25"/>
+    <img src="https://img.shields.io/badge/-%20Roteiro%20Demo%201%20min-111827?style=flat-square&logo=slides&logoColor=red" height="25"/>
   </a>
 </p>
 
@@ -492,6 +497,19 @@ Jogo-da-Adivinhacao/
 | **HU‑E4‑06** | Como **desenvolvedor**, quero que o projeto compile **sem ajustes manuais** em Windows (MSYS2/MinGW) e Linux (Ubuntu) para que qualquer integrante possa contribuir na sua plataforma | `Makefile` |
 
 <br>
+
+<h2 align="center">🏆 Capstone 3 PIF — Projeto Polido e Documentado</h2>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Capstone_3-3_critérios_cumpridos-D97706?style=flat-square&logo=checkmarx&logoColor=orange" height="22"/>
+  <img src="https://img.shields.io/badge/Critério-Código_limpo_e_documentado-111827?style=flat-square&logo=checkmarx&logoColor=D97706" height="22"/>
+</p>
+
+| # | História de Usuário | Módulo |
+| :---: | :--- | :--- |
+| **HU‑C3‑01** | Como **desenvolvedor**, quero uma **refatoração final** de todos os módulos para que o código esteja limpo, sem dívida técnica e pronto para a entrega definitiva | `*.c` / `*.h` |
+| **HU‑C3‑02** | Como **avaliador**, quero um **README com especificação completa** e atualizado para que a documentação reflita fielmente o estado final do projeto em todas as suas funcionalidades | `README.md` |
+| **HU‑C3‑03** | Como **avaliador**, quero verificar **100+ sessões registradas** no histórico para que a cobertura de testes demonstre a robustez de todos os modos de jogo em condições reais de uso | `data/historico*.txt` |
 
 <h2 align="center">Telas 📱 <br></h2>
 
