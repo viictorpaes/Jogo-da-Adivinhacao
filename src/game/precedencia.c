@@ -209,7 +209,8 @@ void gerar_proxima_questao_prec(JogoPrecedencia *jogo)
             break;
         }
         tentativas++;
-    } while (tentativas < tamanho_banco * 3);
+    } 
+    while (tentativas < tamanho_banco * 3);
 
     if (jogo->n_usados < 24)
     {

@@ -76,7 +76,12 @@ bool partida_encerrada(const Partida *p)
 void exibir_resultado_final(const Partida *p) 
 {
     printf("\n");
-    for (int i = 0; i < LARGURA_TERMINAL; i++) printf("=");
+    
+    for (int i = 0; i < LARGURA_TERMINAL; i++) 
+    {
+        printf("=");
+    } 
+
     printf("\n");
 
     if (p->venceu) 

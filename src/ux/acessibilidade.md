@@ -73,13 +73,16 @@ Diretrizes de acessibilidade aplicadas ao **CesarNumber** para garantir que joga
 
 ### Gestão de Tempo
 
-<img src="https://img.shields.io/badge/Status-Implementado-22c55e?style=flat-square" height="17"/>
+<img src="https://img.shields.io/badge/Status-Parcial_(varia_por_modo)-f59e0b?style=flat-square" height="17"/>
 
-| Diretriz | Implementação |
-| :--- | :--- |
-| Sem limite de tempo para responder | O jogo aguarda indefinidamente a entrada do jogador em cada tentativa |
-| Pausas naturais preservadas | O jogador controla o ritmo; não há contagem regressiva no modo terminal |
-| Tentativas limitadas por quantidade, não por tempo | O desafio vem do número de palpites, nunca do tempo de resposta |
+| Diretriz | Terminal | Raylib |
+| :--- | :--- | :--- |
+| Sem limite de tempo para responder | ✅ Aguarda indefinidamente em todos os modos | 🔸 Adivinhação e Memória têm timer de jogo; Lógica e Precedência têm timer por questão |
+| Pausas naturais preservadas | ✅ O jogador controla o ritmo | 🔸 Timer corre continuamente — sem opção de pausa |
+| Tentativas vs. tempo | ✅ Desafio baseado em quantidade de tentativas | 🔸 Desafio combinado: tentativas **e** tempo restante |
+
+> [!NOTE]
+> O timer no Raylib é parte intencional da mecânica de jogo, não uma barreira de acessibilidade — contribui para o bônus de pontuação. Jogadores que precisam de mais tempo sem penalização devem usar a **versão terminal** (`make run`), que não possui countdown em nenhum modo.
 
 ---
 
@@ -90,6 +93,6 @@ Diretrizes de acessibilidade aplicadas ao **CesarNumber** para garantir que joga
 | Interação 100% por teclado | ✅ | ✅ |
 | Mensagens com prefixo de contexto | ✅ | 🔸 Parcial |
 | Sem dependência exclusiva de cor | ✅ | ⬜ Não aplicado |
-| Sem limite de tempo de resposta | ✅ | ✅ |
+| Sem limite de tempo de resposta | ✅ | 🔸 Timer em Adivinhação, Memória, Lógica e Precedência |
 | Entradas inválidas explicadas | ✅ | ✅ |
 | Compatível com leitores de tela | 🔸 Parcial | ❌ Não suportado |

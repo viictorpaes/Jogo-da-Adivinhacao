@@ -43,6 +43,7 @@ static int gerar_no(JogoLogica *jogo, int profundidade)
 
     jogo->formula.nos[indice].tipo = tipo;
     jogo->formula.nos[indice].esq  = gerar_no(jogo, profundidade - 1);
+
     if (tipo != OP_NEGACAO)
     {
         jogo->formula.nos[indice].dir = gerar_no(jogo, profundidade - 1);
@@ -253,9 +254,11 @@ void responder_vf_logica(JogoLogica *jogo, bool resposta)
         jogo->acertos_vf++;
         jogo->timer += 15.0;
     }
+
     else
     {
         jogo->timer -= 5.0;
+
         if (jogo->timer < 0.0)
         {
             jogo->timer = 0.0;
@@ -274,14 +277,17 @@ void responder_classif_logica(JogoLogica *jogo, ClassFormula resp)
 
     jogo->resp_class = (int)resp;
     jogo->acertou_class = (resp == jogo->classificacao);
+
     if (jogo->acertou_class)
     {
         jogo->acertos_class++;
         jogo->timer += 15.0;
     }
+
     else
     {
         jogo->timer -= 5.0;
+
         if (jogo->timer < 0.0)
         {
             jogo->timer = 0.0;
@@ -291,6 +297,7 @@ void responder_classif_logica(JogoLogica *jogo, ClassFormula resp)
     jogo->questoes_respondidas++;
     jogo->fase = FASE_FEEDBACK;
     jogo->timer_feedback = 2.5;
+
     if (jogo->questoes_respondidas >= jogo->questoes_total) 
     {
         jogo->finalizado = true;
@@ -304,9 +311,11 @@ void atualizar_timer_logica(JogoLogica *jogo, double delta_t)
         return;
     }
 
+
     if (jogo->fase == FASE_FEEDBACK)
     {
         jogo->timer_feedback -= delta_t;
+
         if (jogo->timer_feedback <= 0.0 && !jogo->finalizado) 
         {
             gerar_proxima_questao_logica(jogo);
@@ -316,12 +325,14 @@ void atualizar_timer_logica(JogoLogica *jogo, double delta_t)
     }
 
     jogo->timer -= delta_t;
+
     if (jogo->timer > 0.0) 
     {
         return;
     }
 
     jogo->timer = 0.0;
+
     if (jogo->fase == FASE_RESP_VF)
     {
         jogo->resp_vf    = 0;
@@ -329,6 +340,7 @@ void atualizar_timer_logica(JogoLogica *jogo, double delta_t)
         jogo->fase       = FASE_CLASSIF;
         jogo->timer      = jogo->tempo_por_questao;
     }
+
     else if (jogo->fase == FASE_CLASSIF)
     {
         jogo->resp_class = 0;
@@ -336,6 +348,7 @@ void atualizar_timer_logica(JogoLogica *jogo, double delta_t)
         jogo->questoes_respondidas++;
         jogo->fase = FASE_FEEDBACK;
         jogo->timer_feedback = 2.0;
+        
         if (jogo->questoes_respondidas >= jogo->questoes_total) 
         {
 

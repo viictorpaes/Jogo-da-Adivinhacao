@@ -17,8 +17,9 @@
 #define TIMER_ADIV_FACIL     60.0
 #define TIMER_ADIV_MEDIO     40.0
 #define TIMER_ADIV_DIFICIL   35.0
-#define TIMER_MEM_BASE_SEG   60.0
-#define TIMER_MEM_BONUS_SEG  15.0
+#define TIMER_MEM_BASE_SEG        60.0
+#define TIMER_MEM_BONUS_SEG       15.0
+#define TIMER_MEM_PENALIDADE_SEG   5.0
 
 #define VS_MAX_RODADAS      3
 #define VS_MAX_TENTATIVAS  12 

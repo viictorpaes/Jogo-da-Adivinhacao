@@ -31,7 +31,8 @@ Jogo-da-Adivinhacao/
 │   ├── schema.md <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="18">
 │   ├── SECURITY.md <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="18">
 │   ├── ROADMAP.md <img src="https://img.shields.io/badge/-ROADMAP-111827?style=flat-square&logo=markdown&logoColor=green" height="18"/>
-│   └── Regras_Evento.md <img src="https://img.shields.io/badge/-Regras%20Evento-111827?style=flat-square&logo=markdown&logoColor=FFD700" height="18"/>
+│   ├── Regras_Evento.md <img src="https://img.shields.io/badge/-Regras%20Evento-111827?style=flat-square&logo=markdown&logoColor=FFD700" height="18"/>
+│   └── Roteiro_Pitch.md <img src="https://img.shields.io/badge/-🎬%20Demo%20Video-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="18"/>
 ├── img <img src="https://img.shields.io/badge/-Assets-111827?style=flat-square&logo=git-lfs&logoColor=white" height="18">/
 ├── data <img src="https://img.shields.io/badge/-Data-111827?style=flat-square&logo=databricks&logoColor=FF3621" height="18">/
 │   ├── historico.csv / .txt <img src="https://img.shields.io/badge/-Adivinha%C3%A7%C3%A3o%20Solo-111827?style=flat-square&logo=microsoft-excel&logoColor=217346" height="18"/>
@@ -170,6 +171,7 @@ Centraliza o conhecimento do projeto:
 | **schema.md** <img src="https://img.shields.io/badge/-Schema-111827?style=flat-square&logo=json&logoColor=white" height="16"/> | Definição das 6 estruturas de dados para salvar o histórico por modo |
 | **SECURITY.md** <img src="https://img.shields.io/badge/SECURITY-FFCC00?style=for-the-badge&logo=1password&logoColor=black" height="16"/> | Lógica do RNG e boas práticas para evitar previsibilidade |
 | **Regras_Evento.md** <img src="https://img.shields.io/badge/-Regras%20Evento-111827?style=flat-square&logo=markdown&logoColor=FFD700" height="16"/> | Regras oficiais de evento/competição vinculadas ao projeto |
+| **Roteiro_Pitch.md** <img src="https://img.shields.io/badge/-🎬%20Demo%20Video-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="16"/> | Roteiro cena a cena para o vídeo demo de até 1 minuto — estrutura de cenas, narração sugerida, configuração de gravação e checklist |
 
 ---
 

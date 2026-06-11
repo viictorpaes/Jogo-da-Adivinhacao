@@ -115,3 +115,19 @@ Tentativa 3/7 › Seu palpite: 72
 Resultado: 3 tentativas | Pontuação: 50 pts
 Partida salva em: data/historico.txt e data/historico.csv
 ```
+
+---
+
+## Outros Modos de Jogo
+
+Este documento cobre exclusivamente o fluxo da **Missão: Adivinhação** (Solo). O CesarNumber possui mais 5 modos com mecânicas próprias:
+
+| Modo | Descrição resumida | Jornada UX |
+| :--- | :--- | :--- |
+| 🧠 Jogo da Memória | Tabuleiro 4×4, encontrar 8 pares de números | [jornadas.md — Jornada 4](jornadas.md) |
+| 🔬 Protocolo Lógico | Classificar fórmulas proposicionais com timer | [jornadas.md — Jornada 5](jornadas.md) |
+| 🧮 Hierarquia de Comandos | Identificar precedência de operadores entre 4 alternativas | [jornadas.md — Jornada 6](jornadas.md) |
+| ⚔️ Adivinhação VS | Adivinhação 1v1 em turnos, 3 rodadas | [jornadas.md — Jornada 7](jornadas.md) |
+| 🤝 Memória VS | Jogo da Memória 1v1 no mesmo tabuleiro | [jornadas.md — Jornada 7](jornadas.md) |
+
+> Para a especificação técnica completa de todos os modos (mecânicas, pontuação, módulos C), consulte [../../docs/GAMES.md](../../docs/GAMES.md).

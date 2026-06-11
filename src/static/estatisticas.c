@@ -260,6 +260,7 @@ static int construir_ranking(EntradaRanking *ranking, int *num_jogadores)
 
     *num_jogadores = 0;
 
+
 #define ACUM(nome_, pts_)                                                    \
     do {                                                                     \
         if ((pts_) > 0 && (nome_)[0])                                        \
@@ -272,6 +273,7 @@ static int construir_ranking(EntradaRanking *ranking, int *num_jogadores)
             }                                                                \
         }                                                                    \
     } while (0)
+
 
     for (int i = 0; i < num_adv;  i++)
     {
@@ -309,6 +311,7 @@ static int construir_ranking(EntradaRanking *ranking, int *num_jogadores)
         {
             char data[11], nome1[64], nome2[64];
             int pares1, pontos1, pares2, pontos2;
+
             if (sscanf(linha, "%10[^,],%63[^,],%d,%d,%63[^,],%d,%d", data, nome1, &pares1, &pontos1, nome2, &pares2, &pontos2) == 7)
             {
                 ACUM(nome1, pontos1);
@@ -342,12 +345,14 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
 {
     *n_linhas = 0;
 
+
 #define PUSH(fmt, ...)                                                    \
     if (*n_linhas < MAX_LINHAS_STATS)                                     \
     {                                                                     \
         snprintf(linhas[*n_linhas], STATS_LINHA_LEN, fmt, ##__VA_ARGS__); \
         (*n_linhas)++;                                                    \
     }
+
 
     static RegistroPartida adv[MAX_HISTORICO];
     int num_adv = carregar_historico(adv, MAX_HISTORICO);
@@ -418,16 +423,13 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             {
                 int tent_min_dif = minimo_recursivo(tent_por_dif[dif], cnt_por_dif[dif]);
                 int tent_max_dif = maximo_recursivo(tent_por_dif[dif], cnt_por_dif[dif]);
-                PUSH("  %s  %dV %dD  %d%%  méd.%.1f  mín:%d máx:%d  melhor:%d/%dpts",
-                     label_dif[dif], vit_por_dif[dif], total_por_dif[dif] - vit_por_dif[dif],
-                     pct_vit_dif, media_dif, tent_min_dif, tent_max_dif, melhor_por_dif[dif], base_por_dif[dif]);
+
+                PUSH(" \n%s  %dV %dD  %d%%  méd.%.1f  mín:%d máx:%d  melhor:%d/%dpts",label_dif[dif], vit_por_dif[dif], total_por_dif[dif] - vit_por_dif[dif],pct_vit_dif, media_dif, tent_min_dif, tent_max_dif, melhor_por_dif[dif], base_por_dif[dif]);
             }
 
             else
             {
-                PUSH("  %s  %dV %dD  %d%%  méd.%.1f tent.",
-                     label_dif[dif], vit_por_dif[dif], total_por_dif[dif] - vit_por_dif[dif],
-                     pct_vit_dif, media_dif);
+                PUSH("  %s  %dV %dD  %d%%  méd.%.1f tent.", label_dif[dif], vit_por_dif[dif], total_por_dif[dif] - vit_por_dif[dif], pct_vit_dif, media_dif);
             }
         }
     }
@@ -463,9 +465,9 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
         int    melhor_pontos = maximo_recursivo(pontos_mem, num_mem);
         int    pior_pontos = minimo_recursivo(pontos_mem, num_mem);
 
-        PUSH("  Partidas: %d  |  Média: %.1f jog.  |  Mín: %d  |  Máx: %d  |  DP: +/-%.1f",
-             num_mem, media, min_tent, max_tent, dp);
-        PUSH("  Melhor pontuação: %d pts  |  Pior: %d pts", melhor_pontos, pior_pontos);
+        PUSH(" \nPartidas: %d  |  Média: %.1f jog.  |  Mín: %d  |  Máx: %d  |  DP: +/-%.1f",num_mem, media, min_tent, max_tent, dp);
+
+        PUSH(" \nMelhor pontuação: %d pts  |  Pior: %d pts", melhor_pontos, pior_pontos);
     }
 
     PUSH(" ");
@@ -502,8 +504,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
             }
         }
 
-        PUSH("  Partidas: %d  |  Vit. J1: %d  |  Vit. J2: %d  |  Empates: %d",
-             num_vs, vit_j1, vit_j2, empates);
+        PUSH(" \nPartidas: %d  |  Vit. J1: %d  |  Vit. J2: %d  |  Empates: %d", num_vs, vit_j1, vit_j2, empates);
     }
 
     PUSH(" ");
@@ -638,9 +639,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
 
         for (int i = 0; i < mostrar; i++)
         {
-            PUSH(" #%-2d  %-15s  %d pts  (%d jogo%s)",
-                 i + 1, ranking[i].nome, ranking[i].pontos_total,
-                 ranking[i].jogos, ranking[i].jogos != 1 ? "s" : "");
+            PUSH(" #%-2d  %-15s  %d pts  (%d jogo%s)", i + 1, ranking[i].nome, ranking[i].pontos_total, ranking[i].jogos, ranking[i].jogos != 1 ? "s" : "");
         }
     }
 

@@ -139,18 +139,14 @@ int carregar_historico(RegistroPartida *buf, int max)
         
         if (n_virgulas >= 7) 
         {
-            extraidos = sscanf(linha, "%10[^,],%63[^,],%19[^,],%d,%d,%d,%19[^,],%d",
-                               buf[count].data, buf[count].nome, str_dif,
-                               &buf[count].tentativas_usadas, &buf[count].max_tentativas,
-                               &buf[count].numero_secreto, str_res, &buf[count].pontos);
+            extraidos = sscanf(linha, "%10[^,],%63[^,],%19[^,],%d,%d,%d,%19[^,],%d", buf[count].data, buf[count].nome, str_dif, &buf[count].tentativas_usadas, &buf[count].max_tentativas, &buf[count].numero_secreto, str_res, &buf[count].pontos);
+
             extraidos = (extraidos == 8) ? 6 : 0;
         } 
 
         else 
         {
-            extraidos = sscanf(linha, "%10[^,],%19[^,],%d,%d,%d,%19[^\n]",
-                               buf[count].data, str_dif, &buf[count].tentativas_usadas,
-                               &buf[count].max_tentativas, &buf[count].numero_secreto, str_res);
+            extraidos = sscanf(linha, "%10[^,],%19[^,],%d,%d,%d,%19[^\n]", buf[count].data, str_dif, &buf[count].tentativas_usadas, &buf[count].max_tentativas, &buf[count].numero_secreto, str_res);
 
             if (extraidos == 6) 
             {
@@ -292,11 +288,9 @@ bool salvar_partida_memoria(const RegistroMemoria *r)
         return false;
     }
 
-    fprintf(file_csv, "%s,%s,%d,%d,%d\n",
-            r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
+    fprintf(file_csv, "%s,%s,%d,%d,%d\n", r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
 
-    fprintf(file_txt, " [%s] %-15s | Pontuacao: %2d | Tentativas: %2d | Pontos: %d\n",
-            r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
+    fprintf(file_txt, " [%s] %-15s | Pontuacao: %2d | Tentativas: %2d | Pontos: %d\n", r->data, r->nome, r->pontuacao, r->tentativas, r->pontos);
 
     fclose(file_csv);
     fclose(file_txt);
@@ -442,16 +436,11 @@ bool salvar_partida_vs(const RegistroVS *r)
 
     const char *difs[] = {"CADETE", "PILOTO", "COMANDANTE"};
     const char *dif = difs[(int)r->dificuldade];
-    const char *venc = r->vencedor == 1 ? r->nome1
-                     : r->vencedor == 2 ? r->nome2 : "EMPATE";
+    const char *venc = r->vencedor == 1 ? r->nome1 : r->vencedor == 2 ? r->nome2 : "EMPATE";
 
-    fprintf(file_csv, "%s,%s,%s,%s,%d,%d,%d,%d,%d\n",
-            r->data, r->nome1, r->nome2, dif,
-            r->vitorias1, r->vitorias2, r->pontos1, r->pontos2, r->vencedor);
+    fprintf(file_csv, "%s,%s,%s,%s,%d,%d,%d,%d,%d\n", r->data, r->nome1, r->nome2, dif, r->vitorias1, r->vitorias2, r->pontos1, r->pontos2, r->vencedor);
 
-    fprintf(file_txt, "  [%s] %-12s vs %-12s | %s | %d-%d | pts %d-%d | Vencedor: %s\n",
-            r->data, r->nome1, r->nome2, dif,
-            r->vitorias1, r->vitorias2, r->pontos1, r->pontos2, venc);
+    fprintf(file_txt, "  [%s] %-12s vs %-12s | %s | %d-%d | pts %d-%d | Vencedor: %s\n", r->data, r->nome1, r->nome2, dif, r->vitorias1, r->vitorias2, r->pontos1, r->pontos2, venc);
 
     fclose(file_csv); fclose(file_txt);
 
@@ -479,8 +468,7 @@ int carregar_historico_vs(RegistroVS *buf, int max)
 
         if (n == 9) 
         {
-            buf[count].dificuldade = strcmp(dif, "CADETE") == 0    ? FACIL
-                                   : strcmp(dif, "PILOTO") == 0    ? MEDIO : DIFICIL;
+            buf[count].dificuldade = strcmp(dif, "CADETE") == 0 ? FACIL : strcmp(dif, "PILOTO") == 0 ? MEDIO : DIFICIL;
             count++;
         }
     }
@@ -522,9 +510,7 @@ bool salvar_partida_memoria_vs(const RegistroMemoria *r1, const RegistroMemoria 
 
     const char *venc = r1->pontos > r2->pontos ? r1->nome : r2->pontos > r1->pontos ? r2->nome : "EMPATE";
 
-    fprintf(file_txt, "  [%s] %-12s %2d pares (%dpts) vs %-12s %2d pares (%dpts) | %s\n",
-            r1->data, r1->nome, r1->pontuacao, r1->pontos,
-            r2->nome, r2->pontuacao, r2->pontos, venc);
+    fprintf(file_txt, "  [%s] %-12s %2d pares (%dpts) vs %-12s %2d pares (%dpts) | %s\n",r1->data, r1->nome, r1->pontuacao, r1->pontos, r2->nome, r2->pontuacao, r2->pontos, venc);
 
     fclose(file_csv); fclose(file_txt);
     return true;
@@ -591,10 +577,8 @@ bool salvar_puzzle(const RegistroPuzzle *r)
         return false;
     }
 
-    fprintf(file_csv, "%s,%s,%d,%d,%d,%s\n",
-            r->data, r->nome, r->acertos, r->total, r->pontos, r->modo);
-    fprintf(file_txt, "  [%s] %-15s | %d/%d acertos | %d pts\n",
-            r->data, r->nome, r->acertos, r->total, r->pontos);
+    fprintf(file_csv, "%s,%s,%d,%d,%d,%s\n", r->data, r->nome, r->acertos, r->total, r->pontos, r->modo);
+    fprintf(file_txt, "  [%s] %-15s | %d/%d acertos | %d pts\n", r->data, r->nome, r->acertos, r->total, r->pontos);
 
     fclose(file_csv); fclose(file_txt);
     return true;
@@ -616,10 +600,8 @@ int carregar_historico_puzzle(RegistroPuzzle *buf, int max, const char *modo)
 
     while (count < max && fgets(linha, sizeof(linha), file_csv)) 
     {
-        int n = sscanf(linha, "%10[^,],%63[^,],%d,%d,%d,%31[^\n]",
-                       buf[count].data, buf[count].nome,
-                       &buf[count].acertos, &buf[count].total,
-                       &buf[count].pontos, buf[count].modo);
+        int n = sscanf(linha, "%10[^,],%63[^,],%d,%d,%d,%31[^\n]", buf[count].data, buf[count].nome, &buf[count].acertos, &buf[count].total, &buf[count].pontos, buf[count].modo);
+        
         if (n == 6) 
         {
             count++;

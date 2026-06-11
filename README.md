@@ -471,8 +471,8 @@ Jogo-da-Adivinhacao/
   <a href="" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
-  <a href="#" target="_blank">
-    <img src="https://img.shields.io/badge/-💡Pitch-111827?style=flat-square&logo&logoColor=white" height="25"/>
+  <a href="./docs/Roteiro_Pitch.md" target="_blank">
+    <img src="https://img.shields.io/badge/-🎬%20Roteiro%20Demo%201%20min-111827?style=flat-square&logo=slides&logoColor=white" height="25"/>
   </a>
 </p>
 

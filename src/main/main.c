@@ -51,8 +51,7 @@ int main(void)
 
             limpar_tela();
 
-            printf("\n Jogo iniciado!​​✅​ Tente adivinhar o número entre %d e %d.\n", 
-                   partida_atual.min_range, partida_atual.max_range);
+            printf("\n Jogo iniciado!​​✅​ Tente adivinhar o número entre %d e %d.\n",partida_atual.min_range, partida_atual.max_range);
 
             while (!partida_encerrada(&partida_atual)) 
             {

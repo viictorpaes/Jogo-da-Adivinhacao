@@ -1,7 +1,7 @@
 #include "musica.h"
 
 static Music musicaStarWars;
-static Music musicaCantinaToyStory;
+static Music musicaCantina;
 static bool tocando_jogo = false;
 
 void InitMusica(void)
@@ -12,9 +12,9 @@ void InitMusica(void)
     musicaStarWars.looping = false;
     SetMusicVolume(musicaStarWars, 0.8f);
 
-    musicaCantinaToyStory = LoadMusicStream("src/music/Cantina Band - John Williams (youtube).mp3");
-    musicaCantinaToyStory.looping = true;
-    SetMusicVolume(musicaCantinaToyStory, 0.8f);
+    musicaCantina = LoadMusicStream("src/music/Cantina Band - John Williams (youtube).mp3");
+    musicaCantina.looping = true;
+    SetMusicVolume(musicaCantina, 0.8f);
 
     PlayMusicStream(musicaStarWars);
 }
@@ -33,7 +33,7 @@ void UpdateMusica(void)
 
     else
     {
-        UpdateMusicStream(musicaCantinaToyStory);
+        UpdateMusicStream(musicaCantina);
     }
 }
 
@@ -49,13 +49,13 @@ void TrocarMusica(bool para_jogo)
     if (para_jogo)
     {
         StopMusicStream(musicaStarWars);
-        SeekMusicStream(musicaCantinaToyStory, 0.0f);
-        PlayMusicStream(musicaCantinaToyStory);
+        SeekMusicStream(musicaCantina, 0.0f);
+        PlayMusicStream(musicaCantina);
     }
 
     else
     {
-        StopMusicStream(musicaCantinaToyStory);
+        StopMusicStream(musicaCantina);
         SeekMusicStream(musicaStarWars, 0.0f);
         PlayMusicStream(musicaStarWars);
     }
@@ -64,6 +64,6 @@ void TrocarMusica(bool para_jogo)
 void UnloadMusica(void)
 {
     UnloadMusicStream(musicaStarWars);
-    UnloadMusicStream(musicaCantinaToyStory);
+    UnloadMusicStream(musicaCantina);
     CloseAudioDevice();
 }

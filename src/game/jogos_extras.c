@@ -35,9 +35,7 @@ void jogar_adivinhacao_vs(void)
     {
         limpar_tela();
         printf("\n" SEPARADOR);
-        printf("  RODADA %d/%d  |  %s: %d vit.  |  %s: %d vit.\n",
-               rodada + 1, VS_MAX_RODADAS,
-               nome1, vitorias[0], nome2, vitorias[1]);
+        printf("  RODADA %d/%d  |  %s: %d vit.  |  %s: %d vit.\n", rodada + 1, VS_MAX_RODADAS, nome1, vitorias[0], nome2, vitorias[1]);
         printf(SEPARADOR);
 
         Partida partida  = iniciar_partida(dif);
@@ -45,14 +43,13 @@ void jogar_adivinhacao_vs(void)
         int tentativas[2] = {0, 0};
         int jogador = 0;
 
-        printf(" \nNúmero gerado! Range: %d a %d | %d tentativas por jogador.\n\n",
-               partida.min_range, partida.max_range, VS_MAX_TENTATIVAS);
+        printf(" \nNúmero gerado! Range: %d a %d | %d tentativas por jogador.\n\n", partida.min_range, partida.max_range, VS_MAX_TENTATIVAS);
 
         while (1)
         {
             if (tentativas[0] >= VS_MAX_TENTATIVAS && tentativas[1] >= VS_MAX_TENTATIVAS)
             {
-                printf("\n Nenhum acertou! Empate na rodada.\n");
+                printf("\n Nenhum Astronauta acertou! Empate na rodada.\n");
                 printf(" O número secreto era: %d\n", numero_secreto);
                 break;
             }
@@ -63,12 +60,11 @@ void jogar_adivinhacao_vs(void)
             }
 
             const char *nome_turno = jogador == 0 ? nome1 : nome2;
-            printf("  [%s] Tentativa %d/%d\n",
-                   nome_turno, tentativas[jogador] + 1, VS_MAX_TENTATIVAS);
+            printf("  [%s] Tentativa %d/%d\n", nome_turno, tentativas[jogador] + 1, VS_MAX_TENTATIVAS);
 
             char prompt[128];
 
-            snprintf(prompt, sizeof(prompt), "  Palpite (%d a %d): ", 
+            snprintf(prompt, sizeof(prompt), " \nPalpite (%d a %d): ", 
             partida.min_range, partida.max_range);
 
             int palpite = ler_inteiro(partida.min_range, partida.max_range, prompt);
@@ -167,8 +163,7 @@ void jogar_memoria_vs(void)
     {
         limpar_tela();
         printf("\n\t 1v1 MAPAS ESTELARES 🌕\n");
-        printf(" %s: %d pares  |  %s: %d pares\n\n",
-               nome1, pares[0], nome2, pares[1]);
+        printf(" %s: %d pares  |  %s: %d pares\n\n", nome1, pares[0], nome2, pares[1]);
         printf(" \nTURNO: %s\n\n", jogador == 0 ? nome1 : nome2);
 
         exibir_tabuleiro(&jogo);
@@ -177,6 +172,7 @@ void jogar_memoria_vs(void)
         int pos2 = ler_inteiro(1, TOTAL_CASAS, "\nSegunda casa: ");
 
         int acertou_par = fazer_jogada(&jogo, pos1, pos2);
+
         if (acertou_par)
         {
             pares[jogador]++;
@@ -248,8 +244,11 @@ static void exibir_formula_logica(const JogoLogica *jogo)
     printf("Legenda : ~ = NÃO  ^ = E  V = OU  -> = IMPLICA  <-> = BICOND.\n");
     printf("Valores : ");
 
-    for (int v = 0; v < jogo->qtd_vars; v++)
+    for (int v = 0; v < jogo->qtd_vars; v++) 
+    {
         printf("%c = %s   ", "PQR"[v], jogo->vars[v] ? "V" : "F");
+    }
+
     printf("\n\n");
 }
 
@@ -266,13 +265,12 @@ void jogar_logica_terminal(void)
     {
         limpar_tela();
         printf("\n" SEPARADOR);
-        printf(" \nPROTOCOLO LÓGICO | Questão %d/%d\n",
-               jogo.questoes_respondidas + 1, jogo.questoes_total);
+        printf(" \nPROTOCOLO LÓGICO | Questão %d/%d\n", jogo.questoes_respondidas + 1, jogo.questoes_total);
         printf(SEPARADOR "\n");
 
         exibir_formula_logica(&jogo);
 
-        printf(" Esta fórmula é VERDADEIRA ou FALSA para esses valores?\n");
+        printf(" \nEsta fórmula é VERDADEIRA ou FALSA para esses valores?\n");
         printf(" 1 = Verdadeira   2 = Falsa\n");
         int resposta_vf = ler_inteiro(1, 2, "  Resposta (1/2): ");
         int escolheu_v = (resposta_vf == 1);
@@ -381,6 +379,7 @@ void jogar_precedencia_terminal(void)
         {
             printf("\n ✅ Correto! +10 pts\n");
         }
+        
         else 
         {
             printf("\n ❌ Errado! Correto: [%d] %s\n", jogo.questao.correta + 1, jogo.questao.opcoes[jogo.questao.correta]);

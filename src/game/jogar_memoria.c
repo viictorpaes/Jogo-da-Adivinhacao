@@ -32,7 +32,7 @@ void jogar_memoria(const char *nome)
         limpar_tela();
         exibir_tabuleiro(&jogo);
 
-        printf("Escolha duas casas (1-16): \n");
+        printf("\n\t Escolha duas casas (1-16): \n");
         int pos1 = ler_inteiro(1, TOTAL_CASAS, "Primeira casa: ");
         int pos2 = ler_inteiro(1, TOTAL_CASAS, "Segunda casa: ");
 
@@ -40,7 +40,7 @@ void jogar_memoria(const char *nome)
         if (!acertou)
         {
             exibir_tabuleiro(&jogo);
-            printf("❌ Errou! Voltando ao modo oculto...\n\n");
+            printf("\n ❌ Errou! Voltando ao modo oculto...\n\n");
             pausar();
             jogo.reveladas[pos1 - 1] = false;
             jogo.reveladas[pos2 - 1] = false;
@@ -64,7 +64,7 @@ void jogar_memoria(const char *nome)
     printf("  Progresso salvo em: data/historico_memoria.csv\n\n");
 
     const char *dica = heuristica_memoria(jogo.tentativas, reg.pontos);
-    printf("  💡 Dica: %s\n\n", dica);
+    printf(" \n💡 Dica: %s\n\n", dica);
 
     printf("Pressione ENTER para voltar ao menu...\n");
     pausar();

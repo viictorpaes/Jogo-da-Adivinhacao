@@ -85,7 +85,11 @@ Dificuldade exibir_menu_dificuldade(void)
 static const char *mensagem_proximidade(int palpite, int numero_secreto, int range_total)
 {
     int distancia = palpite - numero_secreto;
-    if (distancia < 0) distancia = -distancia;
+
+    if (distancia < 0) 
+    {
+        distancia = -distancia;
+    }
 
     int porcentagem = (distancia * 100) / (range_total > 0 ? range_total : 1);
 
@@ -119,12 +123,14 @@ void exibir_dica(Resultado r, int tentativas_restantes, int palpite, int numero_
         printf("  📡 Sinal estabelecido! Resgate a caminho!\n");
         printf("  ✅ MISSÃO CUMPRIDA! 👏 Você encontrou o número secreto, Astronauta!\n");
     }
+
     else
     {
         if (r == MAIOR) 
         {
             printf("  🚨 TRANSMISSÃO: O número secreto é MAIOR! Aponte para cima! ^\n");
         }
+
         else
         {
             printf("  🚨 TRANSMISSÃO: O número secreto é MENOR! Volte à órbita! v\n");
@@ -164,7 +170,12 @@ void pedir_nome_jogador(char *nome, int max)
     {
         int i = 0;
         const char *padrao = "Astronauta";
-        while (i < max - 1 && padrao[i]) { nome[i] = padrao[i]; i++; }
+        
+        while (i < max - 1 && padrao[i]) 
+        { 
+            nome[i] = padrao[i]; i++; 
+        }
+
         nome[i] = '\0';
     }
 
