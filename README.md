@@ -421,7 +421,7 @@ Jogo-da-Adivinhacao/
 </pre>
 
 
-<h3 align="center"> 🚀 Backlog e Boarding (Trello) </h3>
+<h3 align="center"> 🚀 Backlog e Boarding (Trello Final) </h3>
 <p align="center">
   <strong>Status:</strong> 28 histórias de usuário implementadas e 16 futuras, definidas seguindo o padrão 3Cs e priorizadas no backlog.
 </p>
@@ -495,8 +495,6 @@ Jogo-da-Adivinhacao/
 | **HU‑E4‑04** | Como **jogador**, quero que o campo de nome ofereça **autocomplete** com os nomes já salvos para que o preenchimento seja mais rápido e sem erros de digitação | `historico.c` |
 | **HU‑E4‑05** | Como **jogador**, quero acessar todos os **6 modos de jogo na versão Raylib** com timers e lógica de bônus/penalidade plenamente integrados para uma experiência visual completa | `frontend.c` / `tipos.h` |
 | **HU‑E4‑06** | Como **desenvolvedor**, quero que o projeto compile **sem ajustes manuais** em Windows (MSYS2/MinGW) e Linux (Ubuntu) para que qualquer integrante possa contribuir na sua plataforma | `Makefile` |
-
-<br>
 
 <h2 align="center">🏆 Capstone 3 PIF — Projeto Polido e Documentado</h2>
 
@@ -642,7 +640,7 @@ Jogo-da-Adivinhacao/
 <br>
 
 <table align="center" width="780">
-  <tr><th align="center">📜 Histórico de Missões</th></tr>
+  <tr><th align="center">📜 Histórico de Missões (100+ sessões)</th></tr>
   <tr><td align="center"><b>Registro completo em colunas por modo — Adivinhação Solo, Mapas Estelares, Protocolo Lógico, Batalha de Sinais VS, 1v1 Mapas Estelares e Hierarquia de Comandos — com data, nome, dificuldade, tentativas e pontuação de cada sessão.</b></td></tr>
   <tr><td align="center"><img src="img/historico.png" width="750" alt="Histórico de Missões"/></td></tr>
 </table>
