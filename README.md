@@ -473,7 +473,7 @@ Jogo-da-Adivinhacao/
 
 <p align="center">
  <strong>Pitch: Avaliação PIF 17/06/2026</strong> <br>
-  <a href="" target="_blank">
+  <a href="https://youtu.be/inFy5180anU" target="_blank">
     <img src="https://img.shields.io/badge/-YouTube-111827?style=flat-square&logo=youtube&logoColor=FF0000" height="25"/>
   </a>
   <a href="./docs/Roteiro_Pitch.md" target="_blank">
