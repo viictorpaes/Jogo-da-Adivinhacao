@@ -418,5 +418,4 @@ void jogar_precedencia_terminal(void)
     printf(" \nResultado salvo! ✅\n\n");
     pausar();
 
-    return 0;
 }
