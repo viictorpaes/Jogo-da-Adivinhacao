@@ -25,9 +25,15 @@ static int gerar_no(JogoLogica *jogo, int profundidade)
     if (jogo->formula.total_nos >= MAX_NOS_FORMULA - 4 || profundidade == 0 || rand() % 3 == 0)
     {
         int indice = alocar_no(jogo);
-        if (indice < 0) return 0;
+
+        if (indice < 0) 
+        {
+            return 0;
+        }
+
         jogo->formula.nos[indice].tipo = OP_VARIAVEL;
         jogo->formula.nos[indice].var  = rand() % jogo->qtd_vars;
+        
         return indice;
     }
 

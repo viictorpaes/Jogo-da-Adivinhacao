@@ -118,12 +118,12 @@
 
 | Tarefa | Responsável | Status |
 |--------|-------------|--------|
-| Remover comentários e código desnecessários | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | 🔄 Em progresso |
-| Verificar e corrigir bugs remanescentes | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | 🔄 Em progresso |
-| Atualizar README final | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | 🔄 Em progresso |
-| Gerar 100+ sessões em `historico.txt` | ![Felipe](https://img.shields.io/badge/Felipe-dados-E67E22?style=flat-square) | ⏳ Pendente |
-| Criar/revisar documentação em `docs/` | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | 🔄 Em progresso |
-| Revisão final de código e merge | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | ⏳ Pendente |
+| Remover comentários e código desnecessários | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ✅ Concluído |
+| Verificar e corrigir bugs remanescentes | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | ✅ Concluído |
+| Atualizar README final | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ✅ Concluído |
+| Gerar 100+ sessões em `historico.txt` | ![Felipe](https://img.shields.io/badge/Felipe-dados-E67E22?style=flat-square) | ✅ Concluído |
+| Criar/revisar documentação em `docs/` | ![Lucas](https://img.shields.io/badge/Lucas-líder-4B8BBE?style=flat-square) ![Victor](https://img.shields.io/badge/Victor-líder-4B8BBE?style=flat-square) | ✅ Concluído |
+| Revisão final de código e merge | ![João](https://img.shields.io/badge/João-features-E74C3C?style=flat-square) ![Tiago](https://img.shields.io/badge/Tiago-features-E74C3C?style=flat-square) | ✅ Concluído |
 
 
 > **Legenda:** <b>✅ Concluído | 🔄 Em progresso | ⏳ Pendente | ❌ Bloqueado</b>

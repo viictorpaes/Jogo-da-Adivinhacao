@@ -429,7 +429,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
 
             else
             {
-                PUSH("  %s  %dV %dD  %d%%  méd.%.1f tent.", label_dif[dif], vit_por_dif[dif], total_por_dif[dif] - vit_por_dif[dif], pct_vit_dif, media_dif);
+                PUSH(" %s  %dV %dD  %d%%  méd.%.1f tent.", label_dif[dif], vit_por_dif[dif], total_por_dif[dif] - vit_por_dif[dif], pct_vit_dif, media_dif);
             }
         }
     }
@@ -613,8 +613,7 @@ void preparar_linhas_estatisticas(char linhas[][STATS_LINHA_LEN], int *n_linhas)
 
         int pct_acertos_prec = total_questoes_prec > 0 ? (total_acertos_prec * 100 / total_questoes_prec) : 0;
 
-        PUSH("  Partidas: %d  |  Acertos: %d/%d (%d%%)  |  Melhor: %d pts",
-             num_prec, total_acertos_prec, total_questoes_prec, pct_acertos_prec, melhor_pontos_prec);
+        PUSH("  Partidas: %d  |  Acertos: %d/%d (%d%%)  |  Melhor: %d pts", num_prec, total_acertos_prec, total_questoes_prec, pct_acertos_prec, melhor_pontos_prec);
     }
 
     PUSH(" ");

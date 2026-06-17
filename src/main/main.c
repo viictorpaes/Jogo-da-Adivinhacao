@@ -69,7 +69,8 @@ int main(void)
                     partida_atual.tentativas_usadas,
                     partida_atual.max_tentativas,
                     partida_atual.venceu, dif);
-                printf("\n  💡 Dica: %s\n", dica);
+
+                printf("\n 💡 Dica: %s\n", dica);
             }
 
             RegistroPartida registro;

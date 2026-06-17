@@ -120,24 +120,38 @@ void exibir_dica(Resultado r, int tentativas_restantes, int palpite, int numero_
 
     if (r == ACERTOU)
     {
-        printf("  📡 Sinal estabelecido! Resgate a caminho!\n");
-        printf("  ✅ MISSÃO CUMPRIDA! 👏 Você encontrou o número secreto, Astronauta!\n");
+        printf(" \n📡 Sinal estabelecido! Resgate a caminho!\n");
+        printf(" \n✅ MISSÃO CUMPRIDA! 👏 Você encontrou o número secreto, Astronauta!\n");
     }
 
     else
     {
-        if (r == MAIOR) 
+        if (r == MAIOR)
         {
-            printf("  🚨 TRANSMISSÃO: O número secreto é MAIOR! Aponte para cima! ^\n");
+            printf(" \n🚀 TRANSMISSÃO: Ajuste para órbita MAIOR! ⬆️\n");
         }
 
         else
         {
-            printf("  🚨 TRANSMISSÃO: O número secreto é MENOR! Volte à órbita! v\n");
+            printf(" \n🛸 TRANSMISSÃO: Ajuste para órbita MENOR! ⬇️\n");
         }
 
         printf("  %s\n", mensagem_proximidade(palpite, numero_secreto, range_total));
-        printf("  Tentativas restantes: %d\n", tentativas_restantes);
+
+        if (tentativas_restantes == 1)
+        {
+            printf(" \n🚨 ALERTA CRÍTICO: Última tentativa — a nave está perdendo combustível!\n");
+        }
+
+        else if (tentativas_restantes <= 3)
+        {
+            printf(" \n⚠️ ATENÇÃO: Apenas %d tentativas restantes — pressão aumentando!\n", tentativas_restantes);
+        }
+
+        else
+        {
+            printf(" \n🛰️ Tentativas restantes: %d\n", tentativas_restantes);
+        }
     }
 
     printf("%s\n\n", LINHA_SIMPLES);
@@ -145,7 +159,7 @@ void exibir_dica(Resultado r, int tentativas_restantes, int palpite, int numero_
 
 void exibir_erro_input(void) 
 {
-    printf("\n  ❌ Sinal de comunicação inválido! Tente novamente, Astronauta. 🫡\n");
+    printf("\n ❌ Sinal de comunicação inválido! Tente novamente, Astronauta. 🫡\n");
 }
 
 void exibir_despedida(void)
@@ -179,6 +193,6 @@ void pedir_nome_jogador(char *nome, int max)
         nome[i] = '\0';
     }
 
-    printf("\n  Bem-vindo à nave, %s! Prepare-se para a missão. 🚀\n\n", nome);
+    printf("\n Bem-vindo à nave, %s! Prepare-se para a missão. 🚀\n\n", nome);
     pausar();
 }

@@ -61,9 +61,9 @@ O jogador tenta descobrir um número inteiro gerado aleatoriamente dentro de um 
 
 | 🎖️ Nível | 📏 Intervalo | ❤️ Tentativas máx. |
 | :--- | :---: | :---: |
-| 🟢 Fácil | 1 – 10 | 10 |
+| 🟢 Fácil | 1 – 10 | 5 |
 | 🟡 Médio | 1 – 50 | 8 |
-| 🔴 Difícil | 1 – 100 | 5 |
+| 🔴 Difícil | 1 – 100 | 10 |
 
 **🔀 Fluxo de seleção de dificuldade (Console):**
 

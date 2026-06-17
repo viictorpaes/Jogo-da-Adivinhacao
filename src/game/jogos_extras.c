@@ -34,11 +34,13 @@ void jogar_adivinhacao_vs(void)
     for (int rodada = 0; rodada < VS_MAX_RODADAS; rodada++)
     {
         limpar_tela();
+
         printf("\n" SEPARADOR);
         printf("  RODADA %d/%d  |  %s: %d vit.  |  %s: %d vit.\n", rodada + 1, VS_MAX_RODADAS, nome1, vitorias[0], nome2, vitorias[1]);
         printf(SEPARADOR);
 
         Partida partida  = iniciar_partida(dif);
+
         int numero_secreto = partida.numero_secreto;
         int tentativas[2] = {0, 0};
         int jogador = 0;
@@ -60,6 +62,7 @@ void jogar_adivinhacao_vs(void)
             }
 
             const char *nome_turno = jogador == 0 ? nome1 : nome2;
+    
             printf("  [%s] Tentativa %d/%d\n", nome_turno, tentativas[jogador] + 1, VS_MAX_TENTATIVAS);
 
             char prompt[128];
@@ -70,23 +73,43 @@ void jogar_adivinhacao_vs(void)
             int palpite = ler_inteiro(partida.min_range, partida.max_range, prompt);
             tentativas[jogador]++;
 
+            int distancia = palpite < numero_secreto ? numero_secreto - palpite : palpite - numero_secreto;
+
             if (palpite == numero_secreto)
             {
-                printf("\n 🎉 %s ACERTOU o número %d!\n", nome_turno, numero_secreto);
+                printf("\n 🛸 SINAL ESTABELECIDO! %s localizou o número %d! Missão cumprida! 🚀\n",
+                       nome_turno, numero_secreto);
                 vitorias[jogador]++;
                 pontos_total[jogador] += calcular_pontos(dif, tentativas[jogador], 1);
                 break;
             }
 
-            else if (palpite < numero_secreto)
+            const char *sinal;
+
+            if (distancia <= 1) 
             {
-                printf(" 🚀 O número secreto é MAIOR! ^\n\n");
+                sinal = "📡 Sinal estabelecido! Resgate a caminho!";
             }
 
-            else
+            else if (distancia <= 5)  
             {
-                printf(" 🚀 O número secreto é MENOR! v\n\n");
+                sinal = "🔭 Frequência muito próxima!";
             }
+
+            else if (distancia <= 15) 
+            {
+                sinal = "📶 Sinal detectado!";
+            }
+
+            else 
+            {
+                sinal = "🌌 Interferência estática...";
+            }
+
+            if (palpite < numero_secreto)
+                printf(" %s  → O número secreto é MAIOR ↑\n\n", sinal);
+            else
+                printf(" %s  → O número secreto é MENOR ↓\n\n", sinal);
 
             int prox = 1 - jogador;
 
@@ -126,6 +149,7 @@ void jogar_adivinhacao_vs(void)
     }
 
     RegistroVS reg;
+
     formatar_data_atual(reg.data);
     strncpy(reg.nome1, nome1, sizeof(reg.nome1) - 1);
     reg.nome1[sizeof(reg.nome1) - 1] = '\0';
@@ -137,6 +161,7 @@ void jogar_adivinhacao_vs(void)
     reg.pontos1     = pontos_total[0];
     reg.pontos2     = pontos_total[1];
     reg.vencedor    = vitorias[0] > vitorias[1] ? 1 : vitorias[1] > vitorias[0] ? 2 : 0;
+
     salvar_partida_vs(&reg);
 
     printf("\n\t Resultado salvo! ✅\n\n");
@@ -156,6 +181,7 @@ void jogar_memoria_vs(void)
     pedir_nome_jogador(nome2, sizeof(nome2));
 
     JogoMemoria jogo = inicializar_jogo_memoria();
+
     int pares[2] = {0, 0};
     int jogador = 0;
 
@@ -176,8 +202,8 @@ void jogar_memoria_vs(void)
         if (acertou_par)
         {
             pares[jogador]++;
-            printf("\n ✅ Par encontrado! %s continua jogando.\n\n",
-                   jogador == 0 ? nome1 : nome2);
+            printf("\n ✅ Par encontrado! %s continua jogando.\n\n", jogador == 0 ? nome1 : nome2);
+
             pausar();
         }
 
@@ -193,7 +219,9 @@ void jogar_memoria_vs(void)
     }
 
     limpar_tela();
+
     exibir_tabuleiro(&jogo);
+
     printf("\n" SEPARADOR);
     printf("\n 🏆  1v1 MAPAS ESTELARES — RESULTADO  🏆\n");
     printf(SEPARADOR "\n");
@@ -217,6 +245,7 @@ void jogar_memoria_vs(void)
     }
 
     RegistroMemoria registro1, registro2;
+
     formatar_data_atual(registro1.data);
     strncpy(registro1.nome, nome1, sizeof(registro1.nome) - 1);
     registro1.nome[sizeof(registro1.nome) - 1] = '\0';
@@ -272,8 +301,10 @@ void jogar_logica_terminal(void)
 
         printf(" \nEsta fórmula é VERDADEIRA ou FALSA para esses valores?\n");
         printf(" 1 = Verdadeira   2 = Falsa\n");
+
         int resposta_vf = ler_inteiro(1, 2, "  Resposta (1/2): ");
         int escolheu_v = (resposta_vf == 1);
+
         responder_vf_logica(&jogo, escolheu_v);
 
         const char *resp_str  = escolheu_v ? "Verdadeira" : "Falsa";
@@ -332,6 +363,7 @@ void jogar_logica_terminal(void)
     printf(" Pontos        : %d\n\n", pontos);
 
     RegistroPuzzle registro;
+
     formatar_data_atual(registro.data);
     strncpy(registro.nome, nome, sizeof(registro.nome) - 1);
     registro.nome[sizeof(registro.nome) - 1] = '\0';
@@ -339,6 +371,7 @@ void jogar_logica_terminal(void)
     registro.total   = jogo.questoes_total * 2;
     registro.pontos  = pontos;
     strncpy(registro.modo, "logica", sizeof(registro.modo) - 1);
+
     salvar_puzzle(&registro);
 
     printf(" Resultado salvo! ✅\n\n");
@@ -348,10 +381,9 @@ void jogar_logica_terminal(void)
 void jogar_precedencia_terminal(void)
 {
     char nome[64];
-
     pedir_nome_jogador(nome, sizeof(nome));
-    Dificuldade dif = exibir_menu_dificuldade();
 
+    Dificuldade dif = exibir_menu_dificuldade();
     JogoPrecedencia jogo = inicializar_jogo_precedencia(dif);
 
     while (!jogo.finalizado)
@@ -417,5 +449,4 @@ void jogar_precedencia_terminal(void)
 
     printf(" \nResultado salvo! ✅\n\n");
     pausar();
-
 }

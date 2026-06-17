@@ -204,8 +204,9 @@ Jogo-da-Adivinhacao/
 │   └── CHANGELOG.md          # Plano de testes e histórico de mudanças
 ├── img/                      # Screenshots e assets visuais do README
 └── src/
-    ├── main.c                # Entry-point versão terminal
-    ├── main_raylib.c         # Entry-point versão gráfica
+    ├── main/                 # Entry-points do projeto
+    │   ├── main.c            # Entry-point versão terminal
+    │   └── main_raylib.c     # Entry-point versão gráfica
     ├── include/tipos.h       # Structs, enums e typedefs globais
     ├── game/                 # Lógica dos 6 modos de jogo
     ├── ui/                   # Menus (terminal) e frontend (Raylib)

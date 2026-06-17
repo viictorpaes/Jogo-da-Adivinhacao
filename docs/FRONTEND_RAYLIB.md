@@ -17,7 +17,7 @@
 | :--- | :--- |
 | `src/ui/frontend.h` | Header com estruturas (`EstadoUI`) e assinaturas de funções |
 | `src/ui/frontend.c` | Implementação completa — renderização e entrada via Raylib |
-| `src/main_raylib.c` | Ponto de entrada da versão gráfica |
+| `src/main/main_raylib.c` | Ponto de entrada da versão gráfica |
 
 ---
 

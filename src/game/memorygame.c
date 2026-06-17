@@ -9,7 +9,7 @@ static void embaralhar_tabuleiro(JogoMemoria *jogo)
 {
     for (int i = 0; i < PARES; i++)
     {
-        jogo->numeros[i * 2]     = i + 1;
+        jogo->numeros[i * 2] = i + 1;
         jogo->numeros[i * 2 + 1] = i + 1;
     }
 
@@ -55,7 +55,7 @@ void exibir_tabuleiro(const JogoMemoria *jogo)
     printf("║  Pontuação: %d | Pares: %d/8  ║\n", jogo->pontuacao, jogo->pares_encontrados);
     printf("╚════════════════════════════════╝\n\n");
     
-    printf("    ");
+    printf(" ");
 
     for (coluna = 1; coluna <= TABULEIRO_SIZE; coluna++) 
     {

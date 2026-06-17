@@ -294,6 +294,7 @@ bool salvar_partida_memoria(const RegistroMemoria *r)
 
     fclose(file_csv);
     fclose(file_txt);
+    
     return true;
 }
 
@@ -464,6 +465,7 @@ int carregar_historico_vs(RegistroVS *buf, int max)
     while (count < max && fgets(linha, sizeof(linha), file_csv)) 
     {
         char dif[20];
+        
         int n = sscanf(linha, "%10[^,],%63[^,],%63[^,],%19[^,],%d,%d,%d,%d,%d", buf[count].data, buf[count].nome1, buf[count].nome2, dif, &buf[count].vitorias1, &buf[count].vitorias2, &buf[count].pontos1, &buf[count].pontos2, &buf[count].vencedor);
 
         if (n == 9) 

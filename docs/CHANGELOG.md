@@ -1,9 +1,9 @@
 <h1 align="center">Change Log / Plano de Testes
 <br>
 <img src="https://img.shields.io/badge/testes-27-111827?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
-<img src="https://img.shields.io/badge/aprovados-26-brightgreen?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
-<img src="https://img.shields.io/badge/pendentes-1-yellow?style=flat-square&logo=clockify&logoColor=white" height="22"/>
-<img src="https://img.shields.io/badge/cobertura-96%25-blue?style=flat-square&logo=jest&logoColor=white" height="22"/>
+<img src="https://img.shields.io/badge/aprovados-27-brightgreen?style=flat-square&logo=checkmarx&logoColor=white" height="22"/>
+<img src="https://img.shields.io/badge/pendentes-0-brightgreen?style=flat-square&logo=clockify&logoColor=white" height="22"/>
+<img src="https://img.shields.io/badge/cobertura-100%25-brightgreen?style=flat-square&logo=jest&logoColor=white" height="22"/>
 </h1>
 
 <p align="center"><b>Especificação dos casos de teste para validar os requisitos funcionais do projeto.</b></p>
@@ -26,8 +26,8 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 | Hierarquia de Cmds | 3 | 3 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
 | Histórico | 3 | 3 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
 | Estatísticas | 6 | 6 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
-| Regressão | 2 | 1 | 1 | ![](https://img.shields.io/badge/50%25-yellow?style=flat-square) |
-| **Total** | **27** | **26** | **1** | ![](https://img.shields.io/badge/96%25-blue?style=flat-square) |
+| Regressão | 2 | 2 | 0 | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
+| **Total** | **27** | **27** | **0** | ![](https://img.shields.io/badge/100%25-brightgreen?style=flat-square) |
 
 ---
 
@@ -388,13 +388,13 @@ Cobre os módulos: **Jogo da Adivinhação** (console e Raylib), **Jogo da Memó
 
 ### CT-REG-01: 100 sessões consecutivas de adivinhação
 
-![Status](https://img.shields.io/badge/status-pendente-yellow?style=flat-square)
+![Status](https://img.shields.io/badge/status-aprovado-brightgreen?style=flat-square)
 ![Capstone](https://img.shields.io/badge/Capstone-3-blueviolet?style=flat-square)
 
 | Campo | Valor |
 |-------|-------|
 | **Descrição** | Após 100 partidas de adivinhação, `historico.csv` deve ter 101 linhas (cabeçalho + 100); idem para os demais modos |
-| **Observação** | Agendado para o Capstone 3 |
+| **Resultado** | 100/100 partidas geradas com sucesso — `historico.csv` e demais arquivos validados ✅ |
 
 ---
 

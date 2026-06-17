@@ -30,9 +30,14 @@
 static Color cor_timer(double ratio)
 {
     if (ratio > 0.5) 
+    {
         return COR_TIMER_VERDE;
+    }
+
     if (ratio > 0.2) 
+    {
         return COR_TIMER_LARANJA;
+    }
 
     return COR_TIMER_VERMELHO;
 }
@@ -69,8 +74,7 @@ static Botao desenhar_botao(float x, float y, float w, float h, const char *text
 
 static bool clique_em_rect(Rectangle retangulo)
 {
-    return IsMouseButtonReleased(MOUSE_LEFT_BUTTON) &&
-           CheckCollisionPointRec(GetMousePosition(), retangulo);
+    return IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), retangulo);
 }
 
 static double timer_adiv_para_dif(Dificuldade dif)
@@ -93,8 +97,15 @@ static void desenhar_timer(double secs, double max_secs, float x, float y, float
 
     float filled = (float)(secs / max_secs) * largura;
 
-    if (filled < 0) filled = 0;
-    if (filled > largura) filled = largura;
+    if (filled < 0) 
+    { 
+        filled = 0;
+    }
+
+    if (filled > largura) 
+    { 
+        filled = largura;
+    }
 
     DrawRectangle((int)x, (int)(y+30), (int)largura, 8, COR_BOTAO);
     DrawRectangle((int)x, (int)(y+30), (int)filled,  8, cor);
@@ -126,6 +137,7 @@ static void salvar_partida_adivinhacao(const EstadoUI *ui)
     RegistroPartida reg_adivinhacao;
     time_t agora = time(NULL);
     struct tm *tempo_local  = localtime(&agora);
+
     strftime(reg_adivinhacao.data, sizeof(reg_adivinhacao.data), "%Y-%m-%d", tempo_local);
     strncpy(reg_adivinhacao.nome, ui->nome_jogador, sizeof(reg_adivinhacao.nome) - 1);
     reg_adivinhacao.nome[sizeof(reg_adivinhacao.nome) - 1] = '\0';
@@ -145,12 +157,14 @@ static void salvar_resultado_memoria(const EstadoUI *ui)
     RegistroMemoria reg_memoria;
     time_t agora = time(NULL);
     struct tm *tempo_local = localtime(&agora);
+
     strftime(reg_memoria.data, sizeof(reg_memoria.data), "%Y-%m-%d", tempo_local);
     strncpy(reg_memoria.nome, ui->nome_jogador, sizeof(reg_memoria.nome)-1);
     reg_memoria.nome[sizeof(reg_memoria.nome)-1] = '\0';
     reg_memoria.pontuacao = ui->jogo_memoria.pontuacao;
     reg_memoria.tentativas = ui->jogo_memoria.tentativas;
     reg_memoria.pontos = calcular_pontos_memoria(ui->jogo_memoria.tentativas);
+
     salvar_partida_memoria(&reg_memoria);
 }
 
@@ -206,6 +220,7 @@ void desenhar_inserir_nome(const EstadoUI *ui)
     DrawText("Qual o nome do astronauta?", 130, 190, 22, COR_TEXTO);
 
     Rectangle caixa = {130, 225, 580, 65};
+
     DrawRectangleRec(caixa, (Color){20,10,40,255});
     DrawRectangleLines(130, 225, 580, 65, COR_PRIMARIA);
     DrawText(nome_atual,(int)(caixa.x+16),(int)(caixa.y+12),38,COR_PRIMARIA);
@@ -226,8 +241,10 @@ void desenhar_inserir_nome(const EstadoUI *ui)
         strncpy(nome_lower, nome_atual, 63);
         nome_lower[63] = '\0';
 
-        for (int k = 0; nome_lower[k]; k++)
+        for (int k = 0; nome_lower[k]; k++) 
+        {
             nome_lower[k] = (char)tolower((unsigned char)nome_lower[k]);
+        }
 
         int matches[6];
         int n_matches = 0;
@@ -255,6 +272,7 @@ void desenhar_inserir_nome(const EstadoUI *ui)
             float dropdown_y = caixa.y + caixa.height;
             float dropdown_largura = caixa.width;
             float dropdown_altura  = (float)(n_matches * 34 + 4);
+
             DrawRectangle((int)dropdown_x, (int)dropdown_y, (int)dropdown_largura, (int)dropdown_altura, (Color){22,10,48,245});
             DrawRectangleLines((int)dropdown_x, (int)dropdown_y, (int)dropdown_largura, (int)dropdown_altura, COR_SECUNDARIA);
 
@@ -305,6 +323,7 @@ void desenhar_jogo_adivinhacao(const EstadoUI *ui)
     DrawText("MISSÃO: OPERAÇÃO RESGATE", 320,30,38,COR_PRIMARIA);
 
     const char *nome_patente = "Cadete";
+
     if (ui->dificuldade_selecionada == MEDIO) 
     {
         nome_patente = "Piloto";
@@ -462,10 +481,10 @@ void desenhar_jogo_vs(const EstadoUI *ui)
 
     DrawText(tent_j1, 60,  210, 18, COR_SUCESSO);
     DrawText(tent_j2, 400, 210, 18, COR_AVISO);
-
     DrawText("Digite seu palpite: ",60,300,25,COR_TEXTO);
 
     Rectangle box = {60,350,420,60};
+
     DrawRectangleRec(box,(Color){20,10,40,255});
     DrawRectangleLines(60,350,420,60,COR_PRIMARIA);
     DrawText(ui->entrada_texto,(int)(box.x+20),(int)(box.y+10),40,COR_PRIMARIA);
@@ -518,8 +537,8 @@ static void _desenhar_grade_memoria(const JogoMemoria *jogo,
             int pos = i * colunas + j;
             int x   = inicio_x + (tamanho_casa + espacamento) * j;
             int y   = inicio_y + (tamanho_casa + espacamento) * i;
-            Rectangle casa = {(float)x, (float)y, (float)tamanho_casa, (float)tamanho_casa};
 
+            Rectangle casa = {(float)x, (float)y, (float)tamanho_casa, (float)tamanho_casa};
             Color cor;
 
             if (jogo->acertadas[pos])                                     
@@ -572,6 +591,7 @@ void desenhar_jogo_memoria(const EstadoUI *ui)
     DrawText(stats,180,72,22,COR_TEXTO);
 
     Color cor_barra_timer = cor_timer(ui->timer_memoria / TIMER_MEM_BASE_SEG);
+
     float bar_largura = 300;
     float bar_cheia = (float)(ui->timer_memoria / TIMER_MEM_BASE_SEG) * bar_largura;
 
@@ -669,8 +689,7 @@ void desenhar_jogo_logica(const EstadoUI *ui)
 
     if (j->fase == FASE_RESP_VF)
     {
-        DrawText("Esta fórmula é VERDADEIRA ou FALSA para esses valores?",
-                 60,265,22,COR_TEXTO);
+        DrawText("Esta fórmula é VERDADEIRA ou FALSA para esses valores?", 60,265,22,COR_TEXTO);
 
         desenhar_botao(180,320,280,80,"V - VERDADEIRO");
         desenhar_botao(540,320,280,80,"F - FALSO");
@@ -1252,6 +1271,7 @@ void desenhar_historico(EstadoUI *ui)
     DrawLine(X2,354,780,354,COR_SECUNDARIA);
     {
         int y=358; bool tem_registros=false;
+
         for (int i=ui->hist_mem_vs_n-1; i>=0 && y<560; i--)
         {
             RegistroMemoriaVS *entrada_mem_vs=&ui->hist_mem_vs[i];
@@ -1264,8 +1284,7 @@ void desenhar_historico(EstadoUI *ui)
 
             char linha[100];
 
-            snprintf(linha,sizeof(linha),"%s %s %dp vs %s %dp | %s",
-                     entrada_mem_vs->data,entrada_mem_vs->nome1,entrada_mem_vs->pares1,entrada_mem_vs->nome2,entrada_mem_vs->pares2,nome_vencedor);
+            snprintf(linha,sizeof(linha),"%s %s %dp vs %s %dp | %s", entrada_mem_vs->data,entrada_mem_vs->nome1,entrada_mem_vs->pares1,entrada_mem_vs->nome2,entrada_mem_vs->pares2,nome_vencedor);
             DrawText(linha,X2,y,13,COR_TEXTO);
             y+=20;
         }
@@ -1282,6 +1301,7 @@ void desenhar_historico(EstadoUI *ui)
     DrawLine(X3,topo+20,1170,topo+20,COR_SECUNDARIA);
     {
         int y=topo+24; bool tem_registros=false;
+
         for (int i=ui->hist_logica_n-1; i>=0 && y<318; i--)
         {
             RegistroPuzzle *entrada_logica=&ui->hist_logica[i];
@@ -1292,8 +1312,7 @@ void desenhar_historico(EstadoUI *ui)
 
             char linha[100];
 
-            snprintf(linha,sizeof(linha),"%s %-10s %d/%d %dpts",
-                     entrada_logica->data,entrada_logica->nome,entrada_logica->acertos,entrada_logica->total,entrada_logica->pontos);
+            snprintf(linha,sizeof(linha),"%s %-10s %d/%d %dpts", entrada_logica->data,entrada_logica->nome,entrada_logica->acertos,entrada_logica->total,entrada_logica->pontos);
             DrawText(linha,X3,y,13,COR_TEXTO);
             y+=20;
         }
@@ -1319,8 +1338,7 @@ void desenhar_historico(EstadoUI *ui)
 
             char linha[100];
 
-            snprintf(linha,sizeof(linha),"%s %-10s %d/%d %dpts",
-                     entrada_prec->data,entrada_prec->nome,entrada_prec->acertos,entrada_prec->total,entrada_prec->pontos);
+            snprintf(linha,sizeof(linha),"%s %-10s %d/%d %dpts", entrada_prec->data,entrada_prec->nome,entrada_prec->acertos,entrada_prec->total,entrada_prec->pontos);
             DrawText(linha,X3,y,13,COR_TEXTO);
             y+=20;
         }
@@ -1336,8 +1354,7 @@ void desenhar_historico(EstadoUI *ui)
 #undef X3
 
     DrawLine(50,570,1150,570,COR_BOTAO);
-    DrawText("Estatísticas detalhadas disponíveis na tela de Estatísticas.",
-             160,580,16,COR_TEXTO);
+    DrawText("Estatísticas detalhadas disponíveis na tela de Estatísticas.",160,580,16,COR_TEXTO);
     desenhar_botao(400,620,400,55,"Voltar ao Menu (ESC)");
 }
 
@@ -2064,9 +2081,7 @@ void processar_entrada(EstadoUI *ui)
                         ui->vs_vencedor_rodada = jogador_ativo + 1;
                         ui->vs_rodada_acabou   = true;
                         ui->vs_jogo_acabou     = (ui->vs_rodada >= VS_MAX_RODADAS - 1);
-                        snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),
-                                 "%s ACERTOU! Pressione Enter p/ continuar.",
-                                 jogador_ativo == 0 ? ui->nome_jogador : ui->nome_jogador2);
+                        snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro), "%s ACERTOU! Pressione Enter p/ continuar.", jogador_ativo == 0 ? ui->nome_jogador : ui->nome_jogador2);
                     }
 
                     else
@@ -2652,6 +2667,7 @@ void atualizar_ui(EstadoUI *ui)
                 ui->vs_vencedor_rodada = 0;
                 ui->vs_rodada_acabou   = true;
                 ui->vs_jogo_acabou     = (ui->vs_rodada >= VS_MAX_RODADAS-1);
+                
                 memset(ui->entrada_texto,0,sizeof(ui->entrada_texto));
                 ui->indice_entrada=0;
                 snprintf(ui->mensagem_erro,sizeof(ui->mensagem_erro),"Tempo esgotado! Pressione Enter p/ continuar.");

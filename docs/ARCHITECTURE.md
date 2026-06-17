@@ -159,7 +159,7 @@ Centraliza o conhecimento do projeto:
 
 | Arquivo | Conteúdo |
 | :--- | :--- |
-| **ADR.md** <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="16"/> | Registro das decisões arquiteturais (5 ADRs): dual entry-point, persistência CSV+TXT, recursão em estatísticas, `EstadoUI` e heurísticas estáticas |
+| **ADR.md** <img src="https://img.shields.io/badge/-ADR-111827?style=flat-square&logo=blueprint&logoColor=4CAF50" height="16"/> | Registro das decisões arquiteturais (8 ADRs): dual entry-point, persistência CSV+TXT, recursão em estatísticas, `EstadoUI`, heurísticas estáticas, persistência multi-modo, módulo de música e sistema de patentes |
 | **API.md** <img src="https://img.shields.io/badge/-API-111827?style=flat-square&logo=markdown&logoColor=FFB13B" height="16"/> | Especificação das funções e contratos entre os módulos |
 | <mark>**ARCHITECTURE.md**</mark> <img src="https://img.shields.io/badge/-Arch-111827?style=flat-square&logo=instructure&logoColor=4CAF50" height="16"/> | Visão macro do sistema e padrões de projeto |
 | **GAMES.md** <img src="https://img.shields.io/badge/-Games-111827?style=flat-square&logo=gamepad&logoColor=4CAF50" height="16"/> | Descrição detalhada dos 6 modos de jogo: regras, dificuldades, pontuação, struct, funções e módulos fonte para Console e Raylib |
